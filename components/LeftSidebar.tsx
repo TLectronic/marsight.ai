@@ -13,7 +13,7 @@ import {
 } from "./ui/accordion";
 import Link from "next/link";
 
-export default function LeftSidebar({lng}: {lng: string}) {
+export default function LeftSidebar() {
   const [isOpen, setIsOpen] = useState(true);
   return (
     <div
