@@ -5,8 +5,6 @@ import {
   PopoverContent,
   Popover,
 } from "@/components/ui/popover";
-import {useNavigator} from 'next/navigator'
-import Head from ''
 import cnIcon from "@/public/cn.svg";
 import enIcon from "@/public/us.svg";
 import Link from "next/link";
