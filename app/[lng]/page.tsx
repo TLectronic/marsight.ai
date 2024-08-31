@@ -1,9 +1,10 @@
 // page.tsx
 import { useTranslation } from '../../lib/i18n/index'
-import Link from 'next/link';
+import {redirect} from 'next/navigation'
 
-export default async function Page({ params: { lng } }: { params: { lng: string } }) {
-  const { t } = await useTranslation(lng, 'common')
+export default  function Page({ params: { lng } }: { params: { lng: string } }) {
+  redirect(`/${lng}/search`)
+  // const { t } = await useTranslation(lng, 'common')
   return (
     <>
       {/* <div>{t('title')}</div>
