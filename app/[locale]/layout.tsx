@@ -5,7 +5,7 @@ import "../globals.css";
 import { cn } from "@/lib/utils";
 import LeftSidebar from "@/components/LeftSidebar";
 import { ClerkProvider } from "@clerk/nextjs";
-import { getMessages } from "next-intl/server";
+import { getMessages, unstable_setRequestLocale } from "next-intl/server";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -26,9 +26,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
   params: {
-    lng: string;
+    locale: string;
   };
 }>) {
+  unstable_setRequestLocale(locale);
   const messages  = await getMessages()
   return (
     <html lang={locale}>
@@ -42,7 +43,7 @@ export default async function RootLayout({
           <NextIntlClientProvider messages={messages}>
             <div className="w-screen h-screen flex flex-row">
               <LeftSidebar />
-              <div className="flex-1 p-8">{children}</div>
+              <div className="flex-1">{children}</div>
             </div>
           </NextIntlClientProvider>
         </body>

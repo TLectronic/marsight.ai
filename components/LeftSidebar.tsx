@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
-import { Menu, Search, History, Bot } from "lucide-react";
+import { PanelLeftClose, Search, History, Bot, PanelRightClose } from "lucide-react";
 import {
   SignedOut,
   SignInButton,
@@ -109,7 +109,10 @@ export default function LeftSidebar() {
             <LanguageSwitcher />
           </>
         ) : null}
-        <Menu onClick={() => setIsOpen((prev) => !prev)} />
+        {
+          isOpen ?<PanelLeftClose onClick={() => setIsOpen((prev) => !prev)} /> : <PanelRightClose onClick={() => setIsOpen((prev) => !prev)} />
+        }
+        
       </div>
     </div>
   );
