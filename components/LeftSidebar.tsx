@@ -20,10 +20,12 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import logoIcon from "@/public/logo.png";
+import { useTranslations } from "next-intl";
 
 export default function LeftSidebar() {
   const [isOpen, setIsOpen] = useState(true);
   const { user, isLoaded } = useUser();
+  const t = useTranslations('LeftSidebar')
   return (
     <div
       className={cn(
@@ -48,8 +50,8 @@ export default function LeftSidebar() {
             href={`/search`}
             className="h-6 w-full flex flex-row px-2 items-center  cursor-pointer gap-2"
           >
-            <Search width={16} height={16} className="w-4 h-4" />{" "}
-            {isOpen && "搜索"}
+            <Search width={16} height={16} className="w-4 h-4" />
+            {isOpen && t('search')}
           </Link>
         </Button>
         {isOpen && (
@@ -58,7 +60,7 @@ export default function LeftSidebar() {
               <AccordionTrigger disabled={!isOpen}>
                 <div className="w-full h-6 flex flex-row items-center gap-2">
                   <History width={16} height={16} className="w-4 h-4" />
-                  {isOpen && "历史记录"}
+                  {isOpen && t('library')}
                 </div>
               </AccordionTrigger>
               <AccordionContent asChild>
@@ -80,7 +82,7 @@ export default function LeftSidebar() {
         {isOpen && (
           <SignedOut>
             <SignInButton>
-              <Button className="w-10/12">SignIn</Button>
+              <Button className="w-10/12">{t('signin')}</Button>
             </SignInButton>
           </SignedOut>
         )}

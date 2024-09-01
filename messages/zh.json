@@ -1,0 +1,20 @@
+{
+  "HomePage": {
+    "title": "你好世界",
+    "about": "去关于页"
+  },
+  "SearchPage": {
+    "title": "搜索",
+    "search": "搜索",
+    "searchPlaceholder": "输入任何产品的url链接",
+    "slogan": "通过数据解读任何一款产品的营销策略",
+    "decipher": "解读",
+    "privacy": "隐私政策",
+    "terms": "服务条款"
+  },
+  "LeftSidebar": {
+    "search": "搜索",
+    "library": "历史记录",
+    "signin": "登录"
+  }
+}

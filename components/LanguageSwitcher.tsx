@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, {useEffect, useState} from "react";
 import { Globe } from "lucide-react";
 import {
   PopoverTrigger,
@@ -9,7 +10,17 @@ import cnIcon from "@/public/cn.svg";
 import enIcon from "@/public/us.svg";
 import Link from "next/link";
 import Image from "next/image";
+
 export default function LanguageSwitcher() {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(()=>{
+    setIsMounted(true)
+  }, [])
+
+  if(!isMounted){
+    return null
+  }
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -19,7 +30,7 @@ export default function LanguageSwitcher() {
         <div className="flex flex-col gap-2 w-28  p-0 ">
           <Link
             className="w-full h-8 flex items-center hover:bg-gray-100 gap-2 pl-2"
-            href={"/en"}
+            href={`/en${window?.location.pathname.substring(3)}`}
           >
             <Image
               src={enIcon}
@@ -31,7 +42,7 @@ export default function LanguageSwitcher() {
           </Link>
           <Link
             className="w-full h-8 flex  items-center hover:bg-gray-100 gap-2 pl-2"
-            href={"/zh"}
+            href={`/zh${window?.location.pathname.substring(3)}`}
           >
             <Image
               src={cnIcon}

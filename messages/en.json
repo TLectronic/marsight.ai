@@ -1,0 +1,20 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "SearchPage": {
+    "title": "Search",
+    "search": "Search",
+    "searchPlaceholder": "Drop any product's link.",
+    "slogan": "Decipher any product's marketing strategy with data.",
+    "decipher": "Decipher",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "LeftSidebar": {
+    "search": "Search",
+    "library": "Library",
+    "signin": "SignIn"
+  }
+}
