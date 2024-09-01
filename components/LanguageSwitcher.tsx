@@ -1,5 +1,5 @@
 import React from "react";
-import { LanguagesIcon } from "lucide-react";
+import { Globe } from "lucide-react";
 import {
   PopoverTrigger,
   PopoverContent,
@@ -13,7 +13,7 @@ export default function LanguageSwitcher() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <LanguagesIcon />
+       <Globe />
       </PopoverTrigger>
       <PopoverContent side="top" asChild className="p-0 w-28">
         <div className="flex flex-col gap-2 w-28  p-0 ">
