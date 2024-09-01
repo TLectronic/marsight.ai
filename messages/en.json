@@ -15,6 +15,9 @@
   "LeftSidebar": {
     "search": "Search",
     "library": "Library",
-    "signin": "SignIn"
+    "signin": "SignIn",
+    "title": "Try Pro",
+    "content": "Upgrade to get more Pro Search features like image uploads, smarter AI, and more.",
+    "button": "Learn more"
   }
 }

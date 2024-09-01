@@ -15,6 +15,9 @@
   "LeftSidebar": {
     "search": "搜索",
     "library": "历史记录",
-    "signin": "登录"
+    "signin": "登录",
+    "title": "尝试Pro",
+    "content": "升级以获得图片上传，更智能的AI等更多Pro Search功能。",
+    "button": "了解更多"
   }
 }

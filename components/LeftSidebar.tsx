@@ -11,6 +11,9 @@ import {
   useUser,
 } from "@clerk/nextjs";
 import { Button } from "./ui/button";
+
+import { Card } from "./ui/card";
+
 import {
   Accordion,
   AccordionContent,
@@ -36,7 +39,7 @@ export default function LeftSidebar() {
       {/* LOGO */}
       <div className="w-full h-16 flex flex-row justify-center items-center text-xl text-blue-500 font-bold">
         {isOpen ? (
-          <Image src={logoIcon} alt="logo"  className="w-8/12 object-cover" />
+          <Image src={logoIcon} alt="logo" className="w-8/12 object-cover" />
         ) : (
           <Button variant="ghost">
             <Bot width={32} height={32} className="w-8 h-8" />
@@ -78,6 +81,20 @@ export default function LeftSidebar() {
         )}
       </div>
 
+      <div className="w-5/6 ml-2">
+        <Card className="pl-2 pr-2 bg-orange-50">
+          <div className="font-semibold text-sm leading-relaxed">
+            {isOpen && t('title')}
+          </div>
+          <div className="text-sm leading-relaxed">
+            {isOpen && t('content')}
+          </div>
+          <Button className="mb-2">
+            {isOpen && t('button')}
+          </Button>
+        </Card>
+      </div>
+
       <div className="w-full flex justify-center">
         {isOpen && (
           <SignedOut>
@@ -110,9 +127,9 @@ export default function LeftSidebar() {
           </>
         ) : null}
         {
-          isOpen ?<PanelLeftClose onClick={() => setIsOpen((prev) => !prev)} /> : <PanelRightClose onClick={() => setIsOpen((prev) => !prev)} />
+          isOpen ? <PanelLeftClose onClick={() => setIsOpen((prev) => !prev)} /> : <PanelRightClose onClick={() => setIsOpen((prev) => !prev)} />
         }
-        
+
       </div>
     </div>
   );
