@@ -1,44 +1,22 @@
-import createMiddleware from 'next-intl/middleware';
-import { authMiddleware } from '@clerk/nextjs';
-import { NextResponse } from 'next/server';
+import { clerkMiddleware, createRouteMatcher, redirectToSignIn } from '@clerk/nextjs/server'
+import createMiddleware from 'next-intl/middleware'
 import {routing} from './i18n/routing'
 
-const intlMiddleware = createMiddleware(routing);
+const intlMiddleware = createMiddleware(routing)
 
-// const clerkMiddleware = authMiddleware({
-//   publicRoutes: ['/']
-// });
+const isProtectedRoute = createRouteMatcher(['/(.*)'])
 
-// 使用 Clerk 的 authMiddleware 包装我们的中间件
-export default authMiddleware({
-  beforeAuth: (req) => {
-    // 在认证之前执行 intl 中间件
-    return intlMiddleware(req);
-  },
-  
-  // 确保对匹配的路由执行 afterAuth
-  afterAuth(auth, req) {
-    // 重定向登录用户到 /dashboard，如果他们访问了 / 路由
-    if (auth.userId && req.nextUrl.pathname === "/") {
-      const dashboardUrl = new URL('/dashboard', req.url);
-      return NextResponse.redirect(dashboardUrl);
-    }
-  },
+export default clerkMiddleware((auth, req) => {
+  if (isProtectedRoute(req)) auth().protect()
 
-  // 指定公开路由
-  publicRoutes: ["/", "/:locale", "/:locale/sign-in", "/:locale/sign-up"]
-});
-
-// export default function middleware(req) {
-//   const res = intlMiddleware(req);
-  
-//   if (res.status === 401) {
-//     return clerkMiddleware(req);
-//   }
-
-//   return res || NextResponse.next();
-// }
+  return intlMiddleware(req)
+})
 
 export const config = {
-  matcher: ['/((?!api|_next|.*\\..*).*)']
-};
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Always run for API routes
+    '/(api|trpc)(.*)',
+  ],
+}
