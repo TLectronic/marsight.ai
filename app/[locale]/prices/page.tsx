@@ -14,7 +14,7 @@ import OrderPage from "@/components/OrderPgae"
 import { useRef } from "react"
 export default function Component() {
   const t = useTranslations("PricesPage")
-  const currentAmountRef = useRef<number>(0.01)
+  const currentAmountRef = useRef<number>(1)
   return (
     <div className="bg-gradient-to-b from-purple-100 to-white min-h-screen p-4 flex items-center justify-center">
 
