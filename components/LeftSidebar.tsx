@@ -70,7 +70,7 @@ export default function LeftSidebar() {
                 <Button variant={"link"} className="w-full">
                   <Link
                     href={`/search/history/1`}
-                    className="h-6 w-full flex flex-row px-2 items-center  cursor-pointer gap-2"
+                    className="h-6 w-full flex flex-row px-2 items-center cursor-pointer gap-2"
                   >
                     首次搜索记录
                   </Link>

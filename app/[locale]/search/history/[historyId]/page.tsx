@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Resizable } from 're-resizable'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
-import { Send, PaperclipIcon } from 'lucide-react'
+import { Send, PaperclipIcon, Search } from 'lucide-react'
 
 import { Button } from "@/components/ui/button"
 import { DataBox } from '@/components/ui/databox'
@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
+import { MentionBox } from "@/components/ui/mention-box"
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -35,6 +36,94 @@ const pieChartData = [
   { name: 'Group C', value: 300 },
   { name: 'Group D', value: 200 },
 ]
+
+// 最火爆的提及 数据
+const mentions = [
+  {
+    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    fallbackText: 'error',
+    title: 'Imagine ter o seu proprio influe...',
+    date: '2024-08-22 05:15',
+    link: 'https://instagram.com',
+    tags: '#robo #vocesabia #curiosidades #dicas'
+  },
+  {
+    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    fallbackText: 'error',
+    title: 'Odetta Rockhead-Kerr',
+    date: '2024-08-12 05:00',
+    link: 'https://youtube.com',
+    tags: 'ROCKSTAR to get an additional 10% off.'
+  },
+];
+
+// 搜索分析 数据
+const searchData = [
+  {
+    spanText: 'No.of Keywords',
+    paragraphText: '5968',
+  },
+  {
+    spanText: 'No.of Clicks',
+    paragraphText: '1.190M',
+  },
+  {
+    spanText: 'Of All Total Traffic',
+    paragraphText: '44.56%',
+  },
+  {
+    spanText: 'Organic vs . Paid',
+    paragraphText: '8 : 2',
+  },
+];
+
+// 流量总览 数据
+const trafficData = [
+  {
+    spanText: 'Monthly Visits',
+    paragraphText: '2.672M',
+  },
+  {
+    spanText: 'Unique Visitors',
+    paragraphText: '1.135M',
+  },
+  {
+    spanText: 'Visit Duration',
+    paragraphText: '00:04:47',
+  },
+  {
+    spanText: 'Pages Per Visit',
+    paragraphText: '4.46',
+  },
+  {
+    spanText: 'Bounce Rate',
+    paragraphText: '44.87%',
+  },
+  {
+    spanText: 'Page Views',
+    paragraphText: '11.93M',
+  },
+];
+
+// 社交媒体提及 数据
+const smMentions = [
+  {
+    spanText: 'Mentions',
+    paragraphText: '3974',
+  },
+  {
+    spanText: 'total number of likes',
+    paragraphText: '111',
+  },
+  {
+    spanText: 'total number of shares',
+    paragraphText: '222',
+  },
+];
+
+// 博主表格表头数据
+const tableHeader = ['', 'Profile name', '', 'Site', 'Mentions', 'Followers'];
+// 博主表格内数据
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 
@@ -132,27 +221,13 @@ export default function Component() {
               </CardHeader>
               <CardContent>
                 <div className='flex justify-between flex-wrap space-x-4 mb-4'>
-                  <DataBox
-                    spanText='Monthly Visits'
-                    paragraphText='2.672M'
-                  />
-                  <DataBox
-                    spanText='Unique Vistors'
-                    paragraphText='1.135M'
-                  />
-                  <DataBox
-                    spanText='Visit Duration'
-                    paragraphText='00:04:47'
-                  /><DataBox
-                    spanText='Pages Per Visit'
-                    paragraphText='4.46'
-                  /><DataBox
-                    spanText='Bounce Rate'
-                    paragraphText='44.87%'
-                  /><DataBox
-                    spanText='Page Views'
-                    paragraphText='11.93M'
-                  />
+                  {trafficData.map((traffic, index) => (
+                    <DataBox
+                      key={index}
+                      spanText={traffic.spanText}
+                      paragraphText={traffic.paragraphText}
+                    />
+                  ))}
                 </div>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={lineChartData}>
@@ -208,7 +283,7 @@ export default function Component() {
                           {row.map((cell, colIndex) => (
                             <TableCell key={colIndex}>
                               {colIndex === 0 ? (
-                                <a href={`https://${cell}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline ">
+                                <a href={`https://${cell}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
                                   {cell}
                                 </a>
                               ) : (
@@ -230,23 +305,14 @@ export default function Component() {
               </CardHeader>
               <CardContent>
                 <div className='flex justify-between flex-wrap space-x-4 mb-4'>
-                  <DataBox
-                    spanText='No.of Keywords'
-                    paragraphText='5968'
-                  />
-                  <DataBox
-                    spanText='No.of Clicks'
-                    paragraphText='1.190M'
-                  />
-                  <DataBox
-                    spanText='Of All Total Traffic'
-                    paragraphText='44.56%'
-                  /><DataBox
-                    spanText='Organic vs. Paid'
-                    paragraphText='8 : 2'
-                  />
+                  {searchData.map((search, index) => (
+                    <DataBox
+                      key={index}
+                      spanText={search.spanText}
+                      paragraphText={search.paragraphText}
+                    />
+                  ))}
                 </div>
-
               </CardContent>
             </Card>
 
@@ -284,21 +350,13 @@ export default function Component() {
                 </div>
                 <div className='font-semibold leading-none tracking-tight ml-12 mt-4 mb-8'>Social Media Mentions</div>
                 <div className='flex justify-between ml-12 w-4/6 mb-4'>
-                  <DataBox
-                    className=''
-                    spanText='Mentions'
-                    paragraphText='3974'
-                  />
-                  <DataBox
-                    className=''
-                    spanText='total number of likes'
-                    paragraphText='111'
-                  />
-                  <DataBox
-                    className=''
-                    spanText='total number of shares'
-                    paragraphText='222'
-                  />
+                  {smMentions.map((smmention, index) => (
+                    <DataBox
+                      key={index}
+                      spanText={smmention.spanText}
+                      paragraphText={smmention.paragraphText}
+                    />
+                  ))}
                 </div>
                 <div className='flex'>
                   <ResponsiveContainer width="100%" height={300}>
@@ -335,9 +393,77 @@ export default function Component() {
               </CardContent>
             </Card>
 
+            <Card className="rounded-[24px]">
+              <CardHeader>
+                <CardTitle>The most popular mentions</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className='grid divide-y'>
+                  {mentions.map((mention, index) => (
+                    <MentionBox
+                      key={index}
+                      avatarSrc={mention.avatarSrc}
+                      fallbackText={mention.fallbackText}
+                      title={mention.title}
+                      date={mention.date}
+                      link={mention.link}
+                      tags={mention.tags}
+                    />
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
 
 
+            <Card className="rounded-[24px]">
+              <CardHeader>
+                <CardTitle>Influencers</CardTitle>
+              </CardHeader>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    {tableHeader.map((tableheader, index) => (
+                      <TableHead>{tableheader}</TableHead>
+                    ))}
+                  </TableRow>
+                </TableHeader>
 
+                <TableBody>
+
+                  <TableRow>
+                    <TableCell>1</TableCell> {/* 第一列编号 */}
+                    <TableCell>John Doe</TableCell>
+                    <TableCell>
+                      <button className="btn">Button</button> {/* 第三列按钮 */}
+                    </TableCell>
+                    <TableCell>200</TableCell>
+                    <TableCell>1.5k</TableCell>
+                    <TableCell></TableCell> {/* 最后一列为空 */}
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>2</TableCell> {/* 第一列编号 */}
+                    <TableCell>Jane Smith</TableCell>
+                    <TableCell>
+                      <Button>Button</Button> {/* 第三列按钮 */}
+                    </TableCell>
+                    <TableCell>150</TableCell>
+                    <TableCell>1.2k</TableCell>
+                    <TableCell></TableCell> {/* 最后一列为空 */}
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>3</TableCell> {/* 第一列编号 */}
+                    <TableCell>Michael Johnson</TableCell>
+                    <TableCell>
+                      <button className="btn">Button</button> {/* 第三列按钮 */}
+                    </TableCell>
+                    <TableCell>300</TableCell>
+                    <TableCell>2.0k</TableCell>
+                    <TableCell></TableCell> {/* 最后一列为空 */}
+                  </TableRow>
+
+                </TableBody>
+              </Table>
+            </Card>
             {/* <Card className="rounded-[24px]">
               <CardHeader>
                 <CardTitle>访问总数</CardTitle>
