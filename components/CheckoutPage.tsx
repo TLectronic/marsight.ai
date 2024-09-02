@@ -31,7 +31,7 @@ export default function CheckoutPage({amount}: {amount: number}) {
       return
     }
 
-    const {error: submitError} = await elements.submit()
+    const {error: submitError} = (await elements.submit()) as any
 
     if(submitError){
       setErrorMessage(submitError?.message)
@@ -46,7 +46,7 @@ export default function CheckoutPage({amount}: {amount: number}) {
       confirmParams: {
         return_url: `http://localhost:3000/payment-success?amount=${amount}`
       }
-    })
+    }) as any
 
     if(error){
       setErrorMessage(error?.message)
