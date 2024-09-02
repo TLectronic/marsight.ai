@@ -32,7 +32,7 @@ export default function LeftSidebar() {
   return (
     <div
       className={cn(
-        "h-screen flex flex-col justify-between gap-4 bg-[#F7F8FA] relative",
+        "h-screen flex flex-col justify-between gap-4 bg-[#FFFFFF] relative",
         isOpen ? "w-[200px]" : "w-16"
       )}
     >

@@ -9,6 +9,7 @@ import { DataBox } from '@/components/ui/databox'
 import { Textarea } from "@/components/ui/textarea"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -36,6 +37,12 @@ const pieChartData = [
 ]
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
+
+const referralsData = [
+  ['Producthunt.com', 'Tech News', '17.77%', '15.4k', 'New'],
+  ['canva.com', 'Design', '17.77%', '15.4k', '22.82%'],
+  ['g2.com', 'Tech News', '17.77%', '15.4k', '-67.93%'],
+];
 
 export default function Component() {
   const [messages, setMessages] = useState([
@@ -78,19 +85,75 @@ export default function Component() {
           <div className="p-4 space-y-4 min-w-[500px]">
             <Card className="rounded-[24px]">
               <CardHeader>
-                <CardTitle>访问总数</CardTitle>
+                <CardTitle>Product Analysis</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-4xl font-bold">1,234,567</div>
-                <div className="text-sm text-muted-foreground">较上周增长 5.25%</div>
+                <div className="text-base font-bold mb-2">heygen.com</div>
+                <div className="text-sm mb-6">
+                  heygen is an innovative video platform that harnesses the power of generative ai to streamline your video creation process.
+                </div>
+                <div className='border-black border-2 h-60'>
+
+                  <div className='flex justify-between text-xl'>
+                    <div className='flex-1'>
+                      <div className='text-center mb-16'>Target Users</div>
+                      <ul className='text-sm ml-4'>
+                        <li>· Businesses of all sizes</li>
+                        <li>· Marketers</li>
+                        <li>· Sales teams</li>
+                      </ul>
+                    </div>
+
+                    <div className='flex-1'>
+                      <div className='text-center mb-16'>Core Features</div>
+                      <ul className='text-sm ml-4'>
+                        <li>· Text-to-Video Conversion</li>
+                        <li>· 100+ Customizable Avatars</li>
+                        <li>· 300+ Voices in 40+ Languages</li>
+                      </ul>
+                    </div>
+
+                    <div className='flex-1'>
+                      <div className='text-center mb-16'>Application Scenarios</div>
+                      <ul className='text-sm ml-4'>
+                        <li>· Markerting Campaigns</li>
+                        <li>· Product Demonstrations</li>
+                        <li>· Social Media Content</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
             <Card className="rounded-[24px]">
               <CardHeader>
-                <CardTitle>用户增长趋势</CardTitle>
+                <CardTitle>Traffic Overview</CardTitle>
               </CardHeader>
               <CardContent>
+                <div className='flex justify-between flex-wrap space-x-4 mb-4'>
+                  <DataBox
+                    spanText='Monthly Visits'
+                    paragraphText='2.672M'
+                  />
+                  <DataBox
+                    spanText='Unique Vistors'
+                    paragraphText='1.135M'
+                  />
+                  <DataBox
+                    spanText='Visit Duration'
+                    paragraphText='00:04:47'
+                  /><DataBox
+                    spanText='Pages Per Visit'
+                    paragraphText='4.46'
+                  /><DataBox
+                    spanText='Bounce Rate'
+                    paragraphText='44.87%'
+                  /><DataBox
+                    spanText='Page Views'
+                    paragraphText='11.93M'
+                  />
+                </div>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={lineChartData}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -107,7 +170,7 @@ export default function Component() {
 
             <Card className="rounded-[24px]">
               <CardHeader>
-                <CardTitle>用户分布</CardTitle>
+                <CardTitle>Marketing Channels</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -124,6 +187,203 @@ export default function Component() {
             </Card>
 
             <Card className="rounded-[24px]">
+              <CardHeader>
+                <CardTitle>Referrals</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Link</TableHead>
+                        <TableHead>category</TableHead>
+                        <TableHead>Traffic Share</TableHead>
+                        <TableHead>Traffic</TableHead>
+                        <TableHead>Change</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {referralsData.map((row, rowIndex) => (
+                        <TableRow key={rowIndex}>
+                          {row.map((cell, colIndex) => (
+                            <TableCell key={colIndex}>
+                              {colIndex === 0 ? (
+                                <a href={`https://${cell}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline ">
+                                  {cell}
+                                </a>
+                              ) : (
+                                cell
+                              )}
+                            </TableCell>
+                          ))}
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-[24px]">
+              <CardHeader>
+                <CardTitle>Search Analysis</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className='flex justify-between flex-wrap space-x-4 mb-4'>
+                  <DataBox
+                    spanText='No.of Keywords'
+                    paragraphText='5968'
+                  />
+                  <DataBox
+                    spanText='No.of Clicks'
+                    paragraphText='1.190M'
+                  />
+                  <DataBox
+                    spanText='Of All Total Traffic'
+                    paragraphText='44.56%'
+                  /><DataBox
+                    spanText='Organic vs. Paid'
+                    paragraphText='8 : 2'
+                  />
+                </div>
+
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-[24px]">
+              <CardHeader>
+                <CardTitle>Social Media Analysis</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className='font-semibold leading-none tracking-tight ml-12 mb-6'>Social Distribution</div>
+                <div className='flex justify-around'>
+                  <DataBox
+                    className='ml-20 mt-20'
+                    spanText='Total social visits'
+                    paragraphText='45.2K'
+                  />
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={pieChartData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                        {pieChartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className='font-semibold leading-none tracking-tight ml-12 mt-4 mb-8'>Social Media Mentions</div>
+                <div className='flex justify-between ml-12 w-4/6 mb-4'>
+                  <DataBox
+                    className=''
+                    spanText='Mentions'
+                    paragraphText='3974'
+                  />
+                  <DataBox
+                    className=''
+                    spanText='total number of likes'
+                    paragraphText='111'
+                  />
+                  <DataBox
+                    className=''
+                    spanText='total number of shares'
+                    paragraphText='222'
+                  />
+                </div>
+                <div className='flex'>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <LineChart data={lineChartData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                    </LineChart>
+                  </ResponsiveContainer>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={pieChartData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                        {pieChartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+
+
+
+
+            {/* <Card className="rounded-[24px]">
+              <CardHeader>
+                <CardTitle>访问总数</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-4xl font-bold">1,234,567</div>
+                <div className="text-sm text-muted-foreground">较上周增长 5.25%</div>
+              </CardContent>
+            </Card> */}
+
+            {/* <Card className="rounded-[24px]">
+              <CardHeader>
+                <CardTitle>用户增长趋势</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={lineChartData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card> */}
+            {/* <Card className="rounded-[24px]">
+              <CardHeader>
+                <CardTitle>用户分布</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={barChartData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="value" fill="#8884d8" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card> */}
+            {/* <Card className="rounded-[24px]">
               <CardHeader>
                 <CardTitle>用户类型分布</CardTitle>
               </CardHeader>
@@ -148,56 +408,7 @@ export default function Component() {
                   </PieChart>
                 </ResponsiveContainer>
               </CardContent>
-            </Card>
-
-            <Card className="rounded-[24px]">
-              <CardHeader>
-                <CardTitle>流量总览</CardTitle>
-              </CardHeader>
-
-              <CardContent>
-                <div className='flex justify-center flex-wrap space-x-4 mb-4'>
-                  <DataBox
-                    spanText='-每月访问量'
-                    paragraphText='2.672M'
-                    className=''
-                  />
-                  <DataBox
-                    spanText='-独立访客'
-                    paragraphText='1.135M'
-                    className=''
-                  />
-                  <DataBox
-                    spanText='-平均访问停留时长'
-                    paragraphText='00:04:47'
-                    className=''
-                  /><DataBox
-                    spanText='-每次访问页数'
-                    paragraphText='4.46'
-                    className=''
-                  /><DataBox
-                    spanText='-跳出率'
-                    paragraphText='44.87%'
-                    className=''
-                  /><DataBox
-                    spanText='-页面浏览量'
-                    paragraphText='11.93M'
-                    className=''
-                  />
-                </div>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={lineChartData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card>
+            </Card> */}
 
           </div>
         </div>

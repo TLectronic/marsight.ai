@@ -1,7 +1,6 @@
 import * as React from "react";
 
 interface DataBoxProps extends React.HTMLAttributes<HTMLDivElement> {
-  // icon: React.ReactNode; // 盒子中的图标
   spanText: string; // 和图标一行的文字
   paragraphText: string; // 最下方的文字
 }

@@ -15,7 +15,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
     <div className="w-full h-full flex justify-center items-center relative">
       <main className="-mt-60 w-[600px] flex flex-col items-center justify-start gap-8">
         {/* <Image src={logoIcon} className="w-96 object-cover" alt="logo" /> */}
-        <p className="text-5xl ">{t("slogan")}</p>
+        <p className="text-xl ">{t("slogan")}</p>
         <div className="w-full max-w-screen-md space-y-2">
           <form className="flex space-x-2 relative">
             <LinkIcon className="absolute left-4 top-3" size={16} />
