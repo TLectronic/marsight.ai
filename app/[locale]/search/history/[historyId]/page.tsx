@@ -5,6 +5,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart
 import { Send, PaperclipIcon } from 'lucide-react'
 
 import { Button } from "@/components/ui/button"
+import { DataBox } from '@/components/ui/databox'
 import { Textarea } from "@/components/ui/textarea"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -148,6 +149,56 @@ export default function Component() {
                 </ResponsiveContainer>
               </CardContent>
             </Card>
+
+            <Card className="rounded-[24px]">
+              <CardHeader>
+                <CardTitle>流量总览</CardTitle>
+              </CardHeader>
+
+              <CardContent>
+                <div className='flex justify-center flex-wrap space-x-4 mb-4'>
+                  <DataBox
+                    spanText='-每月访问量'
+                    paragraphText='2.672M'
+                    className=''
+                  />
+                  <DataBox
+                    spanText='-独立访客'
+                    paragraphText='1.135M'
+                    className=''
+                  />
+                  <DataBox
+                    spanText='-平均访问停留时长'
+                    paragraphText='00:04:47'
+                    className=''
+                  /><DataBox
+                    spanText='-每次访问页数'
+                    paragraphText='4.46'
+                    className=''
+                  /><DataBox
+                    spanText='-跳出率'
+                    paragraphText='44.87%'
+                    className=''
+                  /><DataBox
+                    spanText='-页面浏览量'
+                    paragraphText='11.93M'
+                    className=''
+                  />
+                </div>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={lineChartData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+
           </div>
         </div>
       </Resizable>
@@ -157,16 +208,14 @@ export default function Component() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex ${
-                  message.role === 'user' ? 'justify-end' : 'justify-start'
-                }`}
+                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'
+                  }`}
               >
                 <div
-                  className={`max-w-[70%] p-2 rounded-lg ${
-                    message.role === 'user'
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-gray-200 text-gray-800'
-                  }`}
+                  className={`max-w-[70%] p-2 rounded-lg ${message.role === 'user'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-200 text-gray-800'
+                    }`}
                 >
                   <p className="break-words">{message.content}</p>
                 </div>
