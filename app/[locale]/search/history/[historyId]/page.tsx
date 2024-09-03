@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Resizable } from 're-resizable'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import { Send, PaperclipIcon, Search } from 'lucide-react'
-
+import Link from "next/link";
 import { Button } from "@/components/ui/button"
 import { DataBox } from '@/components/ui/databox'
 import { Textarea } from "@/components/ui/textarea"
@@ -297,6 +297,11 @@ export default function Component() {
                   </Table>
                 </ResponsiveContainer>
               </CardContent>
+              <div className="flex justify-end p-4">
+                <Link href="./secondaryPage/referrals  "  className="text-blue-500 no-underline">
+                  Show more details
+                </Link>
+              </div>
             </Card>
 
             <Card className="rounded-[24px]">
