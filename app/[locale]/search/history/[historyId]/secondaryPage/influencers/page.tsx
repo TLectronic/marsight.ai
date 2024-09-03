@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Button } from '@/components/ui/button';
 import { ArrowLeftIcon } from 'lucide-react';
+import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 
 const Influencers = () => {
     // 博主表格表头数据
@@ -44,7 +45,7 @@ const Influencers = () => {
                                 <TableCell>
                                     <Button variant="outline">Button</Button> {/* 第三列按钮 */}
                                 </TableCell>
-                                <TableCell></TableCell>
+                                <TableCell><TwitterLogoIcon /></TableCell>
                                 <TableCell>1</TableCell>
                                 <TableCell>3030000</TableCell>
                             </TableRow>
@@ -54,7 +55,7 @@ const Influencers = () => {
                                 <TableCell>
                                     <Button variant="outline">Button</Button> {/* 第三列按钮 */}
                                 </TableCell>
-                                <TableCell></TableCell>
+                                <TableCell><TwitterLogoIcon /></TableCell>
                                 <TableCell>1</TableCell>
                                 <TableCell>2750000</TableCell>
                             </TableRow>
@@ -64,7 +65,7 @@ const Influencers = () => {
                                 <TableCell>
                                     <Button variant="outline">Button</Button> {/* 第三列按钮 */}
                                 </TableCell>
-                                <TableCell></TableCell>
+                                <TableCell><GitHubLogoIcon /></TableCell>
                                 <TableCell>1</TableCell>
                                 <TableCell>1880000</TableCell>
                             </TableRow>
