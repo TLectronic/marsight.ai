@@ -11,6 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { MentionBox } from "@/components/ui/mention-box"
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select'
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -56,6 +57,27 @@ const mentions = [
     tags: 'ROCKSTAR to get an additional 10% off.'
   },
 ];
+
+// 红人的提及 数据
+const mentionsFrom = [
+  {
+    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    fallbackText: 'error',
+    title: '1',
+    date: '2024-08-22 05:15',
+    link: 'https://instagram.com',
+    tags: '#robo #vocesabia #curiosidades #dicas'
+  },
+  {
+    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    fallbackText: 'error',
+    title: '2',
+    date: '2024-08-12 05:00',
+    link: 'https://youtube.com',
+    tags: 'ROCKSTAR to get an additional 10% off.'
+  },
+];
+
 
 // 搜索分析 数据
 const searchData = [
@@ -134,6 +156,10 @@ const referralsData = [
 ];
 
 export default function Component() {
+  // 根据下拉框的选项来决定要渲染的数据
+  const [selectedOption, setSelectedOption] = useState('popular');
+  const dataToShow = selectedOption === 'popular' ? mentions : mentionsFrom;
+
   const [messages, setMessages] = useState([
     { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' }
   ])
@@ -304,6 +330,8 @@ export default function Component() {
               </div>
             </Card>
 
+
+
             <Card className="rounded-[24px]">
               <CardHeader>
                 <CardTitle>Search Analysis</CardTitle>
@@ -319,7 +347,13 @@ export default function Component() {
                   ))}
                 </div>
               </CardContent>
+              <CardHeader>
+                <CardTitle>Organic Traffic</CardTitle>
+              </CardHeader>
             </Card>
+
+
+
 
             <Card className="rounded-[24px]">
               <CardHeader>
@@ -400,21 +434,36 @@ export default function Component() {
 
             <Card className="rounded-[24px]">
               <CardHeader>
-                <CardTitle>The most popular mentions</CardTitle>
+                <Select defaultValue="popular" onValueChange={(value) => setSelectedOption(value)}>
+                  <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
+                    <SelectValue placeholder="Select an option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="popular">
+                      <CardTitle>The most popular mentions</CardTitle>
+                    </SelectItem>
+                    <SelectItem value="profiles">
+                      <CardTitle>Mentions from the most popular public profiles</CardTitle>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </CardHeader>
               <CardContent>
                 <div className='grid divide-y'>
-                  {mentions.map((mention, index) => (
+                  {dataToShow.map((data, index) => (
                     <MentionBox
                       key={index}
-                      avatarSrc={mention.avatarSrc}
-                      fallbackText={mention.fallbackText}
-                      title={mention.title}
-                      date={mention.date}
-                      link={mention.link}
-                      tags={mention.tags}
+                      avatarSrc={data.avatarSrc}
+                      fallbackText={data.fallbackText}
+                      title={data.title}
+                      date={data.date}
+                      link={data.link}
+                      tags={data.tags}
                     />
                   ))}
+                </div>
+                <div className='flex justify-end'>
+                  <Button variant="link">Show more Mentions</Button>
                 </div>
               </CardContent>
             </Card>
@@ -424,122 +473,55 @@ export default function Component() {
               <CardHeader>
                 <CardTitle>Influencers</CardTitle>
               </CardHeader>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    {tableHeader.map((tableheader, index) => (
-                      <TableHead>{tableheader}</TableHead>
-                    ))}
-                  </TableRow>
-                </TableHeader>
-
-                <TableBody>
-
-                  <TableRow>
-                    <TableCell>1</TableCell> {/* 第一列编号 */}
-                    <TableCell>John Doe</TableCell>
-                    <TableCell>
-                      <button className="btn">Button</button> {/* 第三列按钮 */}
-                    </TableCell>
-                    <TableCell>200</TableCell>
-                    <TableCell>1.5k</TableCell>
-                    <TableCell></TableCell> {/* 最后一列为空 */}
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>2</TableCell> {/* 第一列编号 */}
-                    <TableCell>Jane Smith</TableCell>
-                    <TableCell>
-                      <Button>Button</Button> {/* 第三列按钮 */}
-                    </TableCell>
-                    <TableCell>150</TableCell>
-                    <TableCell>1.2k</TableCell>
-                    <TableCell></TableCell> {/* 最后一列为空 */}
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>3</TableCell> {/* 第一列编号 */}
-                    <TableCell>Michael Johnson</TableCell>
-                    <TableCell>
-                      <button className="btn">Button</button> {/* 第三列按钮 */}
-                    </TableCell>
-                    <TableCell>300</TableCell>
-                    <TableCell>2.0k</TableCell>
-                    <TableCell></TableCell> {/* 最后一列为空 */}
-                  </TableRow>
-
-                </TableBody>
-              </Table>
-            </Card>
-            {/* <Card className="rounded-[24px]">
-              <CardHeader>
-                <CardTitle>访问总数</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-4xl font-bold">1,234,567</div>
-                <div className="text-sm text-muted-foreground">较上周增长 5.25%</div>
-              </CardContent>
-            </Card> */}
-
-            {/* <Card className="rounded-[24px]">
-              <CardHeader>
-                <CardTitle>用户增长趋势</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={lineChartData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card> */}
-            {/* <Card className="rounded-[24px]">
-              <CardHeader>
-                <CardTitle>用户分布</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={barChartData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="value" fill="#8884d8" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card> */}
-            {/* <Card className="rounded-[24px]">
-              <CardHeader>
-                <CardTitle>用户类型分布</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <PieChart>
-                    <Pie
-                      data={pieChartData}
-                      cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={80}
-                      fill="#8884d8"
-                      dataKey="value"
-                    >
-                      {pieChartData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <div className='p-6'>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      {tableHeader.map((tableheader, index) => (
+                        <TableHead>{tableheader}</TableHead>
                       ))}
-                    </Pie>
-                    <Tooltip />
-                    <Legend />
-                  </PieChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card> */}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>1</TableCell> {/* 第一列编号 */}
+                      <TableCell>Think Media</TableCell>
+                      <TableCell>
+                        <Button variant="outline">Button</Button> {/* 第三列按钮 */}
+                      </TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>1</TableCell>
+                      <TableCell>3030000</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>2</TableCell> {/* 第一列编号 */}
+                      <TableCell>Private Label</TableCell>
+                      <TableCell>
+                        <Button variant="outline">Button</Button> {/* 第三列按钮 */}
+                      </TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>1</TableCell>
+                      <TableCell>2750000</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>3</TableCell> {/* 第一列编号 */}
+                      <TableCell>Akalanka Ekanayake</TableCell>
+                      <TableCell>
+                        <Button variant="outline">Button</Button> {/* 第三列按钮 */}
+                      </TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>1</TableCell>
+                      <TableCell>1880000</TableCell>
+                    </TableRow>
+
+                  </TableBody>
+                </Table>
+                <div className='flex justify-end'>
+                  <Button variant="link">Show more influencers</Button>
+                </div>
+              </div>
+            </Card>
+
 
           </div>
         </div>
