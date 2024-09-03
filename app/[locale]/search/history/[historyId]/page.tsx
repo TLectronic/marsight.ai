@@ -12,6 +12,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { MentionBox } from "@/components/ui/mention-box"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select'
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible'
+
+import { TriangleDownIcon } from '@radix-ui/react-icons'
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -348,13 +351,131 @@ export default function Component() {
                 </div>
               </CardContent>
               <CardHeader>
-                <CardTitle>Organic Traffic</CardTitle>
+                <Select defaultValue="organic">
+                  <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
+                    <SelectValue placeholder="Select an option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="organic">
+                      <CardTitle>Organic Traffic</CardTitle>
+                    </SelectItem>
+                    <SelectItem value="paid">
+                      <CardTitle>Paid Traffic</CardTitle>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </CardHeader>
+<<<<<<< Updated upstream
               <div className="flex justify-end p-4">
                 <Link href="./1/secondaryPage/searchAnalysis  "  className="text-blue-500 no-underline hover:underline">
                   Show more search terms
                 </Link>
               </div>
+=======
+
+              <CardContent>
+                {/* <Table>
+                  <Collapsible defaultOpen={true}>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Keywords</TableHead>
+                        <TableHead>Clicks</TableHead>
+                        <TableHead>Traffic</TableHead>
+                        <TableHead>ClicksChange</TableHead>
+                        <TableHead>ChangeVolume</TableHead>
+                        <TableHead>Change of volume</TableHead>
+                      </TableRow>
+                    </TableHeader>
+
+                    <CollapsibleTrigger asChild>
+                      <TableRow>
+                        <div className="bg-white text-black cursor-pointer flex">
+                          randed Keywords
+                          <TriangleDownIcon className='mt-1' />
+                        </div>
+                      </TableRow>
+                    </CollapsibleTrigger>
+
+                    <CollapsibleContent>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell>heygen</TableCell>
+                          <TableCell>1060150</TableCell>
+                          <TableCell>65.06%</TableCell>
+                          <TableCell>21.76%</TableCell>
+                          <TableCell>1237740.00</TableCell>
+                          <TableCell>17.88%</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>heygen ai</TableCell>
+                          <TableCell>149930</TableCell>
+                          <TableCell>9.20%</TableCell>
+                          <TableCell>33.75%</TableCell>
+                          <TableCell>196180.00</TableCell>
+                          <TableCell>31.81%</TableCell>
+
+                        </TableRow>
+                      </TableBody>
+                    </CollapsibleContent>
+
+                  </Collapsible>
+                </Table> */}
+
+
+
+                <Collapsible defaultOpen={true}>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Keywords</TableHead>
+                        <TableHead>Clicks</TableHead>
+                        <TableHead>Traffic</TableHead>
+                        <TableHead>ClicksChange</TableHead>
+                        <TableHead>ChangeVolume</TableHead>
+                        <TableHead>Change of volume</TableHead>
+                      </TableRow>
+                    </TableHeader>
+
+                    <CollapsibleTrigger asChild>
+                      <TableRow>
+                        <div className="bg-white text-black cursor-pointer flex">
+                          randed Keywords
+                          <TriangleDownIcon className='mt-1' />
+                        </div>
+                      </TableRow>
+                    </CollapsibleTrigger>
+
+                    <CollapsibleContent>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell>heygen</TableCell>
+                          <TableCell>1060150</TableCell>
+                          <TableCell>65.06%</TableCell>
+                          <TableCell>21.76%</TableCell>
+                          <TableCell>1237740.00</TableCell>
+                          <TableCell>17.88%</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>heygen ai</TableCell>
+                          <TableCell>149930</TableCell>
+                          <TableCell>9.20%</TableCell>
+                          <TableCell>33.75%</TableCell>
+                          <TableCell>196180.00</TableCell>
+                          <TableCell>31.81%</TableCell>
+
+                        </TableRow>
+                      </TableBody>
+                    </CollapsibleContent>
+
+                  </Table>
+
+
+
+                </Collapsible>
+
+
+              </CardContent>
+>>>>>>> Stashed changes
             </Card>
 
 
@@ -518,7 +639,6 @@ export default function Component() {
                       <TableCell>1</TableCell>
                       <TableCell>1880000</TableCell>
                     </TableRow>
-
                   </TableBody>
                 </Table>
                 <div className='flex justify-end'>
