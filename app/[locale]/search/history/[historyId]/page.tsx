@@ -393,13 +393,13 @@ export default function Component() {
                     </TableHeader>
 
                     <TableRow>
-                      <TableCell>
+
                         <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
                           <div>Branded Keywords</div>
                           <div className='ml-6'>2条记录</div>
                           {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
                         </Button>
-                      </TableCell>
+
 
                     </TableRow>
 
