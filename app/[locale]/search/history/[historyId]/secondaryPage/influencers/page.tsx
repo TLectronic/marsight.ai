@@ -16,7 +16,7 @@ const Influencers = () => {
     };
     return (
         <div className="bg-[#f4f4f4] w-full h-full p-4 space-y-4">
-            <Card className="rounded-[24px] mx-4 ">
+            <Card className="rounded-[24px]">
                 <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
                         <Button
