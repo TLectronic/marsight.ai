@@ -30,8 +30,8 @@ const barChartData = [
   { name: 'Email', uv: 0.03, pv: 0.03 },
   { name: 'Referrals', uv: 1.63, pv: 2.00 },
   { name: 'Social', uv: 3.28, pv: 4.00 },
-  { name: 'Organic search', uv: 20.23, pv: 17.00 },
-  { name: 'Paid search', uv: 4.33, pv: 3.00 },
+  { name: 'Organicsearch', uv: 20.23, pv: 17.00 },
+  { name: 'Paidsearch', uv: 4.33, pv: 3.00 },
 ];
 
 const pieChartData = [
@@ -296,8 +296,8 @@ export default function Component() {
                       labelFormatter={(label) => `Channel: ${label}`}
                     />
                     <Legend />
-                    <Bar dataKey="pv" stackId="a" fill="#87CEFA" />
-                    <Bar dataKey="uv" stackId="a" fill="#00008B" />
+                    <Bar dataKey="pv" stackId="a" fill="#87CEFA" barSize={40}/>
+                    <Bar dataKey="uv" stackId="a" fill="#00008B"  barSize={40}/>
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
