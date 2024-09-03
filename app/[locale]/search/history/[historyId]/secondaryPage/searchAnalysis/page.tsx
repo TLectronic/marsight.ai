@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select'
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { ArrowLeftIcon } from 'lucide-react';
-import { TriangleDownIcon, TriangleUpIcon } from '@radix-ui/react-icons';
+import { TriangleDownIcon, TriangleRightIcon } from '@radix-ui/react-icons';
 const handleBack = () => {
     window.history.back();
 };
@@ -62,19 +62,17 @@ const SearchAnalysis = () => {
                             </TableRow>
                         </TableHeader>
 
-
                         <TableRow>
-                            <div className="flex items-center space-x-2">
-                                <Button
-                                    variant="link"
-                                    onClick={toggleExpand}
-                                    className="bg-white text-black p-2 rounded-full flex items-center justify-center hover:bg-white hover:border-transparent focus:border-transparent"
-                                >
-                                    {isExpanded ? (<TriangleUpIcon />) : (<TriangleDownIcon />)}
-                                </Button>
-                                Branded Keywords
-                            </div>
+
+                            <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
+                                <div className='bg-blue-100 rounded-xl px-2'>Branded Keywords</div>
+                                <div className='ml-6'>2条记录</div>
+                                {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
+                            </Button>
+
                         </TableRow>
+
+
                         {isExpanded && (<TableBody>
                             <TableRow>
                                 <TableCell>heygen</TableCell>
