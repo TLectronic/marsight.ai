@@ -324,7 +324,7 @@ export default function Component() {
                 </ResponsiveContainer>
               </CardContent>
               <div className="flex justify-end p-4">
-                <Link href="./secondaryPage/referrals  "  className="text-blue-500 no-underline">
+                <Link href="./1/secondaryPage/referrals  "  className="text-blue-500 no-underline hover:underline">
                   Show more details
                 </Link>
               </div>
@@ -350,6 +350,11 @@ export default function Component() {
               <CardHeader>
                 <CardTitle>Organic Traffic</CardTitle>
               </CardHeader>
+              <div className="flex justify-end p-4">
+                <Link href="./1/secondaryPage/searchAnalysis  "  className="text-blue-500 no-underline hover:underline">
+                  Show more search terms
+                </Link>
+              </div>
             </Card>
 
 
