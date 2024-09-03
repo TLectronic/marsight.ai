@@ -26,12 +26,13 @@ const lineChartData = [
 ]
 
 const barChartData = [
-  { name: 'A', value: 4000 },
-  { name: 'B', value: 3000 },
-  { name: 'C', value: 2000 },
-  { name: 'D', value: 2780 },
-  { name: 'E', value: 1890 },
-]
+  { name: 'Direct', uv: 22.36, pv: 22.00 },
+  { name: 'Email', uv: 0.03, pv: 0.03 },
+  { name: 'Referrals', uv: 1.63, pv: 2.00 },
+  { name: 'Social', uv: 3.28, pv: 4.00 },
+  { name: 'Organic search', uv: 20.23, pv: 17.00 },
+  { name: 'Paid search', uv: 4.33, pv: 3.00 },
+];
 
 const pieChartData = [
   { name: 'Group A', value: 400 },
@@ -284,10 +285,17 @@ export default function Component() {
                   <BarChart data={barChartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
+                    <YAxis
+                      tickFormatter={(value) => `${value}%`}
+                      domain={[0, 50]} // Adjusted for better visualization
+                    />
+                    <Tooltip
+                      formatter={(value) => `${value}%`}
+                      labelFormatter={(label) => `Channel: ${label}`}
+                    />
                     <Legend />
-                    <Bar dataKey="value" fill="#8884d8" />
+                    <Bar dataKey="pv" stackId="a" fill="#87CEFA" />
+                    <Bar dataKey="uv" stackId="a" fill="#00008B" />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
