@@ -12,9 +12,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { MentionBox } from "@/components/ui/mention-box"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select'
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible'
 
-import { TriangleDownIcon } from '@radix-ui/react-icons'
+import { TriangleDownIcon, TriangleUpIcon } from '@radix-ui/react-icons'
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -162,6 +161,13 @@ export default function Component() {
   // 根据下拉框的选项来决定要渲染的数据
   const [selectedOption, setSelectedOption] = useState('popular');
   const dataToShow = selectedOption === 'popular' ? mentions : mentionsFrom;
+
+  // 大表格相关内容
+  const [isExpanded, setIsExpanded] = useState(true);
+  // 切换展开/折叠状态
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  }
 
   const [messages, setMessages] = useState([
     { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' }
@@ -374,108 +380,52 @@ export default function Component() {
 
 
               <CardContent>
-                {/* <Table>
-                  <Collapsible defaultOpen={true}>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Keywords</TableHead>
-                        <TableHead>Clicks</TableHead>
-                        <TableHead>Traffic</TableHead>
-                        <TableHead>ClicksChange</TableHead>
-                        <TableHead>ChangeVolume</TableHead>
-                        <TableHead>Change of volume</TableHead>
-                      </TableRow>
-                    </TableHeader>
 
-                    <CollapsibleTrigger asChild>
-                      <TableRow>
-                        <div className="bg-white text-black cursor-pointer flex">
-                          randed Keywords
-                          <TriangleDownIcon className='mt-1' />
-                        </div>
-                      </TableRow>
-                    </CollapsibleTrigger>
+                <Table>
 
-                    <CollapsibleContent>
-                      <TableBody>
-                        <TableRow>
-                          <TableCell>heygen</TableCell>
-                          <TableCell>1060150</TableCell>
-                          <TableCell>65.06%</TableCell>
-                          <TableCell>21.76%</TableCell>
-                          <TableCell>1237740.00</TableCell>
-                          <TableCell>17.88%</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>heygen ai</TableCell>
-                          <TableCell>149930</TableCell>
-                          <TableCell>9.20%</TableCell>
-                          <TableCell>33.75%</TableCell>
-                          <TableCell>196180.00</TableCell>
-                          <TableCell>31.81%</TableCell>
-
-                        </TableRow>
-                      </TableBody>
-                    </CollapsibleContent>
-
-                  </Collapsible>
-                </Table> */}
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Keywords</TableHead>
+                      <TableHead>Clicks</TableHead>
+                      <TableHead>Traffic</TableHead>
+                      <TableHead>ClicksChange</TableHead>
+                      <TableHead>ChangeVolume</TableHead>
+                      <TableHead>Change of volume</TableHead>
+                    </TableRow>
+                  </TableHeader>
 
 
+                  <TableRow>
+                    <Button variant="link" onClick={toggleExpand}>
+                      Branded Keywords
+                      {isExpanded ? (<TriangleUpIcon />) : (<TriangleDownIcon />)}
+                    </Button>
+                  </TableRow>
+                  {isExpanded && (<TableBody>
+                    <TableRow>
+                      <TableCell>heygen</TableCell>
+                      <TableCell>1060150</TableCell>
+                      <TableCell>65.06%</TableCell>
+                      <TableCell>21.76%</TableCell>
+                      <TableCell>1237740.00</TableCell>
+                      <TableCell>17.88%</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>heygen ai</TableCell>
+                      <TableCell>149930</TableCell>
+                      <TableCell>9.20%</TableCell>
+                      <TableCell>33.75%</TableCell>
+                      <TableCell>196180.00</TableCell>
+                      <TableCell>31.81%</TableCell>
+                    </TableRow>
+                  </TableBody>)}
 
-                <Collapsible defaultOpen={true}>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Keywords</TableHead>
-                        <TableHead>Clicks</TableHead>
-                        <TableHead>Traffic</TableHead>
-                        <TableHead>ClicksChange</TableHead>
-                        <TableHead>ChangeVolume</TableHead>
-                        <TableHead>Change of volume</TableHead>
-                      </TableRow>
-                    </TableHeader>
-
-                    <CollapsibleTrigger asChild>
-                      <TableRow>
-                        <div className="bg-white text-black cursor-pointer flex">
-                          randed Keywords
-                          <TriangleDownIcon className='mt-1' />
-                        </div>
-                      </TableRow>
-                    </CollapsibleTrigger>
-
-                    <CollapsibleContent>
-                      <TableBody>
-                        <TableRow>
-                          <TableCell>heygen</TableCell>
-                          <TableCell>1060150</TableCell>
-                          <TableCell>65.06%</TableCell>
-                          <TableCell>21.76%</TableCell>
-                          <TableCell>1237740.00</TableCell>
-                          <TableCell>17.88%</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>heygen ai</TableCell>
-                          <TableCell>149930</TableCell>
-                          <TableCell>9.20%</TableCell>
-                          <TableCell>33.75%</TableCell>
-                          <TableCell>196180.00</TableCell>
-                          <TableCell>31.81%</TableCell>
-
-                        </TableRow>
-                      </TableBody>
-                    </CollapsibleContent>
-
-                  </Table>
+                </Table>
 
 
-
-                </Collapsible>
 
 
               </CardContent>
-
             </Card>
 
 
