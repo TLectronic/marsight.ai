@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select'
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { ArrowLeftIcon } from 'lucide-react';
-import { TriangleDownIcon, TriangleUpIcon } from '@radix-ui/react-icons';
+import { TriangleDownIcon, TriangleRightIcon } from '@radix-ui/react-icons';
 const handleBack = () => {
     window.history.back();
 };
@@ -48,20 +48,8 @@ const SearchAnalysis = () => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-
                     <Table>
-
                         <TableHeader>
-                            <div className="flex items-center space-x-2">
-                                <Button
-                                    variant="link"
-                                    onClick={toggleExpand}
-                                    className="bg-white text-black p-2 rounded-full flex items-center justify-center hover:bg-white hover:border-transparent focus:border-transparent"
-                                >
-                                    {isExpanded ? (<TriangleUpIcon />) : (<TriangleDownIcon />)}
-                                </Button>
-                                Branded Keywords
-                            </div>
                             <TableRow>
                                 <TableHead>Keywords</TableHead>
                                 <TableHead>Clicks</TableHead>
@@ -72,6 +60,16 @@ const SearchAnalysis = () => {
                             </TableRow>
                         </TableHeader>
 
+                        <TableRow>
+
+                            <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
+                                <div>Branded Keywords</div>
+                                <div className='ml-6'>2条记录</div>
+                                {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
+                            </Button>
+
+
+                        </TableRow>
 
                         {isExpanded && (<TableBody>
                             <TableRow>
@@ -82,7 +80,6 @@ const SearchAnalysis = () => {
                                 <TableCell>1237740.00</TableCell>
                                 <TableCell>17.88%</TableCell>
                             </TableRow>
-
                             <TableRow>
                                 <TableCell>heygen ai</TableCell>
                                 <TableCell>149930</TableCell>
