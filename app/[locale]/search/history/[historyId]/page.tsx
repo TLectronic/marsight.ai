@@ -300,43 +300,49 @@ export default function Component() {
               <CardHeader>
                 <CardTitle>Referrals</CardTitle>
               </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Link</TableHead>
-                        <TableHead>category</TableHead>
-                        <TableHead>Traffic Share</TableHead>
-                        <TableHead>Traffic</TableHead>
-                        <TableHead>Change</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {referralsData.map((row, rowIndex) => (
-                        <TableRow key={rowIndex}>
-                          {row.map((cell, colIndex) => (
-                            <TableCell key={colIndex}>
-                              {colIndex === 0 ? (
-                                <a href={`https://${cell}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
-                                  {cell}
-                                </a>
-                              ) : (
-                                cell
-                              )}
-                            </TableCell>
-                          ))}
+              <div className='p-6'>
+                <CardContent>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Link</TableHead>
+                          <TableHead>category</TableHead>
+                          <TableHead>Traffic Share</TableHead>
+                          <TableHead>Traffic</TableHead>
+                          <TableHead>Change</TableHead>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </ResponsiveContainer>
-              </CardContent>
-              <div className="flex justify-end p-4">
-                <Link href="./1/secondaryPage/referrals  " className="text-blue-500 no-underline hover:underline">
-                  Show more details
-                </Link>
+                      </TableHeader>
+                      <TableBody>
+                        {referralsData.map((row, rowIndex) => (
+                          <TableRow key={rowIndex}>
+                            {row.map((cell, colIndex) => (
+                              <TableCell key={colIndex}>
+                                {colIndex === 0 ? (
+                                  <a href={`https://${cell}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
+                                    {cell}
+                                  </a>
+                                ) : (
+                                  cell
+                                )}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </ResponsiveContainer>
+                </CardContent>
+                <div className="flex justify-end">
+                  <Button variant="link">
+                    <Link href="./1/secondaryPage/referrals" >
+                      Show more details
+                    </Link>
+                  </Button>
+                </div>
+
               </div>
+
             </Card>
 
 
@@ -356,6 +362,7 @@ export default function Component() {
                   ))}
                 </div>
               </CardContent>
+
               <CardHeader>
                 <Select defaultValue="organic">
                   <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
@@ -372,60 +379,56 @@ export default function Component() {
                 </Select>
               </CardHeader>
 
-              <div className="flex justify-end p-4">
-                <Link href="./1/secondaryPage/searchAnalysis  " className="text-blue-500 no-underline hover:underline">
-                  Show more search terms
-                </Link>
+              
+
+              <div className='p-6'>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Keywords</TableHead>
+                        <TableHead>Clicks</TableHead>
+                        <TableHead>Traffic</TableHead>
+                        <TableHead>ClicksChange</TableHead>
+                        <TableHead>ChangeVolume</TableHead>
+                        <TableHead>Change of volume</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableRow>
+                      <Button variant="link" onClick={toggleExpand}>
+                        Branded Keywords
+                        {isExpanded ? (<TriangleUpIcon />) : (<TriangleDownIcon />)}
+                      </Button>
+                    </TableRow>
+                    {isExpanded && (<TableBody>
+                      <TableRow>
+                        <TableCell>heygen</TableCell>
+                        <TableCell>1060150</TableCell>
+                        <TableCell>65.06%</TableCell>
+                        <TableCell>21.76%</TableCell>
+                        <TableCell>1237740.00</TableCell>
+                        <TableCell>17.88%</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>heygen ai</TableCell>
+                        <TableCell>149930</TableCell>
+                        <TableCell>9.20%</TableCell>
+                        <TableCell>33.75%</TableCell>
+                        <TableCell>196180.00</TableCell>
+                        <TableCell>31.81%</TableCell>
+                      </TableRow>
+                    </TableBody>)}
+                  </Table>
+                </CardContent>
+                <div className="flex justify-end">
+                  <Button variant="link">
+                    <Link href="./1/secondaryPage/searchAnalysis">
+                      Show more search terms
+                    </Link>
+                  </Button>
+                </div>
               </div>
-
-
-              <CardContent>
-
-                <Table>
-
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Keywords</TableHead>
-                      <TableHead>Clicks</TableHead>
-                      <TableHead>Traffic</TableHead>
-                      <TableHead>ClicksChange</TableHead>
-                      <TableHead>ChangeVolume</TableHead>
-                      <TableHead>Change of volume</TableHead>
-                    </TableRow>
-                  </TableHeader>
-
-
-                  <TableRow>
-                    <Button variant="link" onClick={toggleExpand}>
-                      Branded Keywords
-                      {isExpanded ? (<TriangleUpIcon />) : (<TriangleDownIcon />)}
-                    </Button>
-                  </TableRow>
-                  {isExpanded && (<TableBody>
-                    <TableRow>
-                      <TableCell>heygen</TableCell>
-                      <TableCell>1060150</TableCell>
-                      <TableCell>65.06%</TableCell>
-                      <TableCell>21.76%</TableCell>
-                      <TableCell>1237740.00</TableCell>
-                      <TableCell>17.88%</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>heygen ai</TableCell>
-                      <TableCell>149930</TableCell>
-                      <TableCell>9.20%</TableCell>
-                      <TableCell>33.75%</TableCell>
-                      <TableCell>196180.00</TableCell>
-                      <TableCell>31.81%</TableCell>
-                    </TableRow>
-                  </TableBody>)}
-
-                </Table>
-
-
-
-
-              </CardContent>
+              
             </Card>
 
 
