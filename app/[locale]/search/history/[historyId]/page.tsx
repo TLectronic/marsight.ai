@@ -34,11 +34,15 @@ const barChartData = [
 ]
 
 const pieChartData = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
+  { name: 'Youtube', value: 62.6 },
+  { name: 'Instagram', value: 8.76 },
+  { name: 'Facebook', value: 6.57 },
+  { name: 'WhatsApp Webapp', value: 6.3 },
+  { name: 'VKontakte', value: 3.27 },
+  { name: 'Others', value: 12.5 },
 ]
+
+const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#F5F5F4']
 
 // 最火爆的提及 数据
 const mentions = [
@@ -148,8 +152,6 @@ const smMentions = [
 // 博主表格表头数据
 const tableHeader = ['', 'Profile name', '', 'Site', 'Mentions', 'Followers'];
 // 博主表格内数据
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 
 const referralsData = [
   ['Producthunt.com', 'Tech News', '17.77%', '15.4k', 'New'],
@@ -484,7 +486,7 @@ export default function Component() {
                     spanText='Total social visits'
                     paragraphText='45.2K'
                   />
-                  <ResponsiveContainer width="100%" height={300}>
+                  <ResponsiveContainer width={600} height={300}>
                     <PieChart>
                       <Pie
                         data={pieChartData}
@@ -492,6 +494,7 @@ export default function Component() {
                         cy="50%"
                         labelLine={false}
                         outerRadius={80}
+                        innerRadius={50}
                         fill="#8884d8"
                         dataKey="value"
                       >
