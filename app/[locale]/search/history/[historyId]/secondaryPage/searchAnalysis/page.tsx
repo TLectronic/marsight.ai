@@ -48,9 +48,7 @@ const SearchAnalysis = () => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-
                     <Table>
-
                         <TableHeader>
                             <TableRow>
                                 <TableHead>Keywords</TableHead>
@@ -93,10 +91,6 @@ const SearchAnalysis = () => {
                         </TableBody>)}
 
                     </Table>
-
-
-
-
                 </CardContent>
             </Card>
         </div>
