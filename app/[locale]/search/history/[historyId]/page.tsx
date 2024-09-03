@@ -379,7 +379,7 @@ export default function Component() {
                 </Select>
               </CardHeader>
 
-              
+
 
               <div className='p-6'>
                 <CardContent>
@@ -428,7 +428,7 @@ export default function Component() {
                   </Button>
                 </div>
               </div>
-              
+
             </Card>
 
 
@@ -542,7 +542,11 @@ export default function Component() {
                   ))}
                 </div>
                 <div className='flex justify-end'>
-                  <Button variant="link">Show more Mentions</Button>
+                  <Button variant="link">
+                    <Link href="./1/secondaryPage/mentions">
+                      Show more Mentions
+                    </Link>
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -595,7 +599,11 @@ export default function Component() {
                   </TableBody>
                 </Table>
                 <div className='flex justify-end'>
-                  <Button variant="link">Show more influencers</Button>
+                  <Button variant="link">
+                    <Link href="./1/secondaryPage/influencers">
+                      Show more influencers
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </Card>
