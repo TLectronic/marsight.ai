@@ -1,27 +1,48 @@
-"use client"; // 添加 "use client" 指令
+"use client";
 
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { ResponsiveContainer } from 'recharts';
-import { ArrowLeftIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react'; // 导入向下和向上箭头图标
+import { ArrowLeftIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const referralsData = [
-    ['Producthunt.com', 'Tech News', '17.77%', '15.4k', 'New'],
-    ['canva.com', 'Design', '17.77%', '15.4k', '22.82%'],
-    ['g2.com', 'Tech News', '17.77%', '15.4k', '-67.93%'],
+    {
+        link: 'Producthunt.com',
+        category: 'Tech News',
+        trafficShare: '17.77%',
+        traffic: '15.4k',
+        change: 'New',
+        details: ['https://Producthunt.com', 'https://Producthunt.com', 'https://Producthunt.com']
+    },
+    {
+        link: 'canva.com',
+        category: 'Design',
+        trafficShare: '17.77%',
+        traffic: '15.4k',
+        change: '22.82%',
+        details: ['https://canva.com', 'https://canva.com', 'https://canva.com']
+    },
+    {
+        link: 'g2.com',
+        category: 'Tech News',
+        trafficShare: '17.77%',
+        traffic: '15.4k',
+        change: '-67.93%',
+        details: ['https://g2.com', 'https://g2.com', 'https://g2.com']
+    }
 ];
 
 const Referrals = () => {
-    const [isExpanded, setIsExpanded] = useState(false); // 控制展开/折叠状态
+    const [expandedRowIndex, setExpandedRowIndex] = useState<number | null>(null);
 
     const handleBack = () => {
         window.history.back();
     };
 
-    const toggleExpand = () => {
-        setIsExpanded(!isExpanded); // 切换展开/折叠状态
+    const handleExpand = (rowIndex: number) => {
+        setExpandedRowIndex(expandedRowIndex === rowIndex ? null : rowIndex);
     };
 
     return (
@@ -36,53 +57,68 @@ const Referrals = () => {
                         <ArrowLeftIcon className="w-5 h-5" />
                     </Button>
                     <span className="text-black text-lg font-bold">Referrals</span>
-                    <Button
-                        variant="link"
-                        onClick={toggleExpand}
-                        className="ml-2 p-2 rounded-full flex items-center justify-center hover:bg-gray-100 focus:outline-none"
-                    >
-                        {isExpanded ? (
-                            <ChevronUpIcon className="w-5 h-5 text-black" />
-                        ) : (
-                            <ChevronDownIcon className="w-5 h-5 text-black" />
-                        )}
-                    </Button>
                 </CardTitle>
             </CardHeader>
-            {isExpanded && (
-                <CardContent>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>Link</TableHead>
-                                    <TableHead>Category</TableHead>
-                                    <TableHead>Traffic Share</TableHead>
-                                    <TableHead>Traffic</TableHead>
-                                    <TableHead>Change</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {referralsData.map((row, rowIndex) => (
-                                    <TableRow key={rowIndex}>
-                                        {row.map((cell, colIndex) => (
-                                            <TableCell key={colIndex}>
-                                                {colIndex === 0 ? (
-                                                    <a href={`https://${cell}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
-                                                        {cell}
-                                                    </a>
-                                                ) : (
-                                                    cell
-                                                )}
-                                            </TableCell>
-                                        ))}
+            <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Link</TableHead>
+                                <TableHead>Category</TableHead>
+                                <TableHead>Traffic Share</TableHead>
+                                <TableHead>Traffic</TableHead>
+                                <TableHead>Change</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {referralsData.map((row, rowIndex) => (
+                                <React.Fragment key={rowIndex}>
+                                    <TableRow>
+                                        <TableCell>
+                                            <div className="flex items-center space-x-2">
+                                                <Button
+                                                    onClick={() => handleExpand(rowIndex)}
+                                                    variant='link'
+                                                    className="p-1 rounded-full flex items-center justify-center hover:bg-gray-100 focus:outline-none"
+                                                >
+                                                    {expandedRowIndex === rowIndex ? (
+                                                        <ChevronUpIcon className="w-5 h-5 text-black" />
+                                                    ) : (
+                                                        <ChevronDownIcon className="w-5 h-5 text-black" />
+                                                    )}
+                                                </Button>
+                                                <a href={`https://${row.link}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
+                                                    {row.link}
+                                                </a>
+                                            </div>
+                                        </TableCell>
+                                        <TableCell>{row.category}</TableCell>
+                                        <TableCell>{row.trafficShare}</TableCell>
+                                        <TableCell>{row.traffic}</TableCell>
+                                        <TableCell>{row.change}</TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </ResponsiveContainer>
-                </CardContent>
-            )}
+                                    {expandedRowIndex === rowIndex && (
+                                        <TableRow>
+                                            <TableCell colSpan={5}>
+                                                <div className="ml-8">
+                                                    {row.details.map((detail, detailIndex) => (
+                                                        <div key={detailIndex} className="border-b border-gray-200 py-2">
+                                                            <a href={detail} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
+                                                                {detail}
+                                                            </a>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </TableCell>
+                                        </TableRow>
+                                    )}
+                                </React.Fragment>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </ResponsiveContainer>
+            </CardContent>
         </Card>
     );
 };
