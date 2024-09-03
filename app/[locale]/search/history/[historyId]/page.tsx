@@ -394,12 +394,11 @@ export default function Component() {
 
                     <TableRow>
 
-                        <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
-                          <div>Branded Keywords</div>
-                          <div className='ml-6'>2条记录</div>
-                          {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
-                        </Button>
-
+                      <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
+                        <div className='bg-blue-100 rounded-xl px-2'>Branded Keywords</div>
+                        <div className='ml-6'>2条记录</div>
+                        {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
+                      </Button>
 
                     </TableRow>
 
@@ -411,6 +410,41 @@ export default function Component() {
                         <TableCell>21.76%</TableCell>
                         <TableCell>1237740.00</TableCell>
                         <TableCell>17.88%</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>heygen ai</TableCell>
+                        <TableCell>149930</TableCell>
+                        <TableCell>9.20%</TableCell>
+                        <TableCell>33.75%</TableCell>
+                        <TableCell>196180.00</TableCell>
+                        <TableCell>31.81%</TableCell>
+                      </TableRow>
+                    </TableBody>)}
+
+                    <TableRow>
+                      <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
+                        <div className='bg-orange-100 rounded-xl px-2'>Non-Branded Keywords</div>
+                        <div className='ml-6'>3条记录</div>
+                        {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
+                      </Button>
+                    </TableRow>
+
+                    {isExpanded && (<TableBody>
+                      <TableRow>
+                        <TableCell>heygen</TableCell>
+                        <TableCell>1060150</TableCell>
+                        <TableCell>65.06%</TableCell>
+                        <TableCell>21.76%</TableCell>
+                        <TableCell>1237740.00</TableCell>
+                        <TableCell>17.88%</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>heygen ai</TableCell>
+                        <TableCell>149930</TableCell>
+                        <TableCell>9.20%</TableCell>
+                        <TableCell>33.75%</TableCell>
+                        <TableCell>196180.00</TableCell>
+                        <TableCell>31.81%</TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>heygen ai</TableCell>

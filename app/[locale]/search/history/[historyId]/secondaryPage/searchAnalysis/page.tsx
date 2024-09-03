@@ -63,13 +63,13 @@ const SearchAnalysis = () => {
                         <TableRow>
 
                             <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
-                                <div>Branded Keywords</div>
+                                <div className='bg-blue-100 rounded-xl px-2'>Branded Keywords</div>
                                 <div className='ml-6'>2条记录</div>
                                 {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
                             </Button>
 
-
                         </TableRow>
+
 
                         {isExpanded && (<TableBody>
                             <TableRow>
