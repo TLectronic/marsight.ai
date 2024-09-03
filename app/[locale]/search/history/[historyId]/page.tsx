@@ -457,6 +457,9 @@ export default function Component() {
                     />
                   ))}
                 </div>
+                <div className='flex justify-end'>
+                  <Button variant="link">Show more Mentions</Button>
+                </div>
               </CardContent>
             </Card>
 
@@ -465,50 +468,53 @@ export default function Component() {
               <CardHeader>
                 <CardTitle>Influencers</CardTitle>
               </CardHeader>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    {tableHeader.map((tableheader, index) => (
-                      <TableHead>{tableheader}</TableHead>
-                    ))}
-                  </TableRow>
-                </TableHeader>
+              <div className='p-6'>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      {tableHeader.map((tableheader, index) => (
+                        <TableHead>{tableheader}</TableHead>
+                      ))}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>1</TableCell> {/* 第一列编号 */}
+                      <TableCell>Think Media</TableCell>
+                      <TableCell>
+                        <Button variant="outline">Button</Button> {/* 第三列按钮 */}
+                      </TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>1</TableCell>
+                      <TableCell>3030000</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>2</TableCell> {/* 第一列编号 */}
+                      <TableCell>Private Label</TableCell>
+                      <TableCell>
+                        <Button variant="outline">Button</Button> {/* 第三列按钮 */}
+                      </TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>1</TableCell>
+                      <TableCell>2750000</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>3</TableCell> {/* 第一列编号 */}
+                      <TableCell>Akalanka Ekanayake</TableCell>
+                      <TableCell>
+                        <Button variant="outline">Button</Button> {/* 第三列按钮 */}
+                      </TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>1</TableCell>
+                      <TableCell>1880000</TableCell>
+                    </TableRow>
 
-                <TableBody>
-
-                  <TableRow>
-                    <TableCell>1</TableCell> {/* 第一列编号 */}
-                    <TableCell>Think Media</TableCell>
-                    <TableCell>
-                      <Button variant="outline">Button</Button> {/* 第三列按钮 */}
-                    </TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>1</TableCell>
-                    <TableCell>3030000</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>2</TableCell> {/* 第一列编号 */}
-                    <TableCell>Private Label</TableCell>
-                    <TableCell>
-                      <Button variant="outline">Button</Button> {/* 第三列按钮 */}
-                    </TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>1</TableCell>
-                    <TableCell>2750000</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>3</TableCell> {/* 第一列编号 */}
-                    <TableCell>Akalanka Ekanayake</TableCell>
-                    <TableCell>
-                      <Button variant="outline">Button</Button> {/* 第三列按钮 */}
-                    </TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>1</TableCell>
-                    <TableCell>1880000</TableCell>
-                  </TableRow>
-
-                </TableBody>
-              </Table>
+                  </TableBody>
+                </Table>
+                <div className='flex justify-end'>
+                  <Button variant="link">Show more influencers</Button>
+                </div>
+              </div>
             </Card>
 
 
