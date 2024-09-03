@@ -327,7 +327,7 @@ export default function Component() {
                 </ResponsiveContainer>
               </CardContent>
               <div className="flex justify-end p-4">
-                <Link href="./1/secondaryPage/referrals  "  className="text-blue-500 no-underline hover:underline">
+                <Link href="./1/secondaryPage/referrals  " className="text-blue-500 no-underline hover:underline">
                   Show more details
                 </Link>
               </div>
@@ -365,13 +365,13 @@ export default function Component() {
                   </SelectContent>
                 </Select>
               </CardHeader>
-<<<<<<< Updated upstream
+
               <div className="flex justify-end p-4">
-                <Link href="./1/secondaryPage/searchAnalysis  "  className="text-blue-500 no-underline hover:underline">
+                <Link href="./1/secondaryPage/searchAnalysis  " className="text-blue-500 no-underline hover:underline">
                   Show more search terms
                 </Link>
               </div>
-=======
+
 
               <CardContent>
                 {/* <Table>
@@ -475,7 +475,7 @@ export default function Component() {
 
 
               </CardContent>
->>>>>>> Stashed changes
+
             </Card>
 
 
