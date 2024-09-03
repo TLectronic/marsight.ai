@@ -13,7 +13,7 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { MentionBox } from "@/components/ui/mention-box"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select'
 
-import { TriangleDownIcon, TriangleUpIcon } from '@radix-ui/react-icons'
+import { GitHubLogoIcon, TriangleDownIcon, TriangleRightIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -195,12 +195,10 @@ export default function Component() {
     <div className="flex h-screen overflow-hidden bg-[#f4f4f4]">
       <Resizable
         defaultSize={{
-          width: '50%',
+          width: '70%',
           height: '100%',
         }}
-        minWidth="30%"
-        maxWidth="70%"
-        enable={{ right: true }}
+        enable={{ right: false }}
         handleComponent={{
           right: <div className="w-1 h-full bg-gray-300 cursor-col-resize hover:bg-gray-400 transition-colors" />
         }}
@@ -227,7 +225,6 @@ export default function Component() {
                         <li>· Sales teams</li>
                       </ul>
                     </div>
-
                     <div className='flex-1'>
                       <div className='text-center mb-16'>Core Features</div>
                       <ul className='text-sm ml-4'>
@@ -379,7 +376,7 @@ export default function Component() {
                 </Select>
               </CardHeader>
 
-              
+
 
               <div className='p-6'>
                 <CardContent>
@@ -394,12 +391,15 @@ export default function Component() {
                         <TableHead>Change of volume</TableHead>
                       </TableRow>
                     </TableHeader>
+
                     <TableRow>
-                      <Button variant="link" onClick={toggleExpand}>
-                        Branded Keywords
-                        {isExpanded ? (<TriangleUpIcon />) : (<TriangleDownIcon />)}
+                      <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
+                        <div>Branded Keywords</div>
+                        <div className='ml-6'>2条记录</div>
+                        {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
                       </Button>
                     </TableRow>
+
                     {isExpanded && (<TableBody>
                       <TableRow>
                         <TableCell>heygen</TableCell>
@@ -418,6 +418,7 @@ export default function Component() {
                         <TableCell>31.81%</TableCell>
                       </TableRow>
                     </TableBody>)}
+
                   </Table>
                 </CardContent>
                 <div className="flex justify-end">
@@ -428,7 +429,7 @@ export default function Component() {
                   </Button>
                 </div>
               </div>
-              
+
             </Card>
 
 
@@ -568,7 +569,7 @@ export default function Component() {
                       <TableCell>
                         <Button variant="outline">Button</Button> {/* 第三列按钮 */}
                       </TableCell>
-                      <TableCell></TableCell>
+                      <TableCell><TwitterLogoIcon /></TableCell>
                       <TableCell>1</TableCell>
                       <TableCell>3030000</TableCell>
                     </TableRow>
@@ -578,7 +579,7 @@ export default function Component() {
                       <TableCell>
                         <Button variant="outline">Button</Button> {/* 第三列按钮 */}
                       </TableCell>
-                      <TableCell></TableCell>
+                      <TableCell><TwitterLogoIcon /></TableCell>
                       <TableCell>1</TableCell>
                       <TableCell>2750000</TableCell>
                     </TableRow>
@@ -588,7 +589,7 @@ export default function Component() {
                       <TableCell>
                         <Button variant="outline">Button</Button> {/* 第三列按钮 */}
                       </TableCell>
-                      <TableCell></TableCell>
+                      <TableCell><GitHubLogoIcon /></TableCell>
                       <TableCell>1</TableCell>
                       <TableCell>1880000</TableCell>
                     </TableRow>
@@ -604,6 +605,7 @@ export default function Component() {
           </div>
         </div>
       </Resizable>
+
       <div className="flex-1 flex flex-col bg-white">
         <ScrollArea className="flex-1">
           <div className="p-4 space-y-4">
