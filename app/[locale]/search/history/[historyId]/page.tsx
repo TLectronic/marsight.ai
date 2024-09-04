@@ -16,6 +16,7 @@ import { ProductAnalysis } from '@/components/custom/ProductAnalysis'
 import { TrafficOverview } from '@/components/custom/TrafficOverview'
 import { MarketingChannels } from '@/components/custom/MarketingChannels'
 import { Influencers } from '@/components/custom/Influencers'
+import { Mentions } from '@/components/custom/Mentions'
 import { GitHubLogoIcon, TriangleDownIcon, TriangleRightIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
 
 import Image from "next/image";
@@ -50,46 +51,6 @@ const pieChartData = [
 ]
 
 const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#F5F5F4']
-
-// 最火爆的提及 数据
-const mentions = [
-  {
-    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-    fallbackText: 'error',
-    title: 'Imagine ter o seu proprio influe...',
-    date: '2024-08-22 05:15',
-    link: 'https://instagram.com',
-    tags: '#robo #vocesabia #curiosidades #dicas'
-  },
-  {
-    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-    fallbackText: 'error',
-    title: 'Odetta Rockhead-Kerr',
-    date: '2024-08-12 05:00',
-    link: 'https://youtube.com',
-    tags: 'ROCKSTAR to get an additional 10% off.'
-  },
-];
-
-// 红人的提及 数据
-const mentionsFrom = [
-  {
-    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-    fallbackText: 'error',
-    title: '1',
-    date: '2024-08-22 05:15',
-    link: 'https://instagram.com',
-    tags: '#robo #vocesabia #curiosidades #dicas'
-  },
-  {
-    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-    fallbackText: 'error',
-    title: '2',
-    date: '2024-08-12 05:00',
-    link: 'https://youtube.com',
-    tags: 'ROCKSTAR to get an additional 10% off.'
-  },
-];
 
 
 // 搜索分析 数据
@@ -147,9 +108,6 @@ const referralsData = [
 ];
 
 export default function Component() {
-  // 根据下拉框的选项来决定要渲染的数据
-  const [selectedOption, setSelectedOption] = useState('popular');
-  const dataToShow = selectedOption === 'popular' ? mentions : mentionsFrom;
 
   // 大表格相关内容
   const [isExpanded, setIsExpanded] = useState(true);
@@ -506,65 +464,7 @@ export default function Component() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-[24px]">
-              <CardHeader>
-                <div className='flex justify-between'>
-                  <div>
-                    <Select defaultValue="popular" onValueChange={(value) => setSelectedOption(value)}>
-                      <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
-                        <SelectValue placeholder="Select an option" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="popular">
-                          <CardTitle>The most popular mentions</CardTitle>
-                        </SelectItem>
-                        <SelectItem value="profiles">
-                          <CardTitle>Mentions from the most popular public profiles</CardTitle>
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <Button
-                    variant="link"
-                    asChild
-                    className="p-2 hover:bg-muted/50"
-                  >
-                    <Link href="mailto:your-email@example.com">
-                      <Image
-                        src={AIInsightsIcon}
-                        alt="Mail"
-                        width={200}
-                        height={200}
-                        className="w-28 h-14"
-                      />
-                    </Link>
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className='grid divide-y'>
-                  {dataToShow.map((data, index) => (
-                    <MentionBox
-                      key={index}
-                      avatarSrc={data.avatarSrc}
-                      fallbackText={data.fallbackText}
-                      title={data.title}
-                      date={data.date}
-                      link={data.link}
-                      tags={data.tags}
-                    />
-                  ))}
-                </div>
-                <div className='flex justify-end'>
-                  <Button variant="link">
-                    <Link href="./1/secondaryPage/mentions">
-                      Show more Mentions
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            <Mentions />
 
             <Influencers />
 
