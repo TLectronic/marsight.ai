@@ -7,53 +7,24 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@
 
 import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
+interface Mention {
+    avatarSrc: string;
+    fallbackText: string;
+    title: string;
+    date: string;
+    link: string;
+    tags: string;
+}
 
 
-const Mentions = () => {
+interface MentionsProps {
+    mentions: Mention[];
+    mentionsFrom: Mention[];
+}
 
-    // 最火爆的提及 数据
-    const mentions = [
-        {
-            avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-            fallbackText: 'error',
-            title: 'Imagine ter o seu proprio influe...',
-            date: '2024-08-22 05:15',
-            link: 'https://instagram.com',
-            tags: '#robo #vocesabia #curiosidades #dicas'
-        },
-        {
-            avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-            fallbackText: 'error',
-            title: 'Odetta Rockhead-Kerr',
-            date: '2024-08-12 05:00',
-            link: 'https://youtube.com',
-            tags: 'ROCKSTAR to get an additional 10% off.'
-        },
-    ];
-
-    // 红人的提及 数据
-    const mentionsFrom = [
-        {
-            avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-            fallbackText: 'error',
-            title: '1',
-            date: '2024-08-22 05:15',
-            link: 'https://instagram.com',
-            tags: '#robo #vocesabia #curiosidades #dicas'
-        },
-        {
-            avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-            fallbackText: 'error',
-            title: '2',
-            date: '2024-08-12 05:00',
-            link: 'https://youtube.com',
-            tags: 'ROCKSTAR to get an additional 10% off.'
-        },
-    ];
+const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
     const [selectedOption, setSelectedOption] = useState('popular');
     const dataToShow = selectedOption === 'popular' ? mentions : mentionsFrom;
-
-
 
     return (
         <Card className="rounded-[24px]">

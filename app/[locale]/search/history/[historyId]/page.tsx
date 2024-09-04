@@ -19,6 +19,7 @@ import { SocialMediaAnalysis } from '@/components/custom/SocialMediaAnalysis'
 
 import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
+import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -49,7 +50,6 @@ const pieChartData = [
 ]
 
 const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#F5F5F4']
-
 
 // 搜索分析 数据
 const searchData = [
@@ -104,6 +104,78 @@ const referralsData = [
   ['canva.com', 'Design', '17.77%', '15.4k', '22.82%'],
   ['g2.com', 'Tech News', '17.77%', '15.4k', '-67.93%'],
 ];
+
+// 最火爆的提及 数据
+const mentions = [
+  {
+    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    fallbackText: 'error',
+    title: 'Imagine ter o seu proprio influe...',
+    date: '2024-08-22 05:15',
+    link: 'https://instagram.com',
+    tags: '#robo #vocesabia #curiosidades #dicas'
+  },
+  {
+    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    fallbackText: 'error',
+    title: 'Odetta Rockhead-Kerr',
+    date: '2024-08-12 05:00',
+    link: 'https://youtube.com',
+    tags: 'ROCKSTAR to get an additional 10% off.'
+  },
+];
+
+// 红人的提及 数据
+const mentionsFrom = [
+  {
+    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    fallbackText: 'error',
+    title: '1',
+    date: '2024-08-22 05:15',
+    link: 'https://instagram.com',
+    tags: '#robo #vocesabia #curiosidades #dicas'
+  },
+  {
+    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    fallbackText: 'error',
+    title: '2',
+    date: '2024-08-12 05:00',
+    link: 'https://youtube.com',
+    tags: 'ROCKSTAR to get an additional 10% off.'
+  },
+];
+
+
+const Influencer = [
+  {
+      id: 1,
+      name: 'Think Media',
+      profileImage: null,
+      fallbackText: 'TM',
+      siteIcon: <TwitterLogoIcon />,
+      mentions: 1,
+      followers: 3030000
+  },
+  {
+      id: 2,
+      name: 'Private Label',
+      profileImage: 'https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80',
+      fallbackText: 'JD',
+      siteIcon: <TwitterLogoIcon />,
+      mentions: 1,
+      followers: 2750000
+  },
+  {
+      id: 3,
+      name: 'Akalanka Ekanayake',
+      profileImage: 'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80',
+      fallbackText: 'CT',
+      siteIcon: <GitHubLogoIcon />,
+      mentions: 1,
+      followers: 1880000
+  }
+];
+
 
 export default function Component() {
 
@@ -227,11 +299,13 @@ export default function Component() {
 
             </Card>
 
-            <SocialMediaAnalysis />
+            <SocialMediaAnalysis
+              smMentions={smMentions}
+            />
 
-            <Mentions />
+            <Mentions mentions={mentions} mentionsFrom={mentionsFrom} />
 
-            <Influencers />
+            <Influencers influencers={Influencer}/>
 
           </div>
         </div>

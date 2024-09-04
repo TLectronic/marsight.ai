@@ -1,16 +1,30 @@
-import React from 'react'
+import React from 'react';
 import Link from "next/link";
 import * as Avatar from '@radix-ui/react-avatar';
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
-import { GitHubLogoIcon, TriangleDownIcon, TriangleRightIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
-
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
+import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 
-const Influencers = () => {
-    const tableHeader = ['', 'Profile name', '', 'Site', 'Mentions', 'Followers'];
+interface Influencer {
+    id: number;
+    name: string;
+    profileImage: string | null;
+    fallbackText: string;
+    siteIcon: React.ReactNode;
+    mentions: number;
+    followers: number;
+}
+
+interface InfluencersProps {
+    influencers: Influencer[];
+}
+
+const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
+    const tableHeader = ['', 'Profile Name', '', 'Site', 'Mentions', 'Followers'];
+
     return (
         <Card className="rounded-[24px]">
             <CardHeader>
@@ -37,81 +51,39 @@ const Influencers = () => {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            {tableHeader.map((tableheader, index) => (
-                                <TableHead>{tableheader}</TableHead>
+                            {tableHeader.map((header, index) => (
+                                <TableHead key={index}>{header}</TableHead>
                             ))}
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow>
-                            <TableCell>1</TableCell> {/* 第一列编号 */}
-
-                            <TableCell className="flex items-center space-x-2">
-                                <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
-                                    <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
-                                        TM
-                                    </Avatar.Fallback>
-                                </Avatar.Root>
-                                <span className="text-[15px] font-medium">Think Media</span>
-                            </TableCell>
-                            <TableCell>
-                                <Button variant="outline">Button</Button> {/* 第三列按钮 */}
-                            </TableCell>
-                            <TableCell><TwitterLogoIcon /></TableCell>
-                            <TableCell>1</TableCell>
-                            <TableCell>3030000</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>2</TableCell> {/* 第一列编号 */}
-                            <TableCell className="flex items-center space-x-2">
-                                <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
-                                    <Avatar.Image
-                                        className="h-full w-full rounded-[inherit] object-cover"
-                                        src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
-                                        alt="Pedro Duarte"
-                                    />
-                                    <Avatar.Fallback
-                                        className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium"
-                                        delayMs={600}
-                                    >
-                                        JD
-                                    </Avatar.Fallback>
-                                </Avatar.Root>
-                                <span className="text-[15px] font-medium">Private Label</span>
-
-                            </TableCell>
-                            <TableCell>
-                                <Button variant="outline">Button</Button> {/* 第三列按钮 */}
-                            </TableCell>
-                            <TableCell><TwitterLogoIcon /></TableCell>
-                            <TableCell>1</TableCell>
-                            <TableCell>2750000</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>3</TableCell> {/* 第一列编号 */}
-                            <TableCell className="flex items-center space-x-2">
-                                <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
-                                    <Avatar.Image
-                                        className="h-full w-full rounded-[inherit] object-cover"
-                                        src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
-                                        alt="Colm Tuite"
-                                    />
-                                    <Avatar.Fallback
-                                        className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium"
-                                        delayMs={600}
-                                    >
-                                        CT
-                                    </Avatar.Fallback>
-                                </Avatar.Root>
-                                <span className="text-[15px] font-medium">Akalanka Ekanayake</span>
-                            </TableCell>
-                            <TableCell>
-                                <Button variant="outline">Button</Button> {/* 第三列按钮 */}
-                            </TableCell>
-                            <TableCell><GitHubLogoIcon /></TableCell>
-                            <TableCell>1</TableCell>
-                            <TableCell>1880000</TableCell>
-                        </TableRow>
+                        {influencers.map(influencer => (
+                            <TableRow key={influencer.id}>
+                                <TableCell>{influencer.id}</TableCell>
+                                <TableCell className="flex items-center space-x-2">
+                                    <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                                        {influencer.profileImage ? (
+                                            <Avatar.Image
+                                                className="h-full w-full rounded-[inherit] object-cover"
+                                                src={influencer.profileImage}
+                                                alt={influencer.name}
+                                            />
+                                        ) : (
+                                            <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
+                                                {influencer.fallbackText}
+                                            </Avatar.Fallback>
+                                        )}
+                                    </Avatar.Root>
+                                    <span className="text-[15px] font-medium">{influencer.name}</span>
+                                </TableCell>
+                                <TableCell>
+                                    <Button variant="outline">Button</Button>
+                                </TableCell>
+                                <TableCell>{influencer.siteIcon}</TableCell>
+                                <TableCell>{influencer.mentions}</TableCell>
+                                <TableCell>{influencer.followers}</TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
                 <div className='flex justify-end'>
@@ -123,6 +95,7 @@ const Influencers = () => {
                 </div>
             </div>
         </Card>
-    )
-}
+    );
+};
+
 export { Influencers };
