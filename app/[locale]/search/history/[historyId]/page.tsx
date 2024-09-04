@@ -4,6 +4,7 @@ import { Resizable } from 're-resizable'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import { Send, PaperclipIcon, Search } from 'lucide-react'
 import Link from "next/link";
+import * as Avatar from '@radix-ui/react-avatar';
 import { Button } from "@/components/ui/button"
 import { DataBox } from '@/components/ui/databox'
 import { Textarea } from "@/components/ui/textarea"
@@ -693,7 +694,15 @@ export default function Component() {
                   <TableBody>
                     <TableRow>
                       <TableCell>1</TableCell> {/* 第一列编号 */}
-                      <TableCell>Think Media</TableCell>
+
+                      <TableCell className="flex items-center space-x-2">
+                        <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                          <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
+                            TM
+                          </Avatar.Fallback>
+                        </Avatar.Root>
+                        <span className="text-[15px] font-medium">Think Media</span>
+                      </TableCell>
                       <TableCell>
                         <Button variant="outline">Button</Button> {/* 第三列按钮 */}
                       </TableCell>
@@ -703,7 +712,23 @@ export default function Component() {
                     </TableRow>
                     <TableRow>
                       <TableCell>2</TableCell> {/* 第一列编号 */}
-                      <TableCell>Private Label</TableCell>
+                      <TableCell className="flex items-center space-x-2">
+                        <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                          <Avatar.Image
+                            className="h-full w-full rounded-[inherit] object-cover"
+                            src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
+                            alt="Pedro Duarte"
+                          />
+                          <Avatar.Fallback
+                            className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium"
+                            delayMs={600}
+                          >
+                            JD
+                          </Avatar.Fallback>
+                        </Avatar.Root>
+                        <span className="text-[15px] font-medium">Private Label</span>
+                
+                      </TableCell>
                       <TableCell>
                         <Button variant="outline">Button</Button> {/* 第三列按钮 */}
                       </TableCell>
@@ -713,7 +738,22 @@ export default function Component() {
                     </TableRow>
                     <TableRow>
                       <TableCell>3</TableCell> {/* 第一列编号 */}
-                      <TableCell>Akalanka Ekanayake</TableCell>
+                      <TableCell className="flex items-center space-x-2">
+                        <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                          <Avatar.Image
+                            className="h-full w-full rounded-[inherit] object-cover"
+                            src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
+                            alt="Colm Tuite"
+                          />
+                          <Avatar.Fallback
+                            className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium"
+                            delayMs={600}
+                          >
+                            CT
+                          </Avatar.Fallback>
+                        </Avatar.Root>
+                        <span className="text-[15px] font-medium">Akalanka Ekanayake</span>
+                      </TableCell>
                       <TableCell>
                         <Button variant="outline">Button</Button> {/* 第三列按钮 */}
                       </TableCell>
