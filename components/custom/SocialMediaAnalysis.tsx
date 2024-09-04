@@ -28,16 +28,14 @@ const pieChartData = [
 const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#F5F5F4'];
 
 
-interface SocialMediaMention {
-  spanText: string;
-  paragraphText: string;
-}
-
 interface SocialMediaAnalysisProps {
-  smMentions: SocialMediaMention[];
+  Mentions: string;
+  TotalLikes: string;
+  TotalShares: string;
 }
 
-const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ smMentions }) => {
+
+const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions,TotalLikes,TotalShares }) => {
   const renderPieChart = () => (
     <ResponsiveContainer width={600} height={300}>
       <PieChart>
@@ -88,9 +86,20 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ smMentions })
         </div>
         <div className="font-semibold leading-none tracking-tight ml-12 mt-4 mb-8">Social Media Mentions</div>
         <div className="flex justify-between ml-12 w-4/6 mb-4">
-          {smMentions.map((smmention, index) => (
-            <DataBox key={index} spanText={smmention.spanText} paragraphText={smmention.paragraphText} />
-          ))}
+          <DataBox
+            spanText="Mentions"
+            paragraphText={Mentions}
+          />
+          <DataBox
+            spanText="total number of likes"
+            paragraphText={TotalLikes}
+          />
+          <DataBox
+            spanText="total number of shares"
+            paragraphText={TotalShares}
+          />
+
+
         </div>
         <div className="flex">
           {renderLineChart()}

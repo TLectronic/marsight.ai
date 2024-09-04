@@ -37,20 +37,11 @@ const trafficData = {
 };
 
 // 社交媒体提及 数据
-const smMentions = [
-  {
-    spanText: 'Mentions',
-    paragraphText: '3974',
-  },
-  {
-    spanText: 'total number of likes',
-    paragraphText: '111',
-  },
-  {
-    spanText: 'total number of shares',
-    paragraphText: '222',
-  },
-];
+const smMentions = {
+  Mentions:'3974',
+  TotalLikes: '111',
+  TotalShares: '222',
+};
 
 // 博主表格内数据
 
@@ -330,7 +321,9 @@ export default function Component() {
               paid={paid}
             />
             <SocialMediaAnalysis
-              smMentions={smMentions}
+              Mentions={smMentions.Mentions}
+              TotalLikes={smMentions.TotalLikes}
+              TotalShares={smMentions.TotalShares}
             />
             <Mentions mentions={mentions} mentionsFrom={mentionsFrom} />
             <Influencers influencers={Influencer}/>
