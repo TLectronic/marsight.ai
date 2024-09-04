@@ -8,25 +8,54 @@ import Link from "next/link";
 import logoIcon from "@/public/logo.png";
 import { LinkIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import AIInsightsIcon from "@/public/aiinsights.svg";
+import InsightsIcon from "@/public/insights.svg";
+import React, { useState } from 'react'
+
 
 export default function Page({ params: { lng } }: { params: { lng: string } }) {
   const t = useTranslations("SearchPage");
+
+  // 是否正在搜索，默认为否
+  const [isSearching, setIsSearching] = useState(false);
+  // 搜索页
+  const Search = () => {
+    return <>
+      <p className="text-xl ">{t("slogan")}</p>
+      <div className="w-full max-w-screen-md space-y-2">
+        <form className="flex space-x-2 relative">
+          <LinkIcon className="absolute left-4 top-3" size={16} />
+          <Input
+            className="flex-1 pl-8"
+            placeholder={t("searchPlaceholder")}
+            type="text"
+          />
+          <Button type="submit" onClick={()=>setIsSearching(true)}>{t("decipher")}</Button>
+        </form>
+      </div>
+    </>
+  }
+
+  // 等待页
+  const Waiting = () => {
+    return <>
+      <Link href="mailto:your-email@example.com">
+        <Image
+          src={InsightsIcon}
+          alt="Mail"
+          width={200}
+          height={200}
+          className="w-28 h-14"
+        />
+      </Link>
+      <p className="text-xl text-center"> Depending on the size of the website's data and the data range
+        select,the analysis may take up to 1 minute to process.</p >
+    </>
+  }
   return (
     <div className="w-full h-full flex justify-center items-center relative">
       <main className="-mt-60 w-[600px] flex flex-col items-center justify-start gap-8">
-        {/* <Image src={logoIcon} className="w-96 object-cover" alt="logo" /> */}
-        <p className="text-xl ">{t("slogan")}</p>
-        <div className="w-full max-w-screen-md space-y-2">
-          <form className="flex space-x-2 relative">
-            <LinkIcon className="absolute left-4 top-3" size={16} />
-            <Input
-              className="flex-1 pl-8"
-              placeholder={t("searchPlaceholder")}
-              type="text"
-            />
-            <Button type="submit">{t("decipher")}</Button>
-          </form>
-        </div>
+        {isSearching ? <Waiting /> : <Search />}
       </main>
       <footer className="absolute bottom-0 w-10/12 flex flex-col justify-center items-center">
         <div className="flex justify-center items-center gap-2">
