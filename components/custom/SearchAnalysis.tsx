@@ -137,7 +137,7 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
             </TableHeader>
             {dataToShow.data.map((datagroup, index) => (
               <>
-                <TableRow>
+                <TableRow key={index}>
                   <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
                     <div className='bg-blue-100 rounded-xl px-2'>{datagroup.KeywordClass}</div>
                     <div className='ml-6'>2条记录</div>
@@ -146,7 +146,7 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
                 </TableRow>
                 {isExpanded && (<TableBody>
                   {datagroup.data.map((trafficrow, index) => (
-                    <TableRow>
+                    <TableRow key={index}>
                       <TableCell>{trafficrow.Keywords}</TableCell>
                       <TableCell>{trafficrow.Clicks}</TableCell>
                       <TableCell>{trafficrow.Traffic}</TableCell>
