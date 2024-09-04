@@ -13,6 +13,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { MentionBox } from "@/components/ui/mention-box"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select'
+
+import { ProductAnalysis } from '@/components/custom/ProductAnalysis'
+import { TrafficOverview } from '@/components/custom/TrafficOverview'
+import { MarketingChannels } from '@/components/custom/MarketingChannels'
+
 import { GitHubLogoIcon, TriangleDownIcon, TriangleRightIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
 
 import Image from "next/image";
@@ -110,32 +115,14 @@ const searchData = [
 ];
 
 // 流量总览 数据
-const trafficData = [
-  {
-    spanText: 'Monthly Visits',
-    paragraphText: '2.672M',
-  },
-  {
-    spanText: 'Unique Visitors',
-    paragraphText: '1.135M',
-  },
-  {
-    spanText: 'Visit Duration',
-    paragraphText: '00:04:47',
-  },
-  {
-    spanText: 'Pages Per Visit',
-    paragraphText: '4.46',
-  },
-  {
-    spanText: 'Bounce Rate',
-    paragraphText: '44.87%',
-  },
-  {
-    spanText: 'Page Views',
-    paragraphText: '11.93M',
-  },
-];
+const trafficData = {
+  MonthlyVisits: "2.672M",
+  UniqueVisitors: "1.135M",
+  VisitDuration: "00:04:47",
+  PagesPerVisit: "4.46",
+  BounceRate: "44.87%",
+  PageViews: "11.93M",
+};
 
 // 社交媒体提及 数据
 const smMentions = [
@@ -211,100 +198,23 @@ export default function Component() {
       >
         <div className="h-full overflow-auto">
           <div className="p-4 space-y-4 min-w-[500px]">
-            <Card className="rounded-[24px]">
-              <CardHeader>
-                <CardTitle>Product Analysis</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-base font-bold mb-2">heygen.com</div>
-                <div className="text-sm mb-6">
-                  heygen is an innovative video platform that harnesses the power of generative ai to streamline your video creation process.
-                </div>
-                <div className='border-black border-2 h-60'>
 
-                  <div className='flex justify-between text-xl'>
-                    <div className='flex-1'>
-                      <div className='text-center mb-16'>Target Users</div>
-                      <ul className='text-sm ml-4'>
-                        <li>· Businesses of all sizes</li>
-                        <li>· Marketers</li>
-                        <li>· Sales teams</li>
-                      </ul>
-                    </div>
-                    <div className='flex-1'>
-                      <div className='text-center mb-16'>Core Features</div>
-                      <ul className='text-sm ml-4'>
-                        <li>· Text-to-Video Conversion</li>
-                        <li>· 100+ Customizable Avatars</li>
-                        <li>· 300+ Voices in 40+ Languages</li>
-                      </ul>
-                    </div>
-
-                    <div className='flex-1'>
-                      <div className='text-center mb-16'>Application Scenarios</div>
-                      <ul className='text-sm ml-4'>
-                        <li>· Markerting Campaigns</li>
-                        <li>· Product Demonstrations</li>
-                        <li>· Social Media Content</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-[24px]">
-              <CardHeader>
-                <CardTitle>Traffic Overview</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className='flex justify-between flex-wrap space-x-4 mb-4'>
-                  {trafficData.map((traffic, index) => (
-                    <DataBox
-                      key={index}
-                      spanText={traffic.spanText}
-                      paragraphText={traffic.paragraphText}
-                    />
-                  ))}
-                </div>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={lineChartData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-[24px]">
-              <CardHeader>
-                <CardTitle>Marketing Channels</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={barChartData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis
-                      tickFormatter={(value) => `${value}%`}
-                      domain={[0, 50]} // Adjusted for better visualization
-                    />
-                    <Tooltip
-                      formatter={(value) => `${value}%`}
-                      labelFormatter={(label) => `Channel: ${label}`}
-                    />
-                    <Legend />
-                    <Bar dataKey="pv" stackId="a" fill="#87CEFA" barSize={40} />
-                    <Bar dataKey="uv" stackId="a" fill="#00008B" barSize={40} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card>
+            <ProductAnalysis
+              ProductUrl='heygen.com'
+              ProductSummary='heygen is an innovative video platform that harnesses the power of generative ai to streamline your video creation process.'
+              TargetUsers={["Businesses of all sizes", "Marketers", "Sales teams"]}
+              CoreFeatures={["Text-to-Video Conversion", "100+ Customizable Avatars", "300+ Voices in 40+ Languages"]}
+              UseCases={["Marketing Campaigns", "Product Demonstrations", "Social Media Content"]}
+            />
+            <TrafficOverview
+              MonthlyVisits={trafficData.MonthlyVisits}
+              UniqueVisitors={trafficData.UniqueVisitors}
+              VisitDuration={trafficData.VisitDuration}
+              PagesPerVisit={trafficData.PagesPerVisit}
+              BounceRate={trafficData.BounceRate}
+              PageViews={trafficData.PageViews}
+            />
+            <MarketingChannels />
 
             <Card className="rounded-[24px]">
               <CardHeader>
@@ -727,7 +637,7 @@ export default function Component() {
                           </Avatar.Fallback>
                         </Avatar.Root>
                         <span className="text-[15px] font-medium">Private Label</span>
-                
+
                       </TableCell>
                       <TableCell>
                         <Button variant="outline">Button</Button> {/* 第三列按钮 */}
