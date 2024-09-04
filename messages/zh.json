@@ -19,5 +19,27 @@
     "title": "升级到专业版",
     "content": "解锁所有功能，获得高级体验",
     "button": "升级"
+  },
+  "PricesPage": {
+    "includes": "包含功能",
+    "liteTitle": "个人版",
+    "liteDescription": "个人/小型企业",
+    "popularTitle": "推荐版",
+    "popularDescription": "初创公司/专业人士",
+    "agencyTitle": "机构版",
+    "agencyDescription": "营销顾问",
+    "enterpriseTitle": "定制版",
+    "enterpriseDescription": "营销顾问",
+    "letsTalk": "联系我们",
+    "threeWebsite": "3个结果",
+    "oneUser": "1位使用者",
+    "oneHistory": "1个月历史数据",
+    "unlimited": "无限制的AI对话",
+    "sixWebsite": "6个结果",
+    "fifteenWebsite": "15个结果",
+    "customerManager": "专属客户经理",
+    "Insights": "自定义报告和洞察",
+    "DataSupport": "数据提取支持",
+    "start": "立即开始"
   }
 }
