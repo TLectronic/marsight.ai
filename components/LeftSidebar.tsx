@@ -90,7 +90,7 @@ export default function LeftSidebar() {
             {isOpen && t('content')}
           </div>
           <Button className="mb-2" variant="default">
-            <Link href="./prices" >
+            <Link href="/en/prices" >
               {isOpen && t('button')}
             </Link>
           </Button>
