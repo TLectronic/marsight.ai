@@ -11,10 +11,37 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import OrderPage from "@/components/OrderPgae"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
+import { useClerk } from "@clerk/nextjs"
 export default function Component() {
   const t = useTranslations("PricesPage")
   const currentAmountRef = useRef<number>(1)
+  const { session } = useClerk();
+  useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        if (session) {
+          const jwtToken = await session.getToken();
+
+          const response = await fetch('http://127.0.0.1:4523/m1/5082879-4744979-default/purchase', {
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          console.log('data:', data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch prices:', error);
+      }
+    };
+
+    fetchPrices();
+  }, [session]);
   return (
     <div className="bg-white min-h-screen p-4 flex items-center justify-center">
 
