@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
+<<<<<<< Updated upstream
 import { ProductAnalysis } from '@/components/custom/ProductAnalysis'
 import { TrafficOverview } from '@/components/custom/TrafficOverview'
 import { MarketingChannels } from '@/components/custom/MarketingChannels'
@@ -17,9 +18,27 @@ import { Influencers } from '@/components/custom/Influencers'
 import { Mentions } from '@/components/custom/Mentions'
 import { SocialMediaAnalysis } from '@/components/custom/SocialMediaAnalysis'
 
+=======
+import { MentionBox } from "@/components/ui/mention-box"
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select'
+import { ProductAnalysis } from '@/components/custom/ProductAnalysis'
+import { TrafficOverview } from '@/components/custom/TrafficOverview'
+import { MarketingChannels } from '@/components/custom/MarketingChannels'
+import { Referrals } from '@/components/custom/Referrals'
+import { SearchAnalysis } from '@/components/custom/SearchAnalysis'
+import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
+>>>>>>> Stashed changes
 import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
 import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
+
+interface ReferralsRow {
+  Link: string;
+  category: string;
+  TrafficShare: string;
+  Traffic: string;
+  Change: string;
+}
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -30,15 +49,6 @@ const lineChartData = [
   { name: 'Jun', uv: 2390, pv: 3800, amt: 2500 },
   { name: 'Jul', uv: 3490, pv: 4300, amt: 2100 },
 ]
-
-const barChartData = [
-  { name: 'Direct', uv: 22.36, pv: 22.00 },
-  { name: 'Email', uv: 0.03, pv: 0.03 },
-  { name: 'Referrals', uv: 1.63, pv: 2.00 },
-  { name: 'Social', uv: 3.28, pv: 4.00 },
-  { name: 'Organicsearch', uv: 20.23, pv: 17.00 },
-  { name: 'Paidsearch', uv: 4.33, pv: 3.00 },
-];
 
 const pieChartData = [
   { name: 'Youtube', value: 62.6 },
@@ -99,11 +109,146 @@ const smMentions = [
 
 // 博主表格内数据
 
-const referralsData = [
-  ['Producthunt.com', 'Tech News', '17.77%', '15.4k', 'New'],
-  ['canva.com', 'Design', '17.77%', '15.4k', '22.82%'],
-  ['g2.com', 'Tech News', '17.77%', '15.4k', '-67.93%'],
-];
+const referralsData: ReferralsRow[] = [
+  {
+    Link: 'Producthunt.com',
+    category: 'Tech News',
+    TrafficShare: '17.77%',
+    Traffic: '15.4k',
+    Change: 'New'
+  },
+  {
+    Link: 'canva.com',
+    category: 'Design',
+    TrafficShare: '17.77%',
+    Traffic: '15.4k',
+    Change: '22.82%'
+  },
+  {
+    Link: 'g2.com',
+    category: 'Tech News',
+    TrafficShare: '17.77%',
+    Traffic: '15.4k',
+    Change: '-67.93%'
+  },
+]
+
+const dataofbox = {
+  NoofKeywords: '5968',
+  NoofClicks: '1.190M',
+  OfAllTotalTraffic: '44.56%',
+  OrganicvsPaid: '8 : 2',
+}
+
+const organic = {
+  data: [
+    {
+      KeywordClass: "Branded Keywords",
+      data: [
+        {
+          Keywords: 'heygen',
+          Clicks: '1060150',
+          Traffic: '65.06%',
+          ClicksChange: '21.76%',
+          ChangeVolume: '1237740.00',
+          Changeofvolume: '17.88%',
+        },
+        {
+          Keywords: 'heygen ai',
+          Clicks: '149930',
+          Traffic: '9.20%',
+          ClicksChange: '33.75%',
+          ChangeVolume: '196180.00',
+          Changeofvolume: '31.81%',
+        },
+      ]
+    },
+    {
+      KeywordClass: "Non-Branded Keywords",
+      data: [
+        {
+          Keywords: 'heygen',
+          Clicks: '1060150',
+          Traffic: '65.06%',
+          ClicksChange: '21.76%',
+          ChangeVolume: '1237740.00',
+          Changeofvolume: '17.88%',
+        },
+        {
+          Keywords: 'heygen ai',
+          Clicks: '149930',
+          Traffic: '9.20%',
+          ClicksChange: '33.75%',
+          ChangeVolume: '196180.00',
+          Changeofvolume: '31.81%',
+        },
+        {
+          Keywords: 'heygen ai',
+          Clicks: '149930',
+          Traffic: '9.20%',
+          ClicksChange: '33.75%',
+          ChangeVolume: '196180.00',
+          Changeofvolume: '31.81%',
+        },
+      ]
+    },
+  ]
+}
+
+const paid = {
+  data: [
+    {
+      KeywordClass: "Branded Keywords",
+      data: [
+        {
+          Keywords: 'hey',
+          Clicks: '1060150',
+          Traffic: '65.06%',
+          ClicksChange: '21.76%',
+          ChangeVolume: '1237740.00',
+          Changeofvolume: '17.88%',
+        },
+        {
+          Keywords: 'heygen ai',
+          Clicks: '149930',
+          Traffic: '9.20%',
+          ClicksChange: '33.75%',
+          ChangeVolume: '196180.00',
+          Changeofvolume: '31.81%',
+        },
+      ]
+    },
+    {
+      KeywordClass: "Non-Branded Keywords",
+      data: [
+        {
+          Keywords: 'heygen',
+          Clicks: '1060150',
+          Traffic: '65.06%',
+          ClicksChange: '21.76%',
+          ChangeVolume: '1237740.00',
+          Changeofvolume: '17.88%',
+        },
+        {
+          Keywords: 'heygen ai',
+          Clicks: '149930',
+          Traffic: '9.20%',
+          ClicksChange: '33.75%',
+          ChangeVolume: '196180.00',
+          Changeofvolume: '31.81%',
+        },
+        {
+          Keywords: 'heygen ai',
+          Clicks: '149930',
+          Traffic: '9.20%',
+          ClicksChange: '33.75%',
+          ChangeVolume: '196180.00',
+          Changeofvolume: '31.81%',
+        },
+      ]
+    },
+  ]
+}
 
 // 最火爆的提及 数据
 const mentions = [
@@ -232,11 +377,167 @@ export default function Component() {
               PageViews={trafficData.PageViews}
             />
             <MarketingChannels />
+            <Referrals
+              referralsData={referralsData}
+            />
 
+<<<<<<< Updated upstream
             <Card className="rounded-[24px]">
               <CardHeader>
                 <div className='flex justify-between'>
                   <CardTitle>Referrals</CardTitle>
+=======
+            <SearchAnalysis
+              dataofbox={dataofbox}
+              organic={organic}
+              paid={paid}
+            />
+
+            <Card className="rounded-[24px]">
+              <CardHeader>
+                <CardTitle>Social Media Analysis</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className='font-semibold leading-none tracking-tight ml-12 mb-6'>Social Distribution</div>
+                <div className='flex justify-around'>
+                  <DataBox
+                    className='ml-20 mt-20'
+                    spanText='Total social visits'
+                    paragraphText='45.2K'
+                  />
+                  <ResponsiveContainer width={600} height={300}>
+                    <PieChart>
+                      <Pie
+                        data={pieChartData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={80}
+                        innerRadius={50}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                        {pieChartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className='font-semibold leading-none tracking-tight ml-12 mt-4 mb-8'>Social Media Mentions</div>
+                <div className='flex justify-between ml-12 w-4/6 mb-4'>
+                  {smMentions.map((smmention, index) => (
+                    <DataBox
+                      key={index}
+                      spanText={smmention.spanText}
+                      paragraphText={smmention.paragraphText}
+                    />
+                  ))}
+                </div>
+                <div className='flex'>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <LineChart data={lineChartData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                    </LineChart>
+                  </ResponsiveContainer>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={pieChartData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={80}
+                        innerRadius={50}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                        {pieChartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-[24px]">
+              <CardHeader>
+                <div className='flex justify-between'>
+                  <div>
+                    <Select defaultValue="popular" onValueChange={(value) => setSelectedOption(value)}>
+                      <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
+                        <SelectValue placeholder="Select an option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="popular">
+                          <CardTitle>The most popular mentions</CardTitle>
+                        </SelectItem>
+                        <SelectItem value="profiles">
+                          <CardTitle>Mentions from the most popular public profiles</CardTitle>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <Button
+                    variant="link"
+                    asChild
+                    className="p-2 hover:bg-muted/50"
+                  >
+                    <Link href="mailto:your-email@example.com">
+                      <Image
+                        src={AIInsightsIcon}
+                        alt="Mail"
+                        width={200}
+                        height={200}
+                        className="w-28 h-14"
+                      />
+                    </Link>
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className='grid divide-y'>
+                  {dataToShow.map((data, index) => (
+                    <MentionBox
+                      key={index}
+                      avatarSrc={data.avatarSrc}
+                      fallbackText={data.fallbackText}
+                      title={data.title}
+                      date={data.date}
+                      link={data.link}
+                      tags={data.tags}
+                    />
+                  ))}
+                </div>
+                <div className='flex justify-end'>
+                  <Button variant="link">
+                    <Link href="./1/secondaryPage/mentions">
+                      Show more Mentions
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+
+            <Card className="rounded-[24px]">
+              <CardHeader>
+                <div className='flex justify-between'>
+                  <CardTitle>Influencers</CardTitle>
+>>>>>>> Stashed changes
                   <Button
                     variant="link"
                     asChild
@@ -255,6 +556,7 @@ export default function Component() {
                 </div>
               </CardHeader>
               <div className='p-6'>
+<<<<<<< Updated upstream
                 <CardContent>
                   <ResponsiveContainer width="100%" height={300}>
                     <Table>
@@ -306,6 +608,98 @@ export default function Component() {
             <Mentions mentions={mentions} mentionsFrom={mentionsFrom} />
 
             <Influencers influencers={Influencer}/>
+=======
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      {tableHeader.map((tableheader, index) => (
+                        <TableHead>{tableheader}</TableHead>
+                      ))}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>1</TableCell> {/* 第一列编号 */}
+
+                      <TableCell className="flex items-center space-x-2">
+                        <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                          <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
+                            TM
+                          </Avatar.Fallback>
+                        </Avatar.Root>
+                        <span className="text-[15px] font-medium">Think Media</span>
+                      </TableCell>
+                      <TableCell>
+                        <Button variant="outline">Button</Button> {/* 第三列按钮 */}
+                      </TableCell>
+                      <TableCell><TwitterLogoIcon /></TableCell>
+                      <TableCell>1</TableCell>
+                      <TableCell>3030000</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>2</TableCell> {/* 第一列编号 */}
+                      <TableCell className="flex items-center space-x-2">
+                        <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                          <Avatar.Image
+                            className="h-full w-full rounded-[inherit] object-cover"
+                            src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
+                            alt="Pedro Duarte"
+                          />
+                          <Avatar.Fallback
+                            className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium"
+                            delayMs={600}
+                          >
+                            JD
+                          </Avatar.Fallback>
+                        </Avatar.Root>
+                        <span className="text-[15px] font-medium">Private Label</span>
+
+                      </TableCell>
+                      <TableCell>
+                        <Button variant="outline">Button</Button> {/* 第三列按钮 */}
+                      </TableCell>
+                      <TableCell><TwitterLogoIcon /></TableCell>
+                      <TableCell>1</TableCell>
+                      <TableCell>2750000</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>3</TableCell> {/* 第一列编号 */}
+                      <TableCell className="flex items-center space-x-2">
+                        <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                          <Avatar.Image
+                            className="h-full w-full rounded-[inherit] object-cover"
+                            src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
+                            alt="Colm Tuite"
+                          />
+                          <Avatar.Fallback
+                            className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium"
+                            delayMs={600}
+                          >
+                            CT
+                          </Avatar.Fallback>
+                        </Avatar.Root>
+                        <span className="text-[15px] font-medium">Akalanka Ekanayake</span>
+                      </TableCell>
+                      <TableCell>
+                        <Button variant="outline">Button</Button> {/* 第三列按钮 */}
+                      </TableCell>
+                      <TableCell><GitHubLogoIcon /></TableCell>
+                      <TableCell>1</TableCell>
+                      <TableCell>1880000</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+                <div className='flex justify-end'>
+                  <Button variant="link">
+                    <Link href="./1/secondaryPage/influencers">
+                      Show more influencers
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </Card>
+
+>>>>>>> Stashed changes
 
           </div>
         </div>
