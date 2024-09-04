@@ -10,14 +10,12 @@ import { Textarea } from "@/components/ui/textarea"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
-import { MentionBox } from "@/components/ui/mention-box"
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select'
 import { ProductAnalysis } from '@/components/custom/ProductAnalysis'
 import { TrafficOverview } from '@/components/custom/TrafficOverview'
 import { MarketingChannels } from '@/components/custom/MarketingChannels'
 import { Influencers } from '@/components/custom/Influencers'
 import { Mentions } from '@/components/custom/Mentions'
-import { GitHubLogoIcon, TriangleDownIcon, TriangleRightIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
+import { SocialMediaAnalysis } from '@/components/custom/SocialMediaAnalysis'
 
 import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
@@ -108,13 +106,6 @@ const referralsData = [
 ];
 
 export default function Component() {
-
-  // 大表格相关内容
-  const [isExpanded, setIsExpanded] = useState(true);
-  // 切换展开/折叠状态
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  }
 
   const [messages, setMessages] = useState([
     { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' }
@@ -236,233 +227,7 @@ export default function Component() {
 
             </Card>
 
-
-
-            <Card className="rounded-[24px]">
-              <CardHeader>
-                <CardTitle>Search Analysis</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className='flex justify-between flex-wrap space-x-4 mb-4'>
-                  {searchData.map((search, index) => (
-                    <DataBox
-                      key={index}
-                      spanText={search.spanText}
-                      paragraphText={search.paragraphText}
-                    />
-                  ))}
-                </div>
-              </CardContent>
-
-              <CardHeader>
-                <div className='flex justify-between'>
-                  <div>
-                    <Select defaultValue="organic">
-                      <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
-                        <SelectValue placeholder="Select an option" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="organic">
-                          <CardTitle>Organic Traffic</CardTitle>
-                        </SelectItem>
-                        <SelectItem value="paid">
-                          <CardTitle>Paid Traffic</CardTitle>
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <Button
-                    variant="link"
-                    asChild
-                    className="p-2 hover:bg-muted/50"
-                  >
-                    <Link href="mailto:your-email@example.com">
-                      <Image
-                        src={AIInsightsIcon}
-                        alt="Mail"
-                        width={200}
-                        height={200}
-                        className="w-28 h-14"
-                      />
-                    </Link>
-                  </Button>
-                </div>
-              </CardHeader>
-
-
-
-              <div className='p-6'>
-                <CardContent>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Keywords</TableHead>
-                        <TableHead>Clicks</TableHead>
-                        <TableHead>Traffic</TableHead>
-                        <TableHead>ClicksChange</TableHead>
-                        <TableHead>ChangeVolume</TableHead>
-                        <TableHead>Change of volume</TableHead>
-                      </TableRow>
-                    </TableHeader>
-
-                    <TableRow>
-
-                      <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
-                        <div className='bg-blue-100 rounded-xl px-2'>Branded Keywords</div>
-                        <div className='ml-6'>2条记录</div>
-                        {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
-                      </Button>
-
-                    </TableRow>
-
-                    {isExpanded && (<TableBody>
-                      <TableRow>
-                        <TableCell>heygen</TableCell>
-                        <TableCell>1060150</TableCell>
-                        <TableCell>65.06%</TableCell>
-                        <TableCell>21.76%</TableCell>
-                        <TableCell>1237740.00</TableCell>
-                        <TableCell>17.88%</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>heygen ai</TableCell>
-                        <TableCell>149930</TableCell>
-                        <TableCell>9.20%</TableCell>
-                        <TableCell>33.75%</TableCell>
-                        <TableCell>196180.00</TableCell>
-                        <TableCell>31.81%</TableCell>
-                      </TableRow>
-                    </TableBody>)}
-
-                    <TableRow>
-                      <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
-                        <div className='bg-orange-100 rounded-xl px-2'>Non-Branded Keywords</div>
-                        <div className='ml-6'>3条记录</div>
-                        {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
-                      </Button>
-                    </TableRow>
-
-                    {isExpanded && (<TableBody>
-                      <TableRow>
-                        <TableCell>heygen</TableCell>
-                        <TableCell>1060150</TableCell>
-                        <TableCell>65.06%</TableCell>
-                        <TableCell>21.76%</TableCell>
-                        <TableCell>1237740.00</TableCell>
-                        <TableCell>17.88%</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>heygen ai</TableCell>
-                        <TableCell>149930</TableCell>
-                        <TableCell>9.20%</TableCell>
-                        <TableCell>33.75%</TableCell>
-                        <TableCell>196180.00</TableCell>
-                        <TableCell>31.81%</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>heygen ai</TableCell>
-                        <TableCell>149930</TableCell>
-                        <TableCell>9.20%</TableCell>
-                        <TableCell>33.75%</TableCell>
-                        <TableCell>196180.00</TableCell>
-                        <TableCell>31.81%</TableCell>
-                      </TableRow>
-                    </TableBody>)}
-
-                  </Table>
-                </CardContent>
-                <div className="flex justify-end">
-                  <Button variant="link">
-                    <Link href="./1/secondaryPage/searchAnalysis">
-                      Show more search terms
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-
-            </Card>
-
-
-
-
-            <Card className="rounded-[24px]">
-              <CardHeader>
-                <CardTitle>Social Media Analysis</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className='font-semibold leading-none tracking-tight ml-12 mb-6'>Social Distribution</div>
-                <div className='flex justify-around'>
-                  <DataBox
-                    className='ml-20 mt-20'
-                    spanText='Total social visits'
-                    paragraphText='45.2K'
-                  />
-                  <ResponsiveContainer width={600} height={300}>
-                    <PieChart>
-                      <Pie
-                        data={pieChartData}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        outerRadius={80}
-                        innerRadius={50}
-                        fill="#8884d8"
-                        dataKey="value"
-                      >
-                        {pieChartData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                      <Legend />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-                <div className='font-semibold leading-none tracking-tight ml-12 mt-4 mb-8'>Social Media Mentions</div>
-                <div className='flex justify-between ml-12 w-4/6 mb-4'>
-                  {smMentions.map((smmention, index) => (
-                    <DataBox
-                      key={index}
-                      spanText={smmention.spanText}
-                      paragraphText={smmention.paragraphText}
-                    />
-                  ))}
-                </div>
-                <div className='flex'>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={lineChartData}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend />
-                      <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                    </LineChart>
-                  </ResponsiveContainer>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                      <Pie
-                        data={pieChartData}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        outerRadius={80}
-                        innerRadius={50}
-                        fill="#8884d8"
-                        dataKey="value"
-                      >
-                        {pieChartData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                      <Legend />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
+            <SocialMediaAnalysis />
 
             <Mentions />
 
