@@ -5,10 +5,8 @@ import twitterIcon from "@/public/twitter.svg";
 import mailIcon from "@/public/mail.svg";
 import Image from "next/image";
 import Link from "next/link";
-import logoIcon from "@/public/logo.png";
 import { LinkIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import AIInsightsIcon from "@/public/aiinsights.svg";
 import InsightsIcon from "@/public/insights.svg";
 import React, { useState } from 'react'
 
