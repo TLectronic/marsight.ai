@@ -16,10 +16,15 @@ export default function Component() {
   const t = useTranslations("PricesPage")
   const currentAmountRef = useRef<number>(1)
   return (
-    <div className="bg-gradient-to-b from-purple-100 to-white min-h-screen p-4 flex items-center justify-center">
+    <div className="bg-white min-h-screen p-4 flex items-center justify-center">
 
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">MARSIGHT.AI Pro</h1>
+        <h1 className="text-center mb-16 font-bold">
+          <span className="text-4xl text-black tracking-[0.15em] align-middle" style={{ fontWeight: 900 }}>MARSIGHT.AI</span>
+          <span className="text-2xl text-blue-400 align-middle" style={{ fontWeight: 500 }}> Pro</span>
+        </h1>
+
+
         <Dialog>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
@@ -31,11 +36,22 @@ export default function Component() {
               <div className="p-4 flex-grow">
                 <h2 className="text-xl font-bold mb-1">{t('liteTitle')}</h2>
                 <p className="text-gray-600 text-sm mb-3">{t('liteDescription')}</p>
-                <div className="text-3xl font-bold mb-3">{'$1.99'}</div>
+                <div className="relative text-3xl font-bold mb-3">
+                  <div className="relative text-3xl font-bold mb-3">
+                    <div className="relative text-3xl font-bold mb-3">
+                      {'$1.99'}
+                      <div className="absolute top-0 left-20 text-xs" style={{ textDecoration: 'line-through', textDecorationThickness: '2px' }}>
+                        $30
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
                 <DialogTrigger asChild>
                   <button
                     className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-100 text-purple-600`}
-                    onClick={()=> {
+                    onClick={() => {
                       currentAmountRef.current = 2.99
                     }}
                   >
@@ -79,14 +95,14 @@ export default function Component() {
                 <p className="text-gray-600 text-sm mb-3">{t('popularDescription')}</p>
                 <div className="text-3xl font-bold mb-3">{'$9'}</div>
                 <DialogTrigger asChild>
-                <button
-                  className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-600 text-white`}
-                  onClick={()=> {
-                    currentAmountRef.current = 4.99
-                  }}
-                    >
-                  {t('start')}
-                </button>
+                  <button
+                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-600 text-white`}
+                    onClick={() => {
+                      currentAmountRef.current = 4.99
+                    }}
+                  >
+                    {t('start')}
+                  </button>
                 </DialogTrigger>
                 <div className="mt-4">
                   <h3 className="font-semibold text-sm mb-2">{t('includes')}</h3>
@@ -121,14 +137,14 @@ export default function Component() {
                 <p className="text-gray-600 text-sm mb-3">{t('agencyDescription')}</p>
                 <div className="text-3xl font-bold mb-3">{'$1.99'}</div>
                 <DialogTrigger asChild>
-                <button
-                  className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-100 text-purple-600`}
-                  onClick={()=> {
-                    currentAmountRef.current = 10.99
-                  }}
-                >
-                  {t('start')}
-                </button>
+                  <button
+                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-100 text-purple-600`}
+                    onClick={() => {
+                      currentAmountRef.current = 10.99
+                    }}
+                  >
+                    {t('start')}
+                  </button>
                 </DialogTrigger>
                 <div className="mt-4">
                   <h3 className="font-semibold text-sm mb-2">{t('includes')}</h3>
