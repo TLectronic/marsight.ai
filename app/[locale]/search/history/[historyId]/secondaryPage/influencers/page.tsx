@@ -34,7 +34,7 @@ const Influencers = () => {
                         <TableHeader>
                             <TableRow>
                                 {tableHeader.map((tableheader, index) => (
-                                    <TableHead>{tableheader}</TableHead>
+                                    <TableHead key={index}>{tableheader}</TableHead>
                                 ))}
                             </TableRow>
                         </TableHeader>

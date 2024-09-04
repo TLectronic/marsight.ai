@@ -1,7 +1,16 @@
 import React from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 
-const MentionBox = ({ avatarSrc, fallbackText, title, date, link, tags }) => {
+interface MentionBoxProps {
+  avatarSrc: string;
+  fallbackText: string;
+  title: string;
+  date: string;
+  link: string;
+  tags: string;
+}
+
+const MentionBox: React.FC<MentionBoxProps> = ({ avatarSrc, fallbackText, title, date, link, tags }) => {
   return (
     <div className='pt-6 pl-6 pb-6'>
       <div className='flex'>

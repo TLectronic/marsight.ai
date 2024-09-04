@@ -28,7 +28,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
             placeholder={t("searchPlaceholder")}
             type="text"
           />
-          <Button type="submit" onClick={()=>setIsSearching(true)}>{t("decipher")}</Button>
+          <Button type="submit" onClick={() => setIsSearching(true)}>{t("decipher")}</Button>
         </form>
       </div>
     </>
@@ -46,7 +46,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
           className="w-28 h-14"
         />
       </Link>
-      <p className="text-xl text-center"> Depending on the size of the website's data and the data range
+      <p className="text-xl text-center"> Depending on the size of the website &apos; s data and the data range
         select,the analysis may take up to 1 minute to process.</p >
     </>
   }
