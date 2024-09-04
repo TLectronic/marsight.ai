@@ -12,8 +12,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { MentionBox } from "@/components/ui/mention-box"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select'
-
 import { GitHubLogoIcon, TriangleDownIcon, TriangleRightIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
+
+import Image from "next/image";
+import AIInsightsIcon from "@/public/aiinsights.svg";
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -296,8 +298,8 @@ export default function Component() {
                       labelFormatter={(label) => `Channel: ${label}`}
                     />
                     <Legend />
-                    <Bar dataKey="pv" stackId="a" fill="#87CEFA" barSize={40}/>
-                    <Bar dataKey="uv" stackId="a" fill="#00008B"  barSize={40}/>
+                    <Bar dataKey="pv" stackId="a" fill="#87CEFA" barSize={40} />
+                    <Bar dataKey="uv" stackId="a" fill="#00008B" barSize={40} />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -305,7 +307,24 @@ export default function Component() {
 
             <Card className="rounded-[24px]">
               <CardHeader>
-                <CardTitle>Referrals</CardTitle>
+                <div className='flex justify-between'>
+                  <CardTitle>Referrals</CardTitle>
+                  <Button
+                    variant="link"
+                    asChild
+                    className="p-2 hover:bg-muted/50"
+                  >
+                    <Link href="mailto:your-email@example.com">
+                      <Image
+                        src={AIInsightsIcon}
+                        alt="Mail"
+                        width={200}
+                        height={200}
+                        className="w-28 h-14"
+                      />
+                    </Link>
+                  </Button>
+                </div>
               </CardHeader>
               <div className='p-6'>
                 <CardContent>
@@ -371,19 +390,38 @@ export default function Component() {
               </CardContent>
 
               <CardHeader>
-                <Select defaultValue="organic">
-                  <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
-                    <SelectValue placeholder="Select an option" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="organic">
-                      <CardTitle>Organic Traffic</CardTitle>
-                    </SelectItem>
-                    <SelectItem value="paid">
-                      <CardTitle>Paid Traffic</CardTitle>
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className='flex justify-between'>
+                  <div>
+                    <Select defaultValue="organic">
+                      <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
+                        <SelectValue placeholder="Select an option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="organic">
+                          <CardTitle>Organic Traffic</CardTitle>
+                        </SelectItem>
+                        <SelectItem value="paid">
+                          <CardTitle>Paid Traffic</CardTitle>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Button
+                    variant="link"
+                    asChild
+                    className="p-2 hover:bg-muted/50"
+                  >
+                    <Link href="mailto:your-email@example.com">
+                      <Image
+                        src={AIInsightsIcon}
+                        alt="Mail"
+                        width={200}
+                        height={200}
+                        className="w-28 h-14"
+                      />
+                    </Link>
+                  </Button>
+                </div>
               </CardHeader>
 
 
@@ -545,6 +583,7 @@ export default function Component() {
                         cy="50%"
                         labelLine={false}
                         outerRadius={80}
+                        innerRadius={50}
                         fill="#8884d8"
                         dataKey="value"
                       >
@@ -562,19 +601,39 @@ export default function Component() {
 
             <Card className="rounded-[24px]">
               <CardHeader>
-                <Select defaultValue="popular" onValueChange={(value) => setSelectedOption(value)}>
-                  <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
-                    <SelectValue placeholder="Select an option" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="popular">
-                      <CardTitle>The most popular mentions</CardTitle>
-                    </SelectItem>
-                    <SelectItem value="profiles">
-                      <CardTitle>Mentions from the most popular public profiles</CardTitle>
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className='flex justify-between'>
+                  <div>
+                    <Select defaultValue="popular" onValueChange={(value) => setSelectedOption(value)}>
+                      <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
+                        <SelectValue placeholder="Select an option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="popular">
+                          <CardTitle>The most popular mentions</CardTitle>
+                        </SelectItem>
+                        <SelectItem value="profiles">
+                          <CardTitle>Mentions from the most popular public profiles</CardTitle>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <Button
+                    variant="link"
+                    asChild
+                    className="p-2 hover:bg-muted/50"
+                  >
+                    <Link href="mailto:your-email@example.com">
+                      <Image
+                        src={AIInsightsIcon}
+                        alt="Mail"
+                        width={200}
+                        height={200}
+                        className="w-28 h-14"
+                      />
+                    </Link>
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className='grid divide-y'>
@@ -603,7 +662,24 @@ export default function Component() {
 
             <Card className="rounded-[24px]">
               <CardHeader>
-                <CardTitle>Influencers</CardTitle>
+                <div className='flex justify-between'>
+                  <CardTitle>Influencers</CardTitle>
+                  <Button
+                    variant="link"
+                    asChild
+                    className="p-2 hover:bg-muted/50"
+                  >
+                    <Link href="mailto:your-email@example.com">
+                      <Image
+                        src={AIInsightsIcon}
+                        alt="Mail"
+                        width={200}
+                        height={200}
+                        className="w-28 h-14"
+                      />
+                    </Link>
+                  </Button>
+                </div>
               </CardHeader>
               <div className='p-6'>
                 <Table>
