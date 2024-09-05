@@ -50,7 +50,7 @@ export default function Component() {
   const handlePurchase = async () => {
     try {
       if (isSignedIn) {
-        const jwtToken = await getToken();
+        const jwtToken = await getToken({template});
         console.log(jwtToken)
         const response = await axios.post(
           'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/purchase/checkout',
@@ -63,12 +63,15 @@ export default function Component() {
             },
           }
         );
-
         const data = response.data;
         console.log('Purchase successful:', data);
       }
     } catch (error) {
-      console.error('Failed to make purchase:', error);
+      if (axios.isAxiosError(error)) {
+        console.error('Axios Error:', error.message);
+      } else {
+        console.error('Unexpected Error:', error);
+      }
       console.log('sadsadasd')
     }
   };
