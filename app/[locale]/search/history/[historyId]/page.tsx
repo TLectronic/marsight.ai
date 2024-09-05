@@ -38,7 +38,7 @@ const trafficData = {
 
 // 社交媒体提及 数据
 const smMentions = {
-  Mentions:'3974',
+  Mentions: '3974',
   TotalLikes: '111',
   TotalShares: '222',
 };
@@ -229,31 +229,31 @@ const mentionsFrom = [
 
 const Influencer = [
   {
-      id: 1,
-      name: 'Think Media',
-      profileImage: null,
-      fallbackText: 'TM',
-      siteIcon: <TwitterLogoIcon />,
-      mentions: 1,
-      followers: 3030000
+    id: 1,
+    name: 'Think Media',
+    profileImage: null,
+    fallbackText: 'TM',
+    siteIcon: <TwitterLogoIcon />,
+    mentions: 1,
+    followers: 3030000
   },
   {
-      id: 2,
-      name: 'Private Label',
-      profileImage: 'https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80',
-      fallbackText: 'JD',
-      siteIcon: <TwitterLogoIcon />,
-      mentions: 1,
-      followers: 2750000
+    id: 2,
+    name: 'Private Label',
+    profileImage: 'https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80',
+    fallbackText: 'JD',
+    siteIcon: <TwitterLogoIcon />,
+    mentions: 1,
+    followers: 2750000
   },
   {
-      id: 3,
-      name: 'Akalanka Ekanayake',
-      profileImage: 'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80',
-      fallbackText: 'CT',
-      siteIcon: <GitHubLogoIcon />,
-      mentions: 1,
-      followers: 1880000
+    id: 3,
+    name: 'Akalanka Ekanayake',
+    profileImage: 'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80',
+    fallbackText: 'CT',
+    siteIcon: <GitHubLogoIcon />,
+    mentions: 1,
+    followers: 1880000
   }
 ];
 
@@ -326,7 +326,7 @@ export default function Component() {
               TotalShares={smMentions.TotalShares}
             />
             <Mentions mentions={mentions} mentionsFrom={mentionsFrom} />
-            <Influencers influencers={Influencer}/>
+            <Influencers influencers={Influencer} />
           </div>
         </div>
       </Resizable>

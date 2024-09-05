@@ -31,52 +31,51 @@ const TrafficOverview: React.FC<TrafficOverviewProps> = ({
   PageViews
 }) => {
   return (
-    <Card className="rounded-[24px]">
-      <CardHeader>
-        <CardTitle>Traffic Overview</CardTitle>
-      </CardHeader>
+    <>
+      <div className="text-2xl">Traffic Overview</div>
+      <Card className="rounded-md">
+        <CardContent>
+          <div className='flex justify-between flex-wrap space-x-4 mb-4 mt-4'>
+            <DataBox
+              spanText="Monthly Visits"
+              paragraphText={MonthlyVisits}
+            />
+            <DataBox
+              spanText="Unique Visitors"
+              paragraphText={UniqueVisitors}
+            />
+            <DataBox
+              spanText="Visit Duration"
+              paragraphText={VisitDuration}
+            />
+            <DataBox
+              spanText="Pages Per Visit"
+              paragraphText={PagesPerVisit}
+            />
+            <DataBox
+              spanText="Bounce Rate"
+              paragraphText={BounceRate}
+            />
+            <DataBox
+              spanText="Page Views"
+              paragraphText={PageViews}
+            />
+          </div>
 
-      <CardContent>
-        <div className='flex justify-between flex-wrap space-x-4 mb-4'>
-          <DataBox
-            spanText="Monthly Visits"
-            paragraphText={MonthlyVisits}
-          />
-          <DataBox
-            spanText="Unique Visitors"
-            paragraphText={UniqueVisitors}
-          />
-          <DataBox
-            spanText="Visit Duration"
-            paragraphText={VisitDuration}
-          />
-          <DataBox
-            spanText="Pages Per Visit"
-            paragraphText={PagesPerVisit}
-          />
-          <DataBox
-            spanText="Bounce Rate"
-            paragraphText={BounceRate}
-          />
-          <DataBox
-            spanText="Page Views"
-            paragraphText={PageViews}
-          />
-        </div>
-
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={lineChartData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-          </LineChart>
-        </ResponsiveContainer>
-      </CardContent>
-    </Card>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={lineChartData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+              <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+    </>
   );
 };
 

@@ -27,65 +27,66 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
     const dataToShow = selectedOption === 'popular' ? mentions : mentionsFrom;
 
     return (
-        <Card className="rounded-[24px]">
-            <CardHeader>
-                <div className='flex justify-between'>
-                    <div>
-                        <Select defaultValue="popular" onValueChange={(value) => setSelectedOption(value)}>
-                            <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
-                                <SelectValue placeholder="Select an option" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="popular">
-                                    <CardTitle>The most popular mentions</CardTitle>
-                                </SelectItem>
-                                <SelectItem value="profiles">
-                                    <CardTitle>Mentions from the most popular public profiles</CardTitle>
-                                </SelectItem>
-                            </SelectContent>
-                        </Select>
+        <>
+            <div>
+                <Select defaultValue="popular" onValueChange={(value) => setSelectedOption(value)}>
+                    <SelectTrigger className="text-2xl flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
+                        <SelectValue placeholder="Select an option" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="popular">
+                            <CardTitle className="font-normal">The most popular mentions</CardTitle>
+                        </SelectItem>
+                        <SelectItem value="profiles">
+                            <CardTitle className="font-normal">Mentions from the most popular public profiles</CardTitle>
+                        </SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+            <Card className="rounded-md">
+                <CardHeader>
+                    <div className='flex justify-end'>
+                        <Button
+                            variant="link"
+                            asChild
+                            className="p-2 hover:bg-muted/50"
+                        >
+                            <Link href="mailto:your-email@example.com">
+                                <Image
+                                    src={AIInsightsIcon}
+                                    alt="Mail"
+                                    width={200}
+                                    height={200}
+                                    className="w-28 h-14"
+                                />
+                            </Link>
+                        </Button>
                     </div>
-
-                    <Button
-                        variant="link"
-                        asChild
-                        className="p-2 hover:bg-muted/50"
-                    >
-                        <Link href="mailto:your-email@example.com">
-                            <Image
-                                src={AIInsightsIcon}
-                                alt="Mail"
-                                width={200}
-                                height={200}
-                                className="w-28 h-14"
+                </CardHeader>
+                <CardContent>
+                    <div className='grid divide-y'>
+                        {dataToShow.map((data, index) => (
+                            <MentionBox
+                                key={index}
+                                avatarSrc={data.avatarSrc}
+                                fallbackText={data.fallbackText}
+                                title={data.title}
+                                date={data.date}
+                                link={data.link}
+                                tags={data.tags}
                             />
-                        </Link>
-                    </Button>
-                </div>
-            </CardHeader>
-            <CardContent>
-                <div className='grid divide-y'>
-                    {dataToShow.map((data, index) => (
-                        <MentionBox
-                            key={index}
-                            avatarSrc={data.avatarSrc}
-                            fallbackText={data.fallbackText}
-                            title={data.title}
-                            date={data.date}
-                            link={data.link}
-                            tags={data.tags}
-                        />
-                    ))}
-                </div>
-                <div className='flex justify-end'>
-                    <Button variant="link">
-                        <Link href="./1/secondaryPage/mentions">
-                            Show more Mentions
-                        </Link>
-                    </Button>
-                </div>
-            </CardContent>
-        </Card>
+                        ))}
+                    </div>
+                    <div className='flex justify-end'>
+                        <Button variant="link">
+                            <Link href="./1/secondaryPage/mentions">
+                                Show more Mentions
+                            </Link>
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
+        </>
     )
 }
 

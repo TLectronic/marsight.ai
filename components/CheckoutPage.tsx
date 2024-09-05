@@ -13,7 +13,7 @@ export default function CheckoutPage({amount}: {amount: number}) {
   const [loading, setLoading] = useState(false)
 
   useEffect(()=>{
-    fetch('/api/create-payment-intent', {
+    fetch('https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/purchase/checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

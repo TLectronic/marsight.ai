@@ -13,30 +13,30 @@ const barChartData = [
 
 const MarketingChannels = () => {
   return (
-    <Card className="rounded-[24px]">
-      <CardHeader>
-        <CardTitle>Marketing Channels</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={barChartData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis
-              tickFormatter={(value) => `${value}%`}
-              domain={[0, 50]} // Adjusted for better visualization
-            />
-            <Tooltip
-              formatter={(value) => `${value}%`}
-              labelFormatter={(label) => `Channel: ${label}`}
-            />
-            <Legend />
-            <Bar dataKey="pv" stackId="a" fill="#87CEFA" barSize={40} />
-            <Bar dataKey="uv" stackId="a" fill="#00008B" barSize={40} />
-          </BarChart>
-        </ResponsiveContainer>
-      </CardContent>
-    </Card>
+    <>
+      <div className="text-2xl">Marketing Channels</div>
+      <Card className="rounded-md">
+        <CardContent className="mt-6">
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={barChartData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                tickFormatter={(value) => `${value}%`}
+                domain={[0, 50]} // Adjusted for better visualization
+              />
+              <Tooltip
+                formatter={(value) => `${value}%`}
+                labelFormatter={(label) => `Channel: ${label}`}
+              />
+              <Legend />
+              <Bar dataKey="pv" stackId="a" fill="#87CEFA" barSize={40} />
+              <Bar dataKey="uv" stackId="a" fill="#00008B" barSize={40} />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+    </>
   )
 }
 

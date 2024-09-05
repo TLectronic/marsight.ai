@@ -35,17 +35,17 @@ interface SocialMediaAnalysisProps {
 }
 
 
-const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions,TotalLikes,TotalShares }) => {
+const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, TotalLikes, TotalShares }) => {
   const renderPieChart = () => (
-    <ResponsiveContainer width={600} height={300}>
-      <PieChart>
+    <ResponsiveContainer width={200} height={200}>
+      <PieChart className='mt-10'>
         <Pie
           data={pieChartData}
           cx="50%"
           cy="50%"
           labelLine={false}
-          outerRadius={80}
-          innerRadius={50}
+          outerRadius={30}
+          innerRadius={10}
           fill="#8884d8"
           dataKey="value"
         >
@@ -60,8 +60,8 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions,Tota
   );
 
   const renderLineChart = () => (
-    <ResponsiveContainer width="100%" height={300}>
-      <LineChart data={lineChartData}>
+    <ResponsiveContainer width={200} height={200}>
+      <LineChart data={lineChartData} className='-ml-2'>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
@@ -74,39 +74,44 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions,Tota
   );
 
   return (
-    <Card className="rounded-[24px]">
-      <CardHeader>
-        <CardTitle>Social Media Analysis</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="font-semibold leading-none tracking-tight ml-12 mb-6">Social Distribution</div>
-        <div className="flex justify-around">
-          <DataBox className="ml-20 mt-20" spanText="Total social visits" paragraphText="45.2K" />
-          {renderPieChart()}
-        </div>
-        <div className="font-semibold leading-none tracking-tight ml-12 mt-4 mb-8">Social Media Mentions</div>
-        <div className="flex justify-between ml-12 w-4/6 mb-4">
-          <DataBox
-            spanText="Mentions"
-            paragraphText={Mentions}
-          />
-          <DataBox
-            spanText="total number of likes"
-            paragraphText={TotalLikes}
-          />
-          <DataBox
-            spanText="total number of shares"
-            paragraphText={TotalShares}
-          />
+    <>
+      <div className='text-2xl'>Social Media Analysis</div>
+      <div className='flex justify-between'>
+        <Card className="rounded-md w-[420px] h-[400px] p-2">
+          <CardContent>
+            <CardTitle className='text-xl font-normal'>Social Distribution</CardTitle>
+            <div className="flex justify-between">
+              <DataBox className="mt-10" spanText="Total social visits" paragraphText="45.2K" />
+              {renderPieChart()}
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="rounded-md w-[420px] h-[400px] p-2">
+          <CardContent>
+            <CardTitle className='text-xl font-normal'>Social Media Mentions</CardTitle>
+            <div className="flex justify-between w-full mb-4 mt-10">
+              <DataBox
+                spanText="Mentions"
+                paragraphText={Mentions}
+              />
+              <DataBox
+                spanText="total number of likes"
+                paragraphText={TotalLikes}
+              />
+              <DataBox
+                spanText="total number of shares"
+                paragraphText={TotalShares}
+              />
+            </div>
+            <div className="flex">
+              {renderLineChart()}
+              {renderPieChart()}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </>
 
-
-        </div>
-        <div className="flex">
-          {renderLineChart()}
-          {renderPieChart()}
-        </div>
-      </CardContent>
-    </Card>
   );
 };
 
