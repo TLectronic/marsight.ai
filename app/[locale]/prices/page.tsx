@@ -1,6 +1,7 @@
 "use client"
 import { Check } from "lucide-react"
 import { useTranslations } from "next-intl"
+import axios from 'axios';
 import {
   Dialog,
   DialogContent,
@@ -23,16 +24,13 @@ export default function Component() {
         if (session) {
           const jwtToken = await session.getToken();
 
-          const response = await fetch('http://127.0.0.1:4523/m1/5082879-4744979-default/purchase', {
+          const response = await axios.get('http://127.0.0.1:4523/m1/5082879-4744979-default/purchase', {
             headers: {
               'Authorization': `Bearer ${jwtToken}`,
             },
           });
 
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const data = await response.json();
+          const data = response.data;
           console.log('data:', data);
         }
       } catch (error) {
@@ -42,6 +40,36 @@ export default function Component() {
 
     fetchPrices();
   }, [session]);
+
+
+  const handlePurchase = async () => {
+
+    try {
+      if (session) {
+        const jwtToken = await session.getToken();
+
+        const response = await axios.post(
+          'http://127.0.0.1:4523/m1/5082879-4744979-default/purchase/checkout',
+          {
+            priceId: '90', 
+          },
+          {
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+            },
+          }
+        );
+
+        const data = response.data;
+        console.log('Purchase successful:', data);
+      }
+    } catch (error) {
+      console.error('Failed to make purchase:', error);
+      console.log('sadsadasd')
+    } 
+  };
+
+
   return (
     <div className="bg-white min-h-screen p-4 flex items-center justify-center">
 
@@ -78,9 +106,10 @@ export default function Component() {
                 <DialogTrigger asChild>
                   <button
                     className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-100 text-purple-600`}
-                    onClick={() => {
-                      currentAmountRef.current = 2.99
-                    }}
+                    onClick={handlePurchase}
+                    // onClick={() => {
+                    //   currentAmountRef.current = 2.99
+                    // }}
                   >
                     {t('start')}
                   </button>
