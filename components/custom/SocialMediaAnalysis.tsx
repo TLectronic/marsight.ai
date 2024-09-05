@@ -42,6 +42,7 @@ interface SocialMediaAnalysisProps {
 
 
 const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, TotalLikes, TotalShares }) => {
+
   const renderLegend = (props: LegendProps) => {
     const { payload } = props;
     return (
@@ -73,7 +74,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
           ))}
         </Pie>
         <Tooltip />
-        <Legend layout="vertical" align="right" verticalAlign="middle" />
+        <Legend content={renderLegend} layout="vertical" align="right" verticalAlign="middle" />
       </PieChart>
     </ResponsiveContainer>
   );
@@ -145,7 +146,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
                     ))}
                   </Pie>
                   <Tooltip />
-                  <Legend layout="vertical" align="right" verticalAlign="middle" />
+                  <Legend content={renderLegend} layout="vertical" align="right" verticalAlign="middle" />
                 </PieChart>
               </ResponsiveContainer>
 
