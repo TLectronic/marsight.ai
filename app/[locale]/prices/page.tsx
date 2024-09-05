@@ -67,7 +67,11 @@ export default function Component() {
         console.log('Purchase successful:', data);
       }
     } catch (error) {
-      console.error('Failed to make purchase:', error);
+      if (axios.isAxiosError(error)) {
+        console.error('Axios Error:', error.message);
+      } else {
+        console.error('Unexpected Error:', error);
+      }
       console.log('sadsadasd')
     }
   };
