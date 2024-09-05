@@ -30,7 +30,7 @@ const pieChartData1 = [
   { name: 'Non-Branded', value: 20 }
 ];
 
-const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#F5F5F4'];
+const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#E6E9EC'];
 const COLORS1 = ['#3E74FE', '#A9C8FE'];
 
 interface SocialMediaAnalysisProps {
@@ -44,23 +44,23 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
   const renderPieChart = () => (
     <ResponsiveContainer width={300} height={200}>
       <PieChart>
-      <Pie
-        data={pieChartData}
-        cx="40%" 
-        cy="50%"
-        labelLine={false}
-        outerRadius={50} 
-        innerRadius={30}
-        fill="#8884d8"
-        dataKey="value"
-      >
-        {pieChartData.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-      <Tooltip />
-      <Legend layout="vertical" align="right" verticalAlign="middle" />
-    </PieChart>
+        <Pie
+          data={pieChartData}
+          cx="40%"
+          cy="50%"
+          labelLine={false}
+          outerRadius={50}
+          innerRadius={30}
+          fill="#8884d8"
+          dataKey="value"
+        >
+          {pieChartData.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
+        <Legend layout="vertical" align="right" verticalAlign="middle" />
+      </PieChart>
     </ResponsiveContainer>
   );
 
@@ -114,15 +114,15 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
             </div>
             <div className="flex">
               {renderLineChart()}
-              <ResponsiveContainer width={200} height={200}>
-                <PieChart>
+              <ResponsiveContainer width={300} height={200}>
+                <PieChart className='ml-4'>
                   <Pie
                     data={pieChartData1}
-                    cx="50%"
+                    cx="30%"
                     cy="50%"
                     labelLine={false}
-                    outerRadius={30}
-                    innerRadius={10}
+                    outerRadius={50}
+                    innerRadius={30}
                     fill="#8884d8"
                     dataKey="value"
                   >
@@ -131,7 +131,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
                     ))}
                   </Pie>
                   <Tooltip />
-                  <Legend />
+                  <Legend layout="vertical" align="right" verticalAlign="middle" />
                 </PieChart>
               </ResponsiveContainer>
 
