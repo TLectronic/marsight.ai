@@ -110,14 +110,14 @@ export default function Component() {
                 </div>
 
                 <DialogTrigger asChild>
-                  <button
-                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-100 text-purple-600`}
+                  <Button
+                    className={`w-full py-2 rounded-lg text-sm font-semibold`}
                     onClick={() => {
                       currentAmountRef.current = 2.99
                     }}
                   >
                     {t('start')}
-                  </button>
+                  </Button>
                 </DialogTrigger>
 
                 <div className="mt-4">
