@@ -30,8 +30,8 @@ const MarketingChannels = () => {
                 labelFormatter={(label) => `Channel: ${label}`}
               />
               <Legend />
-              <Bar dataKey="pv" stackId="a" fill="#87CEFA" barSize={40} />
-              <Bar dataKey="uv" stackId="a" fill="#00008B" barSize={40} />
+              <Bar dataKey="pv" stackId="a" fill="#A9C8FE" barSize={40} />
+              <Bar dataKey="uv" stackId="a" fill="#3E74FE" barSize={40} />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>

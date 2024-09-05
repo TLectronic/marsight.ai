@@ -25,8 +25,13 @@ const pieChartData = [
   { name: 'Others', value: 12.5 },
 ];
 
-const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#F5F5F4'];
+const pieChartData1 = [
+  { name: 'Branded', value: 80 },
+  { name: 'Non-Branded', value: 20 }
+];
 
+const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#F5F5F4'];
+const COLORS1 = ['#3E74FE', '#A9C8FE'];
 
 interface SocialMediaAnalysisProps {
   Mentions: string;
@@ -67,8 +72,8 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="pv" stroke="#3E74FE" />
+        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
       </LineChart>
     </ResponsiveContainer>
   );
@@ -105,7 +110,27 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
             </div>
             <div className="flex">
               {renderLineChart()}
-              {renderPieChart()}
+              <ResponsiveContainer width={200} height={200}>
+                <PieChart>
+                  <Pie
+                    data={pieChartData1}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    outerRadius={30}
+                    innerRadius={10}
+                    fill="#8884d8"
+                    dataKey="value"
+                  >
+                    {pieChartData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS1[index % COLORS1.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+
             </div>
           </CardContent>
         </Card>
