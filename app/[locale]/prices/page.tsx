@@ -78,6 +78,7 @@ export default function Component() {
         <h1 className="text-center mb-16 font-bold">
           <span className="text-4xl text-black tracking-[0.15em] align-middle" style={{ fontWeight: 900 }}>MARSIGHT.AI</span>
           <span className="text-2xl text-blue-400 align-middle" style={{ fontWeight: 500 }}> Pro</span>
+          <Button onClick={handlePurchase}>dsadsdadsadas</Button>
         </h1>
 
 
@@ -111,10 +112,9 @@ export default function Component() {
                 <DialogTrigger asChild>
                   <button
                     className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-100 text-purple-600`}
-                    onClick={handlePurchase}
-                    // onClick={() => {
-                    //   currentAmountRef.current = 2.99
-                    // }}
+                    onClick={() => {
+                      currentAmountRef.current = 2.99
+                    }}
                   >
                     {t('start')}
                   </button>
