@@ -2,6 +2,7 @@ import React from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   PieChart, Pie, Cell, ResponsiveContainer,
+  LegendProps,
 } from 'recharts';
 import { DataBox } from '@/components/ui/databox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -41,6 +42,19 @@ interface SocialMediaAnalysisProps {
 
 
 const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, TotalLikes, TotalShares }) => {
+  const renderLegend = (props: LegendProps) => {
+    const { payload } = props;
+    return (
+      <ul style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
+        {payload?.map((entry, index) => (
+          <li key={`item-${index}`} style={{ color: '#000' }}> {/* 黑色字体 */}
+            <span style={{ marginRight: 10, display: 'inline-block', width: 10, height: 10, backgroundColor: entry.color }} />
+            {entry.value}
+          </li>
+        ))}
+      </ul>
+    );
+  };
   const renderPieChart = () => (
     <ResponsiveContainer width={300} height={200}>
       <PieChart>
