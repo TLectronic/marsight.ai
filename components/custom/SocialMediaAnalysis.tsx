@@ -74,7 +74,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
           ))}
         </Pie>
         <Tooltip />
-        <Legend content={renderLegend} layout="vertical" align="right" verticalAlign="middle" />
+        <Legend layout="vertical" align="right" verticalAlign="middle" />
       </PieChart>
     </ResponsiveContainer>
   );
@@ -146,7 +146,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
                     ))}
                   </Pie>
                   <Tooltip />
-                  <Legend content={renderLegend} layout="vertical" align="right" verticalAlign="middle" />
+                  <Legend layout="vertical" align="right" verticalAlign="middle" />
                 </PieChart>
               </ResponsiveContainer>
 
