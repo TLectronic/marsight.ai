@@ -63,112 +63,114 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
   }
 
   return (
-    <Card className="rounded-[24px]">
-      <CardHeader>
-        <CardTitle>Search Analysis</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className='flex justify-between flex-wrap space-x-4 mb-4'>
-          <DataBox
-            spanText="No.of Keywords"
-            paragraphText={dataofbox.NoofKeywords}
-          />
-          <DataBox
-            spanText="No.of Clicks"
-            paragraphText={dataofbox.NoofClicks}
-          />
-          <DataBox
-            spanText="Of All Total Traffic"
-            paragraphText={dataofbox.OfAllTotalTraffic}
-          />
-          <DataBox
-            spanText="Organic vs. Paid"
-            paragraphText={dataofbox.OrganicvsPaid}
-          />
-        </div>
-      </CardContent>
-      <CardHeader>
-        <div className='flex justify-between'>
-          <div>
-            <Select defaultValue="organic" onValueChange={(value) => setSelectedOption(value)}>
-              <SelectTrigger className="text-base flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
-                <SelectValue placeholder="Select an option" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="organic">
-                  <CardTitle>Organic Traffic</CardTitle>
-                </SelectItem>
-                <SelectItem value="paid">
-                  <CardTitle>Paid Traffic</CardTitle>
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <Button
-            variant="link"
-            asChild
-            className="p-2 hover:bg-muted/50"
-          >
-            <Link href="mailto:your-email@example.com">
-              <Image
-                src={AIInsightsIcon}
-                alt="Mail"
-                width={200}
-                height={200}
-                className="w-28 h-14"
-              />
-            </Link>
-          </Button>
-        </div>
-      </CardHeader>
-
-      <div className='p-6'>
+    <>
+      <div className="text-2xl">Search Analysis</div>
+      <Card className="rounded-md">
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Keywords</TableHead>
-                <TableHead>Clicks</TableHead>
-                <TableHead>Traffic</TableHead>
-                <TableHead>ClicksChange</TableHead>
-                <TableHead>ChangeVolume</TableHead>
-                <TableHead>Change of volume</TableHead>
-              </TableRow>
-            </TableHeader>
-            {dataToShow.data.map((datagroup, index) => (
-              <>
-                <TableRow key={index}>
-                  <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
-                    <div className='bg-blue-100 rounded-xl px-2'>{datagroup.KeywordClass}</div>
-                    <div className='ml-6'>2条记录</div>
-                    {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
-                  </Button>
-                </TableRow>
-                {isExpanded && (<TableBody>
-                  {datagroup.data.map((trafficrow, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{trafficrow.Keywords}</TableCell>
-                      <TableCell>{trafficrow.Clicks}</TableCell>
-                      <TableCell>{trafficrow.Traffic}</TableCell>
-                      <TableCell>{trafficrow.ClicksChange}</TableCell>
-                      <TableCell>{trafficrow.ChangeVolume}</TableCell>
-                      <TableCell>{trafficrow.Changeofvolume}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>)}
-              </>
-            ))}
-          </Table>
+          <div className='flex justify-between flex-wrap space-x-4 mb-4 mt-6'>
+            <DataBox
+              spanText="No.of Keywords"
+              paragraphText={dataofbox.NoofKeywords}
+            />
+            <DataBox
+              spanText="No.of Clicks"
+              paragraphText={dataofbox.NoofClicks}
+            />
+            <DataBox
+              spanText="Of All Total Traffic"
+              paragraphText={dataofbox.OfAllTotalTraffic}
+            />
+            <DataBox
+              spanText="Organic vs. Paid"
+              paragraphText={dataofbox.OrganicvsPaid}
+            />
+          </div>
         </CardContent>
-        <div className="flex justify-end">
-          <Button variant="link">
-            <Link href="./1/secondaryPage/searchAnalysis">
-              Show more search terms
-            </Link>
-          </Button>
+
+        <CardHeader className="!font-normal">
+          <div className='flex justify-between'>
+            <div>
+              <Select defaultValue="organic" onValueChange={(value) => setSelectedOption(value)}>
+                <SelectTrigger className="text-xl flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
+                  <SelectValue placeholder="Select an option" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="organic">
+                    <CardTitle className="font-normal">Organic Traffic</CardTitle>
+                  </SelectItem>
+                  <SelectItem value="paid">
+                    <CardTitle className="font-normal">Paid Traffic</CardTitle>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <Button
+              variant="link"
+              asChild
+              className="p-2 hover:bg-muted/50"
+            >
+              <Link href="mailto:your-email@example.com">
+                <Image
+                  src={AIInsightsIcon}
+                  alt="Mail"
+                  width={200}
+                  height={200}
+                  className="w-28 h-14"
+                />
+              </Link>
+            </Button>
+          </div>
+        </CardHeader>
+
+        <div className='p-6'>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Keywords</TableHead>
+                  <TableHead>Clicks</TableHead>
+                  <TableHead>Traffic</TableHead>
+                  <TableHead>ClicksChange</TableHead>
+                  <TableHead>ChangeVolume</TableHead>
+                  <TableHead>Change of volume</TableHead>
+                </TableRow>
+              </TableHeader>
+              {dataToShow.data.map((datagroup, index) => (
+                <>
+                  <TableRow key={index}>
+                    <Button variant="link" onClick={toggleExpand} className='text-black hover:no-underline px-2'>
+                      <div className='bg-blue-100 rounded-xl px-2'>{datagroup.KeywordClass}</div>
+                      <div className='ml-6'>2条记录</div>
+                      {isExpanded ? (<TriangleDownIcon />) : (<TriangleRightIcon />)}
+                    </Button>
+                  </TableRow>
+                  {isExpanded && (<TableBody>
+                    {datagroup.data.map((trafficrow, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{trafficrow.Keywords}</TableCell>
+                        <TableCell>{trafficrow.Clicks}</TableCell>
+                        <TableCell>{trafficrow.Traffic}</TableCell>
+                        <TableCell>{trafficrow.ClicksChange}</TableCell>
+                        <TableCell>{trafficrow.ChangeVolume}</TableCell>
+                        <TableCell>{trafficrow.Changeofvolume}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>)}
+                </>
+              ))}
+            </Table>
+          </CardContent>
+          <div className="flex justify-end">
+            <Button variant="link">
+              <Link href="./1/secondaryPage/searchAnalysis">
+                Show more search terms
+              </Link>
+            </Button>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </>
+
   );
 };
 

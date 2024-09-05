@@ -26,16 +26,16 @@ export default function Component() {
       console.log(isSignedIn)
       try {
         if (isSignedIn) {
-          const jwtToken = await getToken({template});
+          const jwtToken = await getToken({ template });
           console.log(jwtToken);
           const response = await axios.get('https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/purchase', {
             headers: {
 
               'Authorization': `Bearer ${jwtToken}`,
             },
-            
+
           });
-          console.log('headers:',response.headers);
+          console.log('headers:', response.headers);
           const data = response.data;
           console.log('data:', data);
         }
@@ -50,7 +50,7 @@ export default function Component() {
   const handlePurchase = async () => {
     try {
       if (isSignedIn) {
-        const jwtToken = await getToken({template});
+        const jwtToken = await getToken({ template });
         console.log(jwtToken)
         const response = await axios.post(
           'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/purchase/checkout',

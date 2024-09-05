@@ -21,72 +21,74 @@ interface ReferralsProps {
 
 const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
   return (
-    <Card className="rounded-[24px]">
-      <CardHeader>
-        <div className='flex justify-between'>
-          <CardTitle>Referrals</CardTitle>
-          <Button
-            variant="link"
-            asChild
-            className="p-2 hover:bg-muted/50"
-          >
-            <Link href="mailto:your-email@example.com">
-              <Image
-                src={AIInsightsIcon}
-                alt="Mail"
-                width={200}
-                height={200}
-                className="w-28 h-14"
-              />
-            </Link>
-          </Button>
-        </div>
-      </CardHeader>
-      <div className='p-6'>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Link</TableHead>
-                  <TableHead>category</TableHead>
-                  <TableHead>Traffic Share</TableHead>
-                  <TableHead>Traffic</TableHead>
-                  <TableHead>Change</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {referralsData.map((row, rowIndex) => (
-                  <TableRow key={rowIndex}>
-                    <TableCell>
-                      <a
-                        href={`https://${row.Link}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-500 no-underline"
-                      >
-                        {row.Link}
-                      </a>
-                    </TableCell>
-                    <TableCell>{row.category}</TableCell>
-                    <TableCell>{row.TrafficShare}</TableCell>
-                    <TableCell>{row.Traffic}</TableCell>
-                    <TableCell>{row.Change}</TableCell>
+    <>
+      <div className="text-2xl">Referrals</div>
+      <Card className="rounded-md">
+        <CardHeader>
+          <div className='flex justify-end'>
+            <Button
+              variant="link"
+              asChild
+              className="p-2 hover:bg-muted/50"
+            >
+              <Link href="mailto:your-email@example.com">
+                <Image
+                  src={AIInsightsIcon}
+                  alt="Mail"
+                  width={200}
+                  height={200}
+                  className="w-28 h-14"
+                />
+              </Link>
+            </Button>
+          </div>
+        </CardHeader>
+        <div className='p-6'>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Link</TableHead>
+                    <TableHead>category</TableHead>
+                    <TableHead>Traffic Share</TableHead>
+                    <TableHead>Traffic</TableHead>
+                    <TableHead>Change</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </ResponsiveContainer>
-        </CardContent>
-        <div className="flex justify-end">
-          <Button variant="link">
-            <Link href="./1/secondaryPage/referrals" >
-              Show more details
-            </Link>
-          </Button>
+                </TableHeader>
+                <TableBody>
+                  {referralsData.map((row, rowIndex) => (
+                    <TableRow key={rowIndex}>
+                      <TableCell>
+                        <a
+                          href={`https://${row.Link}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 no-underline"
+                        >
+                          {row.Link}
+                        </a>
+                      </TableCell>
+                      <TableCell>{row.category}</TableCell>
+                      <TableCell>{row.TrafficShare}</TableCell>
+                      <TableCell>{row.Traffic}</TableCell>
+                      <TableCell>{row.Change}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </ResponsiveContainer>
+          </CardContent>
+          <div className="flex justify-end">
+            <Button variant="link">
+              <Link href="./1/secondaryPage/referrals" >
+                Show more details
+              </Link>
+            </Button>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </>
   );
 };
 
