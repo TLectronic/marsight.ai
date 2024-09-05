@@ -1,5 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import heygenIcon from "@/public/heygen.svg";
+import Image from "next/image";
 
 interface ProductAnalysisProps {
   ProductUrl: string;
@@ -22,7 +24,16 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
         <CardTitle>Product Analysis</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="text-base font-bold mb-2">{ProductUrl}</div>
+        <div className="text-base font-bold mb-2 flex items-center">
+          <Image
+            src={heygenIcon}
+            alt="Mail"
+            width={24}
+            height={24}
+            className="w-32 h-10"
+          />
+          <div>{ProductUrl}</div>
+        </div>
         <div className="text-sm mb-6">{ProductSummary}</div>
         <div className='border-black border-2 h-60'>
           <div className='flex justify-between text-xl'>
