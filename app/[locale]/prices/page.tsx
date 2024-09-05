@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button";
 import OrderPage from "@/components/OrderPgae"
 import { useEffect, useRef } from "react"
 import { useClerk } from "@clerk/nextjs"
@@ -92,11 +93,15 @@ export default function Component() {
                 <h2 className="text-xl font-bold mb-1">{t('liteTitle')}</h2>
                 <p className="text-gray-600 text-sm mb-3">{t('liteDescription')}</p>
                 <div className="relative text-3xl font-bold mb-3">
+
                   <div className="relative text-3xl font-bold mb-3">
                     <div className="relative text-3xl font-bold mb-3">
                       {'$1.99'}
                       <div className="absolute top-0 left-20 text-xs" style={{ textDecoration: 'line-through', textDecorationThickness: '2px' }}>
                         $30
+                      </div>
+                      <div className="absolute text-xl left-20 text-xs top-4">
+                        /Mo
                       </div>
                     </div>
                   </div>
@@ -143,7 +148,7 @@ export default function Component() {
               key={t('popularTitle')}
               className={`bg-white rounded-xl shadow-lg overflow-hidden flex flex-col lg:-mt-4 lg:mb-4 w-64`}
             >
-              <div className="bg-purple-600 text-white text-center py-1 text-sm font-semibold">
+              <div className="bg-blue-900 text-white text-center py-1 text-sm font-semibold">
                 Most Popular
               </div>
               <div className="p-4 flex-grow">
@@ -151,14 +156,14 @@ export default function Component() {
                 <p className="text-gray-600 text-sm mb-3">{t('popularDescription')}</p>
                 <div className="text-3xl font-bold mb-3">{'$9'}</div>
                 <DialogTrigger asChild>
-                  <button
-                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-600 text-white`}
+                  <Button
+                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-blue-900 hover:bg-blue-950 text-white`}
                     onClick={() => {
                       currentAmountRef.current = 4.99
                     }}
                   >
                     {t('start')}
-                  </button>
+                  </Button>
                 </DialogTrigger>
                 <div className="mt-4">
                   <h3 className="font-semibold text-sm mb-2">{t('includes')}</h3>
@@ -193,14 +198,14 @@ export default function Component() {
                 <p className="text-gray-600 text-sm mb-3">{t('agencyDescription')}</p>
                 <div className="text-3xl font-bold mb-3">{'$1.99'}</div>
                 <DialogTrigger asChild>
-                  <button
-                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-100 text-purple-600`}
+                  <Button
+                    className={`w-full py-2 rounded-lg text-sm font-semibold`}
                     onClick={() => {
                       currentAmountRef.current = 10.99
                     }}
                   >
                     {t('start')}
-                  </button>
+                  </Button>
                 </DialogTrigger>
                 <div className="mt-4">
                   <h3 className="font-semibold text-sm mb-2">{t('includes')}</h3>
@@ -234,11 +239,11 @@ export default function Component() {
                 <h2 className="text-xl font-bold mb-1">{t('enterpriseTitle')}</h2>
                 <p className="text-gray-600 text-sm mb-3">{t('enterpriseDescription')}</p>
                 <div className="text-3xl font-bold mb-3">{t('letsTalk')}</div>
-                <button
-                  className={`w-full py-2 rounded-lg text-sm font-semibold bg-purple-100 text-purple-600`}
+                <Button
+                  className={`w-full py-2 rounded-lg text-sm font-semibold`}
                 >
                   {t('start')}
-                </button>
+                </Button>
                 <div className="mt-4">
                   <h3 className="font-semibold text-sm mb-2">{t('includes')}</h3>
                   <ul className="space-y-1 text-sm">
