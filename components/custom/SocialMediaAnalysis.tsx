@@ -38,7 +38,7 @@ interface SocialMediaAnalysisProps {
 const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, TotalLikes, TotalShares }) => {
   const renderPieChart = () => (
     <ResponsiveContainer width={200} height={200}>
-      <PieChart className='mt-10'>
+      <PieChart>
         <Pie
           data={pieChartData}
           cx="50%"
