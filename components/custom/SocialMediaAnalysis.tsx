@@ -42,25 +42,25 @@ interface SocialMediaAnalysisProps {
 
 const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, TotalLikes, TotalShares }) => {
   const renderPieChart = () => (
-    <ResponsiveContainer width={200} height={200}>
+    <ResponsiveContainer width={300} height={200}>
       <PieChart>
-        <Pie
-          data={pieChartData}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          outerRadius={30}
-          innerRadius={10}
-          fill="#8884d8"
-          dataKey="value"
-        >
-          {pieChartData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip />
-        <Legend />
-      </PieChart>
+      <Pie
+        data={pieChartData}
+        cx="40%" 
+        cy="50%"
+        labelLine={false}
+        outerRadius={50} 
+        innerRadius={30}
+        fill="#8884d8"
+        dataKey="value"
+      >
+        {pieChartData.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+        ))}
+      </Pie>
+      <Tooltip />
+      <Legend layout="vertical" align="right" verticalAlign="middle" />
+    </PieChart>
     </ResponsiveContainer>
   );
 
@@ -84,10 +84,14 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
       <div className='flex justify-between'>
         <Card className="rounded-md w-[420px] h-[400px] p-2">
           <CardContent>
-            <CardTitle className='text-xl font-normal'>Social Distribution</CardTitle>
-            <div className="flex justify-between">
+            <CardTitle className="text-xl font-normal">Social Distribution</CardTitle>
+            <div className="flex flex-col items-center">
+              {/* DataBox 上部内容 */}
               <DataBox className="mt-10" spanText="Total social visits" paragraphText="45.2K" />
-              {renderPieChart()}
+              {/* 饼图 */}
+              <div className="mt-6">
+                {renderPieChart()}
+              </div>
             </div>
           </CardContent>
         </Card>
