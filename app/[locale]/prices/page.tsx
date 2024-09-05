@@ -14,23 +14,28 @@ import {
 import { Button } from "@/components/ui/button";
 import OrderPage from "@/components/OrderPgae"
 import { useEffect, useRef } from "react"
-import { useClerk } from "@clerk/nextjs"
+import { useAuth, useClerk } from "@clerk/nextjs"
 export default function Component() {
   const t = useTranslations("PricesPage")
   const currentAmountRef = useRef<number>(1)
-  const { session } = useClerk();
+  const { getToken, isSignedIn } = useAuth();
+  const template = 'markSightTest'
+
   useEffect(() => {
     const fetchPrices = async () => {
+      console.log(isSignedIn)
       try {
-        if (session) {
-          const jwtToken = await session.getToken();
-
-          const response = await axios.get('http://127.0.0.1:4523/m1/5082879-4744979-default/purchase', {
+        if (isSignedIn) {
+          const jwtToken = await getToken({template});
+          console.log(jwtToken);
+          const response = await axios.get('https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/purchase', {
             headers: {
+
               'Authorization': `Bearer ${jwtToken}`,
             },
+            
           });
-
+          console.log('headers:',response.headers);
           const data = response.data;
           console.log('data:', data);
         }
@@ -38,21 +43,19 @@ export default function Component() {
         console.error('Failed to fetch prices:', error);
       }
     };
-
     fetchPrices();
-  }, [session]);
+  }, [isSignedIn, getToken]);
 
 
   const handlePurchase = async () => {
-
     try {
-      if (session) {
-        const jwtToken = await session.getToken();
-
+      if (isSignedIn) {
+        const jwtToken = await getToken();
+        console.log(jwtToken)
         const response = await axios.post(
-          'http://127.0.0.1:4523/m1/5082879-4744979-default/purchase/checkout',
+          'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/purchase/checkout',
           {
-            priceId: '90', 
+            priceId: 'price_1PuSoMGJExlFR7Amg2wBW5Kn',
           },
           {
             headers: {
@@ -67,7 +70,7 @@ export default function Component() {
     } catch (error) {
       console.error('Failed to make purchase:', error);
       console.log('sadsadasd')
-    } 
+    }
   };
 
 
