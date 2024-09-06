@@ -313,7 +313,7 @@ export default function Component() {
   const handleGetChat = async () => {
     try {
       if (isSignedIn) {
-        const chatId = "1";
+        const chatId = "75f58af9-6c03-11ef-a80e-93948447c487";
         const jwtToken = await getToken({ template });
         const response = await axios.get(
           `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${chatId}`,
