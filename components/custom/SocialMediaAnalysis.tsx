@@ -80,7 +80,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
   );
 
   const renderLineChart = () => (
-    <ResponsiveContainer width={200} height={200}>
+    <ResponsiveContainer width={300} height={200}>
       <LineChart data={lineChartData} className='-ml-2'>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
@@ -113,7 +113,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
         <Card className="rounded-md w-[420px] h-[400px] p-2">
           <CardContent>
             <CardTitle className='text-xl font-normal'>Social Media Mentions</CardTitle>
-            <div className="flex justify-between w-full mb-4 mt-10">
+            <div className="flex justify-between w-full mb-10 mt-10">
               <DataBox
                 spanText="Mentions"
                 paragraphText={Mentions}
@@ -127,9 +127,9 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
                 paragraphText={TotalShares}
               />
             </div>
-            <div className="flex">
+            <div>
               {renderLineChart()}
-              <ResponsiveContainer width={300} height={200}>
+              {/* <ResponsiveContainer width={300} height={200}>
                 <PieChart className='ml-4'>
                   <Pie
                     data={pieChartData1}
@@ -148,7 +148,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
                   <Tooltip />
                   <Legend layout="vertical" align="right" verticalAlign="middle" />
                 </PieChart>
-              </ResponsiveContainer>
+              </ResponsiveContainer> */}
 
             </div>
           </CardContent>

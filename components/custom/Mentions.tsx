@@ -28,24 +28,25 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
 
     return (
         <>
-            <div>
-                <Select defaultValue="popular" onValueChange={(value) => setSelectedOption(value)}>
-                    <SelectTrigger className="text-2xl flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
-                        <SelectValue placeholder="Select an option" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="popular">
-                            <CardTitle className="font-normal">The most popular mentions</CardTitle>
-                        </SelectItem>
-                        <SelectItem value="profiles">
-                            <CardTitle className="font-normal">Mentions from the most popular public profiles</CardTitle>
-                        </SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
             <Card className="rounded-md">
                 <CardHeader>
-                    <div className='flex justify-end'>
+                    <div className='flex justify-between'>
+                        <div>
+                            <Select defaultValue="popular" onValueChange={(value) => setSelectedOption(value)}>
+                                <SelectTrigger className="text-2xl flex h-9 w-full items-center justify-between bg-transparent px-3 py-2 shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
+                                    <SelectValue placeholder="Select an option" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="popular">
+                                        <CardTitle className="font-normal text-xl">The most popular mentions</CardTitle>
+                                    </SelectItem>
+                                    <SelectItem value="profiles">
+                                        <CardTitle className="font-normal text-xl">Mentions from the most popular public profiles</CardTitle>
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
                         <Button
                             variant="link"
                             asChild
