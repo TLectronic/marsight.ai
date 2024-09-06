@@ -33,7 +33,11 @@ export default function LeftSidebar() {
   const { getToken, isSignedIn } = useAuth();
   const template = 'markSightTest'
 
+  // 当前用户所有对话
+  const [allChats, setAllChats] = useState([]);
+
   useEffect(() => {
+
     const fetchPrices = async () => {
       console.log(isSignedIn)
       try {
@@ -45,13 +49,15 @@ export default function LeftSidebar() {
             },
           });
           const data = response.data;
-          console.log('datazxczxczc:', data);
+          setAllChats(data);
+          console.log('当前用户所有的chat:', data);
         }
       } catch (error) {
         console.error('Failed to fetch prices:', error);
       }
     };
     fetchPrices();
+
   }, [isSignedIn, getToken]);
 
   const [isOpen, setIsOpen] = useState(true);
@@ -95,14 +101,16 @@ export default function LeftSidebar() {
                 </div>
               </AccordionTrigger>
               <AccordionContent asChild>
-                <Button variant={"link"} className="w-full">
-                  <Link
-                    href={`/search/history/1`}
-                    className="h-6 w-full flex flex-row px-2 items-center cursor-pointer gap-2"
-                  >
-                    首次搜索记录
-                  </Link>
-                </Button>
+                {allChats.map((chat, index) => (
+                  <Button variant={"link"} className="w-full" key={index}>
+                    <Link
+                      href={`/search/history/1`}
+                      className="h-6 w-full flex flex-row px-2 items-center cursor-pointer gap-2"
+                    >
+                      {chat.topic}
+                    </Link>
+                  </Button>
+                ))}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -159,7 +167,6 @@ export default function LeftSidebar() {
         {
           isOpen ? <PanelLeftClose onClick={() => setIsOpen((prev) => !prev)} /> : <PanelRightClose onClick={() => setIsOpen((prev) => !prev)} />
         }
-
       </div>
     </div>
   );
