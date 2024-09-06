@@ -158,7 +158,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
             </DialogHeader>
             <DialogFooter>
               <DialogClose asChild>
-                <button className="btn"  variant="link">OK</button>
+                <Button className="btn" variant="link">OK</Button>
               </DialogClose>
             </DialogFooter>
           </DialogContent>
