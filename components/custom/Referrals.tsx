@@ -74,39 +74,37 @@ const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
         </CardHeader>
         <div className='p-6'>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Link</TableHead>
-                    <TableHead>category</TableHead>
-                    <TableHead>Traffic Share</TableHead>
-                    <TableHead>Traffic</TableHead>
-                    <TableHead>Change</TableHead>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Link</TableHead>
+                  <TableHead>category</TableHead>
+                  <TableHead>Traffic Share</TableHead>
+                  <TableHead>Traffic</TableHead>
+                  <TableHead>Change</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {referralsData.map((row, rowIndex) => (
+                  <TableRow key={rowIndex}>
+                    <TableCell>
+                      <a
+                        href={`https://${row.Link}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 no-underline"
+                      >
+                        {row.Link}
+                      </a>
+                    </TableCell>
+                    <TableCell>{row.category}</TableCell>
+                    <TableCell>{row.TrafficShare}</TableCell>
+                    <TableCell>{row.Traffic}</TableCell>
+                    <TableCell>{row.Change}</TableCell>
                   </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {referralsData.map((row, rowIndex) => (
-                    <TableRow key={rowIndex}>
-                      <TableCell>
-                        <a
-                          href={`https://${row.Link}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-500 no-underline"
-                        >
-                          {row.Link}
-                        </a>
-                      </TableCell>
-                      <TableCell>{row.category}</TableCell>
-                      <TableCell>{row.TrafficShare}</TableCell>
-                      <TableCell>{row.Traffic}</TableCell>
-                      <TableCell>{row.Change}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </ResponsiveContainer>
+                ))}
+              </TableBody>
+            </Table>
           </CardContent>
           <div className="flex justify-end">
             <Button variant="link">
