@@ -11,21 +11,25 @@ import InsightsIcon from "@/public/insights.svg";
 import React, { useState } from 'react'
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
-
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 export default function Page({ params: { lng } }: { params: { lng: string } }) {
   const t = useTranslations("SearchPage");
   const template = 'markSightTest';
   const { getToken, isSignedIn } = useAuth();
+  const [isDialogOpen, setDialogOpen] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
 
   const makeDialogue = async (event: React.FormEvent) => {
+
+
     event.preventDefault(); // 阻止表单默认提交行为
     try {
-      console.log('isSignIn:',isSignedIn)
+      console.log('isSignIn:', isSignedIn);
       if (isSignedIn) {
-        console.log('asddasd')
+        console.log('asddasd');
         const jwtToken = await getToken({ template });
-        console.log(jwtToken)
+        console.log(jwtToken);
         const response = await axios.post(
           'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat',
           {
@@ -41,9 +45,20 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
         console.log('data:', data);
       }
     } catch (error) {
-      console.log('error')
+      console.log('error:', error);
+      if (axios.isAxiosError(error)) {
+        if (error.response && error.response.status === 402) {
+          // 当出现 402 错误时，设置错误消息并打开 Dialog
+          setErrorMessage("You need to make a payment to proceed.")
+          setDialogOpen(true)
+        } else {
+          setErrorMessage("An error occurred.")
+          setDialogOpen(true)
+        }
+      }
     }
   }
+
   // 是否正在搜索，默认为否
   const [isSearching, setIsSearching] = useState(false);
   // 搜索页
@@ -134,6 +149,22 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
           </Button>
         </div>
       </footer>
+      <div>
+        <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Error</DialogTitle>
+              <DialogDescription>{errorMessage}</DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose asChild>
+                <button className="btn"  variant="link">OK</button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </div>
+      
     </div>
   );
 }
