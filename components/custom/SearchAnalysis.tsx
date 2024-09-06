@@ -67,6 +67,7 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
       <div className="text-2xl">Search Analysis</div>
       <Card className="rounded-md">
         <CardContent>
+        <div className="text-xl mb-4 mt-6">Search Overview</div>
           <div className='flex justify-between flex-wrap space-x-4 mb-4 mt-6'>
             <DataBox
               spanText="No.of Keywords"
