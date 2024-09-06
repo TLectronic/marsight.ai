@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
 import { PanelLeftClose, Search, History, Bot, PanelRightClose } from "lucide-react";
@@ -9,6 +9,7 @@ import {
   SignedIn,
   UserButton,
   useUser,
+  useAuth,
 } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 
@@ -24,8 +25,35 @@ import Link from "next/link";
 import Image from "next/image";
 import logoIcon from "@/public/logo.png";
 import { useTranslations } from "next-intl";
+import axios from "axios";
+
 
 export default function LeftSidebar() {
+
+  const { getToken, isSignedIn } = useAuth();
+  const template = 'markSightTest'
+
+  useEffect(() => {
+    const fetchPrices = async () => {
+      console.log(isSignedIn)
+      try {
+        if (isSignedIn) {
+          const jwtToken = await getToken({ template });
+          const response = await axios.get('https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat/list', {
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+            },
+          });
+          const data = response.data;
+          console.log('datazxczxczc:', data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch prices:', error);
+      }
+    };
+    fetchPrices();
+  }, [isSignedIn, getToken]);
+
   const [isOpen, setIsOpen] = useState(true);
   const { user, isLoaded } = useUser();
   const t = useTranslations('LeftSidebar')
