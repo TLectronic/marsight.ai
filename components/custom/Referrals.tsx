@@ -6,6 +6,9 @@ import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
 import { ResponsiveContainer } from 'recharts'
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
+import { useAuth } from "@clerk/nextjs"
+import axios from "axios";
+import { headers } from "next/headers";
 
 interface ReferralsRow {
   Link: string;
@@ -20,6 +23,31 @@ interface ReferralsProps {
 }
 
 const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
+  const { getToken, isSignedIn } = useAuth();
+  const template = 'markSightTest'
+
+  const handleAIInsights = async () => {
+    try {
+      if (isSignedIn) {
+        const jwtToken = await getToken({ template });
+        console.log(jwtToken);
+        const response = axios.post('https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat/insight', {
+          chatId: '75f58af9-6c03-11ef-a80e-93948447c487',
+          type: '123',
+        },
+          {
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+            }
+          });
+        console.log("返回的AIInsights:", response);
+      }
+    } catch (error) {
+      console.error("Failed to post:", error);
+    }
+  }
+
+
   return (
     <>
       <div className="text-2xl">Referrals</div>
@@ -30,6 +58,7 @@ const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
               variant="link"
               asChild
               className="p-2 hover:bg-muted/50"
+              onClick={handleAIInsights}
             >
               <Link href="mailto:your-email@example.com">
                 <Image

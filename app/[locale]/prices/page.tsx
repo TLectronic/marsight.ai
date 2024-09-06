@@ -30,7 +30,6 @@ export default function Component() {
           console.log(jwtToken);
           const response = await axios.get('https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/purchase', {
             headers: {
-
               'Authorization': `Bearer ${jwtToken}`,
             },
 

@@ -26,8 +26,6 @@ interface ReferralsRow {
   Change: string;
 }
 
-
-
 // 流量总览 数据
 const trafficData = {
   MonthlyVisits: "2.672M",
