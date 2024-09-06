@@ -96,10 +96,10 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="organic">
-                    <CardTitle className="font-normal">Organic Traffic</CardTitle>
+                    <CardTitle className="font-normal text-xl">Organic Traffic</CardTitle>
                   </SelectItem>
                   <SelectItem value="paid">
-                    <CardTitle className="font-normal">Paid Traffic</CardTitle>
+                    <CardTitle className="font-normal text-xl">Paid Traffic</CardTitle>
                   </SelectItem>
                 </SelectContent>
               </Select>

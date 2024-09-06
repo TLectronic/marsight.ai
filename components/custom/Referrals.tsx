@@ -50,10 +50,10 @@ const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
 
   return (
     <>
-      <div className="text-2xl">Referrals</div>
       <Card className="rounded-md">
         <CardHeader>
-          <div className='flex justify-end'>
+          <div className='flex justify-between'>
+            <CardTitle className='text-xl font-normal'>Referrals</CardTitle>
             <Button
               variant="link"
               asChild

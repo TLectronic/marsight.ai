@@ -14,8 +14,10 @@ const barChartData = [
 const MarketingChannels = () => {
   return (
     <>
-      <div className="text-2xl">Marketing Channels</div>
       <Card className="rounded-md">
+        <CardHeader>
+          <CardTitle className="text-xl font-normal">Marketing Channels</CardTitle>
+        </CardHeader>
         <CardContent className="mt-6">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={barChartData}>

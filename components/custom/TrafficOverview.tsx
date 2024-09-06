@@ -32,10 +32,13 @@ const TrafficOverview: React.FC<TrafficOverviewProps> = ({
 }) => {
   return (
     <>
-      <div className="text-2xl">Traffic Overview</div>
+      <div className="text-2xl">Traffic Analysis</div>
       <Card className="rounded-md">
+        <CardHeader>
+          <CardTitle className='text-xl font-normal'>Traffic Overview</CardTitle>
+        </CardHeader>
         <CardContent>
-          <div className='flex justify-between flex-wrap space-x-4 mb-4 mt-4'>
+          <div className='flex justify-between flex-wrap space-x-4 mb-10 mt-2'>
             <DataBox
               spanText="Monthly Visits"
               paragraphText={MonthlyVisits}
