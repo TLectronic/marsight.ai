@@ -15,6 +15,9 @@ import { Button } from "@/components/ui/button";
 import OrderPage from "@/components/OrderPgae"
 import { useEffect, useRef } from "react"
 import { useAuth } from "@clerk/nextjs"
+import Image from "next/image";
+import logoIcon from "@/public/logo.png";
+
 export default function Component() {
   const t = useTranslations("PricesPage")
   const currentAmountRef = useRef<number>(1)
@@ -86,9 +89,9 @@ export default function Component() {
     <div className="bg-white min-h-screen p-4 flex items-center justify-center">
 
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-center mb-16 font-bold">
-          <span className="text-4xl text-black tracking-[0.15em] align-middle" style={{ fontWeight: 900 }}>MARSIGHT.AI</span>
-          <span className="text-2xl text-blue-400 align-middle" style={{ fontWeight: 500 }}> Pro</span>
+        <h1 className="text-center mb-16 font-bold flex justify-center">
+          <Image src={logoIcon} alt="logo" className="w-1/5 mr-4" />
+          <span className="text-3xl text-black align-middle" style={{ fontWeight: 900 }}> Pro</span>
         </h1>
 
 
@@ -156,7 +159,7 @@ export default function Component() {
               key={t('popularTitle')}
               className={`bg-white rounded-xl shadow-lg overflow-hidden flex flex-col lg:-mt-4 lg:mb-4 w-64`}
             >
-              <div className="bg-blue-900 text-white text-center py-1 text-sm font-semibold">
+              <div className="bg-blue-400 text-white text-center py-1 text-sm font-semibold">
                 Most Popular
               </div>
               <div className="p-4 flex-grow">
@@ -165,7 +168,7 @@ export default function Component() {
                 <div className="text-3xl font-bold mb-3">{'$9'}</div>
                 <DialogTrigger asChild>
                   <Button
-                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-blue-900 hover:bg-blue-950 text-white`}
+                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-blue-400 hover:bg-blue-500 text-white`}
                     onClick={handlePucrhase}
                   >
                     {t('start')}
