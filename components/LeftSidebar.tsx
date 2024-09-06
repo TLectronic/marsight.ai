@@ -38,7 +38,7 @@ export default function LeftSidebar() {
 
   useEffect(() => {
 
-    const fetchPrices = async () => {
+    const fetchChats = async () => {
       console.log(isSignedIn)
       try {
         if (isSignedIn) {
@@ -56,7 +56,7 @@ export default function LeftSidebar() {
         console.error('Failed to fetch prices:', error);
       }
     };
-    fetchPrices();
+    fetchChats();
 
   }, [isSignedIn, getToken]);
 
