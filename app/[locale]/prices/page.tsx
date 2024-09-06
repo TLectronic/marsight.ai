@@ -14,7 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import OrderPage from "@/components/OrderPgae"
 import { useEffect, useRef } from "react"
-import { useAuth, useClerk } from "@clerk/nextjs"
+import { useAuth } from "@clerk/nextjs"
 export default function Component() {
   const t = useTranslations("PricesPage")
   const currentAmountRef = useRef<number>(1)

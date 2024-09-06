@@ -15,7 +15,7 @@ import { MarketingChannels } from '@/components/custom/MarketingChannels'
 import { Referrals } from '@/components/custom/Referrals'
 import { SearchAnalysis } from '@/components/custom/SearchAnalysis'
 import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
-import { useAuth, useClerk } from "@clerk/nextjs"
+import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
 
 interface ReferralsRow {
@@ -310,6 +310,26 @@ export default function Component() {
     }
   }
 
+  const handleGetChat = async () => {
+    try {
+      if (isSignedIn) {
+        const chatId = "1";
+        const jwtToken = await getToken({ template });
+        const response = await axios.get(
+          `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${chatId}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+            },
+          }
+        );
+        console.log("返回的数据:", response);
+      }
+    } catch (error) {
+      console.error('Failed to get chat:', error);
+    }
+  }
+
   return (
     <div className="flex h-screen overflow-hidden bg-[#f4f4f4]">
       <Resizable
@@ -401,6 +421,7 @@ export default function Component() {
               <Button onClick={handleSend} className="bg-black text-white hover:bg-gray-800">
                 Send
               </Button>
+              <Button onClick={handleGetChat}>获得对话内容</Button>
             </div>
           </div>
         </div>
