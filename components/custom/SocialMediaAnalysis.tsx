@@ -6,6 +6,7 @@ import {
 } from 'recharts';
 import { DataBox } from '@/components/ui/databox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { PersonIcon, Share2Icon, HeartIcon, BellIcon } from '@radix-ui/react-icons';
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -102,7 +103,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
             <CardTitle className="text-xl font-normal">Social Distribution</CardTitle>
             <div className="flex flex-col items-center">
               {/* DataBox 上部内容 */}
-              <DataBox className="mt-10" spanText="Total social visits" paragraphText="45.2K" />
+              <DataBox className="mt-10" spanText="Total social visits" paragraphText="45.2K" icon={<PersonIcon />} />
               {/* 饼图 */}
               <div className="mt-6">
                 {renderPieChart()}
@@ -117,14 +118,17 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
               <DataBox
                 spanText="Mentions"
                 paragraphText={Mentions}
+                icon={<BellIcon />}
               />
               <DataBox
                 spanText="total number of likes"
                 paragraphText={TotalLikes}
+                icon={<HeartIcon />}
               />
               <DataBox
                 spanText="total number of shares"
                 paragraphText={TotalShares}
+                icon={<Share2Icon />}
               />
             </div>
             <div>

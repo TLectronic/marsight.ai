@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import { DataBox } from '@/components/ui/databox'
+import { PersonIcon, Share2Icon, HeartIcon, BellIcon, ClockIcon, ReaderIcon, EyeOpenIcon, BarChartIcon, ExternalLinkIcon } from '@radix-ui/react-icons';
 
 interface TrafficOverviewProps {
   MonthlyVisits: string;
@@ -42,26 +43,32 @@ const TrafficOverview: React.FC<TrafficOverviewProps> = ({
             <DataBox
               spanText="Monthly Visits"
               paragraphText={MonthlyVisits}
+              icon={<EyeOpenIcon />}
             />
             <DataBox
               spanText="Unique Visitors"
               paragraphText={UniqueVisitors}
+              icon={<PersonIcon />}
             />
             <DataBox
               spanText="Visit Duration"
               paragraphText={VisitDuration}
+              icon={<ClockIcon />}
             />
             <DataBox
               spanText="Pages Per Visit"
               paragraphText={PagesPerVisit}
+              icon={<ReaderIcon />}
             />
             <DataBox
               spanText="Bounce Rate"
               paragraphText={BounceRate}
+              icon={<ExternalLinkIcon />}
             />
             <DataBox
               spanText="Page Views"
               paragraphText={PageViews}
+              icon={<BarChartIcon />}
             />
           </div>
 

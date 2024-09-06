@@ -8,6 +8,7 @@ import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { TriangleDownIcon, TriangleRightIcon } from '@radix-ui/react-icons'
+import { CursorArrowIcon, MagnifyingGlassIcon, ReaderIcon, HandIcon } from '@radix-ui/react-icons';
 
 // 最上面的四个盒子的数据
 interface SearchAnalysisProps {
@@ -67,23 +68,27 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
       <div className="text-2xl">Search Analysis</div>
       <Card className="rounded-md">
         <CardContent>
-        <div className="text-xl mb-4 mt-6">Search Overview</div>
+          <div className="text-xl mb-4 mt-6">Search Overview</div>
           <div className='flex justify-between flex-wrap space-x-4 mb-4 mt-6'>
             <DataBox
               spanText="No.of Keywords"
               paragraphText={dataofbox.NoofKeywords}
+              icon={<MagnifyingGlassIcon />}
             />
             <DataBox
               spanText="No.of Clicks"
               paragraphText={dataofbox.NoofClicks}
+              icon={<CursorArrowIcon />}
             />
             <DataBox
               spanText="Of All Total Traffic"
               paragraphText={dataofbox.OfAllTotalTraffic}
+              icon={<ReaderIcon />}
             />
             <DataBox
               spanText="Organic vs. Paid"
               paragraphText={dataofbox.OrganicvsPaid}
+              icon={<HandIcon />}
             />
           </div>
         </CardContent>
