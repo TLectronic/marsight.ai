@@ -9,11 +9,41 @@ import { LinkIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import InsightsIcon from "@/public/insights.svg";
 import React, { useState } from 'react'
+import { useAuth } from "@clerk/nextjs";
+import axios from "axios";
 
 
 export default function Page({ params: { lng } }: { params: { lng: string } }) {
   const t = useTranslations("SearchPage");
+  const template = 'markSightTest';
+  const { getToken, isSignedIn } = useAuth();
 
+  const makeDialogue = async (event: React.FormEvent) => {
+    event.preventDefault(); // 阻止表单默认提交行为
+    try {
+      console.log('isSignIn:',isSignedIn)
+      if (isSignedIn) {
+        console.log('asddasd')
+        const jwtToken = await getToken({ template });
+        console.log(jwtToken)
+        const response = await axios.post(
+          'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat',
+          {
+            url: 'https://tailwindcss.com/',
+          },
+          {
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+            },
+          }
+        );
+        const data = response.data;
+        console.log('data:', data);
+      }
+    } catch (error) {
+      console.log('error')
+    }
+  }
   // 是否正在搜索，默认为否
   const [isSearching, setIsSearching] = useState(false);
   // 搜索页
@@ -28,7 +58,8 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
             placeholder={t("searchPlaceholder")}
             type="text"
           />
-          <Button type="submit" onClick={() => setIsSearching(true)}>{t("decipher")}</Button>
+          {/* <Button type="submit" onClick={() => setIsSearching(true)}>{t("decipher")}</Button> */}
+          <Button type="submit" onClick={makeDialogue}>{t("decipher")}</Button>
         </form>
       </div>
     </>

@@ -15,6 +15,8 @@ import { MarketingChannels } from '@/components/custom/MarketingChannels'
 import { Referrals } from '@/components/custom/Referrals'
 import { SearchAnalysis } from '@/components/custom/SearchAnalysis'
 import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
+import { useAuth, useClerk } from "@clerk/nextjs"
+import axios from 'axios';
 
 interface ReferralsRow {
   Link: string;
@@ -272,6 +274,32 @@ export default function Component() {
 
   useEffect(scrollToBottom, [messages]);
 
+  const template = 'markSightTest'
+  const { getToken, isSignedIn } = useAuth();
+  const followUp = async () => {
+    try {
+      if (isSignedIn) {
+        const jwtToken = await getToken({ template });
+        const response = await axios.post(
+          'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat/conversation',
+          {
+            message: 'fafafafaff',
+            chatId: '75f58af9-6c03-11ef-a80e-93948447c487',
+          },
+          {
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+            },
+          }
+        );
+        const data = response.data;
+        console.log('data:', data);
+      }
+    } catch (error) {
+      console.log('error')
+    }
+  }
+
   const handleSend = () => {
     if (input.trim()) {
       setMessages([...messages, { role: 'user', content: input }])
@@ -366,6 +394,9 @@ export default function Component() {
             <div className="absolute bottom-2 right-2 flex items-center space-x-2">
               <Button variant="ghost" size="icon">
                 <PaperclipIcon className="h-4 w-4" />
+              </Button>
+              <Button onClick={followUp} className="bg-black text-white hover:bg-gray-800">
+                追问
               </Button>
               <Button onClick={handleSend} className="bg-black text-white hover:bg-gray-800">
                 Send
