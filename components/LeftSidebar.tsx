@@ -101,7 +101,8 @@ export default function LeftSidebar() {
                 </div>
               </AccordionTrigger>
               <AccordionContent asChild>
-                {allChats.map((chat, index) => (
+
+                {/* {allChats.map((chat, index) => (
                   <Button variant={"link"} className="w-full" key={index}>
                     <Link
                       href={`/search/history/1`}
@@ -110,7 +111,16 @@ export default function LeftSidebar() {
                       {chat.topic}
                     </Link>
                   </Button>
-                ))}
+                ))} */}
+                <Button variant={"link"} className="w-full">
+                  <Link
+                    href={`/search/history/1`}
+                    className="h-6 w-full flex flex-row px-2 items-center cursor-pointer gap-2"
+                  >
+                    查看搜索记录
+                  </Link>
+                </Button>
+
               </AccordionContent>
             </AccordionItem>
           </Accordion>
