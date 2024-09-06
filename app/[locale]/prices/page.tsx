@@ -47,7 +47,7 @@ export default function Component() {
   }, [isSignedIn, getToken]);
 
 
-  const handlePurchase = async () => {
+  const handlePucrhase = async () => {
     try {
       if (isSignedIn) {
         const jwtToken = await getToken({ template });
@@ -65,6 +65,12 @@ export default function Component() {
         );
         const data = response.data;
         console.log('Purchase successful:', data);
+
+        if (data.url) {
+          window.location.href = data.url; 
+        } else {
+          console.error('No URL found in the response');
+        }
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -84,7 +90,7 @@ export default function Component() {
         <h1 className="text-center mb-16 font-bold">
           <span className="text-4xl text-black tracking-[0.15em] align-middle" style={{ fontWeight: 900 }}>MARSIGHT.AI</span>
           <span className="text-2xl text-blue-400 align-middle" style={{ fontWeight: 500 }}> Pro</span>
-          <Button onClick={handlePurchase}>dsadsdadsadas</Button>
+          <Button onClick={handlePucrhase}>dsadsdadsadas</Button>
         </h1>
 
 
@@ -120,6 +126,7 @@ export default function Component() {
                     className={`w-full py-2 rounded-lg text-sm font-semibold`}
                     onClick={() => {
                       currentAmountRef.current = 2.99
+                      handlePucrhase
                     }}
                   >
                     {t('start')}
@@ -166,6 +173,7 @@ export default function Component() {
                     className={`w-full py-2 rounded-lg text-sm font-semibold bg-blue-900 hover:bg-blue-950 text-white`}
                     onClick={() => {
                       currentAmountRef.current = 4.99
+                      handlePucrhase
                     }}
                   >
                     {t('start')}
@@ -208,6 +216,7 @@ export default function Component() {
                     className={`w-full py-2 rounded-lg text-sm font-semibold`}
                     onClick={() => {
                       currentAmountRef.current = 10.99
+                      handlePucrhase
                     }}
                   >
                     {t('start')}
