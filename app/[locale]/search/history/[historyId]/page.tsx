@@ -17,6 +17,8 @@ import { SearchAnalysis } from '@/components/custom/SearchAnalysis'
 import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
 import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
+import Image from "next/image";
+import AIInsightsIcon from "@/public/aiinsights.svg";
 
 interface ReferralsRow {
   Link: string;
@@ -380,7 +382,17 @@ export default function Component() {
       <div className="flex-1 flex flex-col bg-white">
         <ScrollArea className="flex-1">
           <div className="p-4 space-y-4">
-            {messages.map((message, index) => (
+            <Image src={AIInsightsIcon} alt="AIInsights logo" width={150} height={150} className='ml-28' />
+            <div className='rounded-lg bg-gray-200 p-4'>
+              <div>
+                欢迎加入，超级明星！🚀✨ 你的写作之旅从这里开始！你准备好轻松应对那些论文，留下你的印记了吗？
+              </div>
+            </div>
+            <div className='rounded-lg bg-white p-2 border'>预设问题1</div>
+            <div className='rounded-lg bg-white p-2 border'>预设问题2</div>
+            <div className='rounded-lg bg-white p-2 border'>预设问题3</div>
+
+            {/* {messages.map((message, index) => (
               <div
                 key={index}
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'
@@ -395,7 +407,8 @@ export default function Component() {
                   <p className="break-words">{message.content}</p>
                 </div>
               </div>
-            ))}
+            ))} */}
+
             <div ref={messagesEndRef} />
           </div>
         </ScrollArea>

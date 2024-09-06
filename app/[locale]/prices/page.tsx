@@ -87,17 +87,13 @@ export default function Component() {
 
   return (
     <div className="bg-white min-h-screen p-4 flex items-center justify-center">
-
       <div className="max-w-7xl mx-auto">
         <h1 className="text-center mb-16 font-bold flex justify-center">
           <Image src={logoIcon} alt="logo" className="w-1/5 mr-4" />
           <span className="text-3xl text-black align-middle" style={{ fontWeight: 900 }}> Pro</span>
         </h1>
-
-
         <Dialog>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-
             {/* No.1 */}
             <div
               key={t('liteTitle')}
