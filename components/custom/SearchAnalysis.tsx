@@ -105,7 +105,7 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
                     <CardTitle className="font-extrabold text-xl">Organic Traffic</CardTitle>
                   </SelectItem>
                   <SelectItem value="paid">
-                    <CardTitle className="font-extrabold text-xl">Paid Traffic</CardTitle>
+                    <CardTitle className="font-normal text-xl">Paid Traffic</CardTitle>
                   </SelectItem>
                 </SelectContent>
               </Select>

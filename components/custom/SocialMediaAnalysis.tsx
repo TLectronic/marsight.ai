@@ -81,7 +81,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
   );
 
   const renderLineChart = () => (
-    <ResponsiveContainer width={300} height={200}>
+    <ResponsiveContainer height={400} width={750}>
       <LineChart data={lineChartData} className='-ml-2'>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
@@ -97,43 +97,43 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
   return (
     <>
       <div className='text-2xl font-extrabold text-blue-700'>Social Media Analysis</div>
-      <div className='flex justify-between'>
-        <Card className="rounded-[24px] w-[420px] h-[400px] p-2">
-          <CardContent>
-            <CardTitle className="text-xl font-extrabold">Social Distribution</CardTitle>
-            <div className="flex flex-col items-center">
-              {/* DataBox 上部内容 */}
-              <DataBox className="mt-10" spanText="Total social visits" paragraphText="45.2K" icon={<PersonIcon />} />
-              {/* 饼图 */}
-              <div className="mt-6">
-                {renderPieChart()}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="rounded-[24px] w-[420px] h-[400px] p-2">
-          <CardContent>
-            <CardTitle className='text-xl font-extrabold'>Social Media Mentions</CardTitle>
-            <div className="flex justify-between w-full mb-10 mt-10">
-              <DataBox
-                spanText="Mentions"
-                paragraphText={Mentions}
-                icon={<BellIcon />}
-              />
-              <DataBox
-                spanText="total number of likes"
-                paragraphText={TotalLikes}
-                icon={<HeartIcon />}
-              />
-              <DataBox
-                spanText="total number of shares"
-                paragraphText={TotalShares}
-                icon={<Share2Icon />}
-              />
-            </div>
+
+      <Card className="rounded-[24px] p-2 pt-6">
+        <CardContent>
+          <CardTitle className="text-xl font-extrabold">Social Distribution</CardTitle>
+          <div className="flex justify-around">
+            {/* DataBox 上部内容 */}
+            <DataBox className="mt-16" spanText="Total social visits" paragraphText="45.2K" icon={<PersonIcon />} />
+            {/* 饼图 */}
             <div>
-              {renderLineChart()}
-              {/* <ResponsiveContainer width={300} height={200}>
+              {renderPieChart()}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+      <Card className="rounded-[24px] p-2 pt-6">
+        <CardContent>
+          <CardTitle className='text-xl font-extrabold'>Social Media Mentions</CardTitle>
+          <div className="flex justify-between w-full mb-10 mt-10">
+            <DataBox
+              spanText="Mentions"
+              paragraphText={Mentions}
+              icon={<BellIcon />}
+            />
+            <DataBox
+              spanText="total number of likes"
+              paragraphText={TotalLikes}
+              icon={<HeartIcon />}
+            />
+            <DataBox
+              spanText="total number of shares"
+              paragraphText={TotalShares}
+              icon={<Share2Icon />}
+            />
+          </div>
+          <div>
+            {renderLineChart()}
+            {/* <ResponsiveContainer width={300} height={200}>
                 <PieChart className='ml-4'>
                   <Pie
                     data={pieChartData1}
@@ -154,10 +154,10 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
                 </PieChart>
               </ResponsiveContainer> */}
 
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </CardContent>
+      </Card>
+
     </>
 
   );

@@ -50,7 +50,7 @@ const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
 
   return (
     <>
-      <Card className="rounded-[24px]">
+      <Card className="rounded-[24px] p-2">
         <CardHeader>
           <div className='flex justify-between'>
             <CardTitle className='text-xl font-extrabold'>Referrals</CardTitle>

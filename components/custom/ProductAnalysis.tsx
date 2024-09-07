@@ -21,7 +21,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
   return (
     <>
       <div className="text-2xl font-extrabold text-blue-700">Product Analysis</div>
-      <Card className="rounded-[24px]">
+      <Card className="rounded-[24px] p-2">
         <CardContent>
           <div className="text-base font-bold mb-3 mt-4 flex items-center">
             <Image
@@ -38,7 +38,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
             <div className='flex justify-between text-xl'>
 
               <div className='flex-1'>
-                <div className='text-center mb-8 mt-4 font-bold'>Target Users</div>
+                <div className='text-center mb-8 mt-6 font-bold'>Target Users</div>
                 <ul className='text-sm text-center mb-10'>
                   {TargetUsers.map((user, index) => (
                     <li key={index}>· {user}</li>
@@ -47,7 +47,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               </div>
 
               <div className='flex-1'>
-                <div className='text-center mb-8 mt-4 font-bold'>Core Features</div>
+                <div className='text-center mb-8 mt-6 font-bold'>Core Features</div>
                 <ul className='text-sm text-center'>
                   {CoreFeatures.map((feature, index) => (
                     <li key={index}>· {feature}</li>
@@ -56,7 +56,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               </div>
 
               <div className='flex-1'>
-                <div className='text-center mb-8 mt-4 font-bold'>Use Cases</div>
+                <div className='text-center mb-8 mt-6 font-bold'>Use Cases</div>
                 <ul className='text-sm text-center'>
                   {UseCases.map((scenario, index) => (
                     <li key={index}>· {scenario}</li>

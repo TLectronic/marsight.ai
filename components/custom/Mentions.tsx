@@ -28,7 +28,7 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
 
     return (
         <>
-            <Card className="rounded-[24px]">
+            <Card className="rounded-[24px] p-2">
                 <CardHeader>
                     <div className='flex justify-between'>
                         <div>
