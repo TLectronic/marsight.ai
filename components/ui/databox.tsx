@@ -12,11 +12,10 @@ const DataBox = React.forwardRef<HTMLDivElement, DataBoxProps>(
       <div ref={ref} className={`custom-component ${className}`} {...props} >
         <p className="text-2xl mb-2">{paragraphText}</p>
         <div className="text-xs">
-          <span className="flex">
+          <span className="flex items-center">
+            {icon && <span className="mr-1">{icon}</span>}
             {spanText}
-            {icon && <span className="ml-1">{icon}</span>}
           </span>
-
         </div>
       </div>
     );
