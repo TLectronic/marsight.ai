@@ -96,11 +96,11 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
 
   return (
     <>
-      <div className='text-2xl'>Social Media Analysis</div>
+      <div className='text-2xl font-extrabold text-blue-700'>Social Media Analysis</div>
       <div className='flex justify-between'>
-        <Card className="rounded-md w-[420px] h-[400px] p-2">
+        <Card className="rounded-[24px] w-[420px] h-[400px] p-2">
           <CardContent>
-            <CardTitle className="text-xl font-normal">Social Distribution</CardTitle>
+            <CardTitle className="text-xl font-extrabold">Social Distribution</CardTitle>
             <div className="flex flex-col items-center">
               {/* DataBox 上部内容 */}
               <DataBox className="mt-10" spanText="Total social visits" paragraphText="45.2K" icon={<PersonIcon />} />
@@ -111,9 +111,9 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
             </div>
           </CardContent>
         </Card>
-        <Card className="rounded-md w-[420px] h-[400px] p-2">
+        <Card className="rounded-[24px] w-[420px] h-[400px] p-2">
           <CardContent>
-            <CardTitle className='text-xl font-normal'>Social Media Mentions</CardTitle>
+            <CardTitle className='text-xl font-extrabold'>Social Media Mentions</CardTitle>
             <div className="flex justify-between w-full mb-10 mt-10">
               <DataBox
                 spanText="Mentions"

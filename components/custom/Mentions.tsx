@@ -28,7 +28,7 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
 
     return (
         <>
-            <Card className="rounded-md">
+            <Card className="rounded-[24px]">
                 <CardHeader>
                     <div className='flex justify-between'>
                         <div>
@@ -38,10 +38,10 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="popular">
-                                        <CardTitle className="font-normal text-xl">The most popular mentions</CardTitle>
+                                        <CardTitle className="font-extrabold text-xl">The most popular mentions</CardTitle>
                                     </SelectItem>
                                     <SelectItem value="profiles">
-                                        <CardTitle className="font-normal text-xl">Mentions from the most popular public profiles</CardTitle>
+                                        <CardTitle className="font-extrabold text-xl">Mentions from the most popular public profiles</CardTitle>
                                     </SelectItem>
                                 </SelectContent>
                             </Select>

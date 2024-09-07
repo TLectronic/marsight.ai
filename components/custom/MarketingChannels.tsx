@@ -14,9 +14,9 @@ const barChartData = [
 const MarketingChannels = () => {
   return (
     <>
-      <Card className="rounded-md">
+      <Card className="rounded-[24px]">
         <CardHeader>
-          <CardTitle className="text-xl font-normal">Marketing Channels</CardTitle>
+          <CardTitle className="text-xl font-extrabold">Marketing Channels</CardTitle>
         </CardHeader>
         <CardContent className="mt-6">
           <ResponsiveContainer width="100%" height={300}>

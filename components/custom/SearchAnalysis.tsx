@@ -65,10 +65,10 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
 
   return (
     <>
-      <div className="text-2xl">Search Analysis</div>
-      <Card className="rounded-md">
+      <div className="text-2xl font-extrabold text-blue-700">Search Analysis</div>
+      <Card className="rounded-[24px]">
         <CardContent>
-          <div className="text-xl mb-4 mt-6">Search Overview</div>
+          <div className="text-xl mb-4 mt-6 font-extrabold">Search Overview</div>
           <div className='flex justify-between flex-wrap space-x-4 mb-4 mt-6'>
             <DataBox
               spanText="No.of Keywords"
@@ -102,10 +102,10 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="organic">
-                    <CardTitle className="font-normal text-xl">Organic Traffic</CardTitle>
+                    <CardTitle className="font-extrabold text-xl">Organic Traffic</CardTitle>
                   </SelectItem>
                   <SelectItem value="paid">
-                    <CardTitle className="font-normal text-xl">Paid Traffic</CardTitle>
+                    <CardTitle className="font-extrabold text-xl">Paid Traffic</CardTitle>
                   </SelectItem>
                 </SelectContent>
               </Select>
