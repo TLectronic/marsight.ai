@@ -29,10 +29,25 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
 
   const makeDialogue = async (event: React.FormEvent) => {
     if (inputRef.current) {
-      console.log(inputRef.current.value); // 直接获取输入框的值
-      const inputValue = inputRef.current.value;
-      event.preventDefault(); // 阻止表单默认提交行为
-      setIsSearching(true); // 设置状态，表示开始搜索
+      console.log(inputRef.current.value); 
+
+      var inputValue = inputRef.current.value;
+
+      if (!/^https?:\/\//i.test(inputValue)) {
+        inputValue = `http://${inputValue}`;
+      }
+      // 验证网址
+      try {
+        new URL(inputValue); // 如果 inputValue 不是合法的网址，这里会抛出异常
+      } catch (_) {
+        setErrorMessage("请输入一个有效的网址。");
+        setDialogOpen(true);
+        setIsSearching(false);
+        return;
+      }
+      event.preventDefault(); 
+
+      setIsSearching(true);
       try {
         if (isSignedIn) {
           const jwtToken = await getToken({ template });
