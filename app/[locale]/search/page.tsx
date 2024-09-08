@@ -5,6 +5,7 @@ import twitterIcon from "@/public/twitter.svg";
 import mailIcon from "@/public/mail.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { LinkIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import InsightsIcon from "@/public/insights.svg";
@@ -20,11 +21,18 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
   const { getToken, isSignedIn } = useAuth();
   const [isDialogOpen, setDialogOpen] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
+  // router钩子，用于页面跳转
+  const router = useRouter();
+  // 是否正在搜索，默认为否
+  const [isSearching, setIsSearching] = useState(false);
+
 
   const makeDialogue = async (event: React.FormEvent) => {
     if (inputRef.current) {
       console.log(inputRef.current.value); // 直接获取输入框的值
+      const inputValue = inputRef.current.value;
       event.preventDefault(); // 阻止表单默认提交行为
+      setIsSearching(true); // 设置状态，表示开始搜索
       try {
         if (isSignedIn) {
           const jwtToken = await getToken({ template });
@@ -32,7 +40,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
           const response = await axios.post(
             'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat',
             {
-              url: inputRef.current.value,
+              url: inputValue,
             },
             {
               headers: {
@@ -40,8 +48,10 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
               },
             }
           );
-          const data = response.data;
-          console.log('data:', data);
+          // 获得当前查询网址的chatId
+          const chatId = response.data.chatId;
+          console.log('chatId:', chatId);
+          router.push(`/search/history/${chatId}`);
         }
       } catch (error) {
         console.log('error:', error);
@@ -59,8 +69,6 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
     }
   }
 
-  // 是否正在搜索，默认为否
-  const [isSearching, setIsSearching] = useState(false);
   // 搜索页
   const Search = () => {
     return <>
