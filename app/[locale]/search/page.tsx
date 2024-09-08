@@ -8,12 +8,13 @@ import Link from "next/link";
 import { LinkIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import InsightsIcon from "@/public/insights.svg";
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 export default function Page({ params: { lng } }: { params: { lng: string } }) {
+  const inputRef = useRef<HTMLInputElement>(null);
   const t = useTranslations("SearchPage");
   const template = 'markSightTest';
   const { getToken, isSignedIn } = useAuth();
@@ -21,39 +22,38 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
   const [errorMessage, setErrorMessage] = useState("")
 
   const makeDialogue = async (event: React.FormEvent) => {
-
-
-    event.preventDefault(); // 阻止表单默认提交行为
-    try {
-      console.log('isSignIn:', isSignedIn);
-      if (isSignedIn) {
-        console.log('asddasd');
-        const jwtToken = await getToken({ template });
-        console.log(jwtToken);
-        const response = await axios.post(
-          'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat',
-          {
-            url: 'https://tailwindcss.com/',
-          },
-          {
-            headers: {
-              'Authorization': `Bearer ${jwtToken}`,
+    if (inputRef.current) {
+      console.log(inputRef.current.value); // 直接获取输入框的值
+      event.preventDefault(); // 阻止表单默认提交行为
+      try {
+        if (isSignedIn) {
+          const jwtToken = await getToken({ template });
+          console.log(jwtToken);
+          const response = await axios.post(
+            'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat',
+            {
+              url: inputRef.current.value,
             },
+            {
+              headers: {
+                'Authorization': `Bearer ${jwtToken}`,
+              },
+            }
+          );
+          const data = response.data;
+          console.log('data:', data);
+        }
+      } catch (error) {
+        console.log('error:', error);
+        if (axios.isAxiosError(error)) {
+          if (error.response && error.response.status === 402) {
+            // 当出现 402 错误时，设置错误消息并打开 Dialog
+            setErrorMessage("You need to make a payment to proceed.")
+            setDialogOpen(true)
+          } else {
+            setErrorMessage("An error occurred.")
+            setDialogOpen(true)
           }
-        );
-        const data = response.data;
-        console.log('data:', data);
-      }
-    } catch (error) {
-      console.log('error:', error);
-      if (axios.isAxiosError(error)) {
-        if (error.response && error.response.status === 402) {
-          // 当出现 402 错误时，设置错误消息并打开 Dialog
-          setErrorMessage("You need to make a payment to proceed.")
-          setDialogOpen(true)
-        } else {
-          setErrorMessage("An error occurred.")
-          setDialogOpen(true)
         }
       }
     }
@@ -72,6 +72,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
             className="flex-1 pl-8"
             placeholder={t("searchPlaceholder")}
             type="text"
+            ref={inputRef} // 通过 ref 访问 input
           />
           {/* <Button type="submit" onClick={() => setIsSearching(true)}>{t("decipher")}</Button> */}
           <Button type="submit" onClick={makeDialogue}>{t("decipher")}</Button>
@@ -164,7 +165,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
           </DialogContent>
         </Dialog>
       </div>
-      
+
     </div>
   );
 }
