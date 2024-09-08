@@ -27,6 +27,10 @@ import logoIcon from "@/public/logo.png";
 import { useTranslations } from "next-intl";
 import axios from "axios";
 
+interface Chat {
+  chatId: string;
+  topic: string;
+}
 
 export default function LeftSidebar() {
 
@@ -34,7 +38,7 @@ export default function LeftSidebar() {
   const template = 'markSightTest'
 
   // 当前用户所有对话
-  const [allChats, setAllChats] = useState([]);
+  const [allChats, setAllChats] = useState<Chat[]>([]);
 
   useEffect(() => {
 
@@ -102,24 +106,26 @@ export default function LeftSidebar() {
               </AccordionTrigger>
               <AccordionContent asChild>
 
-                {/* {allChats.map((chat, index) => (
+                {allChats.map((chat, index) => (
                   <Button variant={"link"} className="w-full" key={index}>
                     <Link
-                      href={`/search/history/1`}
+                      // href={`/search/history/1`}
+                      href={`/search/history/${chat.chatId}`}
                       className="h-6 w-full flex flex-row px-2 items-center cursor-pointer gap-2"
                     >
                       {chat.topic}
                     </Link>
                   </Button>
-                ))} */}
-                <Button variant={"link"} className="w-full">
+                ))}
+
+                {/* <Button variant={"link"} className="w-full">
                   <Link
                     href={`/search/history/1`}
                     className="h-6 w-full flex flex-row px-2 items-center cursor-pointer gap-2"
                   >
                     查看搜索记录
                   </Link>
-                </Button>
+                </Button> */}
 
               </AccordionContent>
             </AccordionItem>
