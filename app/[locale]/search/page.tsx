@@ -74,6 +74,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
           if (error.response && error.response.status === 402) {
             // 当出现 402 错误时，设置错误消息并打开 Dialog
             setErrorMessage("You need to make a payment to proceed.")
+            setIsSearching(false);
             setDialogOpen(true)
           } else {
             setErrorMessage("An error occurred.")
