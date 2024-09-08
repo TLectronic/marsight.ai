@@ -33,9 +33,9 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
 
       var inputValue = inputRef.current.value;
 
-      if (!/^https?:\/\//i.test(inputValue)) {
-        inputValue = `http://${inputValue}`;
-      }
+      // if (!/^https?:\/\//i.test(inputValue)) {
+      //   inputValue = `http://${inputValue}`;
+      // }
       // 验证网址
       try {
         new URL(inputValue); // 如果 inputValue 不是合法的网址，这里会抛出异常
