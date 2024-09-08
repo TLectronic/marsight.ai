@@ -14,6 +14,7 @@ import { TrafficOverview } from '@/components/custom/TrafficOverview'
 import { MarketingChannels } from '@/components/custom/MarketingChannels'
 import { Referrals } from '@/components/custom/Referrals'
 import { SearchAnalysis } from '@/components/custom/SearchAnalysis'
+import { Chat } from '@/components/custom/Chat';
 import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
 import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
@@ -46,7 +47,6 @@ const smMentions = {
 };
 
 // 博主表格内数据
-
 const referralsData: ReferralsRow[] = [
   {
     Link: 'Producthunt.com',
@@ -259,77 +259,12 @@ const Influencer = [
   }
 ];
 
+const messages = [
+  { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' },
+]
+
 
 export default function Component() {
-
-  const [messages, setMessages] = useState([
-    { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' }
-  ])
-  const [input, setInput] = useState('')
-  const messagesEndRef = useRef<any>(null)
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
-
-  useEffect(scrollToBottom, [messages]);
-
-  const template = 'markSightTest'
-  const { getToken, isSignedIn } = useAuth();
-  const followUp = async () => {
-    try {
-      if (isSignedIn) {
-        const jwtToken = await getToken({ template });
-        const response = await axios.post(
-          'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat/conversation',
-          {
-            message: 'fafafafaff',
-            chatId: '75f58af9-6c03-11ef-a80e-93948447c487',
-          },
-          {
-            headers: {
-              'Authorization': `Bearer ${jwtToken}`,
-            },
-          }
-        );
-        const data = response.data;
-        console.log('data:', data);
-      }
-    } catch (error) {
-      console.log('error')
-    }
-  }
-
-  const handleSend = () => {
-    if (input.trim()) {
-      setMessages([...messages, { role: 'user', content: input }])
-      setTimeout(() => {
-        setMessages(prev => [...prev, { role: 'assistant', content: `这是对"${input}"的模拟回复。这是一个较长的回复，用于测试文本换行功能。它应该在宽度变小时自动换行，以保持良好的可读性。` }])
-      }, 1000)
-      setInput('')
-    }
-  }
-
-  const handleGetChat = async () => {
-    try {
-      if (isSignedIn) {
-        const chatId = "75f58af9-6c03-11ef-a80e-93948447c487";
-        const jwtToken = await getToken({ template });
-        const response = await axios.get(
-          `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${chatId}`,
-          {
-            headers: {
-              'Authorization': `Bearer ${jwtToken}`,
-            },
-          }
-        );
-        console.log("返回的数据:", response);
-      }
-    } catch (error) {
-      console.error('Failed to get chat:', error);
-    }
-  }
-
   return (
     <div className="flex h-screen overflow-hidden bg-[#f4f4f4] p-4">
       <Resizable
@@ -378,65 +313,7 @@ export default function Component() {
           </div>
         </div>
       </Resizable>
-
-      <div className="flex-1 flex flex-col bg-white">
-        <ScrollArea className="flex-1">
-          <div className="p-4 space-y-4">
-            <Image src={AIInsightsIcon} alt="AIInsights logo" width={150} height={150} className='ml-28' />
-            <div className='rounded-lg bg-gray-200 p-4'>
-              <div>
-                欢迎加入，超级明星！🚀✨ 你的写作之旅从这里开始！你准备好轻松应对那些论文，留下你的印记了吗？
-              </div>
-            </div>
-            <div className='rounded-lg bg-white p-2 border'>预设问题1</div>
-            <div className='rounded-lg bg-white p-2 border'>预设问题2</div>
-            <div className='rounded-lg bg-white p-2 border'>预设问题3</div>
-
-            {/* {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'
-                  }`}
-              >
-                <div
-                  className={`max-w-[70%] p-2 rounded-lg ${message.role === 'user'
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-200 text-gray-800'
-                    }`}
-                >
-                  <p className="break-words">{message.content}</p>
-                </div>
-              </div>
-            ))} */}
-
-            <div ref={messagesEndRef} />
-          </div>
-        </ScrollArea>
-        <div className="p-4 border-t border-gray-200">
-          <div className="relative">
-            <Textarea
-              placeholder="输入您的问题..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), handleSend())}
-              className="pr-24 min-h-[100px] resize-none"
-              rows={4}
-            />
-            <div className="absolute bottom-2 right-2 flex items-center space-x-2">
-              <Button variant="ghost" size="icon">
-                <PaperclipIcon className="h-4 w-4" />
-              </Button>
-              <Button onClick={followUp} className="bg-black text-white hover:bg-gray-800">
-                追问
-              </Button>
-              <Button onClick={handleSend} className="bg-black text-white hover:bg-gray-800">
-                Send
-              </Button>
-              <Button onClick={handleGetChat}>获得对话内容</Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Chat messages={messages} />
     </div>
   )
 }
