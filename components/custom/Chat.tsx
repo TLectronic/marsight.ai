@@ -69,26 +69,6 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
     }
   }
 
-  const handleGetChat = async () => {
-    try {
-      if (isSignedIn) {
-        const chatId = "75f58af9-6c03-11ef-a80e-93948447c487";
-        const jwtToken = await getToken({ template });
-        const response = await axios.get(
-          `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${chatId}`,
-          {
-            headers: {
-              'Authorization': `Bearer ${jwtToken}`,
-            },
-          }
-        );
-        console.log("返回的数据:", response);
-      }
-    } catch (error) {
-      console.error('Failed to get chat:', error);
-    }
-  }
-
   return (
     <div className="flex-1 flex flex-col bg-white">
       <ScrollArea className="flex-1">
@@ -142,7 +122,6 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
             <Button onClick={handleSend} className="bg-black text-white hover:bg-gray-800">
               Send
             </Button>
-            <Button onClick={handleGetChat}>获得对话内容</Button>
           </div>
         </div>
       </div>

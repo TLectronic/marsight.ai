@@ -1,11 +1,6 @@
 "use client"
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Resizable } from 're-resizable'
-import { Send, PaperclipIcon, Search } from 'lucide-react'
-import Link from "next/link";
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Influencers } from '@/components/custom/Influencers'
 import { Mentions } from '@/components/custom/Mentions'
 import { SocialMediaAnalysis } from '@/components/custom/SocialMediaAnalysis'
@@ -16,10 +11,9 @@ import { Referrals } from '@/components/custom/Referrals'
 import { SearchAnalysis } from '@/components/custom/SearchAnalysis'
 import { Chat } from '@/components/custom/Chat';
 import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
+import { useParams } from 'next/navigation'
 import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
-import Image from "next/image";
-import AIInsightsIcon from "@/public/aiinsights.svg";
 
 interface ReferralsRow {
   Link: string;
@@ -263,8 +257,37 @@ const messages = [
   { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' },
 ]
 
-
 export default function Component() {
+  // 当前页面的chatId
+  const { historyId } = useParams()
+  // 登录认证内容
+  const template = 'markSightTest'
+  const { getToken, isSignedIn } = useAuth();
+  // 获得当前页面需要渲染的信息
+  const getData = async () => {
+    try {
+      if (isSignedIn) {
+        const jwtToken = await getToken({ template });
+        const response = await axios.get(
+          `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${historyId}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+            },
+          }
+        );
+        console.log("返回的数据:", response);
+      }
+    } catch (error) {
+      console.error('Failed to get chat:', error);
+    }
+  }
+  // 页面初始化的时候调用 getData 获得数据
+  useEffect(() => {
+    getData();
+  }, [isSignedIn, historyId])
+
+
   return (
     <div className="flex h-screen overflow-hidden bg-[#f4f4f4] p-4">
       <Resizable
