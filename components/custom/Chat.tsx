@@ -79,9 +79,9 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
               Welcome aboard, Superstar! 🚀✨ Your Writing Journey Starts Here! Are you ready to tackle those papers with ease and leave your mark?
             </div>
           </div>
-          <div className='rounded-lg bg-white p-2 border'>question1</div>
-          <div className='rounded-lg bg-white p-2 border'>question2</div>
-          <div className='rounded-lg bg-white p-2 border'>question3</div>
+          <div className='rounded-[24px] bg-white px-4 py-2 border'>question1</div>
+          <div className='rounded-[24px] bg-white px-4 py-2 border'>question2</div>
+          <div className='rounded-[24px] bg-white px-4 py-2 border'>question3</div>
           {/* {messages.map((message, index) => (
               <div
                 key={index}
