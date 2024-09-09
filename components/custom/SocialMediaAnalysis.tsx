@@ -108,7 +108,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
       <Card className="rounded-[24px] p-2 pt-6">
         <CardContent>
           <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Social Media Mentions</CardTitle>
-          <div className="flex justify-start w-full mb-10 mt-10 space-x-8">
+          <div className="flex justify-start w-full mb-10 mt-10 space-x-20">
             <DataBox
               spanText="Mentions"
               paragraphText={Mentions}
