@@ -40,7 +40,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
           <div className="text-sm leading-relaxed mt-2 mb-2">{ProductSummary}</div>
           <div className='flex justify-between text-xl'>
             <div className='flex-1 flex flex-col'>
-              <div className='text-center mb-8 mt-6 font-bold'>Target Users</div>
+              <div className='text-center mb-3 mt-1 font-bold'>Target Users</div>
 
               <div className="flex-1 bg-[#f7f7f5] p-4">
                 <ul className="text-sm text-left mb-10 ml-10">
@@ -52,7 +52,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
             </div>
 
             <div className='flex-1 flex flex-col'>
-              <div className='text-center mb-8 mt-6 font-bold'>Core Features</div>
+              <div className='text-center mb-3 mt-1 font-bold'>Core Features</div>
 
               <div className="flex-1 bg-[#f7f7f5] p-4">
                 <ul className='text-sm text-left ml-7'>
@@ -64,7 +64,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
             </div>
 
             <div className='flex-1 flex flex-col'>
-              <div className='text-center mb-8 mt-6 font-bold'>Use Cases</div>
+              <div className='text-center mb-3 mt-1 font-bold'>Use Cases</div>
 
               <div className="flex-1 bg-[#f7f7f5] p-4">
                 <ul className='text-sm text-left'>

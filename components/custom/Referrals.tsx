@@ -72,7 +72,7 @@ const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
             </Button>
           </div>
         </CardHeader>
-        <div className='p-6'>
+        <div className='-mt-6'>
           <CardContent>
             <Table>
               <TableHeader>

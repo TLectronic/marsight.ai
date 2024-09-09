@@ -73,7 +73,7 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
       <Card className="rounded-[24px]">
         <CardContent>
           <div className="text-xl mb-4 mt-6 font-extrabold text-[#4281DB]">Search Overview</div>
-          <div className='flex justify-between flex-wrap space-x-4 mb-4 mt-6 border-b pb-10'>
+          <div className='flex justify-start flex-wrap mb-4 mt-6 border-b pb-10 space-x-8'>
             <DataBox
               spanText="No.of Keywords"
               paragraphText={dataofbox.NoofKeywords}
@@ -132,7 +132,7 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
           </div>
         </CardHeader>
 
-        <div className='p-6'>
+        <div className='-mt-4'>
           <CardContent>
             <Table>
               <TableHeader>

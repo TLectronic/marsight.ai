@@ -48,7 +48,7 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
                         </Button>
                     </div>
                 </CardHeader>
-                <div className='p-6'>
+                <div className='px-6 -mt-6'>
                     <Table>
                         <TableHeader>
                             <TableRow>
