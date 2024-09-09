@@ -70,18 +70,18 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
   }
 
   return (
-    <div className="flex-1 flex flex-col bg-white">
+    <div className="flex-1 flex flex-col bg-white rounded-[24px]">
       <ScrollArea className="flex-1">
         <div className="p-4 space-y-4">
           <Image src={AIInsightsIcon} alt="AIInsights logo" width={150} height={150} className='ml-28' />
-          <div className='rounded-lg bg-gray-200 p-4'>
+          <div className='rounded-[24px] bg-gray-200 p-4'>
             <div>
               欢迎加入，超级明星！🚀✨ 你的写作之旅从这里开始！你准备好轻松应对那些论文，留下你的印记了吗？
             </div>
           </div>
-          <div className='rounded-lg bg-white p-2 border'>预设问题1</div>
-          <div className='rounded-lg bg-white p-2 border'>预设问题2</div>
-          <div className='rounded-lg bg-white p-2 border'>预设问题3</div>
+          <div className='rounded-[24px] bg-white p-2 border'>预设问题1</div>
+          <div className='rounded-[24px] bg-white p-2 border'>预设问题2</div>
+          <div className='rounded-[24px] bg-white p-2 border'>预设问题3</div>
           {/* {messages.map((message, index) => (
               <div
                 key={index}
@@ -108,17 +108,17 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), handleSend())}
-            className="pr-24 min-h-[100px] resize-none"
+            className="pr-24 min-h-[100px] resize-none rounded-[24px]"
             rows={4}
           />
           <div className="absolute bottom-2 right-2 flex items-center space-x-2">
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className='rounded-[24px]'>
               <PaperclipIcon className="h-4 w-4" />
             </Button>
-            <Button onClick={followUp} className="bg-black text-white hover:bg-gray-800">
+            <Button onClick={followUp} className="bg-black text-white hover:bg-gray-800 rounded-[24px]">
               追问
             </Button>
-            <Button onClick={handleSend} className="bg-black text-white hover:bg-gray-800">
+            <Button onClick={handleSend} className="bg-black text-white hover:bg-gray-800 rounded-[24px]">
               Send
             </Button>
           </div>
