@@ -33,10 +33,10 @@ const TrafficOverview: React.FC<TrafficOverviewProps> = ({
 }) => {
   return (
     <>
-      <div className="text-2xl font-extrabold text-blue-700">Traffic Analysis</div>
+      <div className="text-2xl font-extrabold text-[#5F5E5B]">Traffic Analysis</div>
       <Card className="rounded-[24px] p-2">
         <CardHeader>
-          <CardTitle className='text-xl font-extrabold '>Traffic Overview</CardTitle>
+          <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Traffic Overview</CardTitle>
         </CardHeader>
         <CardContent>
           <div className='flex justify-between flex-wrap mb-10 mt-2'>

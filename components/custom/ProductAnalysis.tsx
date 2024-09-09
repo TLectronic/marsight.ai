@@ -20,7 +20,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
 }) => {
   return (
     <>
-      <div className="text-2xl font-extrabold text-blue-700">Product Analysis</div>
+      <div className="text-2xl font-extrabold text-[#5F5E5B]">Product Analysis</div>
       <Card className="rounded-[24px] p-2">
         <CardContent>
           <div className="text-base font-bold mb-2 mt-2 flex items-center">

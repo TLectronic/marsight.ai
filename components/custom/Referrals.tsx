@@ -53,7 +53,7 @@ const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
       <Card className="rounded-[24px] p-2">
         <CardHeader>
           <div className='flex justify-between'>
-            <CardTitle className='text-xl font-extrabold'>Referrals</CardTitle>
+            <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Referrals</CardTitle>
             <Button
               variant="link"
               asChild

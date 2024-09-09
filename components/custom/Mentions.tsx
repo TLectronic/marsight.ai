@@ -38,10 +38,10 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="popular">
-                                        <CardTitle className="font-extrabold text-xl">The most popular mentions</CardTitle>
+                                        <CardTitle className="font-extrabold text-xl text-[#4281DB]">The most popular mentions</CardTitle>
                                     </SelectItem>
                                     <SelectItem value="profiles">
-                                        <CardTitle className="font-extrabold text-xl">Mentions from the most popular public profiles</CardTitle>
+                                        <CardTitle className="font-extrabold text-xl text-[#4281DB]">Mentions from the most popular public profiles</CardTitle>
                                     </SelectItem>
                                 </SelectContent>
                             </Select>

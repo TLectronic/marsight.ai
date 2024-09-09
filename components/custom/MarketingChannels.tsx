@@ -16,7 +16,7 @@ const MarketingChannels = () => {
     <>
       <Card className="rounded-[24px] p-2">
         <CardHeader>
-          <CardTitle className="text-xl font-extrabold">Marketing Channels</CardTitle>
+          <CardTitle className="text-xl font-extrabold text-[#4281DB]">Marketing Channels</CardTitle>
         </CardHeader>
         <CardContent className="mt-6">
           <ResponsiveContainer width="100%" height={300}>

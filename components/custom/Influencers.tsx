@@ -30,7 +30,7 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
             <Card className="rounded-[24px] p-2">
                 <CardHeader>
                     <div className='flex justify-between'>
-                        <CardTitle className='text-xl font-extrabold'>Influencers</CardTitle>
+                        <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Influencers</CardTitle>
                         <Button
                             variant="link"
                             asChild

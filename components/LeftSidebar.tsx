@@ -93,7 +93,7 @@ export default function LeftSidebar() {
       </div>
       {/* CONTENT */}
       <div className="flex-1 h-screen overflow-scroll scrollbar-hide">
-        <Button variant={"link"} className="w-full text-[#8B8A87] font-bold hover:text-[#1D1B17]">
+        <Button variant={"link"} className="w-full text-[#5F5E5B] font-bold hover:text-[#1D1B17]">
           <Link
             href={`/search`}
             className="h-6 w-full flex flex-row px-2 items-center cursor-pointer gap-2"
@@ -106,7 +106,7 @@ export default function LeftSidebar() {
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1" className="px-6">
               <AccordionTrigger disabled={!isOpen}>
-                <div className="w-full h-6 flex flex-row items-center gap-2 font-bold text-[#8B8A87] hover:text-[#1D1B17]">
+                <div className="w-full h-6 flex flex-row items-center gap-2 font-bold text-[#5F5E5B] hover:text-[#1D1B17]">
                   <History width={16} height={16} className="w-4 h-4" />
                   {isOpen && t('library')}
                 </div>
@@ -114,7 +114,7 @@ export default function LeftSidebar() {
               <AccordionContent asChild>
 
                 {allChats.map((chat, index) => (
-                  <Button variant={"link"} className="w-full text-[#8B8A87] hover:text-[#1D1B17]" key={index}>
+                  <Button variant={"link"} className="w-full text-[#5F5E5B] hover:text-[#1D1B17]" key={index}>
                     <Link
                       // href={`/search/history/1`}
                       href={`/search/history/${chat.chatId}`}
