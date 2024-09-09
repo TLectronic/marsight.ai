@@ -13,11 +13,15 @@ import { Search } from "lucide-react";
 
 // 最上面的四个盒子的数据
 interface SearchAnalysisProps {
-  NoofKeywords: string;
-  NoofClicks: string;
-  OfAllTotalTraffic: string;
-  OrganicvsPaid: string;
+  NoofKeywords: number;
+  NoofClicks: number;
+  OfAllTotalTraffic: number;
+  OrganicvsPaid: string;  // 改成 string 类型
 }
+
+const formatNumberInMillions = (num: number) => (num / 1_000_000).toFixed(3) + 'M';
+const formatBounceRate = (rate: number) => (rate * 100).toFixed(2) + '%';
+
 
 // 表格里每一行的数据
 interface TrafficRow {
@@ -76,17 +80,17 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
           <div className='flex justify-start flex-wrap mb-4 mt-6 border-b pb-10 space-x-8'>
             <DataBox
               spanText="No.of Keywords"
-              paragraphText={dataofbox.NoofKeywords}
+              paragraphText={dataofbox.NoofKeywords.toString()}
               icon={<MagnifyingGlassIcon />}
             />
             <DataBox
               spanText="No.of Clicks"
-              paragraphText={dataofbox.NoofClicks}
+              paragraphText={formatNumberInMillions(dataofbox.NoofClicks)}
               icon={<CursorArrowIcon />}
             />
             <DataBox
               spanText="Of All Total Traffic"
-              paragraphText={dataofbox.OfAllTotalTraffic}
+              paragraphText={formatBounceRate(dataofbox.OfAllTotalTraffic)}
               icon={<ReaderIcon />}
             />
             <DataBox

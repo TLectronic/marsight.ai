@@ -311,9 +311,10 @@ export default function Component() {
       ? allData.Keywords.all_brand.OverallClicks / allData.trafficAndEngagement.AvgMonthVisits 
       : 0,
     OrganicvsPaid: allData?.organic_total?.OverallClicks && allData?.paid_total?.OverallClicks 
-      ? allData.organic_total.OverallClicks / allData.paid_total.OverallClicks 
-      : 0,
+      ? `${Math.round(allData.organic_total.OverallClicks / (allData.organic_total.OverallClicks + allData.paid_total.OverallClicks) * 10)}:${Math.round(allData.paid_total.OverallClicks / (allData.organic_total.OverallClicks + allData.paid_total.OverallClicks) * 10)}`
+      : '0:0',
   };
+  
   
 
   return (
