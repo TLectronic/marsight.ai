@@ -113,9 +113,20 @@ export default function LeftSidebar() {
               </AccordionTrigger>
               <AccordionContent asChild>
 
+                <Button variant={"link"} className="w-full text-[#5F5E5B] hover:text-[#1D1B17]">
+                  <Link
+                    // href={`/search/history/${chat.chatId}`}
+                    href={`/search/history/1`}
+                    className="h-6 w-full flex flex-row px-2 items-center cursor-pointer gap-2"
+                  >
+                    {/* {chat.topic} */}
+                    查看历史
+                  </Link>
+                </Button>
 
 
-                {allChats.map((chat, index) => (
+
+                {/* {allChats.map((chat, index) => (
                   <Button variant={"link"} className="w-full text-[#5F5E5B] hover:text-[#1D1B17]" key={index}>
                     <Link
                       href={`/search/history/${chat.chatId}`}
@@ -124,7 +135,7 @@ export default function LeftSidebar() {
                       {chat.topic}
                     </Link>
                   </Button>
-                ))}
+                ))} */}
 
               </AccordionContent>
             </AccordionItem>
