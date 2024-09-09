@@ -154,6 +154,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
               />
             </Link>
           </Button>
+
           <Button
             variant="link"
             asChild
@@ -173,12 +174,12 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
 
         <div className="text-xs">
           <Button variant={"link"}>
-            <Link href={`/${lng}/privacy`} className="text-xs text-[#666666]">
+            <Link href={`/privacy`} className="text-xs text-[#666666]">
               {t("privacy")}
             </Link>
           </Button>
           <Button variant={"link"}>
-            <Link href={`/${lng}/terms`} className="text-xs text-[#666666]">
+            <Link href={`/terms`} className="text-xs text-[#666666]">
               {t("terms")}
             </Link>
           </Button>
