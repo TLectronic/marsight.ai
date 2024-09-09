@@ -26,7 +26,7 @@ const MentionBox: React.FC<MentionBoxProps> = ({ avatarSrc, fallbackText, title,
           <a className="text-green-600 no-underline" href={link} target="_blank" rel="noopener noreferrer">{link}</a>
         </div>
       </div>
-      <div className='mt-2'>{tags}</div>
+      <div className='text-sm leading-relaxed mt-2 mb-2'>{tags}</div>
     </div>
   );
 };

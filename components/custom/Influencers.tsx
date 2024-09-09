@@ -23,7 +23,7 @@ interface InfluencersProps {
 }
 
 const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
-    const tableHeader = ['', 'Profile Name', '', 'Site', 'Mentions', 'Followers'];
+    const tableHeader = ['', 'Profile Name','Site', 'Mentions', 'Followers'];
 
     return (
         <>
@@ -76,9 +76,6 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
                                             )}
                                         </Avatar.Root>
                                         <span className="text-[15px] font-medium">{influencer.name}</span>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Button variant="outline">Button</Button>
                                     </TableCell>
                                     <TableCell>{influencer.siteIcon}</TableCell>
                                     <TableCell>{influencer.mentions}</TableCell>
