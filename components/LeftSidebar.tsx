@@ -84,7 +84,7 @@ export default function LeftSidebar() {
       {/* LOGO */}
       <div className="w-full h-16 flex flex-row justify-center items-center text-xl font-bold">
         {isOpen ? (
-          <Image src={logoIcon} alt="logo" className="w-8/12 object-cover" />
+          <Image src={logoIcon} alt="logo" className="w-8/12 object-cover mt-6" />
         ) : (
           <Button variant="ghost">
             <Bot width={32} height={32} className="w-8 h-8" />

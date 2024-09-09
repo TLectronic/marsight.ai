@@ -74,7 +74,7 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
       <ScrollArea className="flex-1">
         <div className="p-4 space-y-4">
           {/* 固定的 logo 部分 */}
-          <div className="sticky top-0 z-10 bg-white">
+          <div className="sticky top-0 z-10 bg-white mt-[-4px]">
             <Image src={AIInsightsIcon} alt="AIInsights logo" width={150} height={150} className='ml-28' />
           </div>
 
