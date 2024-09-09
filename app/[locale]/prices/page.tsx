@@ -22,7 +22,7 @@ export default function Component() {
   const t = useTranslations("PricesPage")
   const currentAmountRef = useRef<number>(1)
   const { getToken, isSignedIn } = useAuth();
-  const template = 'markSightTest'
+  const template = 'marsight'
 
   useEffect(() => {
     const fetchPrices = async () => {
