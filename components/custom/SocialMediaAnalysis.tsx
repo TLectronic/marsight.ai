@@ -88,7 +88,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="pv" stroke="#3E74FE" />
+        <Line type="monotone" dataKey="pv" stroke="#4281DB" strokeWidth={3} />
         {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
       </LineChart>
     </ResponsiveContainer>
