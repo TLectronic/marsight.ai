@@ -35,9 +35,10 @@ const trafficData = {
 
 // 社交媒体提及 数据
 const smMentions = {
-  Mentions: '3974',
-  TotalLikes: '111',
-  TotalShares: '222',
+  TotalSocialVisits: 45200,
+  Mentions: 3974,
+  TotalLikes: 111,
+  TotalShares: 222,
 };
 
 // 博主表格内数据
@@ -332,6 +333,7 @@ export default function Component() {
               paid={paid}
             />
             <SocialMediaAnalysis
+              TotalSocialVisits={smMentions.TotalSocialVisits}
               Mentions={smMentions.Mentions}
               TotalLikes={smMentions.TotalLikes}
               TotalShares={smMentions.TotalShares}

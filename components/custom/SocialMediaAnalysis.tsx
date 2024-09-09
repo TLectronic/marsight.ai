@@ -9,9 +9,10 @@ import { PersonIcon, Share2Icon, HeartIcon, BellIcon } from '@radix-ui/react-ico
 import { Share2 } from "lucide-react";
 
 interface SocialMediaAnalysisProps {
-  Mentions: string;
-  TotalLikes: string;
-  TotalShares: string;
+  TotalSocialVisits: number;
+  Mentions: number;
+  TotalLikes: number;
+  TotalShares: number;
 }
 
 const lineChartData = [
@@ -57,8 +58,17 @@ const CustomLegend = (props: LegendProps) => {
   );
 };
 
-const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, TotalLikes, TotalShares }) => {
-  const totalSocialVisits= '45.2K';
+const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVisits, Mentions, TotalLikes, TotalShares }) => {
+  const formatNumber = (num: number): string => {
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1) + 'M'; // 超过百万显示为M
+    } else if (num >= 1000) {
+      return (num / 1000).toFixed(1) + 'K'; // 超过千显示为K
+    }
+    return num.toString(); // 小于1000则正常显示
+  };
+
+
   const renderPieChart = () => (
     <ResponsiveContainer width={400} height={200}>
       <PieChart>
@@ -107,7 +117,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
           <CardTitle className="text-xl font-extrabold text-[#4281DB]">Social Distribution</CardTitle>
           <div className="flex justify-around">
             {/* DataBox 上部内容 */}
-            <DataBox className="mt-16" spanText="Total social visits" paragraphText={totalSocialVisits}  icon={<PersonIcon />} />
+            <DataBox className="mt-16" spanText="Total social visits" paragraphText={formatNumber(TotalSocialVisits)} icon={<PersonIcon />} />
             {/* 饼图 */}
             <div>
               {renderPieChart()}
