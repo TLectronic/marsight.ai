@@ -29,7 +29,7 @@ export default function Component() {
               <div className="text-2xl font-bold">MarSight AI Privacy Policy</div>
               <div className="text-sm font-bold my-2">Effective Date: September 9, 2024</div>
               <div className="text-sm">
-                At MarSight.AI, We are committed to protecting your privacy and security. This Privacy Policy details the types of information we may collect from you or that you may provide when using our AI data analysis services ("Services"), and how we collect, use, maintain, protect, and disclose that information.
+                At MarSight.AI, We are committed to protecting your privacy and security. This Privacy Policy details the types of information we may collect from you or that you may provide when using our AI data analysis services (&quot;Services&quot;), and how we collect, use, maintain, protect, and disclose that information.
               </div>
               <div className="text-xl font-bold my-2">Information We Collect</div>
               <div className="text-lg font-bold my-2">Information You Provide to Us:</div>

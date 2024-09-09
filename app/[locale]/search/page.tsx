@@ -90,7 +90,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
   const Search = () => {
     return <>
       <p className="text-4xl font-semibold text-center">
-        <span className="block">Decipher Any Product's</span>
+        <span className="block">Decipher Any Product&apos;s</span>
         <span className="block">
           <span className="block">
             <span className="text-[#4281DB]">Marketing Strategy</span> with Data

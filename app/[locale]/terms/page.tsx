@@ -29,7 +29,7 @@ export default function Component() {
               <div className="text-2xl font-bold">MarSight AI Terms of Service</div>
               <div className="text-sm font-bold my-2">Effective Date: September 9, 2024</div>
               <div className="text-sm">
-                Thank you for choosing MarSight.AI These Terms of Service ("Terms") are a legal agreement between you and MarSight.AI and govern your use of the MarSight.AI services including our website, mobile apps, and other features or services (collectively, the "Service"). By using the Service, you agree to be bound by these Terms. If you do not agree to these Terms, you must not use the Service.
+                Thank you for choosing MarSight.AI These Terms of Service (&quot;Terms&quot;) are a legal agreement between you and MarSight.AI and govern your use of the MarSight.AI services including our website, mobile apps, and other features or services (collectively, the &quot;Service&quot;). By using the Service, you agree to be bound by these Terms. If you do not agree to these Terms, you must not use the Service.
               </div>
 
               <div className="text-xl font-bold my-2">1.Acceptance of Terms</div>
@@ -39,7 +39,7 @@ export default function Component() {
 
               <div className="text-xl font-bold my-2">2.Changes to Terms</div>
               <div className="text-sm">
-                MarSight.AI reserves the right, at its sole discretion, to modify or replace the Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+                MarSight.AI reserves the right, at its sole discretion, to modify or replace the Terms at any time. If a revision is material, we will provide at least 30 days&apos; notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
               </div>
 
               <div className="text-xl font-bold my-2">3.Use of the Service</div>
@@ -104,7 +104,7 @@ export default function Component() {
 
               <div className="text-xl font-bold my-2">5.Disclaimers</div>
               <div className="text-sm">
-                MarSight.AI provides the Service on an "as is" and "as available" basis. You therefore use the Service at your own risk. MarSight.AI expressly disclaims any and all warranties of any kind, whether express or implied.
+                MarSight.AI provides the Service on an &quot;as is&quot; and &quot;as available&quot; basis. You therefore use the Service at your own risk. MarSight.AI expressly disclaims any and all warranties of any kind, whether express or implied.
               </div>
 
               <div className="text-xl font-bold my-2">6.Limitation of Liability</div>
@@ -142,7 +142,7 @@ export default function Component() {
 
               <div className="text-xl font-bold my-2">7.General</div>
               <div className="text-sm">
-                These Terms are governed by the laws of the jurisdiction in which MarSight.AI is located, without regard to its conflict of laws rules. The courts in some countries will not apply these jurisdiction's laws to some types of disputes. If you reside in one of those countries, then where these jurisdiction's laws are required to apply, the laws of your resident country will apply to such disputes related to these Terms.
+                These Terms are governed by the laws of the jurisdiction in which MarSight.AI is located, without regard to its conflict of laws rules. The courts in some countries will not apply these jurisdiction&apos;s laws to some types of disputes. If you reside in one of those countries, then where these jurisdiction&apos;s laws are required to apply, the laws of your resident country will apply to such disputes related to these Terms.
               </div>
 
               <div className="text-xl font-bold my-2">Contact Us</div>
