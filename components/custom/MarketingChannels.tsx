@@ -3,12 +3,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 
 const barChartData = [
-  { name: 'Direct', uv: 22.36, pv: 22.00 },
-  { name: 'Email', uv: 0.03, pv: 0.03 },
-  { name: 'Referrals', uv: 1.63, pv: 2.00 },
-  { name: 'Social', uv: 3.28, pv: 4.00 },
-  { name: 'Organicsearch', uv: 20.23, pv: 17.00 },
-  { name: 'Paidsearch', uv: 4.33, pv: 3.00 },
+  { name: 'Direct', uv: 44.36 },
+  { name: 'Email', uv: 0.06},
+  { name: 'Referrals', uv: 3.63},
+  { name: 'Social', uv: 7.28},
+  { name: 'Organicsearch', uv: 37.2},
+  { name: 'Paidsearch', uv: 7.33},
 ];
 
 const MarketingChannels = () => {
@@ -32,7 +32,6 @@ const MarketingChannels = () => {
                 labelFormatter={(label) => `Channel: ${label}`}
               />
               <Legend />
-              <Bar dataKey="pv" stackId="a" fill="#A9C8FE" barSize={40} />
               <Bar dataKey="uv" stackId="a" fill="#3E74FE" barSize={40} />
             </BarChart>
           </ResponsiveContainer>
