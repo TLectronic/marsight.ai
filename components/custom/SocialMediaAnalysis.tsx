@@ -58,6 +58,7 @@ const CustomLegend = (props: LegendProps) => {
 };
 
 const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, TotalLikes, TotalShares }) => {
+  const totalSocialVisits= '45.2K';
   const renderPieChart = () => (
     <ResponsiveContainer width={400} height={200}>
       <PieChart>
@@ -106,7 +107,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
           <CardTitle className="text-xl font-extrabold text-[#4281DB]">Social Distribution</CardTitle>
           <div className="flex justify-around">
             {/* DataBox 上部内容 */}
-            <DataBox className="mt-16" spanText="Total social visits" paragraphText="45.2K" icon={<PersonIcon />} />
+            <DataBox className="mt-16" spanText="Total social visits" paragraphText={totalSocialVisits}  icon={<PersonIcon />} />
             {/* 饼图 */}
             <div>
               {renderPieChart()}
