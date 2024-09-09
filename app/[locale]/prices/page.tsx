@@ -93,11 +93,11 @@ export default function Component() {
           <span className="text-lg text-[#17439B] align-middle" style={{ fontWeight: 900 }}> Pro</span>
         </h1>
         <Dialog>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
             {/* No.1 */}
             <div
               key={t('liteTitle')}
-              className={`bg-white rounded-xl shadow-lg overflow-hidden flex flex-col w-64`}
+              className={`bg-white rounded-[24px] shadow-lg overflow-hidden flex flex-col w-64`}
             >
               <div className="p-4 flex-grow">
                 <h2 className="text-xl font-bold mb-1">{t('liteTitle')}</h2>
@@ -153,7 +153,7 @@ export default function Component() {
             {/* No.2 */}
             <div
               key={t('popularTitle')}
-              className={`bg-white rounded-xl shadow-lg overflow-hidden flex flex-col lg:-mt-4 lg:mb-4 w-64`}
+              className={`bg-white rounded-[24px] shadow-lg overflow-hidden flex flex-col lg:-mt-4 lg:mb-4 w-64`}
             >
               <div className="bg-[#4281DB] text-white text-center py-1 text-sm font-semibold">
                 Most Popular
@@ -196,7 +196,7 @@ export default function Component() {
             {/* No.3 */}
             <div
               key={t('agencyTitle')}
-              className={`bg-white rounded-xl shadow-lg overflow-hidden flex flex-col w-64`}
+              className={`bg-white rounded-[24px] shadow-lg overflow-hidden flex flex-col w-64`}
             >
               <div className="p-4 flex-grow">
                 <h2 className="text-xl font-bold mb-1">{t('agencyTitle')}</h2>
@@ -236,7 +236,7 @@ export default function Component() {
             {/* No.4 */}
             <div
               key={t('enterpriseTitle')}
-              className={`bg-white rounded-xl shadow-lg overflow-hidden flex flex-col w-64`}
+              className={`bg-white rounded-[24px] shadow-lg overflow-hidden flex flex-col w-64`}
             >
               <div className="p-4 flex-grow">
                 <h2 className="text-xl font-bold mb-1">{t('enterpriseTitle')}</h2>

@@ -39,7 +39,7 @@ const TrafficOverview: React.FC<TrafficOverviewProps> = ({
           <CardTitle className='text-xl font-extrabold '>Traffic Overview</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className='flex justify-between flex-wrap space-x-4 mb-10 mt-2'>
+          <div className='flex justify-between flex-wrap mb-10 mt-2'>
             <DataBox
               spanText="Monthly Visits"
               paragraphText={MonthlyVisits}
@@ -79,7 +79,7 @@ const TrafficOverview: React.FC<TrafficOverviewProps> = ({
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="pv" stroke="#3E74FE" />
+              <Line type="monotone" dataKey="pv" stroke="#4281DB" strokeWidth={3} />
               {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
             </LineChart>
           </ResponsiveContainer>

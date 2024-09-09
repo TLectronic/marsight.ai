@@ -131,14 +131,14 @@ export default function LeftSidebar() {
       </div>
 
       <div className="w-5/6 ml-2">
-        <Card className="p-4 pr-2 bg-white">
+        <Card className="p-4 pr-2 bg-white rounded-[24px]">
           <div className="font-semibold text-base leading-relaxed">
             {isOpen && t('title')}
           </div>
           <div className="text-sm leading-relaxed mt-2 mb-2">
             {isOpen && t('content')}
           </div>
-          <Button className="mb-2" variant="default">
+          <Button className="mb-2 rounded-[24px]" variant="default">
             <Link href="/en/prices" >
               {isOpen && t('button')}
             </Link>
