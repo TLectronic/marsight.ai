@@ -1,5 +1,5 @@
 "use client"
-import { Check } from "lucide-react"
+import { Check, Key } from "lucide-react"
 import { useTranslations } from "next-intl"
 import axios from 'axios';
 import {
@@ -13,16 +13,26 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button";
 import OrderPage from "@/components/OrderPgae"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useAuth } from "@clerk/nextjs"
 import Image from "next/image";
 import logoIcon from "@/public/logo.png";
+
+interface dataStruct {
+  id: string;
+  name: string;
+  price: number;
+  description: string | null;
+  priceId: string;
+}
 
 export default function Component() {
   const t = useTranslations("PricesPage")
   const currentAmountRef = useRef<number>(1)
   const { getToken, isSignedIn } = useAuth();
   const template = 'marsight'
+  // 价格数据
+  const [priceData, setPriceData] = useState<dataStruct[]>([]);
 
   useEffect(() => {
     const fetchPrices = async () => {
@@ -37,9 +47,9 @@ export default function Component() {
             },
 
           });
-          console.log('headers:', response.headers);
           const data = response.data;
           console.log('data:', data);
+          setPriceData(data)
         }
       } catch (error) {
         console.error('Failed to fetch prices:', error);
@@ -49,7 +59,7 @@ export default function Component() {
   }, [isSignedIn, getToken]);
 
 
-  const handlePucrhase = async () => {
+  const handlePucrhase = async (priceId: string) => {
     try {
       if (isSignedIn) {
         const jwtToken = await getToken({ template });
@@ -57,7 +67,7 @@ export default function Component() {
         const response = await axios.post(
           'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/purchase/checkout',
           {
-            priceId: 'price_1PuSoMGJExlFR7Amg2wBW5Kn',
+            priceId: priceId,
           },
           {
             headers: {
@@ -94,6 +104,7 @@ export default function Component() {
         </h1>
         <Dialog>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
+
             {/* No.1 */}
             <div
               key={t('liteTitle')}
@@ -106,13 +117,13 @@ export default function Component() {
 
                   <div className="relative text-3xl font-bold mb-3">
                     <div className="relative text-3xl font-bold mb-3">
-                      {'$1.99'}
-                      <div className="absolute top-0 left-20 text-xs" style={{ textDecoration: 'line-through', textDecorationThickness: '2px' }}>
+                      {'$29.90'}
+                      {/* <div className="absolute top-0 left-20 text-xs" style={{ textDecoration: 'line-through', textDecorationThickness: '2px' }}>
                         $30
                       </div>
                       <div className="absolute text-xl left-20 text-xs top-4">
                         /Mo
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 
@@ -121,7 +132,7 @@ export default function Component() {
                 <DialogTrigger asChild>
                   <Button
                     className={`w-full py-2 rounded-lg text-sm font-semibold bg-[#F7F7F5] text-black hover:bg-slate-300`}
-                    onClick={handlePucrhase}
+                    onClick={() => handlePucrhase(priceData[3].priceId)}
                   >
                     {t('start')}
                   </Button>
@@ -161,11 +172,11 @@ export default function Component() {
               <div className="p-4 flex-grow">
                 <h2 className="text-xl font-bold mb-1">{t('popularTitle')}</h2>
                 <p className="text-gray-600 text-sm mb-3">{t('popularDescription')}</p>
-                <div className="text-3xl font-bold mb-3">{'$9'}</div>
+                <div className="text-3xl font-bold mb-3">{'$49.90'}</div>
                 <DialogTrigger asChild>
                   <Button
                     className={`w-full py-2 rounded-lg text-sm font-semibold text-white`}
-                    onClick={handlePucrhase}
+                    onClick={() => handlePucrhase(priceData[2].priceId)}
                   >
                     {t('start')}
                   </Button>
@@ -201,11 +212,11 @@ export default function Component() {
               <div className="p-4 flex-grow">
                 <h2 className="text-xl font-bold mb-1">{t('agencyTitle')}</h2>
                 <p className="text-gray-600 text-sm mb-3">{t('agencyDescription')}</p>
-                <div className="text-3xl font-bold mb-3">{'$1.99'}</div>
+                <div className="text-3xl font-bold mb-3">{'$99.90'}</div>
                 <DialogTrigger asChild>
                   <Button
                     className={`w-full py-2 rounded-lg text-sm font-semibold bg-[#F7F7F5] text-black hover:bg-slate-300`}
-                    onClick={handlePucrhase}
+                    onClick={() => handlePucrhase(priceData[1].priceId)}
                   >
                     {t('start')}
                   </Button>
@@ -243,6 +254,7 @@ export default function Component() {
                 <p className="text-gray-600 text-sm mb-3">{t('enterpriseDescription')}</p>
                 <div className="text-3xl font-bold mb-3">{t('letsTalk')}</div>
                 <Button
+                  onClick={() => handlePucrhase(priceData[0].priceId)}
                   className={`w-full py-2 rounded-lg text-sm font-semibold bg-[#F7F7F5] text-black hover:bg-slate-300`}
                 >
                   {t('start')}
