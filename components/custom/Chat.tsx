@@ -74,11 +74,11 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
       <ScrollArea className="flex-1">
         <div className="p-4 space-y-4">
           {/* 固定的 logo 部分 */}
-          <div className="sticky top-0 z-10 bg-white mt-[-4px]">
+          <div className="sticky top-0 z-10 bg-white mt-[-20px] border-b w-full">
             <Image src={AIInsightsIcon} alt="AIInsights logo" width={150} height={150} className='ml-28' />
           </div>
 
-          <div className='rounded-[24px] bg-gray-200 p-4 text-sm'>
+          <div className='rounded-[24px] bg-[#f7f7f5] p-4 text-sm'>
             <div>
               Welcome aboard, Superstar! 🚀✨ Your Writing Journey Starts Here! Are you ready to tackle those papers with ease and leave your mark?
             </div>

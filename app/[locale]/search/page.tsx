@@ -41,7 +41,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
       try {
         new URL(inputValue); // 如果 inputValue 不是合法的网址，这里会抛出异常
       } catch (_) {
-        setErrorMessage("请输入一个有效的网址。");
+        setErrorMessage("Please enter a valid URL.");
         setDialogOpen(true);
         setIsSearching(false);
         return;

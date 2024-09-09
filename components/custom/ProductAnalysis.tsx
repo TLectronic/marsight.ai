@@ -38,12 +38,16 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
             {/* <div className="font-normal">{ProductUrl}</div> */}
           </div>
           <div className="text-sm leading-relaxed mt-2 mb-2">{ProductSummary}</div>
-          <div className='flex justify-between text-xl'>
-            <div className='flex-1 flex flex-col'>
-              <div className='text-center mb-3 mt-1 font-bold'>Target Users</div>
-
-              <div className="flex-1 bg-[#f7f7f5] p-4">
-                <ul className="text-sm text-left mb-10 ml-10">
+          <div className='flex justify-between text-xl space-x-4'>
+            {/* Target Users Card */}
+            <div className='flex-1 flex flex-col bg-white shadow-md rounded-[24px]'>
+              <div className='bg-[#f7f7f5] h-1/3 rounded-t-[24px] p-4'>
+                <div className='flex justify-center items-center mb-2 mt-1 font-bold h-full'>
+                  Target Users
+                </div>
+              </div>
+              <div className="flex-1 p-4 rounded-b-[24px]">
+                <ul className="text-sm text-left mb-10 ml-3">
                   {TargetUsers.map((user, index) => (
                     <li key={index}>· {user}</li>
                   ))}
@@ -51,11 +55,16 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               </div>
             </div>
 
-            <div className='flex-1 flex flex-col'>
-              <div className='text-center mb-3 mt-1 font-bold'>Core Features</div>
+            {/* Core Features Card */}
+            <div className='flex-1 flex flex-col bg-white shadow-md rounded-[24px]'>
+              <div className='bg-[#f7f7f5] h-1/3 rounded-t-[24px] p-4'>
+                <div className='flex justify-center items-center mb-2 mt-1 font-bold h-full'>
+                  Core Features
 
-              <div className="flex-1 bg-[#f7f7f5] p-4">
-                <ul className='text-sm text-left ml-7'>
+                </div>
+              </div>
+              <div className="flex-1 p-4 rounded-[24px]">
+                <ul className='text-sm text-left ml-2'>
                   {CoreFeatures.map((feature, index) => (
                     <li key={index}>· {feature}</li>
                   ))}
@@ -63,10 +72,12 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               </div>
             </div>
 
-            <div className='flex-1 flex flex-col'>
-              <div className='text-center mb-3 mt-1 font-bold'>Use Cases</div>
-
-              <div className="flex-1 bg-[#f7f7f5] p-4">
+            {/* Use Cases Card */}
+            <div className='flex-1 flex flex-col bg-white shadow-md rounded-[24px]'>
+              <div className='bg-[#f7f7f5] h-1/3 rounded-t-[24px] p-4'>
+                <div className='flex justify-center items-center mb-2 mt-1 font-bold h-full'>Use Cases</div>
+              </div>
+              <div className="flex-1 p-4 rounded-[24px]">
                 <ul className='text-sm text-left'>
                   {UseCases.map((scenario, index) => (
                     <li key={index}>· {scenario}</li>
@@ -75,6 +86,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               </div>
             </div>
           </div>
+
 
           {/* </div> */}
         </CardContent>

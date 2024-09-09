@@ -301,10 +301,10 @@ export default function Component() {
         }}
       >
         <div className="h-full overflow-auto">
+        <div className='sticky top-0 bg-white z-10 text-xl font-extrabold text-[#5F5E5B] border-b w-full pb-3 pl-6 relative'>
+          Marketing Strategy
+        </div>
           <div className="p-4 space-y-4 min-w-[500px]">
-            <div className='sticky top-0 bg-white z-10 text-xl font-extrabold text-[#5F5E5B] border-b pb-3 mt-[-4px]'>
-              Marketing Strategy
-            </div>
 
             <ProductAnalysis
               ProductUrl='heygen.com'
