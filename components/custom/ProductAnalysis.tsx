@@ -34,30 +34,39 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
             {/* <div className="font-normal">{ProductUrl}</div> */}
           </div>
           <div className="text-sm leading-relaxed mt-2 mb-2">{ProductSummary}</div>
-          <div className='border-black border-2 mt-2 mb-2'>
-            <div className='flex justify-between text-xl'>
+          {/* <div className='border-2 mt-2 mb-2'> */}
+          <div className='flex justify-between text-xl'>
 
-              <div className='flex-1'>
-                <div className='text-center mb-8 mt-6 font-bold'>Target Users</div>
+            <div className='flex-1'>
+              <div className='text-center mb-8 mt-6 font-bold'>Target Users</div>
+
+              <div className="bg-[#f7f7f5] p-4">
+                {/* <hr className="border-t border-gray-300 mb-4" /> */}
                 <ul className="text-sm text-left mb-10 ml-10">
                   {TargetUsers.map((user, index) => (
                     <li key={index}>· {user}</li>
                   ))}
                 </ul>
               </div>
+            </div>
 
-              <div className='flex-1'>
-                <div className='text-center mb-8 mt-6 font-bold'>Core Features</div>
+
+            <div className='flex-1'>
+              <div className='text-center mb-8 mt-6 font-bold'>Core Features</div>
+              {/* <hr className="border-t border-gray-300 mb-4" /> */}
+              <div className="bg-[#f7f7f5] p-4 bg-[#f7f7f5]">
                 <ul className='text-sm text-left ml-7'>
                   {CoreFeatures.map((feature, index) => (
                     <li key={index}>· {feature}</li>
                   ))}
                 </ul>
               </div>
+            </div>
 
-              <div className='flex-1'>
-                <div className='text-center mb-8 mt-6 font-bold'>Use Cases</div>
-                <ul className='text-sm text-left ml-10'>
+            <div className='flex-1'>
+              <div className='text-center mb-8 mt-6 font-bold'>Use Cases</div>
+              <div className="bg-[#f7f7f5] p-9 bg-[#f7f7f5]">
+                <ul className='text-sm text-left'>
                   {UseCases.map((scenario, index) => (
                     <li key={index}>· {scenario}</li>
                   ))}
@@ -65,6 +74,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               </div>
             </div>
           </div>
+          {/* </div> */}
         </CardContent>
       </Card>
     </>
