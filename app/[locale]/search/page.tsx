@@ -18,7 +18,7 @@ import { ArrowRightIcon } from 'lucide-react'
 export default function Page({ params: { lng } }: { params: { lng: string } }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const t = useTranslations("SearchPage");
-  const template = 'markSightTest';
+  const template = 'marsight';
   const { getToken, isSignedIn } = useAuth();
   const [isDialogOpen, setDialogOpen] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
