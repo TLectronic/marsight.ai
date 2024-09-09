@@ -302,6 +302,7 @@ export default function Component() {
       >
         <div className="h-full overflow-auto">
           <div className="p-4 space-y-4 min-w-[500px]">
+            <div className='text-2xl font-extrabold text-[#5F5E5B] border-b pb-3'>Marketing Strategy</div>
             <ProductAnalysis
               ProductUrl='heygen.com'
               ProductSummary='heygen is an innovative video platform that harnesses the power of generative ai to streamline your video creation process.'
