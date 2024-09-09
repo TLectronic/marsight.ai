@@ -72,7 +72,6 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
   return (
     <div className="flex-1 flex flex-col bg-white">
       <ScrollArea className="flex-1">
-        <div className='text-2xl font-extrabold text-blue-700 text-center mt-2'>Preview & Debug</div>
         <div className="p-4 space-y-4">
           <Image src={AIInsightsIcon} alt="AIInsights logo" width={150} height={150} className='ml-28' />
           <div className='rounded-lg bg-gray-200 p-4'>
