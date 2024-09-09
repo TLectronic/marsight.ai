@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Resizable } from 're-resizable'
 import { Influencers } from '@/components/custom/Influencers'
 import { Mentions } from '@/components/custom/Mentions'
@@ -263,6 +263,8 @@ export default function Component() {
   // 登录认证内容
   const template = 'markSightTest'
   const { getToken, isSignedIn } = useAuth();
+  // 当前页面的所有数据
+  const [allData, setAllData] = useState({});
   // 获得当前页面需要渲染的信息
   const getData = async () => {
     try {
@@ -277,6 +279,7 @@ export default function Component() {
           }
         );
         console.log("返回的数据:", response);
+        setAllData(response)
       }
     } catch (error) {
       console.error('Failed to get chat:', error);
@@ -301,9 +304,9 @@ export default function Component() {
         }}
       >
         <div className="h-full overflow-auto">
-        <div className='sticky top-0 bg-white z-10 text-xl font-extrabold text-[#5F5E5B] border-b w-full pb-3 pl-6 relative'>
-          Marketing Strategy
-        </div>
+          <div className='sticky top-0 bg-white z-10 text-xl font-extrabold text-[#5F5E5B] border-b w-full pb-3 pl-6 relative'>
+            Marketing Strategy
+          </div>
           <div className="p-4 space-y-4 min-w-[500px]">
 
             <ProductAnalysis
