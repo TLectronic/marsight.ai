@@ -12,7 +12,7 @@ interface MentionBoxProps {
 
 const MentionBox: React.FC<MentionBoxProps> = ({ avatarSrc, fallbackText, title, date, link, tags }) => {
   return (
-    <div className='px-6 pb-6'>
+    <div className='px-6 pb-6 pt-4'>
       <div className='flex'>
         <Avatar>
           <AvatarImage src={avatarSrc} alt='Avatar' />

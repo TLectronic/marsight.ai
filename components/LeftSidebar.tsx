@@ -112,6 +112,7 @@ export default function LeftSidebar() {
                 </div>
               </AccordionTrigger>
               <AccordionContent asChild>
+
                 <Button variant={"link"} className="w-full text-[#5F5E5B] hover:text-[#1D1B17]">
                   <Link
                     href={`/search/history/1`}
@@ -134,6 +135,7 @@ export default function LeftSidebar() {
                     </Link>
                   </Button>
                 ))} */}
+
               </AccordionContent>
             </AccordionItem>
           </Accordion>
