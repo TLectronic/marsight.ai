@@ -25,12 +25,12 @@ interface ReferralsRow {
 
 // 流量总览 数据
 const trafficData = {
-  MonthlyVisits: "2.672M",
-  UniqueVisitors: "1.135M",
-  VisitDuration: "00:04:47",
-  PagesPerVisit: "4.46",
-  BounceRate: "44.87%",
-  PageViews: "11.93M",
+  MonthlyVisits: 2672000,
+  UniqueVisitors: 1135000,
+  VisitDuration: 287,
+  PagesPerVisit: 4.46,
+  BounceRate: 0.4487,
+  PageViews: 11930000,
 };
 
 // 社交媒体提及 数据

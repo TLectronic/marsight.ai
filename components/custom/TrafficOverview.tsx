@@ -6,12 +6,12 @@ import { PersonIcon, Share2Icon, HeartIcon, BellIcon, ClockIcon, ReaderIcon, Eye
 import { ChartColumn } from "lucide-react";
 
 interface TrafficOverviewProps {
-  MonthlyVisits: string;
-  UniqueVisitors: string;
-  VisitDuration: string;
-  PagesPerVisit: string;
-  BounceRate: string;
-  PageViews: string;
+  MonthlyVisits: number;
+  UniqueVisitors: number;
+  VisitDuration: number;
+  PagesPerVisit: number;
+  BounceRate: number;
+  PageViews: number;
 }
 
 const lineChartData = [
@@ -23,6 +23,16 @@ const lineChartData = [
   { name: 'Jun', uv: 2390, pv: 3800, amt: 2500 },
   { name: 'Jul', uv: 3490, pv: 4300, amt: 2100 },
 ]
+
+// 工具函数
+const formatNumberInMillions = (num: number) => (num / 1_000_000).toFixed(3) + 'M';
+const formatBounceRate = (rate: number) => (rate * 100).toFixed(2) + '%';
+const formatDuration = (seconds: number) => {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+};
 
 const TrafficOverview: React.FC<TrafficOverviewProps> = ({
   MonthlyVisits,
@@ -43,35 +53,35 @@ const TrafficOverview: React.FC<TrafficOverviewProps> = ({
           <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Traffic Overview</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className='flex justify-start flex-wrap mb-10 mt-2 space-x-8'>
+          <div className='flex justify-start flex-wrap mb-10 mt-2 space-x-6'>
             <DataBox
               spanText="Monthly Visits"
-              paragraphText={MonthlyVisits}
+              paragraphText={formatNumberInMillions(MonthlyVisits)}
               icon={<EyeOpenIcon />}
             />
             <DataBox
               spanText="Unique Visitors"
-              paragraphText={UniqueVisitors}
+              paragraphText={formatNumberInMillions(UniqueVisitors)}
               icon={<PersonIcon />}
             />
             <DataBox
               spanText="Visit Duration"
-              paragraphText={VisitDuration}
+              paragraphText={formatDuration(VisitDuration)}
               icon={<ClockIcon />}
             />
             <DataBox
               spanText="Pages Per Visit"
-              paragraphText={PagesPerVisit}
+              paragraphText={PagesPerVisit.toString()}
               icon={<ReaderIcon />}
             />
             <DataBox
               spanText="Bounce Rate"
-              paragraphText={BounceRate}
+              paragraphText={formatBounceRate(BounceRate)}
               icon={<ExternalLinkIcon />}
             />
             <DataBox
               spanText="Page Views"
-              paragraphText={PageViews}
+              paragraphText={formatNumberInMillions(PageViews)}
               icon={<BarChartIcon />}
             />
           </div>
