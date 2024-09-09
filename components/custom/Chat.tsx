@@ -73,7 +73,11 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
     <div className="flex-1 flex flex-col bg-white rounded-[24px]">
       <ScrollArea className="flex-1">
         <div className="p-4 space-y-4">
-          <Image src={AIInsightsIcon} alt="AIInsights logo" width={150} height={150} className='ml-28' />
+          {/* 固定的 logo 部分 */}
+          <div className="sticky top-0 z-10 bg-white mt-[-4px]">
+            <Image src={AIInsightsIcon} alt="AIInsights logo" width={150} height={150} className='ml-28' />
+          </div>
+
           <div className='rounded-[24px] bg-gray-200 p-4 text-sm'>
             <div>
               Welcome aboard, Superstar! 🚀✨ Your Writing Journey Starts Here! Are you ready to tackle those papers with ease and leave your mark?
@@ -82,25 +86,25 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
           <div className='rounded-[24px] bg-white px-4 py-2 border text-sm'>question1</div>
           <div className='rounded-[24px] bg-white px-4 py-2 border text-sm'>question2</div>
           <div className='rounded-[24px] bg-white px-4 py-2 border text-sm'>question3</div>
+
+          {/* 显示消息 */}
           {/* {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'
-                  }`}
-              >
-                <div
-                  className={`max-w-[70%] p-2 rounded-lg ${message.role === 'user'
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-200 text-gray-800'
-                    }`}
-                >
-                  <p className="break-words">{message.content}</p>
-                </div>
-              </div>
-            ))} */}
+          <div
+            key={index}
+            className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+          >
+            <div
+              className={`max-w-[70%] p-2 rounded-lg ${message.role === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}
+            >
+              <p className="break-words">{message.content}</p>
+            </div>
+          </div>
+        ))} */}
           <div ref={messagesEndRef} />
         </div>
       </ScrollArea>
+
+      {/* 输入框部分 */}
       <div className="p-4 border-t border-gray-200">
         <div className="relative">
           <Textarea
@@ -125,6 +129,7 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
         </div>
       </div>
     </div>
+
   )
 }
 

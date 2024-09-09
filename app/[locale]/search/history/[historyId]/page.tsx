@@ -302,7 +302,10 @@ export default function Component() {
       >
         <div className="h-full overflow-auto">
           <div className="p-4 space-y-4 min-w-[500px]">
-            <div className='text-2xl font-extrabold text-[#5F5E5B] border-b pb-3'>Marketing Strategy</div>
+            <div className='sticky top-0 bg-white z-10 text-xl font-extrabold text-[#5F5E5B] border-b pb-3 mt-[-4px]'>
+              Marketing Strategy
+            </div>
+
             <ProductAnalysis
               ProductUrl='heygen.com'
               ProductSummary='heygen is an innovative video platform that harnesses the power of generative ai to streamline your video creation process.'
@@ -319,9 +322,7 @@ export default function Component() {
               PageViews={trafficData.PageViews}
             />
             <MarketingChannels />
-            <Referrals
-              referralsData={referralsData}
-            />
+            <Referrals referralsData={referralsData} />
             <SearchAnalysis
               dataofbox={dataofbox}
               organic={organic}
@@ -339,5 +340,6 @@ export default function Component() {
       </Resizable>
       <Chat messages={messages} />
     </div>
+
   )
 }
