@@ -289,7 +289,7 @@ export default function Component() {
 
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#f4f4f4] p-4">
+    <div className="flex h-screen overflow-hidden bg-[#ffffff] p-4">
       <Resizable
         defaultSize={{
           width: '70%',

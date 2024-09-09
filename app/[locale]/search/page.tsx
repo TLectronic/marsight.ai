@@ -13,6 +13,7 @@ import React, { useRef, useState } from 'react'
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ArrowRightIcon } from 'lucide-react'
 
 export default function Page({ params: { lng } }: { params: { lng: string } }) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -29,7 +30,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
 
   const makeDialogue = async (event: React.FormEvent) => {
     if (inputRef.current) {
-      console.log(inputRef.current.value); 
+      console.log(inputRef.current.value);
 
       var inputValue = inputRef.current.value;
 
@@ -45,7 +46,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
         setIsSearching(false);
         return;
       }
-      event.preventDefault(); 
+      event.preventDefault();
 
       setIsSearching(true);
       try {
@@ -88,7 +89,14 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
   // 搜索页
   const Search = () => {
     return <>
-      <p className="text-xl ">{t("slogan")}</p>
+      <p className="text-4xl font-semibold text-center">
+        <span className="block">Decipher Any Product's</span>
+        <span className="block">
+          <span className="block">
+            <span className="text-[#4281DB]">Marketing Strategy</span> with Data
+          </span>
+        </span>
+      </p>
       <div className="w-full max-w-screen-md space-y-2">
         <form className="flex space-x-2 relative">
           <LinkIcon className="absolute left-4 top-3" size={16} />
@@ -99,7 +107,9 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
             ref={inputRef} // 通过 ref 访问 input
           />
           {/* <Button type="submit" onClick={() => setIsSearching(true)}>{t("decipher")}</Button> */}
-          <Button type="submit" onClick={makeDialogue}>{t("decipher")}</Button>
+          <Button className="rounded-full " type="submit" onClick={makeDialogue}>
+            <ArrowRightIcon />
+          </Button>
         </form>
       </div>
     </>

@@ -12,9 +12,7 @@ import {
   useAuth,
 } from "@clerk/nextjs";
 import { Button } from "./ui/button";
-
 import { Card } from "./ui/card";
-
 import {
   Accordion,
   AccordionContent,
@@ -26,6 +24,7 @@ import Image from "next/image";
 import logoIcon from "@/public/logo.png";
 import { useTranslations } from "next-intl";
 import axios from "axios";
+
 
 interface Chat {
   chatId: string;
@@ -39,6 +38,14 @@ export default function LeftSidebar() {
 
   // 当前用户所有对话
   const [allChats, setAllChats] = useState<Chat[]>([]);
+
+  const DotIcon = () => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+      </svg>
+    )
+  }
 
   useEffect(() => {
 
@@ -70,12 +77,12 @@ export default function LeftSidebar() {
   return (
     <div
       className={cn(
-        "h-screen flex flex-col justify-between gap-4 bg-[#FFFFFF] relative",
+        "h-screen flex flex-col justify-between gap-4 bg-[#F7F7F5] relative",
         isOpen ? "w-[200px]" : "w-16"
       )}
     >
       {/* LOGO */}
-      <div className="w-full h-16 flex flex-row justify-center items-center text-xl text-blue-500 font-bold">
+      <div className="w-full h-16 flex flex-row justify-center items-center text-xl font-bold">
         {isOpen ? (
           <Image src={logoIcon} alt="logo" className="w-8/12 object-cover" />
         ) : (
@@ -86,10 +93,10 @@ export default function LeftSidebar() {
       </div>
       {/* CONTENT */}
       <div className="flex-1 h-screen overflow-scroll scrollbar-hide">
-        <Button variant={"link"} className="w-full">
+        <Button variant={"link"} className="w-full text-[#8B8A87] font-bold hover:text-[#1D1B17]">
           <Link
             href={`/search`}
-            className="h-6 w-full flex flex-row px-2 items-center  cursor-pointer gap-2"
+            className="h-6 w-full flex flex-row px-2 items-center cursor-pointer gap-2"
           >
             <Search width={16} height={16} className="w-4 h-4" />
             {isOpen && t('search')}
@@ -99,7 +106,7 @@ export default function LeftSidebar() {
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1" className="px-6">
               <AccordionTrigger disabled={!isOpen}>
-                <div className="w-full h-6 flex flex-row items-center gap-2">
+                <div className="w-full h-6 flex flex-row items-center gap-2 font-bold text-[#8B8A87] hover:text-[#1D1B17]">
                   <History width={16} height={16} className="w-4 h-4" />
                   {isOpen && t('library')}
                 </div>
@@ -107,7 +114,7 @@ export default function LeftSidebar() {
               <AccordionContent asChild>
 
                 {allChats.map((chat, index) => (
-                  <Button variant={"link"} className="w-full" key={index}>
+                  <Button variant={"link"} className="w-full text-[#8B8A87] hover:text-[#1D1B17]" key={index}>
                     <Link
                       // href={`/search/history/1`}
                       href={`/search/history/${chat.chatId}`}
@@ -117,16 +124,6 @@ export default function LeftSidebar() {
                     </Link>
                   </Button>
                 ))}
-
-                {/* <Button variant={"link"} className="w-full">
-                  <Link
-                    href={`/search/history/1`}
-                    className="h-6 w-full flex flex-row px-2 items-center cursor-pointer gap-2"
-                  >
-                    查看搜索记录
-                  </Link>
-                </Button> */}
-
               </AccordionContent>
             </AccordionItem>
           </Accordion>

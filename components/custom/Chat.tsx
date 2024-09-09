@@ -6,7 +6,7 @@ import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { Send, PaperclipIcon, Search } from 'lucide-react'
+import { Send, PaperclipIcon, ArrowRightIcon, Search } from 'lucide-react'
 
 interface Message {
   role: string;
@@ -77,12 +77,12 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
           <Image src={AIInsightsIcon} alt="AIInsights logo" width={150} height={150} className='ml-28' />
           <div className='rounded-lg bg-gray-200 p-4'>
             <div>
-              欢迎加入，超级明星！🚀✨ 你的写作之旅从这里开始！你准备好轻松应对那些论文，留下你的印记了吗？
+              Welcome aboard, Superstar! 🚀✨ Your Writing Journey Starts Here! Are you ready to tackle those papers with ease and leave your mark?
             </div>
           </div>
-          <div className='rounded-lg bg-white p-2 border'>预设问题1</div>
-          <div className='rounded-lg bg-white p-2 border'>预设问题2</div>
-          <div className='rounded-lg bg-white p-2 border'>预设问题3</div>
+          <div className='rounded-lg bg-white p-2 border'>question1</div>
+          <div className='rounded-lg bg-white p-2 border'>question2</div>
+          <div className='rounded-lg bg-white p-2 border'>question3</div>
           {/* {messages.map((message, index) => (
               <div
                 key={index}

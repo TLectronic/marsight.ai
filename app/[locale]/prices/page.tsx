@@ -90,7 +90,7 @@ export default function Component() {
       <div className="max-w-7xl mx-auto">
         <h1 className="text-center mb-16 font-bold flex justify-center">
           <Image src={logoIcon} alt="logo" className="w-1/5 mr-4" />
-          <span className="text-3xl text-black align-middle" style={{ fontWeight: 900 }}> Pro</span>
+          <span className="text-lg text-[#17439B] align-middle" style={{ fontWeight: 900 }}> Pro</span>
         </h1>
         <Dialog>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -120,7 +120,7 @@ export default function Component() {
 
                 <DialogTrigger asChild>
                   <Button
-                    className={`w-full py-2 rounded-lg text-sm font-semibold`}
+                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-[#F7F7F5] text-black hover:bg-slate-300`}
                     onClick={handlePucrhase}
                   >
                     {t('start')}
@@ -155,7 +155,7 @@ export default function Component() {
               key={t('popularTitle')}
               className={`bg-white rounded-xl shadow-lg overflow-hidden flex flex-col lg:-mt-4 lg:mb-4 w-64`}
             >
-              <div className="bg-blue-400 text-white text-center py-1 text-sm font-semibold">
+              <div className="bg-[#4281DB] text-white text-center py-1 text-sm font-semibold">
                 Most Popular
               </div>
               <div className="p-4 flex-grow">
@@ -164,7 +164,7 @@ export default function Component() {
                 <div className="text-3xl font-bold mb-3">{'$9'}</div>
                 <DialogTrigger asChild>
                   <Button
-                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-blue-400 hover:bg-blue-500 text-white`}
+                    className={`w-full py-2 rounded-lg text-sm font-semibold text-white`}
                     onClick={handlePucrhase}
                   >
                     {t('start')}
@@ -204,7 +204,7 @@ export default function Component() {
                 <div className="text-3xl font-bold mb-3">{'$1.99'}</div>
                 <DialogTrigger asChild>
                   <Button
-                    className={`w-full py-2 rounded-lg text-sm font-semibold`}
+                    className={`w-full py-2 rounded-lg text-sm font-semibold bg-[#F7F7F5] text-black hover:bg-slate-300`}
                     onClick={handlePucrhase}
                   >
                     {t('start')}
@@ -243,7 +243,7 @@ export default function Component() {
                 <p className="text-gray-600 text-sm mb-3">{t('enterpriseDescription')}</p>
                 <div className="text-3xl font-bold mb-3">{t('letsTalk')}</div>
                 <Button
-                  className={`w-full py-2 rounded-lg text-sm font-semibold`}
+                  className={`w-full py-2 rounded-lg text-sm font-semibold bg-[#F7F7F5] text-black hover:bg-slate-300`}
                 >
                   {t('start')}
                 </Button>

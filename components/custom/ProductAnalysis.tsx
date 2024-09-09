@@ -31,7 +31,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               height={24}
               className="w-32 h-10 -ml-3"
             />
-            <div className="font-normal">{ProductUrl}</div>
+            {/* <div className="font-normal">{ProductUrl}</div> */}
           </div>
           <div className="text-sm mb-6">{ProductSummary}</div>
           <div className='border-black border-2'>
