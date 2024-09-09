@@ -41,8 +41,12 @@ const renderLegend = (props: { payload: any; }) => {
   return (
     <ul>
       {payload.map((entry: { value: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<React.AwaitedReactNode> | null | undefined; color: any; }, index: any) => {
-        const value = pieChartData.find(data => data.name === entry.value)?.value;
-        const percentage = ((value / total) * 100).toFixed(2);
+         // Find the data corresponding to the entry value
+         const data = pieChartData.find(data => data.name === entry.value);
+         // Default to 0 if data is not found
+         const value = data ? data.value : 0;
+         // Calculate the percentage, default to 0 if total is 0
+         const percentage = total > 0 ? ((value / total) * 100).toFixed(2) : '0.00';
         return (
           <li key={`item-${index}`} style={{ marginBottom: '5px' }}>
             <span style={{ color: entry.color }}>{entry.value}</span> : {percentage}%
