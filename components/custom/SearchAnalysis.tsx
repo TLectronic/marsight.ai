@@ -9,6 +9,7 @@ import AIInsightsIcon from "@/public/aiinsights.svg";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { TriangleDownIcon, TriangleRightIcon } from '@radix-ui/react-icons'
 import { CursorArrowIcon, MagnifyingGlassIcon, ReaderIcon, HandIcon } from '@radix-ui/react-icons';
+import { Search } from "lucide-react";
 
 // 最上面的四个盒子的数据
 interface SearchAnalysisProps {
@@ -65,10 +66,13 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
 
   return (
     <>
-      <div className="text-2xl font-extrabold text-blue-700">Search Analysis</div>
+      <div className="text-2xl font-extrabold text-[#5F5E5B] flex">
+        <Search className="mt-1" />
+        <div className="ml-2">Search Analysis</div>
+      </div>
       <Card className="rounded-[24px]">
         <CardContent>
-          <div className="text-xl mb-4 mt-6 font-extrabold">Search Overview</div>
+          <div className="text-xl mb-4 mt-6 font-extrabold text-[#4281DB]">Search Overview</div>
           <div className='flex justify-between flex-wrap space-x-4 mb-4 mt-6'>
             <DataBox
               spanText="No.of Keywords"
@@ -102,10 +106,10 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="organic">
-                    <CardTitle className="font-extrabold text-xl">Organic Traffic</CardTitle>
+                    <CardTitle className="font-extrabold text-xl text-[#4281DB]">Organic Traffic</CardTitle>
                   </SelectItem>
                   <SelectItem value="paid">
-                    <CardTitle className="font-normal text-xl">Paid Traffic</CardTitle>
+                    <CardTitle className="font-extrabold text-xl text-[#4281DB]">Paid Traffic</CardTitle>
                   </SelectItem>
                 </SelectContent>
               </Select>

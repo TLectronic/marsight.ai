@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import heygenIcon from "@/public/heygen.svg";
 import Image from "next/image";
+import { Target } from "lucide-react";
 
 interface ProductAnalysisProps {
   ProductUrl: string;
@@ -20,7 +21,10 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
 }) => {
   return (
     <>
-      <div className="text-2xl font-extrabold text-blue-700">Product Analysis</div>
+      <div className="text-2xl font-extrabold text-[#5F5E5B] flex">
+        <Target className="mt-1" />
+        <div className="ml-2">Product Analysis</div>
+      </div>
       <Card className="rounded-[24px] p-2">
         <CardContent>
           <div className="text-base font-bold mb-2 mt-2 flex items-center">

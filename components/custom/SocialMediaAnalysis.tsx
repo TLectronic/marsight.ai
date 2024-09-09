@@ -7,6 +7,7 @@ import {
 import { DataBox } from '@/components/ui/databox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PersonIcon, Share2Icon, HeartIcon, BellIcon } from '@radix-ui/react-icons';
+import { ChartColumn, Share2 } from "lucide-react";
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -96,11 +97,14 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
 
   return (
     <>
-      <div className='text-2xl font-extrabold text-blue-700'>Social Media Analysis</div>
+      <div className='text-2xl font-extrabold text-[#5F5E5B] flex'>
+        <Share2 className="mt-1" />
+        <div className="ml-2">Social Media Analysis</div>
+      </div>
 
       <Card className="rounded-[24px] p-2 pt-6">
         <CardContent>
-          <CardTitle className="text-xl font-extrabold">Social Distribution</CardTitle>
+          <CardTitle className="text-xl font-extrabold text-[#4281DB]">Social Distribution</CardTitle>
           <div className="flex justify-around">
             {/* DataBox 上部内容 */}
             <DataBox className="mt-16" spanText="Total social visits" paragraphText="45.2K" icon={<PersonIcon />} />
@@ -113,7 +117,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
       </Card>
       <Card className="rounded-[24px] p-2 pt-6">
         <CardContent>
-          <CardTitle className='text-xl font-extrabold'>Social Media Mentions</CardTitle>
+          <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Social Media Mentions</CardTitle>
           <div className="flex justify-between w-full mb-10 mt-10">
             <DataBox
               spanText="Mentions"

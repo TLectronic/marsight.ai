@@ -74,14 +74,14 @@ const Chat: React.FC<ChatProps> = ({ messages: initialMessages }) => {
       <ScrollArea className="flex-1">
         <div className="p-4 space-y-4">
           <Image src={AIInsightsIcon} alt="AIInsights logo" width={150} height={150} className='ml-28' />
-          <div className='rounded-[24px] bg-gray-200 p-4'>
+          <div className='rounded-[24px] bg-gray-200 p-4 text-sm'>
             <div>
               Welcome aboard, Superstar! 🚀✨ Your Writing Journey Starts Here! Are you ready to tackle those papers with ease and leave your mark?
             </div>
           </div>
-          <div className='rounded-[24px] bg-white px-4 py-2 border'>question1</div>
-          <div className='rounded-[24px] bg-white px-4 py-2 border'>question2</div>
-          <div className='rounded-[24px] bg-white px-4 py-2 border'>question3</div>
+          <div className='rounded-[24px] bg-white px-4 py-2 border text-sm'>question1</div>
+          <div className='rounded-[24px] bg-white px-4 py-2 border text-sm'>question2</div>
+          <div className='rounded-[24px] bg-white px-4 py-2 border text-sm'>question3</div>
           {/* {messages.map((message, index) => (
               <div
                 key={index}

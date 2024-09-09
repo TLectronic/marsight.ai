@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import { DataBox } from '@/components/ui/databox'
 import { PersonIcon, Share2Icon, HeartIcon, BellIcon, ClockIcon, ReaderIcon, EyeOpenIcon, BarChartIcon, ExternalLinkIcon } from '@radix-ui/react-icons';
+import { ChartColumn } from "lucide-react";
 
 interface TrafficOverviewProps {
   MonthlyVisits: string;
@@ -33,10 +34,13 @@ const TrafficOverview: React.FC<TrafficOverviewProps> = ({
 }) => {
   return (
     <>
-      <div className="text-2xl font-extrabold text-blue-700">Traffic Analysis</div>
+      <div className="text-2xl font-extrabold text-[#5F5E5B] flex">
+        <ChartColumn className="mt-1" />
+        <div className="ml-2">Traffic Analysis</div>
+      </div>
       <Card className="rounded-[24px] p-2">
         <CardHeader>
-          <CardTitle className='text-xl font-extrabold '>Traffic Overview</CardTitle>
+          <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Traffic Overview</CardTitle>
         </CardHeader>
         <CardContent>
           <div className='flex justify-between flex-wrap mb-10 mt-2'>
