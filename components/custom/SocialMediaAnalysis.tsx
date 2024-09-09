@@ -2,12 +2,11 @@ import React from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   PieChart, Pie, Cell, ResponsiveContainer,
-  LegendProps,
 } from 'recharts';
 import { DataBox } from '@/components/ui/databox';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { PersonIcon, Share2Icon, HeartIcon, BellIcon } from '@radix-ui/react-icons';
-import { ChartColumn, Share2 } from "lucide-react";
+import { Share2 } from "lucide-react";
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -28,38 +27,30 @@ const pieChartData = [
   { name: 'Others', value: 12.5 },
 ];
 
-const pieChartData1 = [
-  { name: 'Branded', value: 80 },
-  { name: 'Non-Branded', value: 20 }
-];
-
 const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#E6E9EC'];
-const COLORS1 = ['#3E74FE', '#A9C8FE'];
 
-interface SocialMediaAnalysisProps {
-  Mentions: string;
-  TotalLikes: string;
-  TotalShares: string;
-}
+const renderLegend = (props: { payload: any; }) => {
+  const { payload } = props;
+  const total = pieChartData.reduce((sum, entry) => sum + entry.value, 0);
 
+  return (
+    <ul>
+      {payload.map((entry: { value: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<React.AwaitedReactNode> | null | undefined; color: any; }, index: any) => {
+        const value = pieChartData.find(data => data.name === entry.value)?.value;
+        const percentage = ((value / total) * 100).toFixed(2);
+        return (
+          <li key={`item-${index}`} style={{ marginBottom: '5px' }}>
+            <span style={{ color: entry.color }}>{entry.value}</span> : {percentage}%
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
 
 const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, TotalLikes, TotalShares }) => {
-
-  const renderLegend = (props: LegendProps) => {
-    const { payload } = props;
-    return (
-      <ul style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
-        {payload?.map((entry, index) => (
-          <li key={`item-${index}`} style={{ color: '#000' }}> {/* 黑色字体 */}
-            <span style={{ marginRight: 10, display: 'inline-block', width: 10, height: 10, backgroundColor: entry.color }} />
-            {entry.value}
-          </li>
-        ))}
-      </ul>
-    );
-  };
   const renderPieChart = () => (
-    <ResponsiveContainer width={300} height={200}>
+    <ResponsiveContainer width={400} height={200}>
       <PieChart>
         <Pie
           data={pieChartData}
@@ -76,7 +67,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
           ))}
         </Pie>
         <Tooltip />
-        <Legend layout="vertical" align="right" verticalAlign="middle" />
+        <Legend content={renderLegend} layout="vertical" align="right" verticalAlign="middle" />
       </PieChart>
     </ResponsiveContainer>
   );
@@ -90,7 +81,6 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
         <Tooltip />
         <Legend />
         <Line type="monotone" dataKey="pv" stroke="#4281DB" strokeWidth={3} />
-        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
       </LineChart>
     </ResponsiveContainer>
   );
@@ -128,44 +118,19 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
               spanText="total number of likes"
               paragraphText={TotalLikes}
               icon={<HeartIcon />}
-
             />
             <DataBox
               spanText="total number of shares"
               paragraphText={TotalShares}
               icon={<Share2Icon />}
-
             />
           </div>
           <div>
             {renderLineChart()}
-            {/* <ResponsiveContainer width={300} height={200}>
-                <PieChart className='ml-4'>
-                  <Pie
-                    data={pieChartData1}
-                    cx="30%"
-                    cy="50%"
-                    labelLine={false}
-                    outerRadius={50}
-                    innerRadius={30}
-                    fill="#8884d8"
-                    dataKey="value"
-                  >
-                    {pieChartData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS1[index % COLORS1.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                  <Legend layout="vertical" align="right" verticalAlign="middle" />
-                </PieChart>
-              </ResponsiveContainer> */}
-
           </div>
         </CardContent>
       </Card>
-
     </>
-
   );
 };
 
