@@ -8,6 +8,11 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { PersonIcon, Share2Icon, HeartIcon, BellIcon } from '@radix-ui/react-icons';
 import { Share2 } from "lucide-react";
 
+interface SocialMediaAnalysisProps {
+  Mentions: string;
+  TotalLikes: string;
+  TotalShares: string;
+}
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
   { name: 'Feb', uv: 3000, pv: 1398, amt: 2210 },
