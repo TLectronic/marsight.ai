@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  PieChart, Pie, Cell, ResponsiveContainer,
+  PieChart, Pie, Cell, ResponsiveContainer, LegendProps
 } from 'recharts';
 import { DataBox } from '@/components/ui/databox';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
@@ -13,6 +13,7 @@ interface SocialMediaAnalysisProps {
   TotalLikes: string;
   TotalShares: string;
 }
+
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
   { name: 'Feb', uv: 3000, pv: 1398, amt: 2210 },
@@ -34,19 +35,18 @@ const pieChartData = [
 
 const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#E6E9EC'];
 
-const renderLegend = (props: { payload: any; }) => {
+const CustomLegend = (props: LegendProps) => {
   const { payload } = props;
+  if (!payload) return null;
+
   const total = pieChartData.reduce((sum, entry) => sum + entry.value, 0);
 
   return (
     <ul>
-      {payload.map((entry: { value: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<React.AwaitedReactNode> | null | undefined; color: any; }, index: any) => {
-         // Find the data corresponding to the entry value
-         const data = pieChartData.find(data => data.name === entry.value);
-         // Default to 0 if data is not found
-         const value = data ? data.value : 0;
-         // Calculate the percentage, default to 0 if total is 0
-         const percentage = total > 0 ? ((value / total) * 100).toFixed(2) : '0.00';
+      {payload.map((entry, index) => {
+        const data = pieChartData.find(data => data.name === entry.value);
+        const value = data ? data.value : 0;
+        const percentage = total > 0 ? ((value / total) * 100).toFixed(2) : '0.00';
         return (
           <li key={`item-${index}`} style={{ marginBottom: '5px' }}>
             <span style={{ color: entry.color }}>{entry.value}</span> : {percentage}%
@@ -76,7 +76,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
           ))}
         </Pie>
         <Tooltip />
-        <Legend content={renderLegend} layout="vertical" align="right" verticalAlign="middle" />
+        <Legend content={CustomLegend as any} layout="vertical" align="right" verticalAlign="middle" />
       </PieChart>
     </ResponsiveContainer>
   );
