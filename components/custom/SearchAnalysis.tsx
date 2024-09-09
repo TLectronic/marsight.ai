@@ -9,6 +9,7 @@ import AIInsightsIcon from "@/public/aiinsights.svg";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { TriangleDownIcon, TriangleRightIcon } from '@radix-ui/react-icons'
 import { CursorArrowIcon, MagnifyingGlassIcon, ReaderIcon, HandIcon } from '@radix-ui/react-icons';
+import { Search } from "lucide-react";
 
 // 最上面的四个盒子的数据
 interface SearchAnalysisProps {
@@ -65,7 +66,10 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
 
   return (
     <>
-      <div className="text-2xl font-extrabold text-[#5F5E5B]">Search Analysis</div>
+      <div className="text-2xl font-extrabold text-[#5F5E5B] flex">
+        <Search className="mt-1" />
+        <div className="ml-2">Search Analysis</div>
+      </div>
       <Card className="rounded-[24px]">
         <CardContent>
           <div className="text-xl mb-4 mt-6 font-extrabold text-[#4281DB]">Search Overview</div>

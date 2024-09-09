@@ -7,6 +7,7 @@ import {
 import { DataBox } from '@/components/ui/databox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PersonIcon, Share2Icon, HeartIcon, BellIcon } from '@radix-ui/react-icons';
+import { ChartColumn, Share2 } from "lucide-react";
 
 const lineChartData = [
   { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
@@ -96,7 +97,10 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ Mentions, Tot
 
   return (
     <>
-      <div className='text-2xl font-extrabold text-[#5F5E5B]'>Social Media Analysis</div>
+      <div className='text-2xl font-extrabold text-[#5F5E5B] flex'>
+        <Share2 className="mt-1" />
+        <div className="ml-2">Social Media Analysis</div>
+      </div>
 
       <Card className="rounded-[24px] p-2 pt-6">
         <CardContent>
