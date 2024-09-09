@@ -15,6 +15,26 @@ import { useParams } from 'next/navigation'
 import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
 
+// 定义 allData 的类型
+interface AllData {
+  Keywords: {
+    all_brand: {
+      keywordsCount: number;
+      OverallClicks: number;
+    };
+  };
+  trafficAndEngagement: {
+    AvgMonthVisits: number;
+  };
+  organic_total: {
+    OverallClicks: number;
+  };
+  paid_total: {
+    OverallClicks: number;
+  };
+}
+
+
 interface ReferralsRow {
   Link: string;
   category: string;
@@ -64,13 +84,6 @@ const referralsData: ReferralsRow[] = [
     Change: '-67.93%'
   },
 ]
-
-const dataofbox = {
-  NoofKeywords: '5968',
-  NoofClicks: '1.190M',
-  OfAllTotalTraffic: '44.56%',
-  OrganicvsPaid: '8 : 2',
-}
 
 const organic = {
   data: [
@@ -264,7 +277,7 @@ export default function Component() {
   const template = 'markSightTest'
   const { getToken, isSignedIn } = useAuth();
   // 当前页面的所有数据
-  const [allData, setAllData] = useState({});
+  const [allData, setAllData] = useState<AllData | null>(null); // Initially null
   // 获得当前页面需要渲染的信息
   const getData = async () => {
     try {
@@ -278,8 +291,8 @@ export default function Component() {
             },
           }
         );
-        console.log("返回的数据:", response);
-        setAllData(response)
+        console.log("返回的数据:", response.data);
+        setAllData(response.data)
       }
     } catch (error) {
       console.error('Failed to get chat:', error);
@@ -290,6 +303,18 @@ export default function Component() {
     getData();
   }, [isSignedIn, historyId])
 
+
+  const dataofbox = {
+    NoofKeywords: allData?.Keywords?.all_brand?.keywordsCount ?? 0,
+    NoofClicks: allData?.Keywords?.all_brand?.OverallClicks ?? 0,
+    OfAllTotalTraffic: allData?.Keywords?.all_brand?.OverallClicks && allData?.trafficAndEngagement?.AvgMonthVisits 
+      ? allData.Keywords.all_brand.OverallClicks / allData.trafficAndEngagement.AvgMonthVisits 
+      : 0,
+    OrganicvsPaid: allData?.organic_total?.OverallClicks && allData?.paid_total?.OverallClicks 
+      ? allData.organic_total.OverallClicks / allData.paid_total.OverallClicks 
+      : 0,
+  };
+  
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#ffffff] p-4">
