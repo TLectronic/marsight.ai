@@ -20,6 +20,39 @@ const messages = [
 ]
 
 export default function Component() {
+  // Traffic Overview 需要的数据类型
+  interface TrafficOverviewProps {
+    MonthlyVisits: number;
+    UniqueVisitors: number;
+    VisitDuration: number;
+    PagesPerVisit: number;
+    BounceRate: number;
+    PageViews: number;
+    DesktopData: {
+      Key: string;
+      Value: number;
+    }[];
+    MobileWebData: {
+      Key: string;
+      Value: number;
+    }[];
+  }
+
+  const [frontTraffic, setFrontTraffic] = useState<TrafficOverviewProps | null>(null);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // 当前页面的chatId
   const { historyId } = useParams()
   // 登录认证内容
@@ -27,6 +60,7 @@ export default function Component() {
   const { getToken, isSignedIn } = useAuth();
   // 当前页面的所有数据
   const [allData, setAllData] = useState(null);
+
   // 获得当前页面需要渲染的信息
   const getData = async () => {
     try {
@@ -41,7 +75,24 @@ export default function Component() {
           }
         );
         console.log("返回的数据:", response.data);
+        // 得到后端的shit
         setAllData(response.data)
+
+        if (allData) {
+          // 开始分割这坨shit
+          setFrontTraffic({
+            MonthlyVisits: allData.report.trafficAndEngagement.total.AvgMonthVisits,
+            UniqueVisitors: allData.report.trafficAndEngagement.total.UniqueUsers,
+            VisitDuration: allData.report.trafficAndEngagement.total.AvgVisitDuration,
+            PagesPerVisit: allData.report.trafficAndEngagement.total.PagesPerVisit,
+            BounceRate: allData.report.trafficAndEngagement.total.BounceRate,
+            PageViews: allData.report.trafficAndEngagement.total.TotalPagesViews,
+            DesktopData: allData.report.trafficAndEngagement.daily.Desktop,
+            MobileWebData: allData.report.trafficAndEngagement.daily.MobileWeb,
+          })
+
+
+        }
       }
     } catch (error) {
       console.error('Failed to get chat:', error);
@@ -51,6 +102,7 @@ export default function Component() {
   useEffect(() => {
     getData();
   }, [isSignedIn, historyId])
+
 
 
   // const dataofbox = {
@@ -84,44 +136,46 @@ export default function Component() {
           <div className="p-4 space-y-4 min-w-[500px]">
 
             <ProductAnalysis
-              ProductSummary={}
-              TargetUsers={}
-              CoreFeatures={}
-              UseCases={}
+              ProductSummary={ }
+              TargetUsers={ }
+              CoreFeatures={ }
+              UseCases={ }
             />
             <TrafficOverview
-              MonthlyVisits={}
-              UniqueVisitors={}
-              VisitDuration={}
-              PagesPerVisit={}
-              BounceRate={}
-              PageViews={}
+              MonthlyVisits={frontTraffic?.MonthlyVisits}
+              UniqueVisitors={frontTraffic?.UniqueVisitors}
+              VisitDuration={frontTraffic?.VisitDuration}
+              PagesPerVisit={frontTraffic?.PagesPerVisit}
+              BounceRate={frontTraffic?.BounceRate}
+              PageViews={frontTraffic?.PageViews}
+              DesktopData={frontTraffic?.DesktopData}
+              MobileWebData={frontTraffic?.MobileWebData}
             />
-            <MarketingChannels 
-            Social={}
-            Direct={}
-            DisplayAds={}
-            Referrals={}
-            Email={}
-            OrganicSearch={}
-            PaidSearch={}
+            <MarketingChannels
+              Social={ }
+              Direct={ }
+              DisplayAds={ }
+              Referrals={ }
+              Email={ }
+              OrganicSearch={ }
+              PaidSearch={ }
             />
-            <Referrals referralsData={} />
+            <Referrals referralsData={ } />
             <SearchAnalysis
-              dataofbox={}
-              organic={}
-              paid={}
+              dataofbox={ }
+              organic={ }
+              paid={ }
             />
             <SocialMediaAnalysis
-            TotalSocialVisits={}
-            Mentions={}
-            TotalLikes={}
-            TotalShares={}
-            LineChartData={}
-            PieChartData={}
+              TotalSocialVisits={ }
+              Mentions={ }
+              TotalLikes={ }
+              TotalShares={ }
+              LineChartData={ }
+              PieChartData={ }
             />
-            <Mentions mentions={} mentionsFrom={} />
-            <Influencers influencers={} />
+            <Mentions mentions={ } mentionsFrom={ } />
+            <Influencers influencers={ } />
           </div>
         </div>
       </Resizable>
