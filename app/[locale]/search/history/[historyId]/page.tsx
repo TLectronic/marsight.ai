@@ -53,6 +53,7 @@ interface PaidTrafficData {
 
 
 const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps | null>(null);
+
 const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
 const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
 
@@ -137,15 +138,63 @@ export default function Component() {
             Organic: allData.report.organic_total.OverallClicks,
             Paid: allData.report.paid_total.OverallClicks,
           }),
-          setOrganicTrafficData({
+            // 更新 Organic Traffic Data
+            setOrganicTrafficData({
+              data: [
+                {
+                  KeywordClass: 'Branded Keywords',
+                  data: data.Keywords.organic_brand.Records.map((item: any) => ({
+                    Keywords: item.Keyword,
+                    Clicks: item.Clicks,
+                    Traffic: item.Share,
+                    ClicksChange: item.ClicksChange,
+                    ChangeVolume: item.kwVolume,
+                    Changeofvolume: item.VolumeChange,
+                  })),
+                },
+                {
+                  KeywordClass: 'Non-Branded Keywords',
+                  data: data.Keywords.organic_nonbrand.Records.map((item: any) => ({
+                    Keywords: item.Keyword,
+                    Clicks: item.Clicks,
+                    Traffic: item.Share,
+                    ClicksChange: item.ClicksChange,
+                    ChangeVolume: item.kwVolume,
+                    Changeofvolume: item.VolumeChange,
+                  })),
+                },
+              ],
+            });
 
-          }),
+          // 更新 Paid Traffic Data
           setPaidTrafficData({
-            
-          })
-
+            data: [
+              {
+                KeywordClass: 'Branded Keywords',
+                data: data.Keywords.paid_brand.Records.map((item: any) => ({
+                  Keywords: item.Keyword,
+                  Clicks: item.Clicks,
+                  Traffic: item.Share,
+                  ClicksChange: item.ClicksChange,
+                  ChangeVolume: item.kwVolume,
+                  Changeofvolume: item.VolumeChange,
+                })),
+              },
+              {
+                KeywordClass: 'Non-Branded Keywords',
+                data: data.Keywords.paid_nonbrand.Records.map((item: any) => ({
+                  Keywords: item.Keyword,
+                  Clicks: item.Clicks,
+                  Traffic: item.Share,
+                  ClicksChange: item.ClicksChange,
+                  ChangeVolume: item.kwVolume,
+                  Changeofvolume: item.VolumeChange,
+                })),
+              },
+            ],
+          });
         }
-        
+
       }
     } catch (error) {
       console.error('Failed to get chat:', error);
@@ -203,8 +252,8 @@ export default function Component() {
             <Referrals referralsData={ } />
             <SearchAnalysis
               dataofbox={SearchAnalysisData}
-              organic={ }
-              paid={ }
+              organic={organicTrafficData }
+              paid={paidTrafficData }
             />
             <SocialMediaAnalysis
               TotalSocialVisits={ }
