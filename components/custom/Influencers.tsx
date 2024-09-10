@@ -6,25 +6,22 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
-import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
-
-interface Influencer {
-    id: number;
-    name: string;
-    profileImage: string | null;
-    fallbackText: string;
-    siteIcon: React.ReactNode;
-    mentions: number;
-    followers: number;
-}
 
 interface InfluencersProps {
-    influencers: Influencer[];
+    influencers: {
+        id: string; // 作者ID
+        name: string; // 作者名字
+        profileImage: string; // 作者头像URL
+        siteIcon: string; // 网站图标
+        siteUrl: string; // 网站要跳转到的地方
+        mentions: string; // 提及数
+        followers: string; // 粉丝数
+    }[];
 }
 
 const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
-    const tableHeader = ['', 'Profile Name','Site', 'Mentions', 'Followers'];
 
+    const tableHeader = ['', 'Profile Name', 'Site', 'Mentions', 'Followers'];
     return (
         <>
             <Card className="rounded-[24px] p-2">
@@ -71,13 +68,17 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
                                                 />
                                             ) : (
                                                 <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
-                                                    {influencer.fallbackText}
+                                                    Fail
                                                 </Avatar.Fallback>
                                             )}
                                         </Avatar.Root>
                                         <span className="text-[15px] font-medium">{influencer.name}</span>
                                     </TableCell>
-                                    <TableCell>{influencer.siteIcon}</TableCell>
+                                    <TableCell>
+                                        <Link href={influencer.siteUrl}>
+                                            <Image src={influencer.siteIcon} alt="site icon" width={150} height={150} />
+                                        </Link>
+                                    </TableCell>
                                     <TableCell>{influencer.mentions}</TableCell>
                                     <TableCell>{influencer.followers}</TableCell>
                                 </TableRow>
