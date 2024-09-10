@@ -69,7 +69,7 @@ const referralsData: ReferralsRow[] = [
 
 const dataofbox = {
   NoofKeywords: 5968,
-  NoofClicks: 1190000000,
+  NoofClicks: 1190000,
   OfAllTotalTraffic: 456,
   AvgMonthVisits: 550,
   Organic: 8,
@@ -298,34 +298,34 @@ const mentionsFrom = [
   },
 ];
 
-
+// Influencers 的数据
 const Influencer = [
   {
-    id: 1,
+    id: '1',
+    profileImage: "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
     name: 'Think Media',
-    profileImage: null,
-    fallbackText: 'TM',
-    siteIcon: <TwitterLogoIcon />,
-    mentions: 1,
-    followers: 3030000
+    siteIcon: 'https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png',
+    siteUrl: 'https://space.bilibili.com/3493093607213343',
+    mentions: '1',
+    followers: '3030000'
   },
   {
-    id: 2,
-    name: 'Private Label',
+    id: '2',
     profileImage: 'https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80',
-    fallbackText: 'JD',
-    siteIcon: <TwitterLogoIcon />,
-    mentions: 1,
-    followers: 2750000
+    name: 'Private Label',
+    siteIcon: 'https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png',
+    siteUrl: 'https://space.bilibili.com/396388451?spm_id_from=333.337.0.0',
+    mentions: '1',
+    followers: '2750000'
   },
   {
-    id: 3,
-    name: 'Akalanka Ekanayake',
+    id: '3',
     profileImage: 'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80',
-    fallbackText: 'CT',
-    siteIcon: <GitHubLogoIcon />,
-    mentions: 1,
-    followers: 1880000
+    name: 'Akalanka Ekanayake',
+    siteIcon: 'https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png',
+    siteUrl: 'https://space.bilibili.com/502500883?spm_id_from=333.999.0.0',
+    mentions: '1',
+    followers: '1880000'
   }
 ];
 

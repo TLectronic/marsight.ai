@@ -6,16 +6,15 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
-import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 
 interface Influencer {
-    id: number;
-    name: string;
-    profileImage: string | null;
-    fallbackText: string;
-    siteIcon: React.ReactNode;
-    mentions: number;
-    followers: number;
+    id: string; // 作者ID
+    profileImage: string; //作者头像
+    name: string; // 作者名字
+    siteIcon: string; // 要跳转的网站图标URL
+    siteUrl: string; // 要跳转的网站URL
+    mentions: string; // 提及次数
+    followers: string; // 粉丝数
 }
 
 interface InfluencersProps {
@@ -23,7 +22,7 @@ interface InfluencersProps {
 }
 
 const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
-    const tableHeader = ['', 'Profile Name','Site', 'Mentions', 'Followers'];
+    const tableHeader = ['', 'Profile Name', 'Site', 'Mentions', 'Followers'];
 
     return (
         <>
@@ -57,6 +56,7 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
                                 ))}
                             </TableRow>
                         </TableHeader>
+
                         <TableBody>
                             {influencers.map(influencer => (
                                 <TableRow key={influencer.id}>
@@ -71,13 +71,30 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
                                                 />
                                             ) : (
                                                 <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
-                                                    {influencer.fallbackText}
+                                                    Fail
                                                 </Avatar.Fallback>
                                             )}
                                         </Avatar.Root>
                                         <span className="text-[15px] font-medium">{influencer.name}</span>
                                     </TableCell>
-                                    <TableCell>{influencer.siteIcon}</TableCell>
+                                    <TableCell>
+                                        <Link href={influencer.siteUrl}>
+                                            <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                                                {influencer.siteIcon ? (
+                                                    <Avatar.Image
+                                                        className="h-full w-full rounded-[inherit] object-cover"
+                                                        src={influencer.siteIcon}
+                                                        alt={influencer.siteUrl}
+                                                    />
+                                                ) : (
+                                                    <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
+                                                        Fail
+                                                    </Avatar.Fallback>
+                                                )}
+                                            </Avatar.Root>
+                                            {/* <Image src={influencer.siteIcon} alt={influencer.siteUrl} width={100} height={100} /> */}
+                                        </Link>
+                                    </TableCell>
                                     <TableCell>{influencer.mentions}</TableCell>
                                     <TableCell>{influencer.followers}</TableCell>
                                 </TableRow>
