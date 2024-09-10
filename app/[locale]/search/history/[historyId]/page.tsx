@@ -50,7 +50,16 @@ interface PaidTrafficData {
   data: DataGroup[];
 }
 
-
+// MarketingChannels 需要的数据类型
+interface MarketingChannelsProps {
+  Social: number;
+  Direct: number;
+  DisplayAds: number;
+  Referrals: number;
+  Email: number;
+  OrganicSearch: number;
+  PaidSearch: number;
+}
 
 const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps | null>(null);
 
@@ -78,6 +87,7 @@ export default function Component() {
   }
 
   const [frontTraffic, setFrontTraffic] = useState<TrafficOverviewProps | null>(null);
+  const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
 
 
 
@@ -143,7 +153,7 @@ export default function Component() {
               data: [
                 {
                   KeywordClass: 'Branded Keywords',
-                  data: data.Keywords.organic_brand.Records.map((item: any) => ({
+                  data: allData.report.Keywords.organic_brand.Records.map((item: any) => ({
                     Keywords: item.Keyword,
                     Clicks: item.Clicks,
                     Traffic: item.Share,
@@ -154,7 +164,7 @@ export default function Component() {
                 },
                 {
                   KeywordClass: 'Non-Branded Keywords',
-                  data: data.Keywords.organic_nonbrand.Records.map((item: any) => ({
+                  data: allData.report.Keywords.organic_nonbrand.Records.map((item: any) => ({
                     Keywords: item.Keyword,
                     Clicks: item.Clicks,
                     Traffic: item.Share,
@@ -171,7 +181,7 @@ export default function Component() {
             data: [
               {
                 KeywordClass: 'Branded Keywords',
-                data: data.Keywords.paid_brand.Records.map((item: any) => ({
+                data: allData.report.Keywords.paid_brand.Records.map((item: any) => ({
                   Keywords: item.Keyword,
                   Clicks: item.Clicks,
                   Traffic: item.Share,
@@ -182,7 +192,7 @@ export default function Component() {
               },
               {
                 KeywordClass: 'Non-Branded Keywords',
-                data: data.Keywords.paid_nonbrand.Records.map((item: any) => ({
+                data: allData.report.Keywords.paid_nonbrand.Records.map((item: any) => ({
                   Keywords: item.Keyword,
                   Clicks: item.Clicks,
                   Traffic: item.Share,
@@ -193,6 +203,16 @@ export default function Component() {
               },
             ],
           });
+          setFrontMarketingChannels({
+            Social: allData.report.marketingChannels.Social,
+            Direct: allData.report.marketingChannels.Direct,
+            DisplayAds: allData.report.marketingChannels.DisplayAds,
+            Referrals: allData.report.marketingChannels.Referrals,
+            Email: allData.report.marketingChannels.Email,
+            OrganicSearch: allData.report.marketingChannels.OrganicSearch,
+            PaidSearch: allData.report.marketingChannels.PaidSearch,
+          });
+
         }
 
       }
@@ -241,19 +261,19 @@ export default function Component() {
               MobileWebData={frontTraffic?.MobileWebData}
             />
             <MarketingChannels
-              Social={ }
-              Direct={ }
-              DisplayAds={ }
-              Referrals={ }
-              Email={ }
-              OrganicSearch={ }
-              PaidSearch={ }
+              Social={frontMarketingChannels?.Social}
+              Direct={frontMarketingChannels?.Direct}
+              DisplayAds={frontMarketingChannels?.DisplayAds}
+              Referrals={frontMarketingChannels?.Referrals}
+              Email={frontMarketingChannels?.Email}
+              OrganicSearch={frontMarketingChannels?.OrganicSearch}
+              PaidSearch={frontMarketingChannels?.PaidSearch}
             />
             <Referrals referralsData={ } />
             <SearchAnalysis
               dataofbox={SearchAnalysisData}
-              organic={organicTrafficData }
-              paid={paidTrafficData }
+              organic={organicTrafficData}
+              paid={paidTrafficData}
             />
             <SocialMediaAnalysis
               TotalSocialVisits={ }
