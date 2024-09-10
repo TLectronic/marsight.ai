@@ -5,7 +5,6 @@ import Image from "next/image";
 import { Target } from "lucide-react";
 
 interface ProductAnalysisProps {
-  ProductUrl: string;
   ProductSummary: string;
   TargetUsers: string[];
   CoreFeatures: string[];
@@ -13,7 +12,6 @@ interface ProductAnalysisProps {
 }
 
 const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
-  ProductUrl,
   ProductSummary,
   TargetUsers,
   CoreFeatures,
@@ -35,7 +33,6 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               height={24}
               className="w-32 mb-2 mt-2"
             />
-            {/* <div className="font-normal">{ProductUrl}</div> */}
           </div>
           <div className="text-sm leading-relaxed mt-2 mb-2">{ProductSummary}</div>
           <div className='flex justify-between text-xl space-x-4'>

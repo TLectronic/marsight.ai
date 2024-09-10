@@ -314,15 +314,15 @@ export default function Component() {
   //     ? `${Math.round(allData.organic_total.OverallClicks / (allData.organic_total.OverallClicks + allData.paid_total.OverallClicks) * 10)}:${Math.round(allData.paid_total.OverallClicks / (allData.organic_total.OverallClicks + allData.paid_total.OverallClicks) * 10)}`
   //     : '0:0',
   // };
-  
+
   const dataofbox = {
     NoofKeywords: 5968,
     NoofClicks: 1190000,
     MonthlyVisits: 4560000,
     Organic: 8,
-    Paid:2,
+    Paid: 2,
   }
-  
+
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#ffffff] p-4">
@@ -343,7 +343,6 @@ export default function Component() {
           <div className="p-4 space-y-4 min-w-[500px]">
 
             <ProductAnalysis
-              ProductUrl='heygen.com'
               ProductSummary='heygen is an innovative video platform that harnesses the power of generative ai to streamline your video creation process.'
               TargetUsers={["Businesses of all sizes", "Marketers", "Sales teams"]}
               CoreFeatures={["Text-to-Video Conversion", "100+ Customizable Avatars", "300+ Voices in 40+ Languages"]}

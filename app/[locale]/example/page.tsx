@@ -16,10 +16,16 @@ import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
 import { Value } from '@radix-ui/react-select'
 
+// Product Analysis 数据
+const ProductAnalysisData = {
+  ProductSummary: 'heygen is an innovative video platform that harnesses the power of generative ai to streamline your video creation process.',
+  TargetUsers: ['Businesses of all sizes', 'Marketers', 'Sales teams'],
+  CoreFeatures: ['Text-to-Video Conversion', '100+ Customizable Avatars', '300+ Voices in 40+ Languages'],
+  UseCases: ['Marketing Campaigns', 'Product Demonstrations', 'Social Media Content'],
+}
 
-
-// 流量总览 数据
-const trafficData = {
+// Traffic Overview 数据
+const TrafficOverviewData = {
   MonthlyVisits: 2672000,
   UniqueVisitors: 1135000,
   VisitDuration: 287,
@@ -28,48 +34,7 @@ const trafficData = {
   PageViews: 11930000,
 };
 
-// 社交媒体提及 数据
-const smMentions = {
-  TotalSocialVisits: 45200,
-  Mentions: 3974,
-  TotalLikes: 111,
-  TotalShares: 222,
-};
-
-// 博主表格内数据
-const referralsData = [
-  {
-    Link: 'Producthunt.com',
-    category: 'Tech News',
-    TrafficShare: 0.1777,
-    Traffic: 15400,
-    Change: 0.2323,
-  },
-  {
-    Link: 'canva.com',
-    category: 'Design',
-    TrafficShare: 0.1777,
-    Traffic: 15400,
-    Change: 0.2282,
-  },
-  {
-    Link: 'g2.com',
-    category: 'Tech News',
-    TrafficShare: 0.1777,
-    Traffic: 15400,
-    Change: -0.6793,
-  },
-]
-
-  
-const dataofbox = {
-  NoofKeywords: 5968,
-  NoofClicks: 1190000,
-  MonthlyVisits: 4560000,
-  Organic: 8,
-  Paid:2,
-}
-
+// Traffic Overview 中 desktop 数据
 const desktop = [
   {
     Key: 'Monday',
@@ -101,6 +66,7 @@ const desktop = [
   },
 ];
 
+// Traffic Overview 中 mobile 数据
 const mobileWeb = [
   {
     Key: 'Monday',
@@ -132,7 +98,8 @@ const mobileWeb = [
   },
 ];
 
-const marketingChannelsData = {
+// Marketing Channels 数据
+const MarketingChannelsData = {
   Social: 7.28,
   Direct: 44.36,
   DisplayAds: 0.0,
@@ -142,6 +109,41 @@ const marketingChannelsData = {
   PaidSearch: 7.33,
 }
 
+// Referrals 数据
+const ReferralsData = [
+  {
+    Link: 'Producthunt.com',
+    category: 'Tech News',
+    TrafficShare: 0.1777,
+    Traffic: 15400,
+    Change: 0.2323,
+  },
+  {
+    Link: 'canva.com',
+    category: 'Design',
+    TrafficShare: 0.1777,
+    Traffic: 15400,
+    Change: 0.2282,
+  },
+  {
+    Link: 'g2.com',
+    category: 'Tech News',
+    TrafficShare: 0.1777,
+    Traffic: 15400,
+    Change: -0.6793,
+  },
+]
+
+// Search Analysis 中的 Search Overview的数据
+const SearchOverviewData = {
+  NoofKeywords: 5968,
+  NoofClicks: 1190000,
+  MonthlyVisits: 4560000,
+  Organic: 8,
+  Paid: 2,
+}
+
+// Organic Traffic 数据
 const organic = {
   data: [
     {
@@ -197,6 +199,7 @@ const organic = {
   ]
 }
 
+// Paid Traffic 数据
 const paid = {
   data: [
     {
@@ -251,6 +254,17 @@ const paid = {
     },
   ]
 }
+
+// Social Media Analysis 中四个盒子的数据
+const SocialMediaAnalysisData = {
+  TotalSocialVisits: 45200,
+  Mentions: 3974,
+  TotalLikes: 111,
+  TotalShares: 222,
+};
+
+
+
 
 // 最火爆的提及 数据
 const mentions = [
@@ -380,42 +394,41 @@ export default function Component() {
           <div className="p-4 space-y-4 min-w-[500px]">
 
             <ProductAnalysis
-              ProductUrl='heygen.com'
-              ProductSummary='heygen is an innovative video platform that harnesses the power of generative ai to streamline your video creation process.'
-              TargetUsers={["Businesses of all sizes", "Marketers", "Sales teams"]}
-              CoreFeatures={["Text-to-Video Conversion", "100+ Customizable Avatars", "300+ Voices in 40+ Languages"]}
-              UseCases={["Marketing Campaigns", "Product Demonstrations", "Social Media Content"]}
+              ProductSummary={ProductAnalysisData.ProductSummary}
+              TargetUsers={ProductAnalysisData.TargetUsers}
+              CoreFeatures={ProductAnalysisData.CoreFeatures}
+              UseCases={ProductAnalysisData.UseCases}
             />
             <TrafficOverview
-              MonthlyVisits={trafficData.MonthlyVisits}
-              UniqueVisitors={trafficData.UniqueVisitors}
-              VisitDuration={trafficData.VisitDuration}
-              PagesPerVisit={trafficData.PagesPerVisit}
-              BounceRate={trafficData.BounceRate}
-              PageViews={trafficData.PageViews}
+              MonthlyVisits={TrafficOverviewData.MonthlyVisits}
+              UniqueVisitors={TrafficOverviewData.UniqueVisitors}
+              VisitDuration={TrafficOverviewData.VisitDuration}
+              PagesPerVisit={TrafficOverviewData.PagesPerVisit}
+              BounceRate={TrafficOverviewData.BounceRate}
+              PageViews={TrafficOverviewData.PageViews}
               DesktopData={desktop}
               MobileWebData={mobileWeb}
             />
             <MarketingChannels
-              Social={marketingChannelsData.Social}
-              Direct={marketingChannelsData.Direct}
-              DisplayAds={marketingChannelsData.DisplayAds}
-              Referrals={marketingChannelsData.Referrals}
-              Email={marketingChannelsData.Email}
-              OrganicSearch={marketingChannelsData.OrganicSearch}
-              PaidSearch={marketingChannelsData.PaidSearch}
+              Social={MarketingChannelsData.Social}
+              Direct={MarketingChannelsData.Direct}
+              DisplayAds={MarketingChannelsData.DisplayAds}
+              Referrals={MarketingChannelsData.Referrals}
+              Email={MarketingChannelsData.Email}
+              OrganicSearch={MarketingChannelsData.OrganicSearch}
+              PaidSearch={MarketingChannelsData.PaidSearch}
             />
-            <Referrals referralsData={referralsData} />
+            <Referrals referralsData={ReferralsData} />
             <SearchAnalysis
-              dataofbox={dataofbox}
+              dataofbox={SearchOverviewData}
               organic={organic}
               paid={paid}
             />
             <SocialMediaAnalysis
-              TotalSocialVisits={smMentions.TotalSocialVisits}
-              Mentions={smMentions.Mentions}
-              TotalLikes={smMentions.TotalLikes}
-              TotalShares={smMentions.TotalShares}
+              TotalSocialVisits={SocialMediaAnalysisData.TotalSocialVisits}
+              Mentions={SocialMediaAnalysisData.Mentions}
+              TotalLikes={SocialMediaAnalysisData.TotalLikes}
+              TotalShares={SocialMediaAnalysisData.TotalShares}
             />
             <Mentions mentions={mentions} mentionsFrom={mentionsFrom} />
             <Influencers influencers={Influencer} />
