@@ -13,53 +13,43 @@ interface SocialMediaAnalysisProps {
   Mentions: number;
   TotalLikes: number;
   TotalShares: number;
+  // 折线图数据
+  LineChartData: {
+    date_from: string;
+    date_to: string;
+    results_nb: number;
+  }[];
+  // 饼状图数据
+  PieChartData: {
+    name: string;
+    value: number;
+  }[];
 }
 
-const lineChartData = [
-  { date_from: '2024-01-01', date_to: '2024-01-31', results_nb: 2400 },
-  { date_from: '2024-02-01', date_to: '2024-02-28', results_nb: 1398 },
-  { date_from: '2024-03-01', date_to: '2024-03-31', results_nb: 9800 },
-  { date_from: '2024-04-01', date_to: '2024-04-30', results_nb: 3908 },
-  { date_from: '2024-05-01', date_to: '2024-05-31', results_nb: 4800 },
-  { date_from: '2024-06-01', date_to: '2024-06-30', results_nb: 3800 },
-  { date_from: '2024-07-01', date_to: '2024-07-31', results_nb: 4300 },
-];
+// const lineChartData = [
+//   { date_from: '2024-01-01', date_to: '2024-01-31', results_nb: 2400 },
+//   { date_from: '2024-02-01', date_to: '2024-02-28', results_nb: 1398 },
+//   { date_from: '2024-03-01', date_to: '2024-03-31', results_nb: 9800 },
+//   { date_from: '2024-04-01', date_to: '2024-04-30', results_nb: 3908 },
+//   { date_from: '2024-05-01', date_to: '2024-05-31', results_nb: 4800 },
+//   { date_from: '2024-06-01', date_to: '2024-06-30', results_nb: 3800 },
+//   { date_from: '2024-07-01', date_to: '2024-07-31', results_nb: 4300 },
+// ];
 
 
-const pieChartData = [
-  { name: 'Youtube', value: 62.6 },
-  { name: 'Instagram', value: 8.76 },
-  { name: 'Facebook', value: 6.57 },
-  { name: 'WhatsApp Webapp', value: 6.3 },
-  { name: 'VKontakte', value: 3.27 },
-  { name: 'Others', value: 12.5 },
-];
+// const pieChartData = [
+//   { name: 'Youtube', value: 62.6 },
+//   { name: 'Instagram', value: 8.76 },
+//   { name: 'Facebook', value: 6.57 },
+//   { name: 'WhatsApp Webapp', value: 6.3 },
+//   { name: 'VKontakte', value: 3.27 },
+//   { name: 'Others', value: 12.5 },
+// ];
 
 const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#E6E9EC'];
 
-const CustomLegend = (props: LegendProps) => {
-  const { payload } = props;
-  if (!payload) return null;
-
-  const total = pieChartData.reduce((sum, entry) => sum + entry.value, 0);
-
-  return (
-    <ul>
-      {payload.map((entry, index) => {
-        const data = pieChartData.find(data => data.name === entry.value);
-        const value = data ? data.value : 0;
-        const percentage = total > 0 ? ((value / total) * 100).toFixed(2) : '0.00';
-        return (
-          <li key={`item-${index}`} style={{ marginBottom: '5px' }}>
-            <span style={{ color: entry.color }}>{entry.value}</span> : {percentage}%
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
-
-const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVisits, Mentions, TotalLikes, TotalShares }) => {
+const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVisits, Mentions, TotalLikes, TotalShares, LineChartData, PieChartData }) => {
+  
   const formatNumber = (num: number): string => {
     if (num >= 1000000) {
       return (num / 1000000).toFixed(1) + 'M'; // 超过百万显示为M
@@ -69,12 +59,33 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
     return num.toString(); // 小于1000则正常显示
   };
 
+  const CustomLegend = (props: LegendProps) => {
+    const { payload } = props;
+    if (!payload) return null;
+
+    const total = PieChartData.reduce((sum, entry) => sum + entry.value, 0);
+
+    return (
+      <ul>
+        {payload.map((entry, index) => {
+          const data = PieChartData.find(data => data.name === entry.value);
+          const value = data ? data.value : 0;
+          const percentage = total > 0 ? ((value / total) * 100).toFixed(2) : '0.00';
+          return (
+            <li key={`item-${index}`} style={{ marginBottom: '5px' }}>
+              <span style={{ color: entry.color }}>{entry.value}</span> : {percentage}%
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
 
   const renderPieChart = () => (
     <ResponsiveContainer width={400} height={200}>
       <PieChart>
         <Pie
-          data={pieChartData}
+          data={PieChartData}
           cx="40%"
           cy="50%"
           labelLine={false}
@@ -83,7 +94,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
           fill="#8884d8"
           dataKey="value"
         >
-          {pieChartData.map((entry, index) => (
+          {PieChartData.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
@@ -92,7 +103,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
       </PieChart>
     </ResponsiveContainer>
   );
-  const formattedLineChartData = lineChartData.map((entry) => ({
+  const formattedLineChartData = LineChartData.map((entry) => ({
     name: `${entry.date_from} - ${entry.date_to}`,
     number: entry.results_nb,
   }));
@@ -111,8 +122,6 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
     </ResponsiveContainer>
   );
   
-  
-
   return (
     <>
       <div className='text-2xl font-extrabold text-[#5F5E5B] flex'>

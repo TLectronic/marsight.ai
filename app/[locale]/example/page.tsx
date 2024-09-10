@@ -134,6 +134,28 @@ const ReferralsData = [
   },
 ]
 
+// Social Media Analysis 中的折线图数据
+const lineChartData = [
+  { date_from: '2024-01-01', date_to: '2024-01-31', results_nb: 2400 },
+  { date_from: '2024-02-01', date_to: '2024-02-28', results_nb: 1398 },
+  { date_from: '2024-03-01', date_to: '2024-03-31', results_nb: 9800 },
+  { date_from: '2024-04-01', date_to: '2024-04-30', results_nb: 3908 },
+  { date_from: '2024-05-01', date_to: '2024-05-31', results_nb: 4800 },
+  { date_from: '2024-06-01', date_to: '2024-06-30', results_nb: 3800 },
+  { date_from: '2024-07-01', date_to: '2024-07-31', results_nb: 4300 },
+];
+
+// Social Media Analysis 中的饼状图数据
+const pieChartData = [
+  { name: 'Youtube', value: 62.6 },
+  { name: 'Instagram', value: 8.76 },
+  { name: 'Facebook', value: 6.57 },
+  { name: 'WhatsApp Webapp', value: 6.3 },
+  { name: 'VKontakte', value: 3.27 },
+  { name: 'Others', value: 12.5 },
+];
+
+
 // Search Analysis 中的 Search Overview的数据
 const SearchOverviewData = {
   NoofKeywords: 5968,
@@ -141,6 +163,8 @@ const SearchOverviewData = {
   MonthlyVisits: 4560000,
   Organic: 8,
   Paid: 2,
+  LineChartData: lineChartData,
+  PieChartData: pieChartData,
 }
 
 // Organic Traffic 数据
@@ -262,6 +286,8 @@ const SocialMediaAnalysisData = {
   TotalLikes: 111,
   TotalShares: 222,
 };
+
+
 
 
 
@@ -429,6 +455,8 @@ export default function Component() {
               Mentions={SocialMediaAnalysisData.Mentions}
               TotalLikes={SocialMediaAnalysisData.TotalLikes}
               TotalShares={SocialMediaAnalysisData.TotalShares}
+              LineChartData={SearchOverviewData.LineChartData}
+              PieChartData={SearchOverviewData.PieChartData}
             />
             <Mentions mentions={mentions} mentionsFrom={mentionsFrom} />
             <Influencers influencers={Influencer} />
