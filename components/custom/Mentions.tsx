@@ -6,7 +6,8 @@ import { MentionBox } from '@/components/ui/mention-box';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 import Image from 'next/image';
 import AIInsightsIcon from '@/public/aiinsights.svg';
-import { HeartIcon, Share1Icon, ImageIcon } from '@radix-ui/react-icons';
+import { HeartIcon, Share1Icon, ChatBubbleIcon } from '@radix-ui/react-icons';
+
 
 
 interface Mention {
@@ -79,7 +80,7 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
                       <Share1Icon className="mr-1" /> {mention.shares_count} Shares
                     </span>
                     <span className="inline-flex items-center">
-                      <ImageIcon className="mr-1" /> {mention.comments_count} Comments
+                      <ChatBubbleIcon className="mr-1" /> {mention.comments_count} Comments
                     </span>
                   </>
                 }
