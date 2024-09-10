@@ -10,29 +10,10 @@ import { MarketingChannels } from '@/components/custom/MarketingChannels'
 import { Referrals } from '@/components/custom/Referrals'
 import { SearchAnalysis } from '@/components/custom/SearchAnalysis'
 import { Chat } from '@/components/custom/Chat';
-import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
 import { useParams } from 'next/navigation'
 import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
 
-// 定义 allData 的类型
-interface AllData {
-  Keywords: {
-    all_brand: {
-      keywordsCount: number;
-      OverallClicks: number;
-    };
-  };
-  trafficAndEngagement: {
-    AvgMonthVisits: number;
-  };
-  organic_total: {
-    OverallClicks: number;
-  };
-  paid_total: {
-    OverallClicks: number;
-  };
-}
 
 const messages = [
   { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' },
@@ -45,7 +26,7 @@ export default function Component() {
   const template = 'markSightTest'
   const { getToken, isSignedIn } = useAuth();
   // 当前页面的所有数据
-  const [allData, setAllData] = useState<AllData | null>(null); // Initially null
+  const [allData, setAllData] = useState(null);
   // 获得当前页面需要渲染的信息
   const getData = async () => {
     try {
