@@ -6,6 +6,8 @@ import { MentionBox } from '@/components/ui/mention-box';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 import Image from 'next/image';
 import AIInsightsIcon from '@/public/aiinsights.svg';
+import { HeartIcon, Share1Icon, ImageIcon } from '@radix-ui/react-icons';
+
 
 interface Mention {
   id: string;
@@ -18,7 +20,7 @@ interface Mention {
   author: string;
   author_avatar_url: string;
   author_url: string;
-  importance_label:string;
+  importance_label: string;
 }
 
 interface MentionsProps {
@@ -67,11 +69,24 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
                 fallbackText={mention.author}
                 title={mention.title}
                 date={mention.created_date}
-                link={mention.url+`Likes: ${mention.likes_count}, Shares: ${mention.shares_count}, Comments: ${mention.comments_count}`}
+                link={mention.url}
+                picture={
+                  <>
+                    <span className="inline-flex items-center mr-4">
+                      <HeartIcon className="mr-1" /> {mention.likes_count} Likes
+                    </span>
+                    <span className="inline-flex items-center mr-4">
+                      <Share1Icon className="mr-1" /> {mention.shares_count} Shares
+                    </span>
+                    <span className="inline-flex items-center">
+                      <ImageIcon className="mr-1" /> {mention.comments_count} Comments
+                    </span>
+                  </>
+                }
                 tags={mention.importance_label}
-
               />
             ))}
+
           </div>
           <div className="flex justify-end">
             <Button variant="link">
