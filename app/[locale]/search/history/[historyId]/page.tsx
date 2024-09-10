@@ -317,9 +317,8 @@ export default function Component() {
   
   const dataofbox = {
     NoofKeywords: 5968,
-    NoofClicks: 1190000000,
-    OfAllTotalTraffic: 456,
-    AvgMonthVisits:550,
+    NoofClicks: 1190000,
+    MonthlyVisits: 4560000,
     Organic: 8,
     Paid:2,
   }
