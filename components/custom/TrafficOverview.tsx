@@ -12,17 +12,15 @@ interface TrafficOverviewProps {
   PagesPerVisit: number;
   BounceRate: number;
   PageViews: number;
+  DesktopData: {
+    Key: string;
+    Value: number;
+  }[];
+  MobileWebData: {
+    Key: string;
+    Value: number;
+  }[];
 }
-
-const lineChartData = [
-  { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
-  { name: 'Feb', uv: 3000, pv: 1398, amt: 2210 },
-  { name: 'Mar', uv: 2000, pv: 9800, amt: 2290 },
-  { name: 'Apr', uv: 2780, pv: 3908, amt: 2000 },
-  { name: 'May', uv: 1890, pv: 4800, amt: 2181 },
-  { name: 'Jun', uv: 2390, pv: 3800, amt: 2500 },
-  { name: 'Jul', uv: 3490, pv: 4300, amt: 2100 },
-]
 
 // 工具函数
 const formatNumberInMillions = (num: number) => (num / 1_000_000).toFixed(3) + 'M';
@@ -40,8 +38,25 @@ const TrafficOverview: React.FC<TrafficOverviewProps> = ({
   VisitDuration,
   PagesPerVisit,
   BounceRate,
-  PageViews
+  PageViews,
+  DesktopData,
+  MobileWebData
 }) => {
+
+  // 合并 DesktopData 和 MobileWebData
+  const mergeData = (desktopData: { Key: string; Value: number; }[], MobileData: { Key: string; Value: number; }[]) => {
+    return desktopData.map(desktopItem => {
+      const mobileItem = MobileData.find(item => item.Key === desktopItem.Key);
+      return {
+        name: desktopItem.Key,     // 将 Key 作为 name
+        desktop: desktopItem.Value, // DesktopData 的 Value
+        mobile: mobileItem ? mobileItem.Value : 0 // MobileData 的 Value，如果找不到则默认值为 0
+      };
+    });
+  }
+
+  const trafficLineChartData = mergeData(DesktopData, MobileWebData)
+
   return (
     <>
       <div className="text-2xl font-extrabold text-[#5F5E5B] flex">
@@ -87,14 +102,14 @@ const TrafficOverview: React.FC<TrafficOverviewProps> = ({
           </div>
 
           <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={lineChartData}>
+            <LineChart data={trafficLineChartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="pv" stroke="#4281DB" strokeWidth={3} />
-              {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+              <Line type="monotone" dataKey="desktop" stroke="#4281DB" strokeWidth={3} />
+              <Line type="monotone" dataKey="mobile" stroke="#82ca9d" strokeWidth={3} />
             </LineChart>
           </ResponsiveContainer>
         </CardContent>

@@ -14,6 +14,7 @@ import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
 import { useParams } from 'next/navigation'
 import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
+import { Value } from '@radix-ui/react-select'
 
 interface ReferralsRow {
   Link: string;
@@ -72,6 +73,68 @@ const dataofbox = {
   OfAllTotalTraffic: '44.56%',
   OrganicvsPaid: '8 : 2',
 }
+
+const desktop = [
+  {
+    Key: 'Monday',
+    Value: 200,
+  },
+  {
+    Key: 'Tuesday',
+    Value: 300,
+  },
+  {
+    Key: 'Wednesday',
+    Value: 250,
+  },
+  {
+    Key: 'Thursday',
+    Value: 400,
+  },
+  {
+    Key: 'Friday',
+    Value: 350,
+  },
+  {
+    Key: 'Saturday',
+    Value: 600,
+  },
+  {
+    Key: 'Sunday',
+    Value: 700,
+  },
+];
+
+const mobileWeb = [
+  {
+    Key: 'Monday',
+    Value: 300,
+  },
+  {
+    Key: 'Tuesday',
+    Value: 200,
+  },
+  {
+    Key: 'Wednesday',
+    Value: 400,
+  },
+  {
+    Key: 'Thursday',
+    Value: 100,
+  },
+  {
+    Key: 'Friday',
+    Value: 50,
+  },
+  {
+    Key: 'Saturday',
+    Value: 300,
+  },
+  {
+    Key: 'Sunday',
+    Value: 800,
+  },
+];
 
 const organic = {
   data: [
@@ -324,6 +387,8 @@ export default function Component() {
               PagesPerVisit={trafficData.PagesPerVisit}
               BounceRate={trafficData.BounceRate}
               PageViews={trafficData.PageViews}
+              DesktopData={desktop}
+              MobileWebData={mobileWeb}
             />
             <MarketingChannels />
             <Referrals referralsData={referralsData} />
