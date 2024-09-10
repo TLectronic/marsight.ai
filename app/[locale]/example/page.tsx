@@ -10,11 +10,9 @@ import { MarketingChannels } from '@/components/custom/MarketingChannels'
 import { Referrals } from '@/components/custom/Referrals'
 import { SearchAnalysis } from '@/components/custom/SearchAnalysis'
 import { Chat } from '@/components/custom/Chat';
-import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
 import { useParams } from 'next/navigation'
 import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
-import { Value } from '@radix-ui/react-select'
 
 // Product Analysis 数据
 const ProductAnalysisData = {
@@ -376,7 +374,6 @@ const Influencer = [
   }
 ];
 
-
 const messages = [
   { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' },
 ]
@@ -387,8 +384,7 @@ export default function Component() {
   // 登录认证内容
   const template = 'markSightTest'
   const { getToken, isSignedIn } = useAuth();
-  // 当前页面的所有数据
-  const [allData, setAllData] = useState({});
+  
   // 获得当前页面需要渲染的信息
   const getData = async () => {
     try {
@@ -403,7 +399,6 @@ export default function Component() {
           }
         );
         console.log("返回的数据:", response);
-        setAllData(response)
       }
     } catch (error) {
       console.error('Failed to get chat:', error);
