@@ -76,7 +76,6 @@ const dataofbox = {
   Paid: 2,
 }
 
-// 折线图-桌面端
 const desktop = [
   {
     Key: 'Monday',
@@ -108,7 +107,6 @@ const desktop = [
   },
 ];
 
-// 折线图-移动端
 const mobileWeb = [
   {
     Key: 'Monday',
@@ -140,7 +138,6 @@ const mobileWeb = [
   },
 ];
 
-// 流量来源渠道数据
 const marketingChannelsData = {
   Social: 7.28,
   Direct: 44.36,
