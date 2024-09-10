@@ -71,9 +71,9 @@ const dataofbox = {
   NoofKeywords: 5968,
   NoofClicks: 1190000000,
   OfAllTotalTraffic: 456,
-  AvgMonthVisits:550,
+  AvgMonthVisits: 550,
   Organic: 8,
-  Paid:2,
+  Paid: 2,
 }
 
 const desktop = [
@@ -137,6 +137,16 @@ const mobileWeb = [
     Value: 800,
   },
 ];
+
+const marketingChannelsData = {
+  Social: 7.28,
+  Direct: 44.36,
+  DisplayAds: 0.0,
+  Referrals: 3.63,
+  Email: 0.06,
+  OrganicSearch: 37.2,
+  PaidSearch: 7.33,
+}
 
 const organic = {
   data: [
@@ -392,7 +402,15 @@ export default function Component() {
               DesktopData={desktop}
               MobileWebData={mobileWeb}
             />
-            <MarketingChannels />
+            <MarketingChannels
+              Social={marketingChannelsData.Social}
+              Direct={marketingChannelsData.Direct}
+              DisplayAds={marketingChannelsData.DisplayAds}
+              Referrals={marketingChannelsData.Referrals}
+              Email={marketingChannelsData.Email}
+              OrganicSearch={marketingChannelsData.OrganicSearch}
+              PaidSearch={marketingChannelsData.PaidSearch}
+            />
             <Referrals referralsData={referralsData} />
             <SearchAnalysis
               dataofbox={dataofbox}
