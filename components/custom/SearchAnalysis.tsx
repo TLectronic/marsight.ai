@@ -26,12 +26,13 @@ const formatBounceRate = (rate: number) => (rate * 100).toFixed(2) + "%";
 // 表格里每一行的数据
 interface TrafficRow {
   Keywords: string;
-  Clicks: string;
-  Traffic: string;
-  ClicksChange: string;
-  ChangeVolume: string;
-  Changeofvolume: string;
+  Clicks: number;
+  Traffic: number;
+  ClicksChange: number;
+  ChangeVolume: number;
+  Changeofvolume: number;
 }
+const formatAsPercentage = (num: number) => (num * 100).toFixed(2) + "%";
 
 // 一组数据
 interface DataGroup {
@@ -170,10 +171,10 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
                         <TableRow key={idx}>
                           <TableCell>{trafficrow.Keywords}</TableCell>
                           <TableCell>{trafficrow.Clicks}</TableCell>
-                          <TableCell>{trafficrow.Traffic}</TableCell>
-                          <TableCell>{trafficrow.ClicksChange}</TableCell>
+                          <TableCell>{formatAsPercentage(trafficrow.Traffic)}</TableCell>
+                          <TableCell>{formatAsPercentage(trafficrow.ClicksChange)}</TableCell>
                           <TableCell>{trafficrow.ChangeVolume}</TableCell>
-                          <TableCell>{trafficrow.Changeofvolume}</TableCell>
+                          <TableCell>{formatAsPercentage(trafficrow.Changeofvolume)}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
