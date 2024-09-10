@@ -99,7 +99,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
   
 
   const renderLineChart = () => (
-    <ResponsiveContainer height={400} width={750}>
+    <ResponsiveContainer height={300} width="100%"> 
       <LineChart data={formattedLineChartData} className='-ml-2'>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
@@ -110,6 +110,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
       </LineChart>
     </ResponsiveContainer>
   );
+  
   
 
   return (
@@ -138,17 +139,17 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
           <div className="flex justify-start w-full mb-10 mt-10 space-x-20">
             <DataBox
               spanText="Mentions"
-              paragraphText={Mentions}
+              paragraphText={Mentions.toString()}
               icon={<BellIcon />}
             />
             <DataBox
               spanText="total number of likes"
-              paragraphText={TotalLikes}
+              paragraphText={TotalLikes.toString()}
               icon={<HeartIcon />}
             />
             <DataBox
               spanText="total number of shares"
-              paragraphText={TotalShares}
+              paragraphText={TotalShares.toString()}
               icon={<Share2Icon />}
             />
           </div>
