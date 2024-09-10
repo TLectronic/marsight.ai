@@ -97,7 +97,7 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
             />
             <DataBox
               spanText="Organic vs. Paid"
-              paragraphText={`${Math.round(dataofbox.Organic / 1_000_000)}:${Math.round(dataofbox.Paid / 1_000_000)}`}
+              paragraphText={`${Math.round(dataofbox.Organic)}:${Math.round(dataofbox.Paid )}`}
               icon={<HandIcon />}
             />
           </div>
