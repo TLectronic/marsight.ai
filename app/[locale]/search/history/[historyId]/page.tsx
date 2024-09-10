@@ -304,17 +304,25 @@ export default function Component() {
   }, [isSignedIn, historyId])
 
 
-  const dataofbox = {
-    NoofKeywords: allData?.Keywords?.all_brand?.keywordsCount ?? 0,
-    NoofClicks: allData?.Keywords?.all_brand?.OverallClicks ?? 0,
-    OfAllTotalTraffic: allData?.Keywords?.all_brand?.OverallClicks && allData?.trafficAndEngagement?.AvgMonthVisits 
-      ? allData.Keywords.all_brand.OverallClicks / allData.trafficAndEngagement.AvgMonthVisits 
-      : 0,
-    OrganicvsPaid: allData?.organic_total?.OverallClicks && allData?.paid_total?.OverallClicks 
-      ? `${Math.round(allData.organic_total.OverallClicks / (allData.organic_total.OverallClicks + allData.paid_total.OverallClicks) * 10)}:${Math.round(allData.paid_total.OverallClicks / (allData.organic_total.OverallClicks + allData.paid_total.OverallClicks) * 10)}`
-      : '0:0',
-  };
+  // const dataofbox = {
+  //   NoofKeywords: allData?.Keywords?.all_brand?.keywordsCount ?? 0,
+  //   NoofClicks: allData?.Keywords?.all_brand?.OverallClicks ?? 0,
+  //   OfAllTotalTraffic: allData?.Keywords?.all_brand?.OverallClicks && allData?.trafficAndEngagement?.AvgMonthVisits 
+  //     ? allData.Keywords.all_brand.OverallClicks / allData.trafficAndEngagement.AvgMonthVisits 
+  //     : 0,
+  //   OrganicvsPaid: allData?.organic_total?.OverallClicks && allData?.paid_total?.OverallClicks 
+  //     ? `${Math.round(allData.organic_total.OverallClicks / (allData.organic_total.OverallClicks + allData.paid_total.OverallClicks) * 10)}:${Math.round(allData.paid_total.OverallClicks / (allData.organic_total.OverallClicks + allData.paid_total.OverallClicks) * 10)}`
+  //     : '0:0',
+  // };
   
+  const dataofbox = {
+    NoofKeywords: 5968,
+    NoofClicks: 1190000000,
+    OfAllTotalTraffic: 456,
+    AvgMonthVisits:550,
+    Organic: 8,
+    Paid:2,
+  }
   
 
   return (

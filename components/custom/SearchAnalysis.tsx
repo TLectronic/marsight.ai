@@ -16,7 +16,9 @@ interface SearchAnalysisProps {
   NoofKeywords: number;
   NoofClicks: number;
   OfAllTotalTraffic: number;
-  OrganicvsPaid: string;  // 改成 string 类型
+  AvgMonthVisits: number;
+  Organic: number;
+  Paid: number;
 }
 
 const formatNumberInMillions = (num: number) => (num / 1_000_000).toFixed(3) + 'M';
@@ -90,12 +92,12 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
             />
             <DataBox
               spanText="Of All Total Traffic"
-              paragraphText={formatBounceRate(dataofbox.OfAllTotalTraffic)}
+              paragraphText={formatBounceRate(dataofbox.OfAllTotalTraffic / dataofbox.AvgMonthVisits)}
               icon={<ReaderIcon />}
             />
             <DataBox
               spanText="Organic vs. Paid"
-              paragraphText={dataofbox.OrganicvsPaid}
+              paragraphText={`${Math.round(dataofbox.Organic / 1_000_000)}:${Math.round(dataofbox.Paid / 1_000_000)}`}
               icon={<HandIcon />}
             />
           </div>
