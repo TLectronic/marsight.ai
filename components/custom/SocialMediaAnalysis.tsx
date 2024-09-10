@@ -16,14 +16,15 @@ interface SocialMediaAnalysisProps {
 }
 
 const lineChartData = [
-  { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
-  { name: 'Feb', uv: 3000, pv: 1398, amt: 2210 },
-  { name: 'Mar', uv: 2000, pv: 9800, amt: 2290 },
-  { name: 'Apr', uv: 2780, pv: 3908, amt: 2000 },
-  { name: 'May', uv: 1890, pv: 4800, amt: 2181 },
-  { name: 'Jun', uv: 2390, pv: 3800, amt: 2500 },
-  { name: 'Jul', uv: 3490, pv: 4300, amt: 2100 },
+  { date_from: '2024-01-01', date_to: '2024-01-31', results_nb: 2400 },
+  { date_from: '2024-02-01', date_to: '2024-02-28', results_nb: 1398 },
+  { date_from: '2024-03-01', date_to: '2024-03-31', results_nb: 9800 },
+  { date_from: '2024-04-01', date_to: '2024-04-30', results_nb: 3908 },
+  { date_from: '2024-05-01', date_to: '2024-05-31', results_nb: 4800 },
+  { date_from: '2024-06-01', date_to: '2024-06-30', results_nb: 3800 },
+  { date_from: '2024-07-01', date_to: '2024-07-31', results_nb: 4300 },
 ];
+
 
 const pieChartData = [
   { name: 'Youtube', value: 62.6 },
@@ -91,19 +92,25 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
       </PieChart>
     </ResponsiveContainer>
   );
+  const formattedLineChartData = lineChartData.map((entry) => ({
+    name: `${entry.date_from} - ${entry.date_to}`,
+    number: entry.results_nb,
+  }));
+  
 
   const renderLineChart = () => (
     <ResponsiveContainer height={400} width={750}>
-      <LineChart data={lineChartData} className='-ml-2'>
+      <LineChart data={formattedLineChartData} className='-ml-2'>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="pv" stroke="#4281DB" strokeWidth={3} />
+        <Line type="monotone" dataKey="number" stroke="#4281DB" strokeWidth={3} />
       </LineChart>
     </ResponsiveContainer>
   );
+  
 
   return (
     <>
