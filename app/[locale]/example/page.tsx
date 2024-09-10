@@ -68,10 +68,12 @@ const referralsData: ReferralsRow[] = [
 ]
 
 const dataofbox = {
-  NoofKeywords: '5968',
-  NoofClicks: '1.190M',
-  OfAllTotalTraffic: '44.56%',
-  OrganicvsPaid: '8 : 2',
+  NoofKeywords: 5968,
+  NoofClicks: 1190000000,
+  OfAllTotalTraffic: 456,
+  AvgMonthVisits:550,
+  Organic: 8,
+  Paid:2,
 }
 
 const desktop = [
