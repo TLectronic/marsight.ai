@@ -15,8 +15,7 @@ import { Search } from "lucide-react";
 interface SearchAnalysisProps {
   NoofKeywords: number;
   NoofClicks: number;
-  OfAllTotalTraffic: number;
-  AvgMonthVisits: number;
+  MonthlyVisits: number;
   Organic: number;
   Paid: number;
 }
@@ -92,7 +91,7 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
             />
             <DataBox
               spanText="Of All Total Traffic"
-              paragraphText={formatBounceRate(dataofbox.OfAllTotalTraffic / dataofbox.AvgMonthVisits)}
+              paragraphText={formatBounceRate(dataofbox.NoofClicks / dataofbox.MonthlyVisits)}
               icon={<ReaderIcon />}
             />
             <DataBox
