@@ -11,7 +11,6 @@ interface Mention {
   id: string;
   title: string;
   created_date: string;
-  host: string;
   url: string;
   likes_count: number;
   shares_count: number;
@@ -19,6 +18,7 @@ interface Mention {
   author: string;
   author_avatar_url: string;
   author_url: string;
+  importance_label:string;
 }
 
 interface MentionsProps {
@@ -67,8 +67,9 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
                 fallbackText={mention.author}
                 title={mention.title}
                 date={mention.created_date}
-                link={mention.url}
-                tags={`Likes: ${mention.likes_count}, Shares: ${mention.shares_count}, Comments: ${mention.comments_count}`}
+                link={mention.url+`Likes: ${mention.likes_count}, Shares: ${mention.shares_count}, Comments: ${mention.comments_count}`}
+                tags={mention.importance_label}
+
               />
             ))}
           </div>
