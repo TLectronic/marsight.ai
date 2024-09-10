@@ -76,7 +76,19 @@ export default function Component() {
     }[];
   }
 
+  // MarketingChannels 需要的数据类型
+  interface MarketingChannelsProps {
+    Social: number;
+    Direct: number;
+    DisplayAds: number;
+    Referrals: number;
+    Email: number;
+    OrganicSearch: number;
+    PaidSearch: number;
+  }
+
   const [frontTraffic, setFrontTraffic] = useState<TrafficOverviewProps | null>(null);
+  const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
 
 
 
@@ -137,15 +149,25 @@ export default function Component() {
             Organic: allData.report.organic_total.OverallClicks,
             Paid: allData.report.paid_total.OverallClicks,
           }),
-          setOrganicTrafficData({
+            setOrganicTrafficData({
 
-          }),
-          setPaidTrafficData({
-            
+            }),
+            setPaidTrafficData({
+
+            })
+
+          setFrontMarketingChannels({
+            Social: allData.report.marketingChannels.Social,
+            Direct: allData.report.marketingChannels.Direct,
+            DisplayAds: allData.report.marketingChannels.DisplayAds,
+            Referrals: allData.report.marketingChannels.Referrals,
+            Email: allData.report.marketingChannels.Email,
+            OrganicSearch: allData.report.marketingChannels.OrganicSearch,
+            PaidSearch: allData.report.marketingChannels.PaidSearch,
           })
 
         }
-        
+
       }
     } catch (error) {
       console.error('Failed to get chat:', error);
@@ -192,13 +214,13 @@ export default function Component() {
               MobileWebData={frontTraffic?.MobileWebData}
             />
             <MarketingChannels
-              Social={ }
-              Direct={ }
-              DisplayAds={ }
-              Referrals={ }
-              Email={ }
-              OrganicSearch={ }
-              PaidSearch={ }
+              Social={frontMarketingChannels?.Social}
+              Direct={frontMarketingChannels?.Direct}
+              DisplayAds={frontMarketingChannels?.DisplayAds}
+              Referrals={frontMarketingChannels?.Referrals}
+              Email={frontMarketingChannels?.Email}
+              OrganicSearch={frontMarketingChannels?.OrganicSearch}
+              PaidSearch={frontMarketingChannels?.PaidSearch}
             />
             <Referrals referralsData={ } />
             <SearchAnalysis
