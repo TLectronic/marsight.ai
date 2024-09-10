@@ -16,13 +16,7 @@ import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
 import { Value } from '@radix-ui/react-select'
 
-interface ReferralsRow {
-  Link: string;
-  category: string;
-  TrafficShare: string;
-  Traffic: string;
-  Change: string;
-}
+
 
 // 流量总览 数据
 const trafficData = {
@@ -43,27 +37,27 @@ const smMentions = {
 };
 
 // 博主表格内数据
-const referralsData: ReferralsRow[] = [
+const referralsData = [
   {
     Link: 'Producthunt.com',
     category: 'Tech News',
-    TrafficShare: '17.77%',
-    Traffic: '15.4k',
-    Change: 'New'
+    TrafficShare: 0.1777,
+    Traffic: 15400,
+    Change: 0.2323,
   },
   {
     Link: 'canva.com',
     category: 'Design',
-    TrafficShare: '17.77%',
-    Traffic: '15.4k',
-    Change: '22.82%'
+    TrafficShare: 0.1777,
+    Traffic: 15400,
+    Change: 0.2282,
   },
   {
     Link: 'g2.com',
     category: 'Tech News',
-    TrafficShare: '17.77%',
-    Traffic: '15.4k',
-    Change: '-67.93%'
+    TrafficShare: 0.1777,
+    Traffic: 15400,
+    Change: -0.6793,
   },
 ]
 

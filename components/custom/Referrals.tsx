@@ -13,18 +13,33 @@ import { headers } from "next/headers";
 interface ReferralsRow {
   Link: string;
   category: string;
-  TrafficShare: string;
-  Traffic: string;
-  Change: string;
+  TrafficShare: number;
+  Traffic: number;
+  Change: number;
 }
 
 interface ReferralsProps {
   referralsData: ReferralsRow[];
 }
 
+// 将小数转成百分数并保留两位小数
+const formatPercentage = (decimal: number): string => {
+  return `${(decimal * 100).toFixed(2)}%`;
+};
+
+// 将数值缩写为k或M格式
+const formatNumber = (num: number): string => {
+  if (num >= 1000000) {
+    return `${(num / 1000000).toFixed(1)}M`;
+  } else if (num >= 1000) {
+    return `${(num / 1000).toFixed(1)}k`;
+  }
+  return num.toString();
+};
+
 const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
   const { getToken, isSignedIn } = useAuth();
-  const template = 'markSightTest'
+  const template = 'marsight'
 
   const handleAIInsights = async () => {
     try {
@@ -98,9 +113,9 @@ const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
                       </a>
                     </TableCell>
                     <TableCell>{row.category}</TableCell>
-                    <TableCell>{row.TrafficShare}</TableCell>
-                    <TableCell>{row.Traffic}</TableCell>
-                    <TableCell>{row.Change}</TableCell>
+                    <TableCell>{formatPercentage(row.TrafficShare)}</TableCell>
+                    <TableCell>{formatNumber(row.Traffic)}</TableCell>
+                    <TableCell>{formatPercentage(row.Change)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
