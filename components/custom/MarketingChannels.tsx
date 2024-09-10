@@ -2,16 +2,36 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 
-const barChartData = [
-  { name: 'Direct', uv: 44.36 },
-  { name: 'Email', uv: 0.06},
-  { name: 'Referrals', uv: 3.63},
-  { name: 'Social', uv: 7.28},
-  { name: 'Organicsearch', uv: 37.2},
-  { name: 'Paidsearch', uv: 7.33},
-];
+interface MarketingChannelsProps {
+  Social: number;
+  Direct: number;
+  DisplayAds: number;
+  Referrals: number;
+  Email: number;
+  OrganicSearch: number;
+  PaidSearch: number;
+}
 
-const MarketingChannels = () => {
+const MarketingChannels: React.FC<MarketingChannelsProps> = ({
+  Social,
+  Direct,
+  DisplayAds,
+  Referrals,
+  Email,
+  OrganicSearch,
+  PaidSearch
+}) => {
+
+  const MarketingChannelsBarChartData = [
+    { name: 'Direct', value: Direct },
+    { name: 'Email', value: Email },
+    { name: 'Referrals', value: Referrals },
+    { name: 'Social', value: Social },
+    { name: 'OrganicSearch', value: OrganicSearch },
+    { name: 'PaidSearch', value: PaidSearch },
+    { name: 'DisplayAds', value: DisplayAds },
+  ]
+  
   return (
     <>
       <Card className="rounded-[24px] p-2">
@@ -20,7 +40,7 @@ const MarketingChannels = () => {
         </CardHeader>
         <CardContent className="mt-6">
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={barChartData}>
+            <BarChart data={MarketingChannelsBarChartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis
@@ -32,7 +52,7 @@ const MarketingChannels = () => {
                 labelFormatter={(label) => `Channel: ${label}`}
               />
               <Legend />
-              <Bar dataKey="uv" stackId="a" fill="#3E74FE" barSize={40} />
+              <Bar dataKey="value" stackId="a" fill="#3E74FE" barSize={40} />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>
