@@ -134,28 +134,6 @@ const ReferralsData = [
   },
 ]
 
-// Social Media Analysis 中的折线图数据
-const lineChartData = [
-  { date_from: '2024-01-01', date_to: '2024-01-31', results_nb: 2400 },
-  { date_from: '2024-02-01', date_to: '2024-02-28', results_nb: 1398 },
-  { date_from: '2024-03-01', date_to: '2024-03-31', results_nb: 9800 },
-  { date_from: '2024-04-01', date_to: '2024-04-30', results_nb: 3908 },
-  { date_from: '2024-05-01', date_to: '2024-05-31', results_nb: 4800 },
-  { date_from: '2024-06-01', date_to: '2024-06-30', results_nb: 3800 },
-  { date_from: '2024-07-01', date_to: '2024-07-31', results_nb: 4300 },
-];
-
-// Social Media Analysis 中的饼状图数据
-const pieChartData = [
-  { name: 'Youtube', value: 62.6 },
-  { name: 'Instagram', value: 8.76 },
-  { name: 'Facebook', value: 6.57 },
-  { name: 'WhatsApp Webapp', value: 6.3 },
-  { name: 'VKontakte', value: 3.27 },
-  { name: 'Others', value: 12.5 },
-];
-
-
 // Search Analysis 中的 Search Overview的数据
 const SearchOverviewData = {
   NoofKeywords: 5968,
@@ -163,8 +141,6 @@ const SearchOverviewData = {
   MonthlyVisits: 4560000,
   Organic: 8,
   Paid: 2,
-  LineChartData: lineChartData,
-  PieChartData: pieChartData,
 }
 
 // Organic Traffic 数据
@@ -279,27 +255,51 @@ const paid = {
   ]
 }
 
+// Social Media Analysis 中的折线图数据
+const lineChartData = [
+  { date_from: '2024-01-01', date_to: '2024-01-31', results_nb: 2400 },
+  { date_from: '2024-02-01', date_to: '2024-02-28', results_nb: 1398 },
+  { date_from: '2024-03-01', date_to: '2024-03-31', results_nb: 9800 },
+  { date_from: '2024-04-01', date_to: '2024-04-30', results_nb: 3908 },
+  { date_from: '2024-05-01', date_to: '2024-05-31', results_nb: 4800 },
+  { date_from: '2024-06-01', date_to: '2024-06-30', results_nb: 3800 },
+  { date_from: '2024-07-01', date_to: '2024-07-31', results_nb: 4300 },
+];
+
+// Social Media Analysis 中的饼状图数据
+const pieChartData = [
+  { name: 'Youtube', value: 62.6 },
+  { name: 'Instagram', value: 8.76 },
+  { name: 'Facebook', value: 6.57 },
+  { name: 'WhatsApp Webapp', value: 6.3 },
+  { name: 'VKontakte', value: 3.27 },
+  { name: 'Others', value: 12.5 },
+];
+
 // Social Media Analysis 中四个盒子的数据
 const SocialMediaAnalysisData = {
   TotalSocialVisits: 45200,
   Mentions: 3974,
   TotalLikes: 111,
   TotalShares: 222,
+  LineChartData: lineChartData,
+  PieChartData: pieChartData,
 };
 
-
-
-
-
-
-// 最火爆的提及 数据
-const mentions = [
+// The most popular mentions 数据
+const TheMostPopularMentions = [
   {
-    avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-    fallbackText: 'error',
+    id: '1',
     title: 'Imagine ter o seu proprio influe...',
-    date: '2024-08-22 05:15',
-    link: 'https://instagram.com',
+    created_date: '2024-08-22 05:15',
+    host: '',
+    url: 'https://instagram.com',
+    likes_count: 1,
+    shares_count: 1,
+    comments_count: 1,
+    author: '',
+    author_avatar_url: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    author_url: '',
     tags: '#robo #vocesabia #curiosidades #dicas'
   },
   {
@@ -312,8 +312,8 @@ const mentions = [
   },
 ];
 
-// 红人的提及 数据
-const mentionsFrom = [
+// Mentions from the most popular public profiles 数据
+const MentionsFrom = [
   {
     avatarSrc: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
     fallbackText: 'error',
@@ -362,6 +362,7 @@ const Influencer = [
     followers: '1880000'
   }
 ];
+
 
 const messages = [
   { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' },
@@ -455,10 +456,10 @@ export default function Component() {
               Mentions={SocialMediaAnalysisData.Mentions}
               TotalLikes={SocialMediaAnalysisData.TotalLikes}
               TotalShares={SocialMediaAnalysisData.TotalShares}
-              LineChartData={SearchOverviewData.LineChartData}
-              PieChartData={SearchOverviewData.PieChartData}
+              LineChartData={SocialMediaAnalysisData.LineChartData}
+              PieChartData={SocialMediaAnalysisData.PieChartData}
             />
-            <Mentions mentions={mentions} mentionsFrom={mentionsFrom} />
+            <Mentions mentions={TheMostPopularMentions} mentionsFrom={MentionsFrom} />
             <Influencers influencers={Influencer} />
           </div>
         </div>
