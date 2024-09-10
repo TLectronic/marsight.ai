@@ -18,6 +18,44 @@ import axios from 'axios';
 const messages = [
   { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' },
 ]
+//SearchAnalysis四个盒子
+interface SearchAnalysisProps {
+  NoofKeywords: number;
+  NoofClicks: number;
+  MonthlyVisits: number;
+  Organic: number;
+  Paid: number;
+}
+//TrafficRow表格数据
+interface TrafficRow {
+  Keywords: string;
+  Clicks: number;
+  Traffic: number;
+  ClicksChange: number;
+  ChangeVolume: number;
+  Changeofvolume: number;
+}
+interface DataGroup {
+  KeywordClass: string;
+  data: TrafficRow[];
+}
+
+// 自然流量数据
+interface OrganicTrafficData {
+  data: DataGroup[];
+}
+
+// 付费流量数据
+interface PaidTrafficData {
+  data: DataGroup[];
+}
+
+
+
+const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps | null>(null);
+const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
+const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
+
 
 export default function Component() {
   // 当前页面的chatId
@@ -42,6 +80,21 @@ export default function Component() {
         );
         console.log("返回的数据:", response.data);
         setAllData(response.data)
+        if(allData){
+          setSearchAnalysisData({
+            NoofKeywords: allData.report.Keywords.all_brand.keywordsCount,
+            NoofClicks: allData.report.Keywords.all_brand.OverallClicks,
+            MonthlyVisits: allData.report.trafficAndEngagement.AvgMonthVisits,
+            Organic: allData.report.organic_total.OverallClicks,
+            Paid: allData.report.paid_total.OverallClicks,
+          }),
+          setOrganicTrafficData({
+
+          }),
+          setPaidTrafficData({
+            
+          })
+        }
       }
     } catch (error) {
       console.error('Failed to get chat:', error);
@@ -51,18 +104,6 @@ export default function Component() {
   useEffect(() => {
     getData();
   }, [isSignedIn, historyId])
-
-
-  // const dataofbox = {
-  //   NoofKeywords: allData?.Keywords?.all_brand?.keywordsCount ?? 0,
-  //   NoofClicks: allData?.Keywords?.all_brand?.OverallClicks ?? 0,
-  //   OfAllTotalTraffic: allData?.Keywords?.all_brand?.OverallClicks && allData?.trafficAndEngagement?.AvgMonthVisits 
-  //     ? allData.Keywords.all_brand.OverallClicks / allData.trafficAndEngagement.AvgMonthVisits 
-  //     : 0,
-  //   OrganicvsPaid: allData?.organic_total?.OverallClicks && allData?.paid_total?.OverallClicks 
-  //     ? `${Math.round(allData.organic_total.OverallClicks / (allData.organic_total.OverallClicks + allData.paid_total.OverallClicks) * 10)}:${Math.round(allData.paid_total.OverallClicks / (allData.organic_total.OverallClicks + allData.paid_total.OverallClicks) * 10)}`
-  //     : '0:0',
-  // };
 
 
   return (
@@ -84,44 +125,44 @@ export default function Component() {
           <div className="p-4 space-y-4 min-w-[500px]">
 
             <ProductAnalysis
-              ProductSummary={}
-              TargetUsers={}
-              CoreFeatures={}
-              UseCases={}
+              ProductSummary={ }
+              TargetUsers={ }
+              CoreFeatures={ }
+              UseCases={ }
             />
             <TrafficOverview
-              MonthlyVisits={}
-              UniqueVisitors={}
-              VisitDuration={}
-              PagesPerVisit={}
-              BounceRate={}
-              PageViews={}
+              MonthlyVisits={ }
+              UniqueVisitors={ }
+              VisitDuration={ }
+              PagesPerVisit={ }
+              BounceRate={ }
+              PageViews={ }
             />
-            <MarketingChannels 
-            Social={}
-            Direct={}
-            DisplayAds={}
-            Referrals={}
-            Email={}
-            OrganicSearch={}
-            PaidSearch={}
+            <MarketingChannels
+              Social={ }
+              Direct={ }
+              DisplayAds={ }
+              Referrals={ }
+              Email={ }
+              OrganicSearch={ }
+              PaidSearch={ }
             />
-            <Referrals referralsData={} />
+            <Referrals referralsData={ } />
             <SearchAnalysis
-              dataofbox={}
-              organic={}
-              paid={}
+              dataofbox={SearchAnalysisData}
+              organic={ }
+              paid={ }
             />
             <SocialMediaAnalysis
-            TotalSocialVisits={}
-            Mentions={}
-            TotalLikes={}
-            TotalShares={}
-            LineChartData={}
-            PieChartData={}
+              TotalSocialVisits={ }
+              Mentions={ }
+              TotalLikes={ }
+              TotalShares={ }
+              LineChartData={ }
+              PieChartData={ }
             />
-            <Mentions mentions={} mentionsFrom={} />
-            <Influencers influencers={} />
+            <Mentions mentions={ } mentionsFrom={ } />
+            <Influencers influencers={ } />
           </div>
         </div>
       </Resizable>
