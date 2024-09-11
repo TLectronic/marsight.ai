@@ -61,11 +61,29 @@ interface MarketingChannelsProps {
   PaidSearch: number;
 }
 
+interface SocialMediaAnalysisProps {
+  TotalSocialVisits: number;
+  Mentions: number;
+  TotalLikes: number;
+  TotalShares: number;
+  // 折线图数据
+  LineChartData: {
+    date_from: string;
+    date_to: string;
+    results_nb: number;
+  }[];
+  // 饼状图数据
+  PieChartData: {
+    name: string;
+    value: number;
+  }[];
+}
+
 const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps | null>(null);
 
 const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
 const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
-
+const [SocialMediaAnalysisData,setSocialMediaAnalysisData] = useState<SocialMediaAnalysisProps | null>(null);
 
 export default function Component() {
   // Traffic Overview 需要的数据类型
@@ -100,19 +118,6 @@ export default function Component() {
   const [frontTraffic, setFrontTraffic] = useState<TrafficOverviewProps | null>(null);
   const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
   const [frontReferrals, setFrontReferrals] = useState<ReferralsProps | null>(null);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   // 当前页面的chatId
@@ -235,6 +240,25 @@ export default function Component() {
               Change: item.Change,
             }))
           );
+
+          setSocialMediaAnalysisData({
+            TotalSocialVisits: allData.report.SocialOverview.Records.reduce(
+              (total: number, item: any) => total + item.TotalVisits, 
+              0
+            ),
+            Mentions: ,
+            TotalLikes: ,
+            TotalShares: ,
+            LineChartData: allData.report.MentionChart.total_results.graph_data.map((item: any) => ({
+              date_from: item.date_from,
+              date_to: item.date_to,
+              results_nb: item.results_nb,
+            })),
+            PieChartData: allData.report.SocialOverview.TopSources.map((item: any) => ({
+              name: item.name,
+              value: item.Count,
+            })),
+          });
         }
 
       }
