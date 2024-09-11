@@ -246,9 +246,9 @@ export default function Component() {
               (total: number, item: any) => total + item.TotalVisits, 
               0
             ),
-            Mentions: ,
-            TotalLikes: ,
-            TotalShares: ,
+            Mentions:  allData.report.MentionOverview.results_count,
+            TotalLikes: allData.report.MentionOverview.total_number_of_likes,
+            TotalShares: allData.report.MentionOverview.total_number_of_shares,
             LineChartData: allData.report.MentionChart.total_results.graph_data.map((item: any) => ({
               date_from: item.date_from,
               date_to: item.date_to,
