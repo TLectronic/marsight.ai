@@ -61,29 +61,50 @@ interface MarketingChannelsProps {
   PaidSearch: number;
 }
 
-interface SocialMediaAnalysisProps {
-  TotalSocialVisits: number;
-  Mentions: number;
-  TotalLikes: number;
-  TotalShares: number;
-  // 折线图数据
+interface LineChartProps{
   LineChartData: {
     date_from: string;
     date_to: string;
     results_nb: number;
   }[];
-  // 饼状图数据
+}
+
+interface PieChartProps{
   PieChartData: {
     name: string;
     value: number;
   }[];
 }
 
+interface Mention {
+  id: string;
+  title: string;
+  created_date: string;
+  url: string;
+  likes_count: number;
+  shares_count: number;
+  comments_count: number;
+  author: string;
+  author_avatar_url: string;
+  author_url: string;
+  importance_label: string;
+}
+
+interface MentionsProps {
+  mentions: Mention[];
+  mentionsFrom: Mention[];
+}
+
 const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps | null>(null);
 
 const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
 const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
-const [SocialMediaAnalysisData,setSocialMediaAnalysisData] = useState<SocialMediaAnalysisProps | null>(null);
+const [TotalSocialData,setTotalSocialData] = useState<number | null>(null);
+const [MentionsData,setMentionsData] = useState<number | null>(null);
+const [TotalLikeData,setTotalLikeData] = useState<number | null>(null);
+const [TotalSharesData,setTotalSharesData] = useState<number | null>(null);
+const [LineData,setLineData] = useState<LineChartProps | null>(null);
+const [PieData,setPieData] = useState<PieChartProps | null>(null);
 
 export default function Component() {
   // Traffic Overview 需要的数据类型
@@ -241,19 +262,23 @@ export default function Component() {
             }))
           );
 
-          setSocialMediaAnalysisData({
-            TotalSocialVisits: allData.report.SocialOverview.Records.reduce(
-              (total: number, item: any) => total + item.TotalVisits, 
-              0
-            ),
-            Mentions:  allData.report.MentionOverview.results_count,
-            TotalLikes: allData.report.MentionOverview.total_number_of_likes,
-            TotalShares: allData.report.MentionOverview.total_number_of_shares,
+          setTotalSocialData({allData.report.SocialOverview.Records.reduce(
+            (total: number, item: any) => total + item.TotalVisits, 
+            0
+          )});
+          setMentionsData(allData.report.MentionOverview.results_count);
+          setTotalLikeData(allData.report.MentionOverview.total_number_of_likes);
+          setTotalSharesData(allData.report.MentionOverview.total_number_of_shares);
+          setLineData({
             LineChartData: allData.report.MentionChart.total_results.graph_data.map((item: any) => ({
               date_from: item.date_from,
               date_to: item.date_to,
               results_nb: item.results_nb,
             })),
+          });
+
+
+          setPieData({
             PieChartData: allData.report.SocialOverview.TopSources.map((item: any) => ({
               name: item.name,
               value: item.Count,
@@ -322,12 +347,12 @@ export default function Component() {
               paid={paidTrafficData}
             />
             <SocialMediaAnalysis
-              TotalSocialVisits={ }
-              Mentions={ }
-              TotalLikes={ }
-              TotalShares={ }
-              LineChartData={ }
-              PieChartData={ }
+              TotalSocialVisits={ TotalSocialData}
+              Mentions={ MentionsData}
+              TotalLikes={TotalLikeData }
+              TotalShares={ TotalSharesData}
+              LineChartData={LineData }
+              PieChartData={PieData }
             />
             <Mentions mentions={ } mentionsFrom={ } />
             <Influencers influencers={ } />
