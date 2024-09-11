@@ -61,7 +61,7 @@ interface MarketingChannelsProps {
   PaidSearch: number;
 }
 
-interface LineChartProps{
+interface LineChartProps {
   LineChartData: {
     date_from: string;
     date_to: string;
@@ -69,7 +69,7 @@ interface LineChartProps{
   }[];
 }
 
-interface PieChartProps{
+interface PieChartProps {
   PieChartData: {
     name: string;
     value: number;
@@ -99,12 +99,12 @@ const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps
 
 const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
 const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
-const [TotalSocialData,setTotalSocialData] = useState<number | null>(null);
-const [MentionsData,setMentionsData] = useState<number | null>(null);
-const [TotalLikeData,setTotalLikeData] = useState<number | null>(null);
-const [TotalSharesData,setTotalSharesData] = useState<number | null>(null);
-const [LineData,setLineData] = useState<LineChartProps | null>(null);
-const [PieData,setPieData] = useState<PieChartProps | null>(null);
+const [TotalSocialData, setTotalSocialData] = useState<number | null>(null);
+const [MentionsData, setMentionsData] = useState<number | null>(null);
+const [TotalLikeData, setTotalLikeData] = useState<number | null>(null);
+const [TotalSharesData, setTotalSharesData] = useState<number | null>(null);
+const [LineData, setLineData] = useState<LineChartProps | null>(null);
+const [PieData, setPieData] = useState<PieChartProps | null>(null);
 
 export default function Component() {
   // Traffic Overview 需要的数据类型
@@ -136,9 +136,23 @@ export default function Component() {
     }[];
   }
 
+  // Influencers 需要的数据类型
+  interface InfluencersProps {
+    influencersData: {
+      id: string;
+      profileImage: string;
+      name: string;
+      siteIcon: string;
+      siteUrl: string;
+      mentions: string;
+      followers: string;
+    }[];
+  }
+
   const [frontTraffic, setFrontTraffic] = useState<TrafficOverviewProps | null>(null);
   const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
   const [frontReferrals, setFrontReferrals] = useState<ReferralsProps | null>(null);
+  const [frontInfluencers, setFrontInfluencers] = useState<InfluencersProps | null>(null);
 
 
   // 当前页面的chatId
@@ -242,6 +256,7 @@ export default function Component() {
               },
             ],
           });
+
           setFrontMarketingChannels({
             Social: allData.report.marketingChannels.Social,
             Direct: allData.report.marketingChannels.Direct,
@@ -262,10 +277,12 @@ export default function Component() {
             }))
           );
 
-          setTotalSocialData({allData.report.SocialOverview.Records.reduce(
-            (total: number, item: any) => total + item.TotalVisits, 
-            0
-          )});
+          setTotalSocialData({
+            allData.report.SocialOverview.Records.reduce(
+              (total: number, item: any) => total + item.TotalVisits,
+              0
+            )
+          });
           setMentionsData(allData.report.MentionOverview.results_count);
           setTotalLikeData(allData.report.MentionOverview.total_number_of_likes);
           setTotalSharesData(allData.report.MentionOverview.total_number_of_shares);
@@ -284,6 +301,22 @@ export default function Component() {
               value: item.Count,
             })),
           });
+
+          setFrontInfluencers(
+            allData.report.Influncers.map((item) => ({
+              id: item.authors_id,
+              profileImage: item.author_avatar_url,
+              name: item.author,
+              siteIcon: item.service,
+              siteUrl: item.author_url,
+              mentions: item.count,
+              followers: item.followers_count,
+            }))
+          );
+
+
+
+
         }
 
       }
@@ -340,22 +373,22 @@ export default function Component() {
               OrganicSearch={frontMarketingChannels?.OrganicSearch}
               PaidSearch={frontMarketingChannels?.PaidSearch}
             />
-            <Referrals referralsData={ } />
+            <Referrals referralsData={frontReferrals} />
             <SearchAnalysis
               dataofbox={SearchAnalysisData}
               organic={organicTrafficData}
               paid={paidTrafficData}
             />
             <SocialMediaAnalysis
-              TotalSocialVisits={ TotalSocialData}
-              Mentions={ MentionsData}
-              TotalLikes={TotalLikeData }
-              TotalShares={ TotalSharesData}
-              LineChartData={LineData }
-              PieChartData={PieData }
+              TotalSocialVisits={TotalSocialData}
+              Mentions={MentionsData}
+              TotalLikes={TotalLikeData}
+              TotalShares={TotalSharesData}
+              LineChartData={LineData}
+              PieChartData={PieData}
             />
             <Mentions mentions={ } mentionsFrom={ } />
-            <Influencers influencers={ } />
+            <Influencers influencers={frontInfluencers} />
           </div>
         </div>
       </Resizable>
