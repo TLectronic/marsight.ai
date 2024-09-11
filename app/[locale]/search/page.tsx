@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl";
 import InsightsIcon from "@/public/insights.svg";
 import React, { useRef, useState } from 'react'
 import { useAuth } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ArrowRightIcon } from 'lucide-react'
@@ -20,6 +21,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
   const t = useTranslations("SearchPage");
   const template = 'marsight';
   const { getToken, isSignedIn } = useAuth();
+  const { user } = useUser();
   const [isDialogOpen, setDialogOpen] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
   // router钩子，用于页面跳转
@@ -50,13 +52,14 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
 
       setIsSearching(true);
       try {
-        if (isSignedIn) {
+        if (isSignedIn && user) {
           const jwtToken = await getToken({ template });
           console.log(jwtToken);
           const response = await axios.post(
-            'https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat',
+            'http://marsight-1835320230.us-east-1.elb.amazonaws.com',
             {
               url: inputValue,
+              userId: user.id,
             },
             {
               headers: {
