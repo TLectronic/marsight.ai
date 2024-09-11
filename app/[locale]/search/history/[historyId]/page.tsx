@@ -111,6 +111,7 @@ const [PieData, setPieData] = useState<PieChartProps | null>(null);
 const [MentionData, setMentionData] = useState<MentionsProps | null>(null);
 const [MentionFormData, setMentionFormData] = useState<MentionsFormProps | null>(null);
 
+
 export default function Component() {
   // Traffic Overview 需要的数据类型
   interface TrafficOverviewProps {
@@ -141,9 +142,23 @@ export default function Component() {
     }[];
   }
 
+  // Influencers 需要的数据类型
+  interface InfluencersProps {
+    influencersData: {
+      id: string;
+      profileImage: string;
+      name: string;
+      siteIcon: string;
+      siteUrl: string;
+      mentions: string;
+      followers: string;
+    }[];
+  }
+
   const [frontTraffic, setFrontTraffic] = useState<TrafficOverviewProps | null>(null);
   const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
   const [frontReferrals, setFrontReferrals] = useState<ReferralsProps | null>(null);
+  const [frontInfluencers, setFrontInfluencers] = useState<InfluencersProps | null>(null);
 
 
   // 当前页面的chatId
@@ -247,6 +262,7 @@ export default function Component() {
               },
             ],
           });
+
           setFrontMarketingChannels({
             Social: allData.report.marketingChannels.Social,
             Direct: allData.report.marketingChannels.Direct,
@@ -324,6 +340,19 @@ export default function Component() {
             })),
           })
 
+          setFrontInfluencers(
+            allData.report.Influncers.map((item) => ({
+              id: item.authors_id,
+              profileImage: item.author_avatar_url,
+              name: item.author,
+              siteIcon: item.service,
+              siteUrl: item.author_url,
+              mentions: item.count,
+              followers: item.followers_count,
+            }))
+          );
+
+
 
         }
 
@@ -381,7 +410,7 @@ export default function Component() {
               OrganicSearch={frontMarketingChannels?.OrganicSearch}
               PaidSearch={frontMarketingChannels?.PaidSearch}
             />
-            <Referrals referralsData={ } />
+            <Referrals referralsData={frontReferrals} />
             <SearchAnalysis
               dataofbox={SearchAnalysisData}
               organic={organicTrafficData}
@@ -395,8 +424,10 @@ export default function Component() {
               LineChartData={LineData}
               PieChartData={PieData}
             />
+
             <Mentions mentions={MentionData } mentionsFrom={ MentionFormData} />
-            <Influencers influencers={ } />
+
+            <Influencers influencers={frontInfluencers} />
           </div>
         </div>
       </Resizable>
