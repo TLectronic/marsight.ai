@@ -86,8 +86,21 @@ export default function Component() {
     }[];
   }
 
+  // Referrals 需要的数据类型
+  interface ReferralsProps {
+    referralsData: {
+      Link: string;
+      category: string;
+      TrafficShare: number;
+      Traffic: number;
+      Change: number;
+    }[];
+  }
+
   const [frontTraffic, setFrontTraffic] = useState<TrafficOverviewProps | null>(null);
   const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
+  const [frontReferrals, setFrontReferrals] = useState<ReferralsProps | null>(null);
+
 
 
 
@@ -213,6 +226,15 @@ export default function Component() {
             PaidSearch: allData.report.marketingChannels.PaidSearch,
           });
 
+          setFrontReferrals(
+            allData.report.Referral.Records.map((item) => ({
+              Link: item.Domain,
+              category: item.Category,
+              TrafficShare: item.Share,
+              Traffic: item.TotalVisits,
+              Change: item.Change,
+            }))
+          );
         }
 
       }
