@@ -61,7 +61,7 @@ interface MarketingChannelsProps {
   PaidSearch: number;
 }
 
-interface LineChartProps{
+interface LineChartProps {
   LineChartData: {
     date_from: string;
     date_to: string;
@@ -69,7 +69,7 @@ interface LineChartProps{
   }[];
 }
 
-interface PieChartProps{
+interface PieChartProps {
   PieChartData: {
     name: string;
     value: number;
@@ -92,6 +92,9 @@ interface Mention {
 
 interface MentionsProps {
   mentions: Mention[];
+}
+
+interface MentionsFormProps {
   mentionsFrom: Mention[];
 }
 
@@ -99,12 +102,14 @@ const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps
 
 const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
 const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
-const [TotalSocialData,setTotalSocialData] = useState<number | null>(null);
-const [MentionsData,setMentionsData] = useState<number | null>(null);
-const [TotalLikeData,setTotalLikeData] = useState<number | null>(null);
-const [TotalSharesData,setTotalSharesData] = useState<number | null>(null);
-const [LineData,setLineData] = useState<LineChartProps | null>(null);
-const [PieData,setPieData] = useState<PieChartProps | null>(null);
+const [TotalSocialData, setTotalSocialData] = useState<number | null>(null);
+const [MentionsData, setMentionsData] = useState<number | null>(null);
+const [TotalLikeData, setTotalLikeData] = useState<number | null>(null);
+const [TotalSharesData, setTotalSharesData] = useState<number | null>(null);
+const [LineData, setLineData] = useState<LineChartProps | null>(null);
+const [PieData, setPieData] = useState<PieChartProps | null>(null);
+const [MentionData, setMentionData] = useState<MentionsProps | null>(null);
+const [MentionFormData, setMentionFormData] = useState<MentionsFormProps | null>(null);
 
 export default function Component() {
   // Traffic Overview 需要的数据类型
@@ -262,10 +267,12 @@ export default function Component() {
             }))
           );
 
-          setTotalSocialData({allData.report.SocialOverview.Records.reduce(
-            (total: number, item: any) => total + item.TotalVisits, 
-            0
-          )});
+          setTotalSocialData({
+            allData.report.SocialOverview.Records.reduce(
+              (total: number, item: any) => total + item.TotalVisits,
+              0
+            )
+          });
           setMentionsData(allData.report.MentionOverview.results_count);
           setTotalLikeData(allData.report.MentionOverview.total_number_of_likes);
           setTotalSharesData(allData.report.MentionOverview.total_number_of_shares);
@@ -277,13 +284,47 @@ export default function Component() {
             })),
           });
 
-
           setPieData({
             PieChartData: allData.report.SocialOverview.TopSources.map((item: any) => ({
               name: item.name,
               value: item.Count,
             })),
           });
+
+          setMentionData({
+            mentions: allData.report.Mentions.The_most_popular_mentions.map((item: any) => ({
+              id: item.id,
+              title: item.title,
+              created_date: item.created_date,
+              url: item.url,
+              likes_count: item.likes_count,
+              shares_count: item.shares_count,
+              comments_count: item.comments_count,
+              author: item.author,
+              author_avatar_url: item.author_avatar_url,
+              author_url: item.author_url,
+              importance_label: item.importance_label,
+            })),
+          })
+
+
+          setMentionFormData({
+            mentions: allData.report.Mentions.Mentions_from_the_most_popular_public_profiles.map((item: any) => ({
+              id: item.id,
+              title: item.title,
+              created_date: item.created_date,
+              url: item.url,
+              likes_count: item.likes_count,
+              shares_count: item.shares_count,
+              comments_count: item.comments_count,
+              author: item.author,
+              author_avatar_url: item.author_avatar_url,
+              author_url: item.author_url,
+              importance_label: item.importance_label,
+            })),
+          })
+
+
         }
 
       }
@@ -347,14 +388,14 @@ export default function Component() {
               paid={paidTrafficData}
             />
             <SocialMediaAnalysis
-              TotalSocialVisits={ TotalSocialData}
-              Mentions={ MentionsData}
-              TotalLikes={TotalLikeData }
-              TotalShares={ TotalSharesData}
-              LineChartData={LineData }
-              PieChartData={PieData }
+              TotalSocialVisits={TotalSocialData}
+              Mentions={MentionsData}
+              TotalLikes={TotalLikeData}
+              TotalShares={TotalSharesData}
+              LineChartData={LineData}
+              PieChartData={PieData}
             />
-            <Mentions mentions={ } mentionsFrom={ } />
+            <Mentions mentions={MentionData } mentionsFrom={ MentionFormData} />
             <Influencers influencers={ } />
           </div>
         </div>
