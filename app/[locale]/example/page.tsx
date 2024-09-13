@@ -385,29 +385,31 @@ export default function Component() {
   const template = 'markSightTest'
   const { getToken, isSignedIn } = useAuth();
   
-  // 获得当前页面需要渲染的信息
-  const getData = async () => {
-    try {
-      if (isSignedIn) {
-        const jwtToken = await getToken({ template });
-        const response = await axios.get(
-          `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${historyId}`,
-          {
-            headers: {
-              'Authorization': `Bearer ${jwtToken}`,
-            },
-          }
-        );
-        console.log("返回的数据:", response);
-      }
-    } catch (error) {
-      console.error('Failed to get chat:', error);
-    }
-  }
   // 页面初始化的时候调用 getData 获得数据
   useEffect(() => {
-    getData();
-  }, [isSignedIn, historyId])
+    const getData = async () => {
+      try {
+        if (isSignedIn) {
+          const jwtToken = await getToken({ template });
+          const response = await axios.get(
+            `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${historyId}`,
+            {
+              headers: {
+                'Authorization': `Bearer ${jwtToken}`,
+              },
+            }
+          );
+          console.log("返回的数据:", response);
+        }
+      } catch (error) {
+        console.error('Failed to get chat:', error);
+      }
+    };
+
+    if (isSignedIn && historyId) {
+      getData();
+    }
+  }, [isSignedIn, historyId, getToken]);
 
 
   return (
