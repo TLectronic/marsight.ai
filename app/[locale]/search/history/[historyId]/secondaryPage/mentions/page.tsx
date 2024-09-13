@@ -94,8 +94,7 @@ const Mentions = () => {
                 title={data.title}
                 date={data.date}
                 link={data.link}
-                tags={data.tags}
-              />
+                tags={data.tags} picture={undefined}              />
             ))}
           </div>
         </CardContent>

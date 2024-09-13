@@ -98,18 +98,18 @@ interface MentionsFormProps {
   mentionsFrom: Mention[];
 }
 
-const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps | null>(null);
+// const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps | null>(null);
 
-const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
-const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
-const [TotalSocialData, setTotalSocialData] = useState<number | null>(null);
-const [MentionsData, setMentionsData] = useState<number | null>(null);
-const [TotalLikeData, setTotalLikeData] = useState<number | null>(null);
-const [TotalSharesData, setTotalSharesData] = useState<number | null>(null);
-const [LineData, setLineData] = useState<LineChartProps | null>(null);
-const [PieData, setPieData] = useState<PieChartProps | null>(null);
-const [MentionData, setMentionData] = useState<MentionsProps | null>(null);
-const [MentionFormData, setMentionFormData] = useState<MentionsFormProps | null>(null);
+// const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
+// const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
+// const [TotalSocialData, setTotalSocialData] = useState<number | null>(null);
+// const [MentionsData, setMentionsData] = useState<number | null>(null);
+// const [TotalLikeData, setTotalLikeData] = useState<number | null>(null);
+// const [TotalSharesData, setTotalSharesData] = useState<number | null>(null);
+// const [LineData, setLineData] = useState<LineChartProps | null>(null);
+// const [PieData, setPieData] = useState<PieChartProps | null>(null);
+// const [MentionData, setMentionData] = useState<MentionsProps | null>(null);
+// const [MentionFormData, setMentionFormData] = useState<MentionsFormProps | null>(null);
 
 
 export default function Component() {
@@ -155,10 +155,10 @@ export default function Component() {
     }[];
   }
 
-  const [frontTraffic, setFrontTraffic] = useState<TrafficOverviewProps | null>(null);
-  const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
-  const [frontReferrals, setFrontReferrals] = useState<ReferralsProps | null>(null);
-  const [frontInfluencers, setFrontInfluencers] = useState<InfluencersProps | null>(null);
+  // const [frontTraffic, setFrontTraffic] = useState<TrafficOverviewProps | null>(null);
+  // const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
+  // const [frontReferrals, setFrontReferrals] = useState<ReferralsProps | null>(null);
+  // const [frontInfluencers, setFrontInfluencers] = useState<InfluencersProps | null>(null);
 
 
   // 当前页面的chatId
