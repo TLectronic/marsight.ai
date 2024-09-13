@@ -113,17 +113,6 @@ interface MentionsFormProps {
 
 export default function Component() {
 
-  // Referrals 需要的数据类型
-  interface ReferralsProps {
-    referralsData: {
-      Link: string;
-      category: string;
-      TrafficShare: number;
-      Traffic: number;
-      Change: number;
-    }[];
-  }
-
   // Influencers 需要的数据类型
   interface InfluencersProps {
     influencersData: {
@@ -136,6 +125,19 @@ export default function Component() {
       followers: string;
     }[];
   }
+
+  interface ProductAnalysis {
+    description: string;
+    target_users: string;
+    core_function: string;
+    application_scenario: string;
+  }
+  const [frontProductAnalysis, setFrontProductAnalysis] = useState<ProductAnalysis | null>()
+
+  interface Introduction {
+    icon: string;
+  }
+  const [frontIntroduction, setFrontIntroduction] = useState<Introduction | null>()
 
   interface TrafficAndEngagement {
     daily: {
@@ -216,6 +218,11 @@ export default function Component() {
         setFrontMarketingChannels(backMarketingChannels as MarketingChannels)
         const backReferral = (response as any).report.Referral
         setFrontReferrals(backReferral as Referral)
+
+        const backProductAnalysis = (response as any).report.ProductAnalysis
+        setFrontProductAnalysis(backProductAnalysis as ProductAnalysis)
+        const backIntroduction = (response as any).report.Introduction
+        setFrontIntroduction(backIntroduction as Introduction)
 
 
 
@@ -432,12 +439,15 @@ export default function Component() {
           </div>
           <div className="p-4 space-y-4 min-w-[500px]">
 
-            {/* <ProductAnalysis
-              ProductSummary={ }
-              TargetUsers={ }
-              CoreFeatures={ }
-              UseCases={ }
-            /> */}
+            {frontProductAnalysis && frontIntroduction && (
+              <ProductAnalysis
+                ProductIconUrl={frontIntroduction.icon}
+                ProductSummary={frontProductAnalysis.description}
+                TargetUsers={frontProductAnalysis.target_users}
+                CoreFeatures={frontProductAnalysis.core_function}
+                UseCases={frontProductAnalysis.application_scenario}
+              />
+            )}
 
             {frontTraffic && (
               <TrafficOverview
@@ -465,8 +475,6 @@ export default function Component() {
             )}
 
             {frontReferrals && (<Referrals referralsData={frontReferrals.Records} />)}
-
-
 
             {/* <SearchAnalysis
               dataofbox={SearchAnalysisData}
