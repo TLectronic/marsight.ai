@@ -113,35 +113,6 @@ interface MentionsFormProps {
 
 export default function Component() {
 
-  // Traffic Overview 需要的数据类型
-  interface TrafficOverviewProps {
-    MonthlyVisits: number;
-    UniqueVisitors: number;
-    VisitDuration: number;
-    PagesPerVisit: number;
-    BounceRate: number;
-    PageViews: number;
-    DesktopData: {
-      Key: string;
-      Value: number;
-    }[];
-    MobileWebData: {
-      Key: string;
-      Value: number;
-    }[];
-  }
-
-  // Referrals 需要的数据类型
-  interface ReferralsProps {
-    referralsData: {
-      Link: string;
-      category: string;
-      TrafficShare: number;
-      Traffic: number;
-      Change: number;
-    }[];
-  }
-
   // Influencers 需要的数据类型
   interface InfluencersProps {
     influencersData: {
@@ -154,6 +125,19 @@ export default function Component() {
       followers: string;
     }[];
   }
+
+  interface ProductAnalysis {
+    description: string;
+    target_users: string;
+    core_function: string;
+    application_scenario: string;
+  }
+  const [frontProductAnalysis, setFrontProductAnalysis] = useState<ProductAnalysis | null>()
+
+  interface Introduction {
+    icon: string;
+  }
+  const [frontIntroduction, setFrontIntroduction] = useState<Introduction | null>()
 
   interface TrafficAndEngagement {
     daily: {
@@ -207,9 +191,29 @@ export default function Component() {
   const [frontTraffic, setFrontTraffic] = useState<TrafficAndEngagement | null>();
   const [MentionFormData, setMentionFormData] = useState<Mentions | null>();
 
-  // const [frontTraffic, setFrontTraffic] = useState<any>();
-  // const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
-  // const [frontReferrals, setFrontReferrals] = useState<ReferralsProps | null>(null);
+  interface MarketingChannels {
+    Social: number;
+    Direct: number;
+    'Display Ads': number;
+    Referrals: number;
+    Email: number;
+    'Organic Search': number;
+    'Paid Search': number;
+  }
+  const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannels | null>();
+
+  interface Referral {
+    TotalVisits: number;
+    Records: {
+      Domain: string;
+      Category: string;
+      Share: number;
+      TotalVisits: number;
+      Change: number;
+    }[];
+  }
+  const [frontReferrals, setFrontReferrals] = useState<Referral | null>();
+
   // const [frontInfluencers, setFrontInfluencers] = useState<InfluencersProps | null>(null);
 
 
@@ -240,6 +244,15 @@ export default function Component() {
 
         const backTraffic = (response as any).report.trafficAndEngagement
         setFrontTraffic(backTraffic as TrafficAndEngagement)
+        const backMarketingChannels = (response as any).report.marketingChannels
+        setFrontMarketingChannels(backMarketingChannels as MarketingChannels)
+        const backReferral = (response as any).report.Referral
+        setFrontReferrals(backReferral as Referral)
+
+        const backProductAnalysis = (response as any).report.ProductAnalysis
+        setFrontProductAnalysis(backProductAnalysis as ProductAnalysis)
+        const backIntroduction = (response as any).report.Introduction
+        setFrontIntroduction(backIntroduction as Introduction)
 
         const backMentionForm = (response as any).report.Mentions
         setMentionFormData(backMentionForm as Mentions)
@@ -458,12 +471,15 @@ export default function Component() {
           </div>
           <div className="p-4 space-y-4 min-w-[500px]">
 
-            {/* <ProductAnalysis
-              ProductSummary={ }
-              TargetUsers={ }
-              CoreFeatures={ }
-              UseCases={ }
-            /> */}
+            {frontProductAnalysis && frontIntroduction && (
+              <ProductAnalysis
+                ProductIconUrl={frontIntroduction.icon}
+                ProductSummary={frontProductAnalysis.description}
+                TargetUsers={frontProductAnalysis.target_users}
+                CoreFeatures={frontProductAnalysis.core_function}
+                UseCases={frontProductAnalysis.application_scenario}
+              />
+            )}
 
             {frontTraffic && (
               <TrafficOverview
@@ -478,17 +494,19 @@ export default function Component() {
               />
             )}
 
-            {/* <MarketingChannels
-              Social={frontMarketingChannels?.Social}
-              Direct={frontMarketingChannels?.Direct}
-              DisplayAds={frontMarketingChannels?.DisplayAds}
-              Referrals={frontMarketingChannels?.Referrals}
-              Email={frontMarketingChannels?.Email}
-              OrganicSearch={frontMarketingChannels?.OrganicSearch}
-              PaidSearch={frontMarketingChannels?.PaidSearch}
-            /> */}
+            {frontMarketingChannels && (
+              <MarketingChannels
+                Social={frontMarketingChannels.Social}
+                Direct={frontMarketingChannels.Direct}
+                DisplayAds={frontMarketingChannels['Display Ads']}
+                Referrals={frontMarketingChannels.Referrals}
+                Email={frontMarketingChannels.Email}
+                OrganicSearch={frontMarketingChannels['Organic Search']}
+                PaidSearch={frontMarketingChannels['Paid Search']}
+              />
+            )}
 
-            {/* <Referrals referralsData={frontReferrals} /> */}
+            {frontReferrals && (<Referrals referralsData={frontReferrals.Records} />)}
 
             {/* <SearchAnalysis
               dataofbox={SearchAnalysisData}

@@ -5,10 +5,11 @@ import Image from "next/image";
 import { Target } from "lucide-react";
 
 interface ProductAnalysisProps {
+  ProductIconUrl: string;
   ProductSummary: string;
-  TargetUsers: string[];
-  CoreFeatures: string[];
-  UseCases: string[];
+  TargetUsers: string;
+  CoreFeatures: string;
+  UseCases: string;
 }
 
 const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
@@ -45,8 +46,8 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               </div>
               <div className="flex-1 p-4 rounded-b-[24px]">
                 <ul className="text-sm text-left mb-10 ml-3">
-                  {TargetUsers.map((user, index) => (
-                    <li key={index}>· {user}</li>
+                  {TargetUsers.split('\n').map((user, index) => (
+                    <li key={index}>{user}</li>
                   ))}
                 </ul>
               </div>
@@ -62,9 +63,11 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               </div>
               <div className="flex-1 p-4 rounded-[24px]">
                 <ul className='text-sm text-left ml-2'>
-                  {CoreFeatures.map((feature, index) => (
-                    <li key={index}>· {feature}</li>
+
+                  {CoreFeatures.split('\n').map((feature, index) => (
+                    <li key={index}>{feature}</li>
                   ))}
+
                 </ul>
               </div>
             </div>
@@ -76,8 +79,8 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
               </div>
               <div className="flex-1 p-4 rounded-[24px]">
                 <ul className='text-sm text-left'>
-                  {UseCases.map((scenario, index) => (
-                    <li key={index}>· {scenario}</li>
+                  {UseCases.split('\n').map((usecase, index) => (
+                    <li key={index}>{usecase}</li>
                   ))}
                 </ul>
               </div>

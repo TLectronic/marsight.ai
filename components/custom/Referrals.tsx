@@ -11,10 +11,10 @@ import axios from "axios";
 import { headers } from "next/headers";
 
 interface ReferralsRow {
-  Link: string;
-  category: string;
-  TrafficShare: number;
-  Traffic: number;
+  Domain: string;
+  Category: string;
+  Share: number;
+  TotalVisits: number;
   Change: number;
 }
 
@@ -104,17 +104,17 @@ const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
                   <TableRow key={rowIndex}>
                     <TableCell>
                       <a
-                        href={`https://${row.Link}`}
+                        href={`https://${row.Domain}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-500 no-underline"
                       >
-                        {row.Link}
+                        {row.Domain}
                       </a>
                     </TableCell>
-                    <TableCell>{row.category}</TableCell>
-                    <TableCell>{formatPercentage(row.TrafficShare)}</TableCell>
-                    <TableCell>{formatNumber(row.Traffic)}</TableCell>
+                    <TableCell>{row.Category}</TableCell>
+                    <TableCell>{formatPercentage(row.Share)}</TableCell>
+                    <TableCell>{formatNumber(row.TotalVisits)}</TableCell>
                     <TableCell>{formatPercentage(row.Change)}</TableCell>
                   </TableRow>
                 ))}
