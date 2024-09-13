@@ -99,7 +99,6 @@ interface MentionsFormProps {
 }
 
 // const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps | null>(null);
-
 // const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
 // const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
 // const [TotalSocialData, setTotalSocialData] = useState<number | null>(null);
@@ -113,6 +112,7 @@ interface MentionsFormProps {
 
 
 export default function Component() {
+
   // Traffic Overview 需要的数据类型
   interface TrafficOverviewProps {
     MonthlyVisits: number;
@@ -155,7 +155,29 @@ export default function Component() {
     }[];
   }
 
-  // const [frontTraffic, setFrontTraffic] = useState<TrafficOverviewProps | null>(null);
+  interface TrafficAndEngagement {
+    daily: {
+      Desktop: {
+        Key: string;
+        Value: number;
+      }[];
+      MobileWeb: {
+        Key: string;
+        Value: number;
+      }[];
+    };
+    total: {
+      AvgMonthVisits: number;
+      UniqueUsers: number;
+      AvgVisitDuration: number;
+      PagesPerVisit: number;
+      BounceRate: number;
+      TotalPagesViews: number;
+    };
+  }
+  const [frontTraffic, setFrontTraffic] = useState<TrafficAndEngagement | null>();
+
+  // const [frontTraffic, setFrontTraffic] = useState<any>();
   // const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
   // const [frontReferrals, setFrontReferrals] = useState<ReferralsProps | null>(null);
   // const [frontInfluencers, setFrontInfluencers] = useState<InfluencersProps | null>(null);
@@ -184,7 +206,14 @@ export default function Component() {
         );
         console.log("返回的数据:", response.data);
         // 得到后端的 shit
-        setAllData(response.data);
+        // setAllData(response.data);
+
+        const backTraffic = (response as any).report.trafficAndEngagement
+        setFrontTraffic(backTraffic as TrafficAndEngagement)
+
+
+
+
       }
     } catch (error) {
       console.error('Failed to get chat:', error);
@@ -368,52 +397,56 @@ export default function Component() {
   }, [allData]);
 
 
-// }
-//     } catch (error) {
-//   console.error('Failed to get chat:', error);
-// }
-//   }
-// // 页面初始化的时候调用 getData 获得数据
-// useEffect(() => {
-//   getData();
-// }, [isSignedIn, historyId])
+  // }
+  //     } catch (error) {
+  //   console.error('Failed to get chat:', error);
+  // }
+  //   }
+  // // 页面初始化的时候调用 getData 获得数据
+  // useEffect(() => {
+  //   getData();
+  // }, [isSignedIn, historyId])
 
 
-return (
-  <div className="flex h-screen overflow-hidden bg-[#ffffff] p-4">
-    <Resizable
-      defaultSize={{
-        width: '70%',
-        height: '100%',
-      }}
-      enable={{ right: false }}
-      handleComponent={{
-        right: <div className="w-1 h-full bg-gray-300 cursor-col-resize hover:bg-gray-400 transition-colors" />
-      }}
-    >
-      <div className="h-full overflow-auto">
-        <div className='sticky top-0 bg-white z-10 text-xl font-extrabold text-[#5F5E5B] border-b w-full pb-3 pl-6 relative'>
-          Marketing Strategy
-        </div>
-        <div className="p-4 space-y-4 min-w-[500px]">
+  return (
+    <div className="flex h-screen overflow-hidden bg-[#ffffff] p-4">
+      <Resizable
+        defaultSize={{
+          width: '70%',
+          height: '100%',
+        }}
+        enable={{ right: false }}
+        handleComponent={{
+          right: <div className="w-1 h-full bg-gray-300 cursor-col-resize hover:bg-gray-400 transition-colors" />
+        }}
+      >
+        <div className="h-full overflow-auto">
+          <div className='sticky top-0 bg-white z-10 text-xl font-extrabold text-[#5F5E5B] border-b w-full pb-3 pl-6 relative'>
+            Marketing Strategy
+          </div>
+          <div className="p-4 space-y-4 min-w-[500px]">
 
-          {/* <ProductAnalysis
+            {/* <ProductAnalysis
               ProductSummary={ }
               TargetUsers={ }
               CoreFeatures={ }
               UseCases={ }
-            />
-            <TrafficOverview
-              MonthlyVisits={frontTraffic?.MonthlyVisits}
-              UniqueVisitors={frontTraffic?.UniqueVisitors}
-              VisitDuration={frontTraffic?.VisitDuration}
-              PagesPerVisit={frontTraffic?.PagesPerVisit}
-              BounceRate={frontTraffic?.BounceRate}
-              PageViews={frontTraffic?.PageViews}
-              DesktopData={frontTraffic?.DesktopData}
-              MobileWebData={frontTraffic?.MobileWebData}
-            />
-            <MarketingChannels
+            /> */}
+
+            {frontTraffic && (
+              <TrafficOverview
+                MonthlyVisits={frontTraffic.total.AvgMonthVisits}
+                UniqueVisitors={frontTraffic.total.UniqueUsers}
+                VisitDuration={frontTraffic.total.AvgVisitDuration}
+                PagesPerVisit={frontTraffic.total.PagesPerVisit}
+                BounceRate={frontTraffic.total.BounceRate}
+                PageViews={frontTraffic.total.TotalPagesViews}
+                DesktopData={frontTraffic.daily.Desktop}
+                MobileWebData={frontTraffic.daily.MobileWeb}
+              />
+            )}
+
+            {/* <MarketingChannels
               Social={frontMarketingChannels?.Social}
               Direct={frontMarketingChannels?.Direct}
               DisplayAds={frontMarketingChannels?.DisplayAds}
@@ -421,30 +454,34 @@ return (
               Email={frontMarketingChannels?.Email}
               OrganicSearch={frontMarketingChannels?.OrganicSearch}
               PaidSearch={frontMarketingChannels?.PaidSearch}
-            />
-            <Referrals referralsData={frontReferrals} />
-            <SearchAnalysis
+            /> */}
+
+            {/* <Referrals referralsData={frontReferrals} /> */}
+
+            {/* <SearchAnalysis
               dataofbox={SearchAnalysisData}
               organic={organicTrafficData}
               paid={paidTrafficData}
-            />
-            <SocialMediaAnalysis
+            /> */}
+
+            {/* <SocialMediaAnalysis
               TotalSocialVisits={TotalSocialData}
               Mentions={MentionsData}
               TotalLikes={TotalLikeData}
               TotalShares={TotalSharesData}
               LineChartData={LineData}
               PieChartData={PieData}
-            />
+            /> */}
 
-            <Mentions mentions={MentionData } mentionsFrom={ MentionFormData} />
+            {/* <Mentions mentions={MentionData } mentionsFrom={ MentionFormData} /> */}
 
-            <Influencers influencers={frontInfluencers} /> */}
+            {/* <Influencers influencers={frontInfluencers} /> */}
+
+          </div>
         </div>
-      </div>
-    </Resizable>
-    <Chat messages={messages} />
-  </div>
+      </Resizable>
+      <Chat messages={messages} />
+    </div>
 
-)
+  )
 }
