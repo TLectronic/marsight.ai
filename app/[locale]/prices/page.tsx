@@ -114,19 +114,15 @@ export default function Component() {
                 <h2 className="text-xl font-bold mb-1">{t('liteTitle')}</h2>
                 <p className="text-gray-600 text-sm mb-3">{t('liteDescription')}</p>
                 <div className="relative text-3xl font-bold mb-3">
-
                   <div className="relative text-3xl font-bold mb-3">
                     <div className="relative text-3xl font-bold mb-3">
                       {'$29.90'}
-                      {/* <div className="absolute top-0 left-20 text-xs" style={{ textDecoration: 'line-through', textDecorationThickness: '2px' }}>
-                        $30
+                      {/* 添加原价 */}
+                      <div className="absolute top-0 right-20 text-xs" style={{ textDecoration: 'line-through', textDecorationThickness: '2px' }}>
+                        $149
                       </div>
-                      <div className="absolute text-xl left-20 text-xs top-4">
-                        /Mo
-                      </div> */}
                     </div>
                   </div>
-
                 </div>
 
                 <DialogTrigger asChild>
@@ -172,7 +168,13 @@ export default function Component() {
               <div className="p-4 flex-grow">
                 <h2 className="text-xl font-bold mb-1">{t('popularTitle')}</h2>
                 <p className="text-gray-600 text-sm mb-3">{t('popularDescription')}</p>
-                <div className="text-3xl font-bold mb-3">{'$49.90'}</div>
+                <div className="relative text-3xl font-bold mb-3">
+                  {'$49.90'}
+                  {/* 添加原价 */}
+                  <div className="absolute top-0 right-20 text-xs" style={{ textDecoration: 'line-through', textDecorationThickness: '2px' }}>
+                    $199
+                  </div>
+                </div>
                 <DialogTrigger asChild>
                   <Button
                     className={`w-full py-2 rounded-lg text-sm font-semibold text-white`}
@@ -212,7 +214,13 @@ export default function Component() {
               <div className="p-4 flex-grow">
                 <h2 className="text-xl font-bold mb-1">{t('agencyTitle')}</h2>
                 <p className="text-gray-600 text-sm mb-3">{t('agencyDescription')}</p>
-                <div className="text-3xl font-bold mb-3">{'$99.90'}</div>
+                <div className="relative text-3xl font-bold mb-3">
+                  {'$99.90'}
+                  {/* 添加原价 */}
+                  <div className="absolute top-0 right-20 text-xs" style={{ textDecoration: 'line-through', textDecorationThickness: '2px' }}>
+                    $299
+                  </div>
+                </div>
                 <DialogTrigger asChild>
                   <Button
                     className={`w-full py-2 rounded-lg text-sm font-semibold bg-[#F7F7F5] text-black hover:bg-slate-300`}
