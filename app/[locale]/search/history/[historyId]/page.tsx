@@ -113,24 +113,6 @@ interface MentionsFormProps {
 
 export default function Component() {
 
-  // Traffic Overview 需要的数据类型
-  interface TrafficOverviewProps {
-    MonthlyVisits: number;
-    UniqueVisitors: number;
-    VisitDuration: number;
-    PagesPerVisit: number;
-    BounceRate: number;
-    PageViews: number;
-    DesktopData: {
-      Key: string;
-      Value: number;
-    }[];
-    MobileWebData: {
-      Key: string;
-      Value: number;
-    }[];
-  }
-
   // Referrals 需要的数据类型
   interface ReferralsProps {
     referralsData: {
@@ -177,8 +159,16 @@ export default function Component() {
   }
   const [frontTraffic, setFrontTraffic] = useState<TrafficAndEngagement | null>();
 
-  // const [frontTraffic, setFrontTraffic] = useState<any>();
-  // const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
+  interface MarketingChannels {
+    Social: number;
+    Direct: number;
+    'Display Ads': number;
+    Referrals: number;
+    Email: number;
+    'Organic Search': number;
+    'Paid Search': number;
+  }
+  const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannels | null>();
   // const [frontReferrals, setFrontReferrals] = useState<ReferralsProps | null>(null);
   // const [frontInfluencers, setFrontInfluencers] = useState<InfluencersProps | null>(null);
 
@@ -210,6 +200,8 @@ export default function Component() {
 
         const backTraffic = (response as any).report.trafficAndEngagement
         setFrontTraffic(backTraffic as TrafficAndEngagement)
+        const backMarketingChannels = (response as any).report.marketingChannels
+        setFrontMarketingChannels(backMarketingChannels as MarketingChannels)
 
 
 
@@ -446,15 +438,17 @@ export default function Component() {
               />
             )}
 
-            {/* <MarketingChannels
-              Social={frontMarketingChannels?.Social}
-              Direct={frontMarketingChannels?.Direct}
-              DisplayAds={frontMarketingChannels?.DisplayAds}
-              Referrals={frontMarketingChannels?.Referrals}
-              Email={frontMarketingChannels?.Email}
-              OrganicSearch={frontMarketingChannels?.OrganicSearch}
-              PaidSearch={frontMarketingChannels?.PaidSearch}
-            /> */}
+            {frontMarketingChannels && (
+              <MarketingChannels
+                Social={frontMarketingChannels.Social}
+                Direct={frontMarketingChannels.Direct}
+                DisplayAds={frontMarketingChannels['Display Ads']}
+                Referrals={frontMarketingChannels.Referrals}
+                Email={frontMarketingChannels.Email}
+                OrganicSearch={frontMarketingChannels['Organic Search']}
+                PaidSearch={frontMarketingChannels['Paid Search']}
+              />
+            )}
 
             {/* <Referrals referralsData={frontReferrals} /> */}
 
