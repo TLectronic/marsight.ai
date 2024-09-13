@@ -175,7 +175,37 @@ export default function Component() {
       TotalPagesViews: number;
     };
   }
+
+  interface Mentions {
+    Mentions_from_the_most_popular_public_profiles: {
+      id: number,
+      title: string,
+      created_date: string,
+      url: string,
+      likes_count: number,
+      shares_count: number,
+      comments_count: number,
+      author: string,
+      author_avatar_url: string,
+      author_url: string,
+      importance_label: string,
+    }[];
+    The_most_popular_mentions: {
+      id: number,
+      title: string,
+      created_date: string,
+      url: string,
+      likes_count: number,
+      shares_count: number,
+      comments_count: number,
+      author: string,
+      author_avatar_url: string,
+      author_url: string,
+      importance_label: string,
+    }[];
+  }
   const [frontTraffic, setFrontTraffic] = useState<TrafficAndEngagement | null>();
+  const [MentionFormData, setMentionFormData] = useState<Mentions | null>();
 
   // const [frontTraffic, setFrontTraffic] = useState<any>();
   // const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannelsProps | null>(null);
@@ -211,6 +241,8 @@ export default function Component() {
         const backTraffic = (response as any).report.trafficAndEngagement
         setFrontTraffic(backTraffic as TrafficAndEngagement)
 
+        const backMentionForm = (response as any).report.Mentions
+        setMentionFormData(backMentionForm as Mentions)
 
 
 
@@ -473,7 +505,11 @@ export default function Component() {
               PieChartData={PieData}
             /> */}
 
-            {/* <Mentions mentions={MentionData } mentionsFrom={ MentionFormData} /> */}
+            <Mentions
+              mentions={MentionFormData?.The_most_popular_mentions || []}
+              mentionsFrom={MentionFormData?.Mentions_from_the_most_popular_public_profiles || []}
+            />
+
 
             {/* <Influencers influencers={frontInfluencers} /> */}
 
