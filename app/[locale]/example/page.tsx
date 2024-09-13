@@ -384,8 +384,7 @@ export default function Component() {
   // 登录认证内容
   const template = 'markSightTest'
   const { getToken, isSignedIn } = useAuth();
-  
-  // 页面初始化的时候调用 getData 获得数据
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -410,7 +409,6 @@ export default function Component() {
       getData();
     }
   }, [isSignedIn, historyId, getToken]);
-
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#ffffff] p-4">

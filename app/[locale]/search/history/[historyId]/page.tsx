@@ -168,6 +168,7 @@ export default function Component() {
   const { getToken, isSignedIn } = useAuth();
   // 当前页面的所有数据
   const [allData, setAllData] = useState(null);
+
   // 获得当前页面需要渲染的信息
   const getData = async () => {
     try {
@@ -367,25 +368,36 @@ export default function Component() {
   }, [allData]);
 
 
-  return (
-    <div className="flex h-screen overflow-hidden bg-[#ffffff] p-4">
-      <Resizable
-        defaultSize={{
-          width: '70%',
-          height: '100%',
-        }}
-        enable={{ right: false }}
-        handleComponent={{
-          right: <div className="w-1 h-full bg-gray-300 cursor-col-resize hover:bg-gray-400 transition-colors" />
-        }}
-      >
-        <div className="h-full overflow-auto">
-          <div className='sticky top-0 bg-white z-10 text-xl font-extrabold text-[#5F5E5B] border-b w-full pb-3 pl-6 relative'>
-            Marketing Strategy
-          </div>
-          <div className="p-4 space-y-4 min-w-[500px]">
+// }
+//     } catch (error) {
+//   console.error('Failed to get chat:', error);
+// }
+//   }
+// // 页面初始化的时候调用 getData 获得数据
+// useEffect(() => {
+//   getData();
+// }, [isSignedIn, historyId])
 
-            {/* <ProductAnalysis
+
+return (
+  <div className="flex h-screen overflow-hidden bg-[#ffffff] p-4">
+    <Resizable
+      defaultSize={{
+        width: '70%',
+        height: '100%',
+      }}
+      enable={{ right: false }}
+      handleComponent={{
+        right: <div className="w-1 h-full bg-gray-300 cursor-col-resize hover:bg-gray-400 transition-colors" />
+      }}
+    >
+      <div className="h-full overflow-auto">
+        <div className='sticky top-0 bg-white z-10 text-xl font-extrabold text-[#5F5E5B] border-b w-full pb-3 pl-6 relative'>
+          Marketing Strategy
+        </div>
+        <div className="p-4 space-y-4 min-w-[500px]">
+
+          {/* <ProductAnalysis
               ProductSummary={ }
               TargetUsers={ }
               CoreFeatures={ }
@@ -428,11 +440,11 @@ export default function Component() {
             <Mentions mentions={MentionData } mentionsFrom={ MentionFormData} />
 
             <Influencers influencers={frontInfluencers} /> */}
-          </div>
         </div>
-      </Resizable>
-      <Chat messages={messages} />
-    </div>
+      </div>
+    </Resizable>
+    <Chat messages={messages} />
+  </div>
 
-  )
+)
 }
