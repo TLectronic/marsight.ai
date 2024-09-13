@@ -169,7 +169,19 @@ export default function Component() {
     'Paid Search': number;
   }
   const [frontMarketingChannels, setFrontMarketingChannels] = useState<MarketingChannels | null>();
-  // const [frontReferrals, setFrontReferrals] = useState<ReferralsProps | null>(null);
+
+  interface Referral {
+    TotalVisits: number;
+    Records: {
+      Domain: string;
+      Category: string;
+      Share: number;
+      TotalVisits: number;
+      Change: number;
+    }[];
+  }
+  const [frontReferrals, setFrontReferrals] = useState<Referral | null>();
+
   // const [frontInfluencers, setFrontInfluencers] = useState<InfluencersProps | null>(null);
 
 
@@ -202,6 +214,8 @@ export default function Component() {
         setFrontTraffic(backTraffic as TrafficAndEngagement)
         const backMarketingChannels = (response as any).report.marketingChannels
         setFrontMarketingChannels(backMarketingChannels as MarketingChannels)
+        const backReferral = (response as any).report.Referral
+        setFrontReferrals(backReferral as Referral)
 
 
 
@@ -450,7 +464,9 @@ export default function Component() {
               />
             )}
 
-            {/* <Referrals referralsData={frontReferrals} /> */}
+            {frontReferrals && (<Referrals referralsData={frontReferrals.Records} />)}
+
+
 
             {/* <SearchAnalysis
               dataofbox={SearchAnalysisData}
