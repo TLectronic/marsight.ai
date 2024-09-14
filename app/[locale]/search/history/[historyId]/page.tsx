@@ -419,7 +419,7 @@ export default function Component() {
               />
             )}
 
-            {frontInfluencers ? (
+            {frontInfluencers && frontInfluencers.length > 0 ? (
               <Influencers influencers={influencersToDisplay} chatId={chatIdString} />
             ) : (
               <NoDataCard />
