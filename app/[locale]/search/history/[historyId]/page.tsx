@@ -523,10 +523,10 @@ export default function Component() {
               PieChartData={PieData}
             /> */}
 
-            <Mentions
+            {/* <Mentions
               mentions={MentionFormData?.The_most_popular_mentions || []}
               mentionsFrom={MentionFormData?.Mentions_from_the_most_popular_public_profiles || []}
-            />
+            /> */}
 
 
             {/* <Influencers influencers={frontInfluencers} /> */}
