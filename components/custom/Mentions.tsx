@@ -11,7 +11,7 @@ import { HeartIcon, Share1Icon, ChatBubbleIcon } from '@radix-ui/react-icons';
 
 
 interface Mention {
-  id: string;
+  id: number;
   title: string;
   created_date: string;
   url: string;
@@ -21,7 +21,7 @@ interface Mention {
   author: string;
   author_avatar_url: string;
   author_url: string;
-  importance_label: string;
+  content: string;
 }
 
 interface MentionsProps {
@@ -84,7 +84,7 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
                     </span>
                   </>
                 }
-                tags={mention.importance_label}
+                tags={mention.content}
               />
             ))}
 

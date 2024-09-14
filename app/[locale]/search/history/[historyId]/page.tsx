@@ -161,34 +161,7 @@ export default function Component() {
     };
   }
 
-  interface Mentions {
-    Mentions_from_the_most_popular_public_profiles: {
-      id: number,
-      title: string,
-      created_date: string,
-      url: string,
-      likes_count: number,
-      shares_count: number,
-      comments_count: number,
-      author: string,
-      author_avatar_url: string,
-      author_url: string,
-      importance_label: string,
-    }[];
-    The_most_popular_mentions: {
-      id: number,
-      title: string,
-      created_date: string,
-      url: string,
-      likes_count: number,
-      shares_count: number,
-      comments_count: number,
-      author: string,
-      author_avatar_url: string,
-      author_url: string,
-      importance_label: string,
-    }[];
-  }
+
   const [frontTraffic, setFrontTraffic] = useState<TrafficAndEngagement | null>();
   const [MentionFormData, setMentionFormData] = useState<Mentions | null>();
 
@@ -308,6 +281,38 @@ export default function Component() {
   }
   const [frontMentionChart, setFrontMentionChart] = useState<MentionChart | null>();
 
+  interface Mentions {
+    Mentions_from_the_most_popular_public_profiles: {
+      id: number,
+      title: string,
+      created_date: string,
+      url: string,
+      likes_count: number,
+      shares_count: number,
+      comments_count: number,
+      author: string,
+      author_avatar_url: string,
+      author_url: string,
+      content: string,
+    }[];
+    The_most_popular_mentions: {
+      id: number,
+      title: string,
+      created_date: string,
+      url: string,
+      likes_count: number,
+      shares_count: number,
+      comments_count: number,
+      author: string,
+      author_avatar_url: string,
+      author_url: string,
+      content: string,
+    }[];
+  }
+  const [frontMentions, setFrontMentions] = useState<Mentions | null>();
+
+
+
 
   // 当前页面的chatId
   const { historyId } = useParams()
@@ -363,6 +368,8 @@ export default function Component() {
         const backMentionChart = (response.data as any).report.MentionChart
         setFrontMentionChart(backMentionChart as MentionChart)
 
+        const backMentions = (response.data as any).report.Mentions
+        setFrontMentions(backMentions as Mentions)
 
       }
     } catch (error) {
@@ -656,19 +663,14 @@ export default function Component() {
               />
             )}
 
+            {frontMentions && (
+              <Mentions
+                mentions={frontMentions.The_most_popular_mentions}
+                mentionsFrom={frontMentions.Mentions_from_the_most_popular_public_profiles}
+              />
+            )}
 
-
-
-
-            {/* <Mentions
-              mentions={MentionFormData?.The_most_popular_mentions || []}
-              mentionsFrom={MentionFormData?.Mentions_from_the_most_popular_public_profiles || []}
-            /> */}
             {frontInfluencers && (<Influencers influencers={frontInfluencers} />)}
-
-
-
-
           </div>
         </div>
       </Resizable>
