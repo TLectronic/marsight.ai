@@ -334,38 +334,37 @@ export default function Component() {
             },
           }
         );
-        console.log("返回的数据:", response);
+        console.log("返回的数据:", response.data);
         // 得到后端的 shit
-        // setAllData(response.data);
 
-        const backTraffic = (response as any).report.trafficAndEngagement
+        const backTraffic = (response.data as any).report.TrafficAndEngagement
         setFrontTraffic(backTraffic as TrafficAndEngagement)
-        const backMarketingChannels = (response as any).report.marketingChannels
+        const backMarketingChannels = (response.data as any).report.MarketingChannels
         setFrontMarketingChannels(backMarketingChannels as MarketingChannels)
-        const backReferral = (response as any).report.Referral
+        const backReferral = (response.data as any).report.Referral
         setFrontReferrals(backReferral as Referral)
 
-        const backProductAnalysis = (response as any).report.ProductAnalysis
+        const backProductAnalysis = (response.data as any).report.ProductAnalysis
         setFrontProductAnalysis(backProductAnalysis as ProductAnalysis)
-        const backIntroduction = (response as any).report.Introduction
+        const backIntroduction = (response.data as any).report.Introduction
         setFrontIntroduction(backIntroduction as Introduction)
 
-        const backMentionForm = (response as any).report.Mentions
+        const backMentionForm = (response.data as any).report.Mentions
         setMentionFormData(backMentionForm as Mentions)
 
-        const backInfluncers = (response as any).report.Influncers
+        const backInfluncers = (response.data as any).report.Influncers
         setFrontInfluencers(backInfluncers as Influncers[])
 
-        const backKeywords = (response as any).report.Keywords
+        const backKeywords = (response.data as any).report.Keywords
         setFrontSearchAnalysis(backKeywords as Keywords)
 
-        const backSocialOverview = (response as any).report.SocialOverview
+        const backSocialOverview = (response.data as any).report.SocialOverview
         setFrontSocialOverview(backSocialOverview as SocialOverview)
 
-        const backMentionOverview = (response as any).report.MentionOverview
+        const backMentionOverview = (response.data as any).report.MentionOverview
         setFrontMentionOverview(backMentionOverview as MentionOverview)
 
-        const backMentionChart = (response as any).report.MentionChart
+        const backMentionChart = (response.data as any).report.MentionChart
         setFrontMentionChart(backMentionChart as MentionChart)
 
 
