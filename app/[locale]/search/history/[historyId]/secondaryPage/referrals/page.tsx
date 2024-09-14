@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { ResponsiveContainer } from 'recharts';
 import { ArrowLeftIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useParams } from 'next/navigation';
@@ -67,8 +66,8 @@ const Referrals = () => {
     }, [isSignedIn, historyId]);
 
     return (
-        <div className='bg-[#ffffff] w-full h-full p-4 space-y-4 overflow-auto'>
-                <Card className="rounded-[24px] p-2">
+        <div className="bg-[#ffffff] w-full h-full p-4 space-y-4">
+            <Card className="rounded-[24px] p-2 max-h-[80vh] overflow-hidden">
                 <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
                         <Button
@@ -83,7 +82,7 @@ const Referrals = () => {
                 </CardHeader>
                 <CardContent>
                     {frontReferrals ? (
-                        <ResponsiveContainer width="100%" height={300}>
+                        <div className="overflow-y-auto max-h-[60vh]">
                             <Table>
                                 <TableHeader>
                                     <TableRow>
@@ -102,7 +101,7 @@ const Referrals = () => {
                                                     <div className="flex items-center space-x-2">
                                                         <Button
                                                             onClick={() => handleExpand(rowIndex)}
-                                                            variant='link'
+                                                            variant="link"
                                                             className="p-1 rounded-full flex items-center justify-center hover:bg-gray-100 focus:outline-none"
                                                         >
                                                             {expandedRowIndex === rowIndex ? (
@@ -153,7 +152,7 @@ const Referrals = () => {
                                     ))}
                                 </TableBody>
                             </Table>
-                        </ResponsiveContainer>
+                        </div>
                     ) : (
                         <div>No Data Available</div>
                     )}
