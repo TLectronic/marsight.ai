@@ -199,7 +199,7 @@ export default function Component() {
     followers_count: string;
   }
   const [frontInfluencers, setFrontInfluencers] = useState<Influncers[] | null>();
-  const influencersToDisplay = frontInfluencers?.slice(0, 5) || [];
+  const influencersToDisplay = frontInfluencers?.slice(0, 10) || [];
 
   interface Keywords {
     all_brand: {
