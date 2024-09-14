@@ -24,8 +24,7 @@ interface Influencer {
 }
 
 const Influencers: React.FC = () => {
-    const router = useRouter();
-    const { chatId } = router.query;
+    const { chatId } = useParams()
 
     const [frontInfluencers, setFrontInfluencers] = useState<Influencer[] | null>(null);
 
