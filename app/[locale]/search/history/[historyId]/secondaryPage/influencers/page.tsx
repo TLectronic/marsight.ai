@@ -8,10 +8,10 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
-import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useAuth } from '@clerk/nextjs';
 import { useParams } from 'next/navigation';
+import { ArrowLeftIcon } from 'lucide-react';
 
 interface Influencer {
     authors_id: string; // 作者ID
