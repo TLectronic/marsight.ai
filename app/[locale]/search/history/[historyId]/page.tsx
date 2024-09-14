@@ -278,6 +278,36 @@ export default function Component() {
   }
   const [frontSearchAnalysis, setFrontSearchAnalysis] = useState<Keywords | null>();
 
+  interface SocialOverview {
+    Records: {
+      Page: string;
+      Visits: number;
+    }[];
+    TopSources: {
+      Name: string;
+      Value: number;
+    }[];
+  }
+  const [frontSocialOverview, setFrontSocialOverview] = useState<SocialOverview | null>();
+
+  interface MentionOverview {
+    results_count: string;
+    total_number_of_likes: string;
+    total_number_of_shares: string;
+  }
+  const [frontMentionOverview, setFrontMentionOverview] = useState<MentionOverview | null>();
+
+  interface MentionChart {
+    total_results: {
+      graph_data: {
+        date_from: string;
+        date_to: string;
+        results_nb: number;
+      }[];
+    }
+  }
+  const [frontMentionChart, setFrontMentionChart] = useState<MentionChart | null>();
+
 
   // 当前页面的chatId
   const { historyId } = useParams()
@@ -324,6 +354,15 @@ export default function Component() {
 
         const backKeywords = (response as any).report.Keywords
         setFrontSearchAnalysis(backKeywords as Keywords)
+
+        const backSocialOverview = (response as any).report.SocialOverview
+        setFrontSocialOverview(backSocialOverview as SocialOverview)
+
+        const backMentionOverview = (response as any).report.MentionOverview
+        setFrontMentionOverview(backMentionOverview as MentionOverview)
+
+        const backMentionChart = (response as any).report.MentionChart
+        setFrontMentionChart(backMentionChart as MentionChart)
 
 
       }
@@ -607,15 +646,20 @@ export default function Component() {
               ]}
             />)}
 
+            {frontSocialOverview && frontMentionOverview && frontMentionChart && (
+              <SocialMediaAnalysis
+                TotalSocialVisits={frontSocialOverview.Records.reduce((total, record) => total+record.Visits, 0)}
+                Mentions={frontMentionOverview.results_count}
+                TotalLikes={frontMentionOverview.total_number_of_likes}
+                TotalShares={frontMentionOverview.total_number_of_shares}
+                LineChartData={frontMentionChart.total_results.graph_data}
+                PieChartData={frontSocialOverview.TopSources}
+              />
+            )}
 
-            {/* <SocialMediaAnalysis
-              TotalSocialVisits={TotalSocialData}
-              Mentions={MentionsData}
-              TotalLikes={TotalLikeData}
-              TotalShares={TotalSharesData}
-              LineChartData={LineData}
-              PieChartData={PieData}
-            /> */}
+
+
+
 
             {/* <Mentions
               mentions={MentionFormData?.The_most_popular_mentions || []}

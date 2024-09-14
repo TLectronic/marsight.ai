@@ -10,9 +10,9 @@ import { Share2 } from "lucide-react";
 
 interface SocialMediaAnalysisProps {
   TotalSocialVisits: number;
-  Mentions: number;
-  TotalLikes: number;
-  TotalShares: number;
+  Mentions: string;
+  TotalLikes: string;
+  TotalShares: string;
   // 折线图数据
   LineChartData: {
     date_from: string;
@@ -21,8 +21,8 @@ interface SocialMediaAnalysisProps {
   }[];
   // 饼状图数据
   PieChartData: {
-    name: string;
-    value: number;
+    Name: string;
+    Value: number;
   }[];
 }
 
@@ -49,7 +49,7 @@ interface SocialMediaAnalysisProps {
 const COLORS = ['#082D64', '#FF8042', '#00C49F', '#FFBB28', '#0088FE', '#E6E9EC'];
 
 const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVisits, Mentions, TotalLikes, TotalShares, LineChartData, PieChartData }) => {
-  
+
   const formatNumber = (num: number): string => {
     if (num >= 1000000) {
       return (num / 1000000).toFixed(1) + 'M'; // 超过百万显示为M
@@ -63,13 +63,13 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
     const { payload } = props;
     if (!payload) return null;
 
-    const total = PieChartData.reduce((sum, entry) => sum + entry.value, 0);
+    const total = PieChartData.reduce((sum, entry) => sum + entry.Value, 0);
 
     return (
       <ul>
         {payload.map((entry, index) => {
-          const data = PieChartData.find(data => data.name === entry.value);
-          const value = data ? data.value : 0;
+          const data = PieChartData.find(data => data.Name === entry.value);
+          const value = data ? data.Value : 0;
           const percentage = total > 0 ? ((value / total) * 100).toFixed(2) : '0.00';
           return (
             <li key={`item-${index}`} style={{ marginBottom: '5px' }}>
@@ -107,10 +107,10 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
     name: `${entry.date_from} - ${entry.date_to}`,
     number: entry.results_nb,
   }));
-  
+
 
   const renderLineChart = () => (
-    <ResponsiveContainer height={300} width="100%"> 
+    <ResponsiveContainer height={300} width="100%">
       <LineChart data={formattedLineChartData} className='-ml-2'>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
@@ -121,7 +121,7 @@ const SocialMediaAnalysis: React.FC<SocialMediaAnalysisProps> = ({ TotalSocialVi
       </LineChart>
     </ResponsiveContainer>
   );
-  
+
   return (
     <>
       <div className='text-2xl font-extrabold text-[#5F5E5B] flex'>

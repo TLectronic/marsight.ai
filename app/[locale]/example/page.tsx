@@ -459,14 +459,14 @@ export default function Component() {
               organic={organic}
               paid={paid}
             /> */}
-            <SocialMediaAnalysis
+            {/* <SocialMediaAnalysis
               TotalSocialVisits={SocialMediaAnalysisData.TotalSocialVisits}
               Mentions={SocialMediaAnalysisData.Mentions}
               TotalLikes={SocialMediaAnalysisData.TotalLikes}
               TotalShares={SocialMediaAnalysisData.TotalShares}
               LineChartData={SocialMediaAnalysisData.LineChartData}
               PieChartData={SocialMediaAnalysisData.PieChartData}
-            />
+            /> */}
             <Mentions mentions={TheMostPopularMentions} mentionsFrom={MentionsFrom} />
             {/* <Influencers influencers={Influencer} /> */}
           </div>
