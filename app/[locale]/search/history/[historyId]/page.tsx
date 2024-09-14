@@ -333,7 +333,7 @@ export default function Component() {
         console.log("返回的数据:", response.data);
         // 得到后端的 shit
         
-        const backTraffic = (response.data as any).report.trafficAndEngagement
+        const backTraffic = (response.data as any).report.TrafficAndEngagement
         setFrontTraffic(backTraffic as TrafficAndEngagement)
         const backMarketingChannels = (response.data as any).report.marketingChannels
         setFrontMarketingChannels(backMarketingChannels as MarketingChannels)
