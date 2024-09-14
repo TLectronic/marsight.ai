@@ -37,10 +37,11 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
             />
           </div>
           <div className="text-sm leading-relaxed mt-2 mb-2">{ProductSummary}</div>
-          <div className='flex justify-between text-xl space-x-4'>
+          <div className='flex flex-row space-x-4'>
+
             {/* Target Users Card */}
             <div className='flex-1 flex flex-col bg-white shadow-md rounded-[24px]'>
-              <div className='bg-[#f7f7f5] h-1/3 rounded-t-[24px] p-4'>
+              <div className='bg-[#f7f7f5] flex-1/3 rounded-t-[24px] p-4'>
                 <div className='flex justify-center items-center mb-2 mt-1 font-bold h-full'>
                   Target Users
                 </div>
@@ -56,29 +57,28 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
 
             {/* Core Features Card */}
             <div className='flex-1 flex flex-col bg-white shadow-md rounded-[24px]'>
-              <div className='bg-[#f7f7f5] h-1/3 rounded-t-[24px] p-4'>
+              <div className='bg-[#f7f7f5] flex-1/3 rounded-t-[24px] p-4'>
                 <div className='flex justify-center items-center mb-2 mt-1 font-bold h-full'>
                   Core Features
-
                 </div>
               </div>
-              <div className="flex-1 p-4 rounded-[24px]">
+              <div className="flex-1 p-4 rounded-b-[24px]">
                 <ul className='text-sm text-left ml-2'>
-
                   {CoreFeatures.split('\n').map((feature, index) => (
                     <li key={index}>{feature}</li>
                   ))}
-
                 </ul>
               </div>
             </div>
 
             {/* Use Cases Card */}
             <div className='flex-1 flex flex-col bg-white shadow-md rounded-[24px]'>
-              <div className='bg-[#f7f7f5] h-1/3 rounded-t-[24px] p-4'>
-                <div className='flex justify-center items-center mb-2 mt-1 font-bold h-full'>Use Cases</div>
+              <div className='bg-[#f7f7f5] flex-1/3 rounded-t-[24px] p-4'>
+                <div className='flex justify-center items-center mb-2 mt-1 font-bold h-full'>
+                  Use Cases
+                </div>
               </div>
-              <div className="flex-1 p-4 rounded-[24px]">
+              <div className="flex-1 p-4 rounded-b-[24px]">
                 <ul className='text-sm text-left'>
                   {UseCases.split('\n').map((usecase, index) => (
                     <li key={index}>{usecase}</li>
@@ -86,7 +86,9 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
                 </ul>
               </div>
             </div>
+
           </div>
+
 
 
           {/* </div> */}
