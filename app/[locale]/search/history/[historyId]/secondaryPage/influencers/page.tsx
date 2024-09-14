@@ -73,64 +73,48 @@ const Influencers: React.FC = () => {
 
     return (
         <>
-            <Card className="rounded-[24px] p-2">
-                <CardHeader>
-                    <div className='flex justify-between'>
-                        <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Influencers</CardTitle>
-                        <Button
-                            variant="link"
-                            onClick={handleBack}
-                            className="bg-white text-black p-2 rounded-full flex items-center justify-center hover:bg-white hover:border-transparent focus:border-transparent"
-                        >
-                            <Link href="mailto:your-email@example.com">
-                                <Image
-                                    src={AIInsightsIcon}
-                                    alt="Mail"
-                                    width={200}
-                                    height={200}
-                                    className="w-28 h-14"
-                                />
-                            </Link>
-                        </Button>
-                    </div>
-                </CardHeader>
-                <div className='px-6 -mt-6'>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                {tableHeader.map((header, index) => (
-                                    <TableHead key={index}>{header}</TableHead>
-                                ))}
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {frontInfluencers ? (
-                                frontInfluencers.map(influencer => (
-                                    <TableRow key={influencer.authors_id}>
-                                        <TableCell className="flex items-center space-x-2">
-                                            <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
-                                                {influencer.author_avatar_url ? (
-                                                    <Avatar.Image
-                                                        className="h-full w-full rounded-[inherit] object-cover"
-                                                        src={influencer.author_avatar_url}
-                                                        alt={influencer.author}
-                                                    />
-                                                ) : (
-                                                    <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
-                                                        Fail
-                                                    </Avatar.Fallback>
-                                                )}
-                                            </Avatar.Root>
-                                            <span className="text-[15px] font-medium">{influencer.author}</span>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Link href={influencer.author_url}>
+            <div className='overflow-auto'>
+                <Card className="rounded-[24px] p-2">
+                    <CardHeader>
+                        <div className='flex justify-between'>
+                            <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Influencers</CardTitle>
+                            <Button
+                                variant="link"
+                                onClick={handleBack}
+                                className="bg-white text-black p-2 rounded-full flex items-center justify-center hover:bg-white hover:border-transparent focus:border-transparent"
+                            >
+                                <Link href="mailto:your-email@example.com">
+                                    <Image
+                                        src={AIInsightsIcon}
+                                        alt="Mail"
+                                        width={200}
+                                        height={200}
+                                        className="w-28 h-14"
+                                    />
+                                </Link>
+                            </Button>
+                        </div>
+                    </CardHeader>
+                    <div className='px-6 -mt-6'>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    {tableHeader.map((header, index) => (
+                                        <TableHead key={index}>{header}</TableHead>
+                                    ))}
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {frontInfluencers ? (
+                                    frontInfluencers.map(influencer => (
+                                        <TableRow key={influencer.authors_id}>
+                                            <TableCell className="flex items-center space-x-2">
                                                 <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
-                                                    {influencer.service ? (
+                                                    {influencer.author_avatar_url ? (
                                                         <Avatar.Image
                                                             className="h-full w-full rounded-[inherit] object-cover"
-                                                            src={influencer.service}
-                                                            alt={influencer.author_url}
+                                                            src={influencer.author_avatar_url}
+                                                            alt={influencer.author}
                                                         />
                                                     ) : (
                                                         <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
@@ -138,21 +122,40 @@ const Influencers: React.FC = () => {
                                                         </Avatar.Fallback>
                                                     )}
                                                 </Avatar.Root>
-                                            </Link>
-                                        </TableCell>
-                                        <TableCell>{influencer.count}</TableCell>
-                                        <TableCell>{influencer.followers_count}</TableCell>
+                                                <span className="text-[15px] font-medium">{influencer.author}</span>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Link href={influencer.author_url}>
+                                                    <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                                                        {influencer.service ? (
+                                                            <Avatar.Image
+                                                                className="h-full w-full rounded-[inherit] object-cover"
+                                                                src={influencer.service}
+                                                                alt={influencer.author_url}
+                                                            />
+                                                        ) : (
+                                                            <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
+                                                                Fail
+                                                            </Avatar.Fallback>
+                                                        )}
+                                                    </Avatar.Root>
+                                                </Link>
+                                            </TableCell>
+                                            <TableCell>{influencer.count}</TableCell>
+                                            <TableCell>{influencer.followers_count}</TableCell>
+                                        </TableRow>
+                                    ))
+                                ) : (
+                                    <TableRow>
+                                        <TableCell colSpan={6} className="text-center">No influencers found</TableCell>
                                     </TableRow>
-                                ))
-                            ) : (
-                                <TableRow>
-                                    <TableCell colSpan={6} className="text-center">No influencers found</TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </div>
-            </Card>
+                                )}
+                            </TableBody>
+                        </Table>
+                    </div>
+                </Card>
+            </div>
+
         </>
     );
 }
