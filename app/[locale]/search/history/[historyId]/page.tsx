@@ -20,86 +20,6 @@ import { resolve } from 'path'
 const messages = [
   { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' },
 ]
-//SearchAnalysis四个盒子
-interface SearchAnalysisProps {
-  NoofKeywords: number;
-  NoofClicks: number;
-  MonthlyVisits: number;
-  Organic: number;
-  Paid: number;
-}
-//TrafficRow表格数据
-interface TrafficRow {
-  Keywords: string;
-  Clicks: number;
-  Traffic: number;
-  ClicksChange: number;
-  ChangeVolume: number;
-  Changeofvolume: number;
-}
-interface DataGroup {
-  KeywordClass: string;
-  data: TrafficRow[];
-}
-
-// 自然流量数据
-interface OrganicTrafficData {
-  data: DataGroup[];
-}
-
-// 付费流量数据
-interface PaidTrafficData {
-  data: DataGroup[];
-}
-
-// MarketingChannels 需要的数据类型
-interface MarketingChannelsProps {
-  Social: number;
-  Direct: number;
-  DisplayAds: number;
-  Referrals: number;
-  Email: number;
-  OrganicSearch: number;
-  PaidSearch: number;
-}
-
-interface LineChartProps {
-  LineChartData: {
-    date_from: string;
-    date_to: string;
-    results_nb: number;
-  }[];
-}
-
-interface PieChartProps {
-  PieChartData: {
-    name: string;
-    value: number;
-  }[];
-}
-
-interface Mention {
-  id: string;
-  title: string;
-  created_date: string;
-  url: string;
-  likes_count: number;
-  shares_count: number;
-  comments_count: number;
-  author: string;
-  author_avatar_url: string;
-  author_url: string;
-  importance_label: string;
-}
-
-interface MentionsProps {
-  mentions: Mention[];
-}
-
-interface MentionsFormProps {
-  mentionsFrom: Mention[];
-}
-
 // const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps | null>(null);
 // const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
 // const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
@@ -114,19 +34,6 @@ interface MentionsFormProps {
 
 
 export default function Component() {
-
-  // Influencers 需要的数据类型
-  interface InfluencersProps {
-    influencersData: {
-      id: string;
-      profileImage: string;
-      name: string;
-      siteIcon: string;
-      siteUrl: string;
-      mentions: string;
-      followers: string;
-    }[];
-  }
 
   interface ProductAnalysis {
     description: string;
@@ -161,10 +68,8 @@ export default function Component() {
       TotalPagesViews: number;
     };
   }
-
-
   const [frontTraffic, setFrontTraffic] = useState<TrafficAndEngagement | null>();
-  const [MentionFormData, setMentionFormData] = useState<Mentions | null>();
+
 
   interface MarketingChannels {
     Social: number;
@@ -312,6 +217,8 @@ export default function Component() {
     }[];
   }
   const [frontMentions, setFrontMentions] = useState<Mentions | null>();
+  const array1ToDisplay = frontMentions?.The_most_popular_mentions.slice(0, 10) || [];
+  const array2ToDisplay = frontMentions?.Mentions_from_the_most_popular_public_profiles.slice(0, 10) || [];
 
 
 
@@ -353,9 +260,6 @@ export default function Component() {
         setFrontProductAnalysis(backProductAnalysis as ProductAnalysis)
         const backIntroduction = (response.data as any).report.Introduction
         setFrontIntroduction(backIntroduction as Introduction)
-
-        const backMentionForm = (response.data as any).report.Mentions
-        setMentionFormData(backMentionForm as Mentions)
 
         const backInfluncers = (response.data as any).report.Influncers
         setFrontInfluencers(backInfluncers as Influncers[])
@@ -669,18 +573,12 @@ export default function Component() {
 
             {frontMentions && (
               <Mentions
-                mentions={frontMentions.The_most_popular_mentions}
-                mentionsFrom={frontMentions.Mentions_from_the_most_popular_public_profiles}
+                mentions={array1ToDisplay}
+                mentionsFrom={array2ToDisplay}
+                chatId={chatIdString}
               />
             )}
 
-
-
-
-            {/* <Mentions
-              mentions={MentionFormData?.The_most_popular_mentions || []}
-              mentionsFrom={MentionFormData?.Mentions_from_the_most_popular_public_profiles || []}
-            /> */}
             {frontInfluencers ? (
               <Influencers influencers={influencersToDisplay} chatId={chatIdString} />
             ) : (

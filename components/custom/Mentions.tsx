@@ -27,9 +27,10 @@ interface Mention {
 interface MentionsProps {
   mentions: Mention[];
   mentionsFrom: Mention[];
+  chatId: string;
 }
 
-const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
+const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom, chatId }) => {
   const [selectedOption, setSelectedOption] = useState('popular');
   const dataToShow = selectedOption === 'popular' ? mentions : mentionsFrom;
 
@@ -91,7 +92,7 @@ const Mentions: React.FC<MentionsProps> = ({ mentions, mentionsFrom }) => {
           </div>
           <div className="flex justify-end">
             <Button variant="link">
-              <Link href="./1/secondaryPage/mentions">Show more Mentions</Link>
+              <Link href={`./${chatId}/secondaryPage/mentions`}>Show more Mentions</Link>
             </Button>
           </div>
         </CardContent>
