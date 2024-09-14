@@ -67,8 +67,8 @@ const Referrals = () => {
     }, [isSignedIn, historyId]);
 
     return (
-        <div className="w-full h-full p-4 space-y-4 bg-white">
-            <Card className="rounded-[24px] p-4">
+        <div className='bg-[#ffffff] w-full h-full p-4 space-y-4 overflow-auto'>
+                <Card className="rounded-[24px] p-2">
                 <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
                         <Button
