@@ -53,7 +53,7 @@ const Influencers: React.FC = () => {
                     }
                 );
                 console.log("返回的数据:", response);
-                const backInfluencers = (response as any).report.Influencers;
+                const backInfluencers = (response.data as any).report.Influencers;
                 setFrontInfluencers(backInfluencers as Influencer[]);
                 console.log("返回的influencers:", frontInfluencers);
             }
