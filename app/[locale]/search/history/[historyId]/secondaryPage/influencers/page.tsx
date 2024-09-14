@@ -73,7 +73,7 @@ const Influencers: React.FC = () => {
 
     return (
         <>
-            <div className='overflow-auto'>
+            <div className='bg-[#ffffff] w-full h-full p-4 space-y-4 overflow-auto'>
                 <Card className="rounded-[24px] p-2">
                     <CardHeader>
                         <div className='flex justify-between'>
