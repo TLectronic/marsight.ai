@@ -40,6 +40,8 @@ const Influencers: React.FC = () => {
 
     const getData = async () => {
         try {
+            console.log('isSignedIn',isSignedIn)
+            console.log('chatId',chatId)
             if (isSignedIn) {
                 const jwtToken = await getToken({ template });
                 const response = await axios.get(
