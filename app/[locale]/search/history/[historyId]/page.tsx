@@ -373,23 +373,23 @@ export default function Component() {
               organic={[
                 {
                   KeywordClass: 'Branded Keywords',
-                  data: frontSearchAnalysis.organic_brand.Records
+                  data: frontSearchAnalysis.organic_brand.Records.slice(0, 5)
 
                 },
                 {
                   KeywordClass: 'Non-Branded Keywords',
-                  data: frontSearchAnalysis.organic_nonbrand.Records
+                  data: frontSearchAnalysis.organic_nonbrand.Records.slice(0, 5)
                 }
               ]}
               paid={[
                 {
                   KeywordClass: 'Branded Keywords',
-                  data: frontSearchAnalysis.paid_brand.Records
+                  data: frontSearchAnalysis.paid_brand.Records.slice(0, 5)
 
                 },
                 {
                   KeywordClass: 'Non-Branded Keywords',
-                  data: frontSearchAnalysis.paid_nonbrand.Records
+                  data: frontSearchAnalysis.paid_nonbrand.Records.slice(0, 5)
                 }
               ]}
               chatId={chatIdString}
