@@ -1,80 +1,155 @@
 "use client";
 
-import react from 'react';
+import React, { useEffect, useState } from 'react';
+import Link from "next/link";
+import * as Avatar from '@radix-ui/react-avatar';
+import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { Button } from '@/components/ui/button';
-import { ArrowLeftIcon } from 'lucide-react';
-import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
+import Image from "next/image";
+import AIInsightsIcon from "@/public/aiinsights.svg";
+import { useRouter } from 'next/router';
+import axios from 'axios';
+import { useAuth } from '@clerk/nextjs';
 
-const Influencers = () => {
+interface Influencer {
+    authors_id: string; // 作者ID
+    author_avatar_url: string; // 作者头像
+    author: string; // 作者名字
+    service: string; // 要跳转的网站图标URL
+    author_url: string; // 要跳转的网站URL
+    count: string; // 提及次数
+    followers_count: string; // 粉丝数
+}
+
+const Influencers: React.FC = () => {
+    const router = useRouter();
+    const { chatId } = router.query;
+
+    const [frontInfluencers, setFrontInfluencers] = useState<Influencer[] | null>(null);
+
     // 博主表格表头数据
     const tableHeader = ['', 'Profile name', '', 'Site', 'Mentions', 'Followers'];
     const handleBack = () => {
         window.history.back();
     };
+
+    // 登录认证内容
+    const template = 'marsight';
+    const { getToken, isSignedIn } = useAuth();
+
+    const getData = async () => {
+        try {
+            if (isSignedIn) {
+                const jwtToken = await getToken({ template });
+                const response = await axios.get(
+                    `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${chatId}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${jwtToken}`,
+                        },
+                    }
+                );
+                console.log("返回的数据:", response);
+                const backInfluencers = (response as any).report.Influencers;
+                setFrontInfluencers(backInfluencers as Influencer[]);
+            }
+        } catch (error) {
+            console.error('Failed to get chat:', error);
+        }
+    };
+
+    // 页面初始化的时候调用 getData 获得数据
+    useEffect(() => {
+        if (isSignedIn && chatId) {
+            getData();
+        }
+    }, [isSignedIn, chatId]);
+
     return (
-        <div className="bg-[#f4f4f4] w-full h-full p-4 space-y-4">
-            <Card className="rounded-[24px]">
+        <>
+            <Card className="rounded-[24px] p-2">
                 <CardHeader>
-                    <CardTitle className="flex items-center space-x-2">
+                    <div className='flex justify-between'>
+                        <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Influencers</CardTitle>
                         <Button
                             variant="link"
                             onClick={handleBack}
                             className="bg-white text-black p-2 rounded-full flex items-center justify-center hover:bg-white hover:border-transparent focus:border-transparent"
                         >
-                            <ArrowLeftIcon className="w-5 h-5" />
+                            <Link href="mailto:your-email@example.com">
+                                <Image
+                                    src={AIInsightsIcon}
+                                    alt="Mail"
+                                    width={200}
+                                    height={200}
+                                    className="w-28 h-14"
+                                />
+                            </Link>
                         </Button>
-                        <span className="text-black text-lg font-bold">Influencers</span>
-                    </CardTitle>
+                    </div>
                 </CardHeader>
-                <div className='p-6'>
+                <div className='px-6 -mt-6'>
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                {tableHeader.map((tableheader, index) => (
-                                    <TableHead key={index}>{tableheader}</TableHead>
+                                {tableHeader.map((header, index) => (
+                                    <TableHead key={index}>{header}</TableHead>
                                 ))}
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            <TableRow>
-                                <TableCell>1</TableCell> {/* 第一列编号 */}
-                                <TableCell>Think Media</TableCell>
-                                <TableCell>
-                                    <Button variant="outline">Button</Button> {/* 第三列按钮 */}
-                                </TableCell>
-                                <TableCell><TwitterLogoIcon /></TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>3030000</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>2</TableCell> {/* 第一列编号 */}
-                                <TableCell>Private Label</TableCell>
-                                <TableCell>
-                                    <Button variant="outline">Button</Button> {/* 第三列按钮 */}
-                                </TableCell>
-                                <TableCell><TwitterLogoIcon /></TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>2750000</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>3</TableCell> {/* 第一列编号 */}
-                                <TableCell>Akalanka Ekanayake</TableCell>
-                                <TableCell>
-                                    <Button variant="outline">Button</Button> {/* 第三列按钮 */}
-                                </TableCell>
-                                <TableCell><GitHubLogoIcon /></TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1880000</TableCell>
-                            </TableRow>
+                            {frontInfluencers ? (
+                                frontInfluencers.map(influencer => (
+                                    <TableRow key={influencer.authors_id}>
+                                        <TableCell className="flex items-center space-x-2">
+                                            <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                                                {influencer.author_avatar_url ? (
+                                                    <Avatar.Image
+                                                        className="h-full w-full rounded-[inherit] object-cover"
+                                                        src={influencer.author_avatar_url}
+                                                        alt={influencer.author}
+                                                    />
+                                                ) : (
+                                                    <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
+                                                        Fail
+                                                    </Avatar.Fallback>
+                                                )}
+                                            </Avatar.Root>
+                                            <span className="text-[15px] font-medium">{influencer.author}</span>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Link href={influencer.author_url}>
+                                                <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
+                                                    {influencer.service ? (
+                                                        <Avatar.Image
+                                                            className="h-full w-full rounded-[inherit] object-cover"
+                                                            src={influencer.service}
+                                                            alt={influencer.author_url}
+                                                        />
+                                                    ) : (
+                                                        <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
+                                                            Fail
+                                                        </Avatar.Fallback>
+                                                    )}
+                                                </Avatar.Root>
+                                            </Link>
+                                        </TableCell>
+                                        <TableCell>{influencer.count}</TableCell>
+                                        <TableCell>{influencer.followers_count}</TableCell>
+                                    </TableRow>
+                                ))
+                            ) : (
+                                <TableRow>
+                                    <TableCell colSpan={6} className="text-center">No influencers found</TableCell>
+                                </TableRow>
+                            )}
                         </TableBody>
                     </Table>
                 </div>
             </Card>
-        </div>
-    )
+        </>
+    );
 }
 
 export default Influencers;

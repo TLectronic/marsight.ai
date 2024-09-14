@@ -19,9 +19,10 @@ interface Influencer {
 
 interface InfluencersProps {
     influencers: Influencer[];
+    chatId: string;
 }
 
-const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
+const Influencers: React.FC<InfluencersProps> = ({ influencers, chatId }) => {
     const tableHeader = ['', 'Profile Name', 'Site', 'Mentions', 'Followers'];
 
     return (
@@ -60,7 +61,6 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
                         <TableBody>
                             {influencers.map(influencer => (
                                 <TableRow key={influencer.authors_id}>
-                                    <TableCell>{influencer.authors_id}</TableCell>
                                     <TableCell className="flex items-center space-x-2">
                                         <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
                                             {influencer.author_avatar_url ? (
@@ -103,7 +103,7 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
                     </Table>
                     <div className='flex justify-end'>
                         <Button variant="link">
-                            <Link href="./1/secondaryPage/influencers">
+                            <Link href={`./${chatId}/secondaryPage/influencers`}>
                                 Show more influencers
                             </Link>
                         </Button>

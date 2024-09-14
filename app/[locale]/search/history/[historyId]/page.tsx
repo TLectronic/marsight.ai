@@ -12,6 +12,7 @@ import { SearchAnalysis } from '@/components/custom/SearchAnalysis'
 import { Chat } from '@/components/custom/Chat';
 import { useParams } from 'next/navigation'
 import { useAuth } from "@clerk/nextjs"
+import NoDataCard from "@/components/custom/NoDataCard"
 import axios from 'axios';
 import { resolve } from 'path'
 
@@ -225,6 +226,7 @@ export default function Component() {
     followers_count: string;
   }
   const [frontInfluencers, setFrontInfluencers] = useState<Influncers[] | null>();
+  const influencersToDisplay = frontInfluencers?.slice(0, 5) || [];
 
   interface Keywords {
     all_brand: {
@@ -311,6 +313,8 @@ export default function Component() {
 
   // 当前页面的chatId
   const { historyId } = useParams()
+  const chatIdString = Array.isArray(historyId) ? historyId[0] : historyId;
+
   // 登录认证内容
   const template = 'marsight'
   const { getToken, isSignedIn } = useAuth();
@@ -665,10 +669,11 @@ export default function Component() {
               mentions={MentionFormData?.The_most_popular_mentions || []}
               mentionsFrom={MentionFormData?.Mentions_from_the_most_popular_public_profiles || []}
             /> */}
-            {frontInfluencers && (<Influencers influencers={frontInfluencers} />)}
-
-
-
+            {frontInfluencers ? (
+              <Influencers influencers={influencersToDisplay} chatId={chatIdString} />
+            ) : (
+              <NoDataCard />
+            )}
 
           </div>
         </div>
