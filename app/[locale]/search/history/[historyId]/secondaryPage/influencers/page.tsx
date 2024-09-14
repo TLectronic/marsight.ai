@@ -24,7 +24,7 @@ interface Influencer {
 }
 
 const Influencers: React.FC = () => {
-    const { chatId } = useParams()
+    const { historyId } = useParams()
 
     const [frontInfluencers, setFrontInfluencers] = useState<Influencer[] | null>(null);
 
@@ -40,12 +40,12 @@ const Influencers: React.FC = () => {
 
     const getData = async () => {
         try {
-            console.log('isSignedIn',isSignedIn)
-            console.log('chatId',chatId)
+            console.log('isSignedIn', isSignedIn)
+            console.log('chatId', historyId)
             if (isSignedIn) {
                 const jwtToken = await getToken({ template });
                 const response = await axios.get(
-                    `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${chatId}`,
+                    `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${historyId}`,
                     {
                         headers: {
                             'Authorization': `Bearer ${jwtToken}`,
@@ -63,8 +63,8 @@ const Influencers: React.FC = () => {
 
     // 页面初始化的时候调用 getData 获得数据
     useEffect(() => {
-        console.log('isSignedIn',isSignedIn)
-        console.log('chatId',chatId)
+        console.log('isSignedIn', isSignedIn)
+        console.log('chatId', chatId)
         if (isSignedIn && chatId) {
             getData();
         }
