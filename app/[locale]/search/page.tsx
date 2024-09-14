@@ -48,6 +48,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
       //   setIsSearching(false);
       //   return;
       // }
+
       event.preventDefault();
 
       setIsSearching(true);
@@ -70,6 +71,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
           );
           // 获得当前查询网址的chatId
           const chatId = response.data.chatId;
+          console.log(response)
           console.log('chatId:', chatId);
           router.push(`/search/history/${chatId}`);
         }
