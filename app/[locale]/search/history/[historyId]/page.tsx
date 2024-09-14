@@ -411,12 +411,14 @@ export default function Component() {
               />
             )}
 
-            {frontMentions && (
+            {frontMentions && frontMentions.Mentions_from_the_most_popular_public_profiles.length > 0 && frontMentions.The_most_popular_mentions.length > 0 ? (
               <Mentions
                 mentions={array1ToDisplay}
                 mentionsFrom={array2ToDisplay}
                 chatId={chatIdString}
               />
+            ) : (
+              <NoDataCard />
             )}
 
             {frontInfluencers && frontInfluencers.length > 0 ? (
