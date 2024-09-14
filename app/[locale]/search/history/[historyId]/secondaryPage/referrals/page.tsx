@@ -1,40 +1,32 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { ResponsiveContainer } from 'recharts';
 import { ArrowLeftIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useParams } from 'next/navigation';
+import axios from 'axios';
+import { useAuth } from '@clerk/nextjs';
 
-const referralsData = [
-    {
-        link: 'Producthunt.com',
-        category: 'Tech News',
-        trafficShare: '17.77%',
-        traffic: '15.4k',
-        change: 'New',
-        details: ['https://Producthunt.com', 'https://Producthunt.com', 'https://Producthunt.com']
-    },
-    {
-        link: 'canva.com',
-        category: 'Design',
-        trafficShare: '17.77%',
-        traffic: '15.4k',
-        change: '22.82%',
-        details: ['https://canva.com', 'https://canva.com', 'https://canva.com']
-    },
-    {
-        link: 'g2.com',
-        category: 'Tech News',
-        trafficShare: '17.77%',
-        traffic: '15.4k',
-        change: '-67.93%',
-        details: ['https://g2.com', 'https://g2.com', 'https://g2.com']
-    }
-];
+interface Referral {
+    TotalVisits: number;
+    Records: {
+        Domain: string;
+        Category: string;
+        Share: number;
+        TotalVisits: number;
+        Change: number;
+        Reference: {
+            link: string;
+        }[];
+    }[];
+}
 
 const Referrals = () => {
+    const { historyId } = useParams();
     const [expandedRowIndex, setExpandedRowIndex] = useState<number | null>(null);
+    const [frontReferrals, setFrontReferrals] = useState<Referral | null>(null);
 
     const handleBack = () => {
         window.history.back();
@@ -44,9 +36,39 @@ const Referrals = () => {
         setExpandedRowIndex(expandedRowIndex === rowIndex ? null : rowIndex);
     };
 
+    // 登录认证
+    const template = 'marsight';
+    const { getToken, isSignedIn } = useAuth();
+
+    const getData = async () => {
+        try {
+            if (isSignedIn) {
+                const jwtToken = await getToken({ template });
+                const response = await axios.get(
+                    `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${historyId}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${jwtToken}`,
+                        },
+                    }
+                );
+                const backReferral = (response.data as any).report.Referral;
+                setFrontReferrals(backReferral as Referral);
+            }
+        } catch (error) {
+            console.error('Failed to get chat:', error);
+        }
+    };
+
+    useEffect(() => {
+        if (isSignedIn && historyId) {
+            getData();
+        }
+    }, [isSignedIn, historyId]);
+
     return (
-        <div className="bg-[#ffffff] w-full h-full p-4 space-y-4">
-            <Card className="rounded-[24px] ">
+        <div className="w-full h-full p-4 space-y-4 bg-white">
+            <Card className="rounded-[24px] p-4">
                 <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
                         <Button
@@ -56,68 +78,85 @@ const Referrals = () => {
                         >
                             <ArrowLeftIcon className="w-5 h-5" />
                         </Button>
-                        <span className="text-black text-lg font-bold">Referrals</span>
+                        <span className="text-xl font-extrabold text-[#4281DB]">Referrals</span>
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>Link</TableHead>
-                                    <TableHead>Category</TableHead>
-                                    <TableHead>Traffic Share</TableHead>
-                                    <TableHead>Traffic</TableHead>
-                                    <TableHead>Change</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {referralsData.map((row, rowIndex) => (
-                                    <React.Fragment key={rowIndex}>
-                                        <TableRow>
-                                            <TableCell>
-                                                <div className="flex items-center space-x-2">
-                                                    <Button
-                                                        onClick={() => handleExpand(rowIndex)}
-                                                        variant='link'
-                                                        className="p-1 rounded-full flex items-center justify-center hover:bg-gray-100 focus:outline-none"
-                                                    >
-                                                        {expandedRowIndex === rowIndex ? (
-                                                            <ChevronUpIcon className="w-5 h-5 text-black" />
-                                                        ) : (
-                                                            <ChevronDownIcon className="w-5 h-5 text-black" />
-                                                        )}
-                                                    </Button>
-                                                    <a href={`https://${row.link}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
-                                                        {row.link}
-                                                    </a>
-                                                </div>
-                                            </TableCell>
-                                            <TableCell>{row.category}</TableCell>
-                                            <TableCell>{row.trafficShare}</TableCell>
-                                            <TableCell>{row.traffic}</TableCell>
-                                            <TableCell>{row.change}</TableCell>
-                                        </TableRow>
-                                        {expandedRowIndex === rowIndex && (
+                    {frontReferrals ? (
+                        <ResponsiveContainer width="100%" height={300}>
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>Link</TableHead>
+                                        <TableHead>Category</TableHead>
+                                        <TableHead>Traffic Share</TableHead>
+                                        <TableHead>Traffic</TableHead>
+                                        <TableHead>Change</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {frontReferrals.Records.map((row, rowIndex) => (
+                                        <React.Fragment key={rowIndex}>
                                             <TableRow>
-                                                <TableCell colSpan={5}>
-                                                    <div className="ml-8">
-                                                        {row.details.map((detail, detailIndex) => (
-                                                            <div key={detailIndex} className="border-b border-gray-200 py-2">
-                                                                <a href={detail} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
-                                                                    {detail}
-                                                                </a>
-                                                            </div>
-                                                        ))}
+                                                <TableCell>
+                                                    <div className="flex items-center space-x-2">
+                                                        <Button
+                                                            onClick={() => handleExpand(rowIndex)}
+                                                            variant='link'
+                                                            className="p-1 rounded-full flex items-center justify-center hover:bg-gray-100 focus:outline-none"
+                                                        >
+                                                            {expandedRowIndex === rowIndex ? (
+                                                                <ChevronUpIcon className="w-5 h-5 text-black" />
+                                                            ) : (
+                                                                <ChevronDownIcon className="w-5 h-5 text-black" />
+                                                            )}
+                                                        </Button>
+                                                        <a
+                                                            href={`https://${row.Domain}`}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="text-blue-500 no-underline"
+                                                        >
+                                                            {row.Domain}
+                                                        </a>
                                                     </div>
                                                 </TableCell>
+                                                <TableCell>{row.Category}</TableCell>
+                                                <TableCell>{row.Share}</TableCell>
+                                                <TableCell>{row.TotalVisits}</TableCell>
+                                                <TableCell>{row.Change}</TableCell>
                                             </TableRow>
-                                        )}
-                                    </React.Fragment>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </ResponsiveContainer>
+                                            {expandedRowIndex === rowIndex && (
+                                                <TableRow>
+                                                    <TableCell colSpan={5}>
+                                                        <div className="ml-8">
+                                                            {row.Reference.map((linkObj, linkIndex) => (
+                                                                <div
+                                                                    key={linkIndex}
+                                                                    className="border-b border-gray-200 py-2"
+                                                                >
+                                                                    <a
+                                                                        href={linkObj.link}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="text-blue-500 no-underline"
+                                                                    >
+                                                                        {linkObj.link}
+                                                                    </a>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </TableCell>
+                                                </TableRow>
+                                            )}
+                                        </React.Fragment>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </ResponsiveContainer>
+                    ) : (
+                        <div>No Data Available</div>
+                    )}
                 </CardContent>
             </Card>
         </div>

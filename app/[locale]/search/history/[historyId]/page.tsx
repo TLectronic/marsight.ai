@@ -93,6 +93,7 @@ export default function Component() {
     }[];
   }
   const [frontReferrals, setFrontReferrals] = useState<Referral | null>();
+  const referralsToDisplay = frontReferrals?.Records.slice(0, 10) || [];
 
   interface Influncers {
     authors_id: string;
@@ -360,7 +361,11 @@ export default function Component() {
               />
             )}
 
-            {frontReferrals && (<Referrals referralsData={frontReferrals.Records} />)}
+            {frontReferrals && frontReferrals.Records.length > 0 ? (
+              <Referrals referralsData={referralsToDisplay} chatId={chatIdString} />
+            ) : (
+              <NoDataCard />
+            )}
 
             {frontSearchAnalysis && frontTraffic && (<SearchAnalysis
               dataofbox={{
