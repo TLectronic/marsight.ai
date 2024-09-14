@@ -13,6 +13,7 @@ interface ProductAnalysisProps {
 }
 
 const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
+  ProductIconUrl,
   ProductSummary,
   TargetUsers,
   CoreFeatures,
@@ -28,7 +29,7 @@ const ProductAnalysis: React.FC<ProductAnalysisProps> = ({
         <CardContent>
           <div className="text-base font-bold mb-2 mt-2 flex items-center">
             <Image
-              src={heygenIcon}
+              src={ProductIconUrl}
               alt="Mail"
               width={24}
               height={24}
