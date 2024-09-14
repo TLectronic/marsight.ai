@@ -14,23 +14,11 @@ import { useParams } from 'next/navigation'
 import { useAuth } from "@clerk/nextjs"
 import NoDataCard from "@/components/custom/NoDataCard"
 import axios from 'axios';
-import { resolve } from 'path'
 
 
 const messages = [
   { role: 'assistant', content: '您好！我是AI助手。您有什么想问的吗？' },
 ]
-// const [SearchAnalysisData, setSearchAnalysisData] = useState<SearchAnalysisProps | null>(null);
-// const [organicTrafficData, setOrganicTrafficData] = useState<OrganicTrafficData | null>(null);
-// const [paidTrafficData, setPaidTrafficData] = useState<PaidTrafficData | null>(null);
-// const [TotalSocialData, setTotalSocialData] = useState<number | null>(null);
-// const [MentionsData, setMentionsData] = useState<number | null>(null);
-// const [TotalLikeData, setTotalLikeData] = useState<number | null>(null);
-// const [TotalSharesData, setTotalSharesData] = useState<number | null>(null);
-// const [LineData, setLineData] = useState<LineChartProps | null>(null);
-// const [PieData, setPieData] = useState<PieChartProps | null>(null);
-// const [MentionData, setMentionData] = useState<MentionsProps | null>(null);
-// const [MentionFormData, setMentionFormData] = useState<MentionsFormProps | null>(null);
 
 
 export default function Component() {
@@ -286,27 +274,6 @@ export default function Component() {
   useEffect(() => {
     getData();
   }, [isSignedIn, historyId]);
-
-  // 监听 allData 的变化
-  // useEffect(() => {
-  //   if (allData) {
-  //     // 开始分割这坨 shit
-
-
-  //   }
-  // }, [allData]);
-
-
-  // }
-  //     } catch (error) {
-  //   console.error('Failed to get chat:', error);
-  // }
-  //   }
-  // // 页面初始化的时候调用 getData 获得数据
-  // useEffect(() => {
-  //   getData();
-  // }, [isSignedIn, historyId])
-
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#ffffff] p-4">
