@@ -63,6 +63,8 @@ const Influencers: React.FC = () => {
 
     // 页面初始化的时候调用 getData 获得数据
     useEffect(() => {
+        console.log('isSignedIn',isSignedIn)
+        console.log('chatId',chatId)
         if (isSignedIn && chatId) {
             getData();
         }
