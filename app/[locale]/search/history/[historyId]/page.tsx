@@ -225,6 +225,12 @@ export default function Component() {
   }
   const [frontInfluencers, setFrontInfluencers] = useState<Influncers[] | null>();
 
+  interface Keywords {
+    all_brand: {
+      
+    }
+  }
+
 
   // 当前页面的chatId
   const { historyId } = useParams()

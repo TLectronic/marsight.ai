@@ -55,6 +55,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
         if (isSignedIn && user) {
           const jwtToken = await getToken({ template });
           console.log(jwtToken);
+          console.log(user.id);
           const response = await axios.post(
             'https://alb.marsight.ai/',
             {
