@@ -332,10 +332,10 @@ export default function Component() {
         );
         console.log("返回的数据:", response.data);
         // 得到后端的 shit
-        
+
         const backTraffic = (response.data as any).report.TrafficAndEngagement
         setFrontTraffic(backTraffic as TrafficAndEngagement)
-        const backMarketingChannels = (response.data as any).report.marketingChannels
+        const backMarketingChannels = (response.data as any).report.MarketingChannels
         setFrontMarketingChannels(backMarketingChannels as MarketingChannels)
         const backReferral = (response.data as any).report.Referral
         setFrontReferrals(backReferral as Referral)
