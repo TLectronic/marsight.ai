@@ -468,7 +468,7 @@ export default function Component() {
               PieChartData={SocialMediaAnalysisData.PieChartData}
             />
             <Mentions mentions={TheMostPopularMentions} mentionsFrom={MentionsFrom} />
-            <Influencers influencers={Influencer} />
+            {/* <Influencers influencers={Influencer} /> */}
           </div>
         </div>
       </Resizable>
