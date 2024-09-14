@@ -467,7 +467,7 @@ export default function Component() {
               LineChartData={SocialMediaAnalysisData.LineChartData}
               PieChartData={SocialMediaAnalysisData.PieChartData}
             /> */}
-            <Mentions mentions={TheMostPopularMentions} mentionsFrom={MentionsFrom} />
+            {/* <Mentions mentions={TheMostPopularMentions} mentionsFrom={MentionsFrom} /> */}
             {/* <Influencers influencers={Influencer} /> */}
           </div>
         </div>
