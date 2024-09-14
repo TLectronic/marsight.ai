@@ -8,13 +8,13 @@ import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
 
 interface Influencer {
-    id: string; // 作者ID
-    profileImage: string; //作者头像
-    name: string; // 作者名字
-    siteIcon: string; // 要跳转的网站图标URL
-    siteUrl: string; // 要跳转的网站URL
-    mentions: string; // 提及次数
-    followers: string; // 粉丝数
+    authors_id: string; // 作者ID
+    author_avatar_url: string; //作者头像
+    author: string; // 作者名字
+    service: string; // 要跳转的网站图标URL
+    author_url: string; // 要跳转的网站URL
+    count: string; // 提及次数
+    followers_count: string; // 粉丝数
 }
 
 interface InfluencersProps {
@@ -59,15 +59,15 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
 
                         <TableBody>
                             {influencers.map(influencer => (
-                                <TableRow key={influencer.id}>
-                                    <TableCell>{influencer.id}</TableCell>
+                                <TableRow key={influencer.authors_id}>
+                                    <TableCell>{influencer.authors_id}</TableCell>
                                     <TableCell className="flex items-center space-x-2">
                                         <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
-                                            {influencer.profileImage ? (
+                                            {influencer.author_avatar_url ? (
                                                 <Avatar.Image
                                                     className="h-full w-full rounded-[inherit] object-cover"
-                                                    src={influencer.profileImage}
-                                                    alt={influencer.name}
+                                                    src={influencer.author_avatar_url}
+                                                    alt={influencer.author}
                                                 />
                                             ) : (
                                                 <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
@@ -75,16 +75,16 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
                                                 </Avatar.Fallback>
                                             )}
                                         </Avatar.Root>
-                                        <span className="text-[15px] font-medium">{influencer.name}</span>
+                                        <span className="text-[15px] font-medium">{influencer.author}</span>
                                     </TableCell>
                                     <TableCell>
-                                        <Link href={influencer.siteUrl}>
+                                        <Link href={influencer.author_url}>
                                             <Avatar.Root className="bg-blackA1 inline-flex h-[30px] w-[30px] select-none items-center justify-center overflow-hidden">
-                                                {influencer.siteIcon ? (
+                                                {influencer.service ? (
                                                     <Avatar.Image
                                                         className="h-full w-full rounded-[inherit] object-cover"
-                                                        src={influencer.siteIcon}
-                                                        alt={influencer.siteUrl}
+                                                        src={influencer.service}
+                                                        alt={influencer.author_url}
                                                     />
                                                 ) : (
                                                     <Avatar.Fallback className="text-white flex h-full w-full items-center justify-center bg-black text-[15px] font-medium">
@@ -95,8 +95,8 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
                                             {/* <Image src={influencer.siteIcon} alt={influencer.siteUrl} width={100} height={100} /> */}
                                         </Link>
                                     </TableCell>
-                                    <TableCell>{influencer.mentions}</TableCell>
-                                    <TableCell>{influencer.followers}</TableCell>
+                                    <TableCell>{influencer.count}</TableCell>
+                                    <TableCell>{influencer.followers_count}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

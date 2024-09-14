@@ -214,7 +214,16 @@ export default function Component() {
   }
   const [frontReferrals, setFrontReferrals] = useState<Referral | null>();
 
-  // const [frontInfluencers, setFrontInfluencers] = useState<InfluencersProps | null>(null);
+  interface Influncers {
+    authors_id: string;
+    author_avatar_url: string;
+    author: string;
+    service: string;
+    author_url: string;
+    count: string;
+    followers_count: string;
+  }
+  const [frontInfluencers, setFrontInfluencers] = useState<Influncers[] | null>();
 
 
   // 当前页面的chatId
@@ -256,6 +265,9 @@ export default function Component() {
 
         const backMentionForm = (response as any).report.Mentions
         setMentionFormData(backMentionForm as Mentions)
+
+        const backInfluncers = (response as any).report.Influncers
+        setFrontInfluencers(backInfluncers as Influncers[])
 
 
 
@@ -527,9 +539,10 @@ export default function Component() {
               mentions={MentionFormData?.The_most_popular_mentions || []}
               mentionsFrom={MentionFormData?.Mentions_from_the_most_popular_public_profiles || []}
             /> */}
+            {frontInfluencers && (<Influencers influencers={frontInfluencers} />)}
 
 
-            {/* <Influencers influencers={frontInfluencers} /> */}
+
 
           </div>
         </div>
