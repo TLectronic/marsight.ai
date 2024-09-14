@@ -6,7 +6,6 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
-import router from 'next/router';
 
 interface Influencer {
     authors_id: string; // 作者ID
@@ -25,9 +24,6 @@ interface InfluencersProps {
 
 const Influencers: React.FC<InfluencersProps> = ({ influencers, chatId }) => {
     const tableHeader = ['', 'Profile Name', 'Site', 'Mentions', 'Followers'];
-    const handleNavigation = () => {
-        router.push(`/${chatId}/secondaryPage/influencers`);
-    };
 
     return (
         <>
@@ -106,8 +102,10 @@ const Influencers: React.FC<InfluencersProps> = ({ influencers, chatId }) => {
                         </TableBody>
                     </Table>
                     <div className='flex justify-end'>
-                        <Button variant="link" onClick={handleNavigation}>
-                            Show more influencers
+                        <Button variant="link">
+                            <Link href={`./${chatId}/secondaryPage/influencers`}>
+                                Show more influencers
+                            </Link>
                         </Button>
                     </div>
                 </div>

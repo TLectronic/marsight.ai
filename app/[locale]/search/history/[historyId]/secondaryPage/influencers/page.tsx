@@ -11,6 +11,7 @@ import AIInsightsIcon from "@/public/aiinsights.svg";
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useAuth } from '@clerk/nextjs';
+import { useParams } from 'next/navigation';
 
 interface Influencer {
     authors_id: string; // 作者ID
@@ -23,8 +24,7 @@ interface Influencer {
 }
 
 const Influencers: React.FC = () => {
-    const router = useRouter();
-    const { chatId } = router.query;
+    const { chatId } = useParams()
 
     const [frontInfluencers, setFrontInfluencers] = useState<Influencer[] | null>(null);
 
