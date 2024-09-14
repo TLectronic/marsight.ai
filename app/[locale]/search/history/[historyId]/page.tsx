@@ -330,7 +330,7 @@ export default function Component() {
             },
           }
         );
-        console.log("返回的数据:", response.data);
+        console.log("返回的数据:", response);
         // 得到后端的 shit
         // setAllData(response.data);
 
