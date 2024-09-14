@@ -22,8 +22,6 @@ interface SearchAnalysisProps {
 
 const formatNumberInMillions = (num: number) => (num / 1_000_000).toFixed(3) + "M";
 const formatBounceRate = (rate: number) => (rate * 100).toFixed(2) + "%";
-
-
 const formatAsPercentage = (num: number) => (num * 100).toFixed(2) + "%";
 
 
@@ -58,9 +56,10 @@ interface SearchAnalysisComponentProps {
   dataofbox: SearchAnalysisProps;
   organic: OrganicTrafficData;
   paid: PaidTrafficData;
+  chatId: string;
 }
 
-const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, organic, paid }) => {
+const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, organic, paid, chatId }) => {
   const [selectedOption, setSelectedOption] = useState("organic");
   const dataToShow = selectedOption === "organic" ? organic : paid;
 
@@ -188,7 +187,7 @@ const SearchAnalysis: React.FC<SearchAnalysisComponentProps> = ({ dataofbox, org
           </CardContent>
           <div className="flex justify-end">
             <Button variant="link">
-              <Link href="./1/secondaryPage/searchAnalysis">Show more search terms</Link>
+              <Link href={`./${chatId}/secondaryPage/searchAnalysis`}>Show more search terms</Link>
             </Button>
           </div>
         </div>

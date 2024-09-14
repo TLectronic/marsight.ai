@@ -224,16 +224,13 @@ export default function Component() {
 
 
 
+
   // 当前页面的chatId
   const { historyId } = useParams()
   const chatIdString = Array.isArray(historyId) ? historyId[0] : historyId;
-
   // 登录认证内容
   const template = 'marsight'
   const { getToken, isSignedIn } = useAuth();
-  // 当前页面的所有数据
-  const [allData, setAllData] = useState(null);
-
   // 获得当前页面需要渲染的信息
   const getData = async () => {
     try {
@@ -279,7 +276,6 @@ export default function Component() {
 
         const backMentions = (response.data as any).report.Mentions
         setFrontMentions(backMentions as Mentions)
-
       }
     } catch (error) {
       console.error('Failed to get chat:', error);
@@ -292,175 +288,13 @@ export default function Component() {
   }, [isSignedIn, historyId]);
 
   // 监听 allData 的变化
-  useEffect(() => {
-    if (allData) {
-      // 开始分割这坨 shit
+  // useEffect(() => {
+  //   if (allData) {
+  //     // 开始分割这坨 shit
 
-      // setFrontTraffic({
-      //   MonthlyVisits: allData.report.trafficAndEngagement.total.AvgMonthVisits,
-      //   UniqueVisitors: allData.report.trafficAndEngagement.total.UniqueUsers,
-      //   VisitDuration: allData.report.trafficAndEngagement.total.AvgVisitDuration,
-      //   PagesPerVisit: allData.report.trafficAndEngagement.total.PagesPerVisit,
-      //   BounceRate: allData.report.trafficAndEngagement.total.BounceRate,
-      //   PageViews: allData.report.trafficAndEngagement.total.TotalPagesViews,
-      //   DesktopData: allData.report.trafficAndEngagement.daily.Desktop,
-      //   MobileWebData: allData.report.trafficAndEngagement.daily.MobileWeb,
-      // });
 
-      // setSearchAnalysisData({
-      //   NoofKeywords: allData.report.Keywords.all_brand.keywordsCount,
-      //   NoofClicks: allData.report.Keywords.all_brand.OverallClicks,
-      //   MonthlyVisits: allData.report.trafficAndEngagement.AvgMonthVisits,
-      //   Organic: allData.report.organic_total.OverallClicks,
-      //   Paid: allData.report.paid_total.OverallClicks,
-      // });
-
-      // 更新 Organic Traffic Data
-      // setOrganicTrafficData({
-      //   data: [
-      //     {
-      //       KeywordClass: 'Branded Keywords',
-      //       data: allData.report.Keywords.organic_brand.Records.map((item: any) => ({
-      //         Keywords: item.Keyword,
-      //         Clicks: item.Clicks,
-      //         Traffic: item.Share,
-      //         ClicksChange: item.ClicksChange,
-      //         ChangeVolume: item.kwVolume,
-      //         Changeofvolume: item.VolumeChange,
-      //       })),
-      //     },
-      //     {
-      //       KeywordClass: 'Non-Branded Keywords',
-      //       data: allData.report.Keywords.organic_nonbrand.Records.map((item: any) => ({
-      //         Keywords: item.Keyword,
-      //         Clicks: item.Clicks,
-      //         Traffic: item.Share,
-      //         ClicksChange: item.ClicksChange,
-      //         ChangeVolume: item.kwVolume,
-      //         Changeofvolume: item.VolumeChange,
-      //       })),
-      //     },
-      //   ],
-      // });
-
-      // 更新 Paid Traffic Data
-      // setPaidTrafficData({
-      //   data: [
-      //     {
-      //       KeywordClass: 'Branded Keywords',
-      //       data: allData.report.Keywords.paid_brand.Records.map((item: any) => ({
-      //         Keywords: item.Keyword,
-      //         Clicks: item.Clicks,
-      //         Traffic: item.Share,
-      //         ClicksChange: item.ClicksChange,
-      //         ChangeVolume: item.kwVolume,
-      //         Changeofvolume: item.VolumeChange,
-      //       })),
-      //     },
-      //     {
-      //       KeywordClass: 'Non-Branded Keywords',
-      //       data: allData.report.Keywords.paid_nonbrand.Records.map((item: any) => ({
-      //         Keywords: item.Keyword,
-      //         Clicks: item.Clicks,
-      //         Traffic: item.Share,
-      //         ClicksChange: item.ClicksChange,
-      //         ChangeVolume: item.kwVolume,
-      //         Changeofvolume: item.VolumeChange,
-      //       })),
-      //     },
-      //   ],
-      // });
-
-      // setFrontMarketingChannels({
-      //   Social: allData.report.marketingChannels.Social,
-      //   Direct: allData.report.marketingChannels.Direct,
-      //   DisplayAds: allData.report.marketingChannels.DisplayAds,
-      //   Referrals: allData.report.marketingChannels.Referrals,
-      //   Email: allData.report.marketingChannels.Email,
-      //   OrganicSearch: allData.report.marketingChannels.OrganicSearch,
-      //   PaidSearch: allData.report.marketingChannels.PaidSearch,
-      // });
-
-      // setFrontReferrals(
-      //   allData.report.Referral.Records.map((item) => ({
-      //     Link: item.Domain,
-      //     category: item.Category,
-      //     TrafficShare: item.Share,
-      //     Traffic: item.TotalVisits,
-      //     Change: item.Change,
-      //   }))
-      // );
-
-      // setTotalSocialData({
-      //   allData.report.SocialOverview.Records.reduce(
-      //     (total: number, item: any) => total + item.TotalVisits,
-      //     0
-      //   )
-      // });
-
-      // setMentionsData(allData.report.MentionOverview.results_count);
-      // setTotalLikeData(allData.report.MentionOverview.total_number_of_likes);
-      // setTotalSharesData(allData.report.MentionOverview.total_number_of_shares);
-      // setLineData({
-      //   LineChartData: allData.report.MentionChart.total_results.graph_data.map((item: any) => ({
-      //     date_from: item.date_from,
-      //     date_to: item.date_to,
-      //     results_nb: item.results_nb,
-      //   })),
-      // });
-
-      // setPieData({
-      //   PieChartData: allData.report.SocialOverview.TopSources.map((item: any) => ({
-      //     name: item.name,
-      //     value: item.Count,
-      //   })),
-      // });
-
-      // setMentionData({
-      //   mentions: allData.report.Mentions.The_most_popular_mentions.map((item: any) => ({
-      //     id: item.id,
-      //     title: item.title,
-      //     created_date: item.created_date,
-      //     url: item.url,
-      //     likes_count: item.likes_count,
-      //     shares_count: item.shares_count,
-      //     comments_count: item.comments_count,
-      //     author: item.author,
-      //     author_avatar_url: item.author_avatar_url,
-      //     author_url: item.author_url,
-      //     importance_label: item.importance_label,
-      //   })),
-      // });
-
-      // setMentionFormData({
-      //   mentions: allData.report.Mentions.Mentions_from_the_most_popular_public_profiles.map((item: any) => ({
-      //     id: item.id,
-      //     title: item.title,
-      //     created_date: item.created_date,
-      //     url: item.url,
-      //     likes_count: item.likes_count,
-      //     shares_count: item.shares_count,
-      //     comments_count: item.comments_count,
-      //     author: item.author,
-      //     author_avatar_url: item.author_avatar_url,
-      //     author_url: item.author_url,
-      //     importance_label: item.importance_label,
-      //   })),
-      // });
-
-      // setFrontInfluencers(
-      //   allData.report.Influncers.map((item) => ({
-      //     id: item.authors_id,
-      //     profileImage: item.author_avatar_url,
-      //     name: item.author,
-      //     siteIcon: item.service,
-      //     siteUrl: item.author_url,
-      //     mentions: item.count,
-      //     followers: item.followers_count,
-      //   }))
-      // );
-    }
-  }, [allData]);
+  //   }
+  // }, [allData]);
 
 
   // }
@@ -563,6 +397,7 @@ export default function Component() {
                   data: frontSearchAnalysis.paid_nonbrand.Records
                 }
               ]}
+              chatId={chatIdString}
             />)}
 
             {frontSocialOverview && frontMentionOverview && frontMentionChart && (

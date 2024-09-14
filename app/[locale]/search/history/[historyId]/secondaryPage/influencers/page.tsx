@@ -25,7 +25,6 @@ interface Influencer {
 
 const Influencers: React.FC = () => {
     const { historyId } = useParams()
-
     const [frontInfluencers, setFrontInfluencers] = useState<Influencer[] | null>(null);
 
     // 博主表格表头数据
