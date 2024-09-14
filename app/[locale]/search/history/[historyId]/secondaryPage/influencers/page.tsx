@@ -8,10 +8,10 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import Image from "next/image";
 import AIInsightsIcon from "@/public/aiinsights.svg";
-import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useAuth } from '@clerk/nextjs';
 import { useParams } from 'next/navigation';
+import { ArrowLeftIcon } from 'lucide-react';
 
 interface Influencer {
     authors_id: string; // 作者ID
@@ -76,11 +76,18 @@ const Influencers: React.FC = () => {
             <Card className="rounded-[24px] p-2">
                 <CardHeader>
                     <div className='flex justify-between'>
-                        <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Influencers</CardTitle>
                         <Button
                             variant="link"
                             onClick={handleBack}
-                            className="bg-white text-black p-2 rounded-full flex items-center justify-center hover:bg-white hover:border-transparent focus:border-transparent"
+                            className="bg-white text-black p-2 rounded-full flex items-center justify-center hover:bg-gray-100 focus:outline-none"
+                        >
+                            <ArrowLeftIcon className="w-5 h-9" />
+                        </Button>
+                        <CardTitle className='text-xl font-extrabold text-[#4281DB]'>Influencers</CardTitle>
+                        <Button
+                            variant="link"
+                            asChild
+                            className="p-2 hover:bg-muted/50"
                         >
                             <Link href="mailto:your-email@example.com">
                                 <Image
