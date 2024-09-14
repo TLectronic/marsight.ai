@@ -453,7 +453,7 @@ export default function Component() {
               OrganicSearch={MarketingChannelsData.OrganicSearch}
               PaidSearch={MarketingChannelsData.PaidSearch}
             />
-            <Referrals referralsData={ReferralsData} />
+            {/* <Referrals referralsData={ReferralsData} /> */}
             <SearchAnalysis
               dataofbox={SearchOverviewData}
               organic={organic}
