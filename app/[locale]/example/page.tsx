@@ -454,11 +454,11 @@ export default function Component() {
               PaidSearch={MarketingChannelsData.PaidSearch}
             />
             {/* <Referrals referralsData={ReferralsData} /> */}
-            <SearchAnalysis
+            {/* <SearchAnalysis
               dataofbox={SearchOverviewData}
               organic={organic}
               paid={paid}
-            />
+            /> */}
             <SocialMediaAnalysis
               TotalSocialVisits={SocialMediaAnalysisData.TotalSocialVisits}
               Mentions={SocialMediaAnalysisData.Mentions}

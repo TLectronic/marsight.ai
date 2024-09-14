@@ -13,6 +13,7 @@ import { Chat } from '@/components/custom/Chat';
 import { useParams } from 'next/navigation'
 import { useAuth } from "@clerk/nextjs"
 import axios from 'axios';
+import { resolve } from 'path'
 
 
 const messages = [
@@ -227,9 +228,55 @@ export default function Component() {
 
   interface Keywords {
     all_brand: {
-      
-    }
+      KeywordsCount: number;
+      OverallClicks: number;
+    };
+    organic_nonbrand: {
+      KeywordsCount: number;
+      Records: {
+        Keyword: string;
+        Clicks: number;
+        Share: number;
+        ClicksChange: number;
+        KwWindowVolume: number;
+        VolumeChange: number;
+      }[];
+    };
+    organic_brand: {
+      KeywordsCount: number;
+      Records: {
+        Keyword: string;
+        Clicks: number;
+        Share: number;
+        ClicksChange: number;
+        KwWindowVolume: number;
+        VolumeChange: number;
+      }[];
+    };
+    paid_nonbrand: {
+      KeywordsCount: number;
+      Records: {
+        Keyword: string;
+        Clicks: number;
+        Share: number;
+        ClicksChange: number;
+        KwWindowVolume: number;
+        VolumeChange: number;
+      }[];
+    };
+    paid_brand: {
+      KeywordsCount: number;
+      Records: {
+        Keyword: string;
+        Clicks: number;
+        Share: number;
+        ClicksChange: number;
+        KwWindowVolume: number;
+        VolumeChange: number;
+      }[];
+    };
   }
+  const [frontSearchAnalysis, setFrontSearchAnalysis] = useState<Keywords | null>();
 
 
   // 当前页面的chatId
@@ -275,6 +322,8 @@ export default function Component() {
         const backInfluncers = (response as any).report.Influncers
         setFrontInfluencers(backInfluncers as Influncers[])
 
+        const backKeywords = (response as any).report.Keywords
+        setFrontSearchAnalysis(backKeywords as Keywords)
 
 
       }
@@ -526,11 +575,38 @@ export default function Component() {
 
             {frontReferrals && (<Referrals referralsData={frontReferrals.Records} />)}
 
-            {/* <SearchAnalysis
-              dataofbox={SearchAnalysisData}
-              organic={organicTrafficData}
-              paid={paidTrafficData}
-            /> */}
+            {frontSearchAnalysis && frontTraffic && (<SearchAnalysis
+              dataofbox={{
+                NoofKeywords: frontSearchAnalysis.all_brand.KeywordsCount,
+                NoofClicks: frontSearchAnalysis.all_brand.OverallClicks,
+                MonthlyVisits: frontTraffic.total.AvgMonthVisits,
+                Organic: frontSearchAnalysis.organic_brand.KeywordsCount + frontSearchAnalysis.organic_nonbrand.KeywordsCount,
+                Paid: frontSearchAnalysis.paid_brand.KeywordsCount + frontSearchAnalysis.paid_nonbrand.KeywordsCount,
+              }}
+              organic={[
+                {
+                  KeywordClass: 'Branded Keywords',
+                  data: frontSearchAnalysis.organic_brand.Records
+
+                },
+                {
+                  KeywordClass: 'Non-Branded Keywords',
+                  data: frontSearchAnalysis.organic_nonbrand.Records
+                }
+              ]}
+              paid={[
+                {
+                  KeywordClass: 'Branded Keywords',
+                  data: frontSearchAnalysis.paid_brand.Records
+
+                },
+                {
+                  KeywordClass: 'Non-Branded Keywords',
+                  data: frontSearchAnalysis.paid_nonbrand.Records
+                }
+              ]}
+            />)}
+
 
             {/* <SocialMediaAnalysis
               TotalSocialVisits={TotalSocialData}
