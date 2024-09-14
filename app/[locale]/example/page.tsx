@@ -428,12 +428,12 @@ export default function Component() {
           </div>
           <div className="p-4 space-y-4 min-w-[500px]">
 
-            <ProductAnalysis
+            {/* <ProductAnalysis
               ProductSummary={ProductAnalysisData.ProductSummary}
               TargetUsers={ProductAnalysisData.TargetUsers}
               CoreFeatures={ProductAnalysisData.CoreFeatures}
               UseCases={ProductAnalysisData.UseCases}
-            />
+            /> */}
             <TrafficOverview
               MonthlyVisits={TrafficOverviewData.MonthlyVisits}
               UniqueVisitors={TrafficOverviewData.UniqueVisitors}
