@@ -5,7 +5,7 @@ const NoDataCard = () => {
     return (
         <Card style={{ padding: '20px', textAlign: 'center', borderRadius: '8px', backgroundColor: '#f5f5f5' }}>
             <CardContent color="textSecondary">
-                Looks like there's not enough data here.
+                Looks like there&apos;s not enough data here.
             </CardContent>
         </Card>
     );
