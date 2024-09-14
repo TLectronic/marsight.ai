@@ -149,6 +149,13 @@ const SearchAnalysis = () => {
             <div className='bg-[#ffffff] w-full h-full p-4 space-y-4 overflow-auto'>
                 <Card className="rounded-[24px]">
                     <CardHeader className="!font-normal -mt-6">
+                        <Button
+                            variant="link"
+                            onClick={handleBack}
+                            className="bg-white text-black p-2 rounded-full flex items-center justify-center hover:bg-white hover:border-transparent focus:border-transparent"
+                        >
+                            <ArrowLeftIcon className="w-5 h-5" />
+                        </Button>
                         <div className="flex justify-between">
                             <div>
                                 <Select defaultValue="organic" onValueChange={(value) => setSelectedOption(value)}>
