@@ -208,7 +208,7 @@ const SearchAnalysis = () => {
                                                 className="text-black hover:no-underline px-2"
                                             >
                                                 <div className="bg-blue-100 rounded-xl px-2">{datagroup.KeywordClass}</div>
-                                                <div className="ml-6">2条记录</div>
+                                                <div className="ml-6">{datagroup.data.length} records</div>
                                                 {expandedIndexes.includes(index) ? (
                                                     <TriangleDownIcon />
                                                 ) : (
