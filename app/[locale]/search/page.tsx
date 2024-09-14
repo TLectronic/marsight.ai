@@ -56,7 +56,7 @@ export default function Page({ params: { lng } }: { params: { lng: string } }) {
           const jwtToken = await getToken({ template });
           console.log(jwtToken);
           const response = await axios.post(
-            'https://marsight-1835320230.us-east-1.elb.amazonaws.com',
+            'https://alb.marsight.ai/',
             {
               url: inputValue,
               userId: user.id,
