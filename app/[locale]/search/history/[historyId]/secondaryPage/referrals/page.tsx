@@ -1,10 +1,13 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { ResponsiveContainer } from 'recharts';
 import { ArrowLeftIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useParams } from 'next/navigation';
+import axios from 'axios';
+import { useAuth } from '@clerk/nextjs';
 
 const referralsData = [
     {
@@ -33,8 +36,25 @@ const referralsData = [
     }
 ];
 
+interface Referral {
+    TotalVisits: number;
+    Records: {
+        Domain: string;
+        Category: string;
+        Share: number;
+        TotalVisits: number;
+        Change: number;
+        Reference: {
+            link: string; // 确保这个类型与实际数据一致
+        }[];
+    }[];
+}
+
+
 const Referrals = () => {
+    const { historyId } = useParams()
     const [expandedRowIndex, setExpandedRowIndex] = useState<number | null>(null);
+    const [frontReferrals, setFrontReferrals] = useState<Referral | null>();
 
     const handleBack = () => {
         window.history.back();
@@ -44,9 +64,45 @@ const Referrals = () => {
         setExpandedRowIndex(expandedRowIndex === rowIndex ? null : rowIndex);
     };
 
+    // 登录认证内容
+    const template = 'marsight';
+    const { getToken, isSignedIn } = useAuth();
+
+    const getData = async () => {
+        try {
+            console.log('isSignedIn', isSignedIn)
+            console.log('chatId', historyId)
+            if (isSignedIn) {
+                const jwtToken = await getToken({ template });
+                const response = await axios.get(
+                    `https://zyzc73u8a0.execute-api.us-east-1.amazonaws.com/Alpha/chat?chatId=${historyId}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${jwtToken}`,
+                        },
+                    }
+                );
+                console.log("返回的数据:", response);
+                const backReferral = (response.data as any).report.Referral
+                setFrontReferrals(backReferral as Referral)
+            }
+        } catch (error) {
+            console.error('Failed to get chat:', error);
+        }
+    };
+
+    // 页面初始化的时候调用 getData 获得数据
+    useEffect(() => {
+        console.log('isSignedIn', isSignedIn)
+        console.log('chatId', historyId)
+        if (isSignedIn && historyId) {
+            getData();
+        }
+    }, [isSignedIn, historyId]);
+
     return (
         <div className="bg-[#ffffff] w-full h-full p-4 space-y-4">
-            <Card className="rounded-[24px] ">
+            <Card className="rounded-[24px] p-2">
                 <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
                         <Button
@@ -56,7 +112,7 @@ const Referrals = () => {
                         >
                             <ArrowLeftIcon className="w-5 h-5" />
                         </Button>
-                        <span className="text-black text-lg font-bold">Referrals</span>
+                        <span className="text-xl font-extrabold text-[#4281DB]">Referrals</span>
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -72,7 +128,7 @@ const Referrals = () => {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {referralsData.map((row, rowIndex) => (
+                                {frontReferrals?.Records.map((row, rowIndex) => (
                                     <React.Fragment key={rowIndex}>
                                         <TableRow>
                                             <TableCell>
@@ -88,24 +144,24 @@ const Referrals = () => {
                                                             <ChevronDownIcon className="w-5 h-5 text-black" />
                                                         )}
                                                     </Button>
-                                                    <a href={`https://${row.link}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
-                                                        {row.link}
+                                                    <a href={`https://${row.Domain}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
+                                                        {row.Domain}
                                                     </a>
                                                 </div>
                                             </TableCell>
-                                            <TableCell>{row.category}</TableCell>
-                                            <TableCell>{row.trafficShare}</TableCell>
-                                            <TableCell>{row.traffic}</TableCell>
-                                            <TableCell>{row.change}</TableCell>
+                                            <TableCell>{row.Category}</TableCell>
+                                            <TableCell>{row.Share}</TableCell>
+                                            <TableCell>{row.TotalVisits}</TableCell>
+                                            <TableCell>{row.Change}</TableCell>
                                         </TableRow>
                                         {expandedRowIndex === rowIndex && (
                                             <TableRow>
                                                 <TableCell colSpan={5}>
                                                     <div className="ml-8">
-                                                        {row.details.map((detail, detailIndex) => (
-                                                            <div key={detailIndex} className="border-b border-gray-200 py-2">
-                                                                <a href={detail} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
-                                                                    {detail}
+                                                        {row.Reference.map((linkObj, linkIndex) => (
+                                                            <div key={linkIndex} className="border-b border-gray-200 py-2">
+                                                                <a href={linkObj.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 no-underline">
+                                                                    {linkObj.link}
                                                                 </a>
                                                             </div>
                                                         ))}

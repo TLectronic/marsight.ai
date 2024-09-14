@@ -20,6 +20,7 @@ interface ReferralsRow {
 
 interface ReferralsProps {
   referralsData: ReferralsRow[];
+  chatId: string;
 }
 
 // 将小数转成百分数并保留两位小数
@@ -37,7 +38,7 @@ const formatNumber = (num: number): string => {
   return num.toString();
 };
 
-const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
+const Referrals: React.FC<ReferralsProps> = ({ referralsData, chatId }) => {
   const { getToken, isSignedIn } = useAuth();
   const template = 'marsight'
 
@@ -123,7 +124,7 @@ const Referrals: React.FC<ReferralsProps> = ({ referralsData }) => {
           </CardContent>
           <div className="flex justify-end">
             <Button variant="link">
-              <Link href="./1/secondaryPage/referrals" >
+              <Link href={`./${chatId}/secondaryPage/referrals`} >
                 Show more details
               </Link>
             </Button>
