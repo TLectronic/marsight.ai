@@ -312,7 +312,7 @@ export default function Component() {
   // 当前页面的chatId
   const { historyId } = useParams()
   // 登录认证内容
-  const template = 'markSightTest'
+  const template = 'marsight'
   const { getToken, isSignedIn } = useAuth();
   // 当前页面的所有数据
   const [allData, setAllData] = useState(null);
@@ -648,7 +648,7 @@ export default function Component() {
 
             {frontSocialOverview && frontMentionOverview && frontMentionChart && (
               <SocialMediaAnalysis
-                TotalSocialVisits={frontSocialOverview.Records.reduce((total, record) => total+record.Visits, 0)}
+                TotalSocialVisits={frontSocialOverview.Records.reduce((total, record) => total + record.Visits, 0)}
                 Mentions={frontMentionOverview.results_count}
                 TotalLikes={frontMentionOverview.total_number_of_likes}
                 TotalShares={frontMentionOverview.total_number_of_shares}
