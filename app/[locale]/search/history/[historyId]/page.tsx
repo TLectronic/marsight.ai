@@ -293,7 +293,13 @@ export default function Component() {
           </div>
           <div className="p-4 space-y-4 min-w-[500px]">
 
-            {frontProductAnalysis && frontIntroduction && (
+            {frontProductAnalysis &&
+              frontIntroduction &&
+              frontIntroduction.icon &&
+              frontProductAnalysis.description &&
+              frontProductAnalysis.target_users &&
+              frontProductAnalysis.core_function &&
+              frontProductAnalysis.application_scenario ? (
               <ProductAnalysis
                 ProductIconUrl={frontIntroduction.icon}
                 ProductSummary={frontProductAnalysis.description}
@@ -301,9 +307,20 @@ export default function Component() {
                 CoreFeatures={frontProductAnalysis.core_function}
                 UseCases={frontProductAnalysis.application_scenario}
               />
+            ) : (
+              <NoDataCard />
             )}
 
-            {frontTraffic && (
+
+            {frontTraffic &&
+              frontTraffic.daily.Desktop.length > 0 &&
+              frontTraffic.daily.MobileWeb.length > 0 &&
+              frontTraffic.total.AvgMonthVisits &&
+              frontTraffic.total.UniqueUsers &&
+              frontTraffic.total.AvgVisitDuration &&
+              frontTraffic.total.PagesPerVisit &&
+              frontTraffic.total.BounceRate &&
+              frontTraffic.total.TotalPagesViews ? (
               <TrafficOverview
                 MonthlyVisits={frontTraffic.total.AvgMonthVisits}
                 UniqueVisitors={frontTraffic.total.UniqueUsers}
@@ -314,9 +331,19 @@ export default function Component() {
                 DesktopData={frontTraffic.daily.Desktop}
                 MobileWebData={frontTraffic.daily.MobileWeb}
               />
+            ) : (
+              <NoDataCard />
             )}
 
-            {frontMarketingChannels && (
+
+            {frontMarketingChannels &&
+              frontMarketingChannels.Social &&
+              frontMarketingChannels.Direct &&
+              frontMarketingChannels['Display Ads'] &&
+              frontMarketingChannels.Referrals &&
+              frontMarketingChannels.Email &&
+              frontMarketingChannels['Organic Search'] &&
+              frontMarketingChannels['Paid Search'] ? (
               <MarketingChannels
                 Social={frontMarketingChannels.Social}
                 Direct={frontMarketingChannels.Direct}
@@ -326,7 +353,10 @@ export default function Component() {
                 OrganicSearch={frontMarketingChannels['Organic Search']}
                 PaidSearch={frontMarketingChannels['Paid Search']}
               />
+            ) : (
+              <NoDataCard />
             )}
+
 
             {frontReferrals && frontReferrals.Records.length > 0 ? (
               <Referrals referralsData={referralsToDisplay} chatId={chatIdString} />
@@ -334,7 +364,7 @@ export default function Component() {
               <NoDataCard />
             )}
 
-            {frontSearchAnalysis && frontTraffic && (<SearchAnalysis
+            {frontSearchAnalysis && frontTraffic && frontSearchAnalysis.organic_brand.Records.length > 0 && frontSearchAnalysis.organic_nonbrand.Records.length > 0 && frontSearchAnalysis.paid_brand.Records.length > 0 && frontSearchAnalysis.paid_nonbrand.Records.length > 0 && frontSearchAnalysis.all_brand.KeywordsCount && frontSearchAnalysis.all_brand.OverallClicks && frontSearchAnalysis.organic_nonbrand.KeywordsCount && frontSearchAnalysis.organic_brand.KeywordsCount && frontSearchAnalysis.paid_brand.KeywordsCount && frontSearchAnalysis.paid_nonbrand.KeywordsCount && frontTraffic.total.AvgMonthVisits ? (<SearchAnalysis
               dataofbox={{
                 NoofKeywords: frontSearchAnalysis.all_brand.KeywordsCount,
                 NoofClicks: frontSearchAnalysis.all_brand.OverallClicks,
@@ -365,9 +395,19 @@ export default function Component() {
                 }
               ]}
               chatId={chatIdString}
-            />)}
+            />) : (
+              <NoDataCard />
+            )}
 
-            {frontSocialOverview && frontMentionOverview && frontMentionChart && (
+            {frontSocialOverview &&
+              frontMentionOverview &&
+              frontMentionChart &&
+              frontSocialOverview.Records.length > 0 &&
+              frontSocialOverview.TopSources.length > 0 &&
+              frontMentionChart.total_results.graph_data.length > 0 &&
+              frontMentionOverview.results_count &&
+              frontMentionOverview.total_number_of_likes &&
+              frontMentionOverview.total_number_of_shares ? (
               <SocialMediaAnalysis
                 TotalSocialVisits={frontSocialOverview.Records.reduce((total, record) => total + record.Visits, 0)}
                 Mentions={frontMentionOverview.results_count}
@@ -376,7 +416,10 @@ export default function Component() {
                 LineChartData={frontMentionChart.total_results.graph_data}
                 PieChartData={frontSocialOverview.TopSources}
               />
+            ) : (
+              <NoDataCard />
             )}
+
 
             {frontMentions && frontMentions.Mentions_from_the_most_popular_public_profiles.length > 0 && frontMentions.The_most_popular_mentions.length > 0 ? (
               <Mentions
